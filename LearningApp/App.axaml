@@ -1,0 +1,111 @@
+<Application xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearningApp.App"
+             xmlns:local="using:LearningApp"
+             RequestedThemeVariant="Dark">
+    <!-- "Default" ThemeVariant follows system theme variant. "Dark" or "Light" are other available options. -->
+
+    <Application.DataTemplates>
+        <local:ViewLocator />
+    </Application.DataTemplates>
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceInclude Source="/Assets/Resources/Colors.axaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
+
+
+    <Application.Styles>
+        <FluentTheme />
+        <Style Selector="Window">
+            <Setter Property="Background" Value="{StaticResource BackgroundColor}" />
+            <Setter Property="WindowState" Value="Maximized" />
+        </Style>
+        <Style Selector="TextBox">
+            <Setter Property="Background" Value="{StaticResource UIElementsPrimaryColor}" />
+            <Setter Property="CornerRadius" Value="20" />
+            <Setter Property="FontSize" Value="24" />
+            <Setter Property="Padding" Value="10" />
+            <Setter Property="BorderBrush" Value="Transparent" />
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="FontFamily" Value="/Assets/Fonts/Roboto_Mono/static/RobotoMono-Bold.ttf#Roboto Mono" />
+
+        </Style>
+        <Style Selector="TextBox:pointerover /template/ Border">
+            <Setter Property="Background" Value="{StaticResource UIElementsPrimaryColor}" />
+            <Setter Property="CornerRadius" Value="20" />
+            <Setter Property="BorderBrush" Value="Transparent" />
+        </Style>
+        <Style Selector="TextBox:focus /template/ Border">
+            <Setter Property="Background" Value="{StaticResource UIElementsPrimaryColor}" />
+            <Setter Property="CornerRadius" Value="20" />
+            <Setter Property="BorderBrush" Value="Transparent" />
+        </Style>
+        <Style Selector="TextBox /template/ TextBlock#PART_Watermark">
+            <Setter Property="Foreground" Value="{StaticResource SecondaryTextColor}" />
+        </Style>
+
+        <Style Selector="Button.primary">
+            <Setter Property="Background" Value="{StaticResource AccentColor}" />
+            <Setter Property="CornerRadius" Value="20" />
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="FontSize" Value="24" />
+            <Setter Property="FontFamily" Value="/Assets/Fonts/Roboto_Mono/static/RobotoMono-Bold.ttf#Roboto Mono" />
+            <Setter Property="Padding" Value="10" />
+            <Style Selector="^:pointerover /template/ ContentPresenter">
+                <Setter Property="Background" Value="{StaticResource AccentColorDark}" />
+            </Style>
+        </Style>
+
+        <Style Selector="Button.icon">
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="CornerRadius" Value="50" />
+            <Setter Property="Margin" Value="5" />
+            <Style Selector="^:pointerover">
+                <Setter Property="Background" Value="Transparent" />
+            </Style>
+            <Style Selector="^:btnfocused">
+                <Setter Property="Background" Value="Transparent" />
+            </Style>
+        </Style>
+        <Style Selector="Button.textbutton">
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="FontSize" Value="18" />
+            <Setter Property="CornerRadius" Value="25" />
+            <Setter Property="FontFamily" Value="/Assets/Fonts/Roboto_Mono/static/RobotoMono-Bold.ttf#Roboto Mono" />
+            <Style Selector="^:pointerover">
+                <Setter Property="Background" Value="Transparent" />
+            </Style>
+            <Style Selector="^:btnfocused">
+                <Setter Property="Background" Value="Transparent" />
+            </Style>
+        </Style>
+
+
+        <Style Selector="Svg.passwordIcon">
+            <Setter Property="Height" Value="30" />
+        </Style>
+        <Style Selector="ToolTip">
+            <Setter Property="Background" Value="#333" />
+            <Setter Property="Foreground" Value="#fff" />
+            <Setter Property="BorderBrush" Value="#666" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="Padding" Value="5" />
+            <Setter Property="CornerRadius" Value="3" />
+            <Setter Property="FontSize" Value="18" />
+
+        </Style>
+
+        <Style Selector="Label">
+            <Setter Property="FontFamily" Value="/Assets/Fonts/Roboto_Mono/static/RobotoMono-Bold.ttf#Roboto Mono" />
+        </Style>
+
+        <Style Selector="TextBlock">
+            <Setter Property="FontFamily" Value="/Assets/Fonts/Roboto_Mono/static/RobotoMono-Medium.ttf#Roboto Mono" />
+            <Setter Property="Foreground" Value="{StaticResource SecondaryTextColor}" />
+        </Style>
+    </Application.Styles>
+</Application>

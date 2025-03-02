@@ -1,0 +1,129 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:viewModels="clr-namespace:LearningApp.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="1920" d:DesignHeight="1080"
+             x:Class="LearningApp.Views.SignUpView"
+             x:DataType="viewModels:SignUpViewModel">
+
+    <Design.DataContext>
+        <viewModels:SignUpViewModel />
+    </Design.DataContext>
+    <Grid ColumnDefinitions="*" RowDefinitions="*" ShowGridLines="True">
+
+        <Border
+            Margin="25"
+            Background="#35373B"
+            CornerRadius="25">
+            <Grid RowDefinitions="Auto, *, Auto" ColumnDefinitions="*,*,*,*">
+                <StackPanel Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Margin="75" HorizontalAlignment="Stretch"
+                            VerticalAlignment="Center">
+                    <Label Margin="0,0,0,20" FontSize="30" HorizontalAlignment="Center">
+                        Sign up
+                    </Label>
+                    <TextBlock
+                        Margin="0,0,0,20"
+                        FontSize="20"
+                        Text="Create new account or authorize with third party services below."
+                        TextAlignment="Center"
+                        TextWrapping="Wrap" />
+                    <TextBox
+                        Margin="0,0,0,20"
+                        Text="{Binding Email}"
+                        Watermark="Email" />
+                    <TextBox
+                        Margin="0,0,0,20"
+                        Text="{Binding Username}"
+                        Watermark="Username" />
+
+                    <Grid Margin="0,0,0,20">
+                        <TextBox
+                            x:Name="PasswordField"
+                            PasswordChar="*"
+                            Text="{Binding Password}"
+                            Watermark="Password" />
+                        <Button
+                            x:Name="ShowHideButton"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Center"
+                            Classes="icon"
+                            Click="TogglePasswordVisibility"
+                            Background="Transparent"
+                            BorderThickness="0">
+                            <Svg
+                                x:Name="ShowHideIcon"
+                                Classes="passwordIcon"
+                                Path="{Binding ImagePath}" />
+                        </Button>
+                    </Grid>
+
+                    <TextBox
+                        Margin="0,0,0,40"
+                        x:Name="RepeatPasswordField"
+                        Text="{Binding RepeatPassword}"
+                        PasswordChar="*"
+                        Watermark="Repeat password" />
+
+
+                    <Button
+                        HorizontalAlignment="Stretch"
+                        HorizontalContentAlignment="Center"
+                        Classes="primary"
+                        Command="{Binding SignUpCommand}"
+                        Content="Sign Up" />
+
+                    <Grid Margin="20,30" ColumnDefinitions="*, Auto, *">
+                        <Rectangle
+                            Grid.Column="0"
+                            Height="1"
+                            Margin="0,5,10,5"
+                            HorizontalAlignment="Stretch"
+                            Fill="#494C51" />
+                        <Label
+                            Grid.Column="1"
+                            Margin="10,0"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Foreground="#B3C3C0">
+                            Or authorize with
+                        </Label>
+                        <Rectangle
+                            Grid.Column="2"
+                            Height="1"
+                            Margin="10,5,0,5"
+                            HorizontalAlignment="Stretch"
+                            Fill="#494C51" />
+                    </Grid>
+
+                    <StackPanel
+                        HorizontalAlignment="Center"
+                        Orientation="Horizontal"
+                        Spacing="20">
+                        <Button
+                            Width="50"
+                            Height="50"
+                            CornerRadius="25" />
+                        <Button
+                            Width="50"
+                            Height="50"
+                            CornerRadius="25" />
+                        <Button
+                            Width="50"
+                            Height="50"
+                            CornerRadius="25" />
+                    </StackPanel>
+                    <Button
+                        Classes="textbutton"
+                        Command="{Binding NavigateToLogIn}"
+                        HorizontalAlignment="Center"
+                        Margin="0,50,0,0">
+                        Already have an account? Log In.
+                    </Button>
+                </StackPanel>
+
+            </Grid>
+        </Border>
+    </Grid>
+
+</UserControl>
