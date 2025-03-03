@@ -4,5 +4,9 @@ public enum AppPageNames
 {
     LogIn,
     SignUp,
-    MainApp
+    MainApp,
+    Home,
+    Courses,
+    Settings,
+    Profile,
 }
