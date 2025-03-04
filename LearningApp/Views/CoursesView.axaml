@@ -6,6 +6,7 @@
              x:Class="LearningApp.Views.CoursesView"
              xmlns:viewModels="clr-namespace:LearningApp.ViewModels"
              xmlns:model="clr-namespace:LearningApp.Models"
+             xmlns:asyncImageLoader="clr-namespace:AsyncImageLoader;assembly=AsyncImageLoader.Avalonia"
              x:DataType="viewModels:CoursesViewModel">
     <Design.DataContext>
         <viewModels:CoursesViewModel />
@@ -13,46 +14,67 @@
     <UserControl.DataContext>
         <viewModels:CoursesViewModel />
     </UserControl.DataContext>
-    
-        <ScrollViewer Grid.ColumnSpan="3" VerticalScrollBarVisibility="Auto">
-                <Grid RowDefinitions="Auto,*" ShowGridLines="True">
-                <Border >
-                    <Grid ColumnDefinitions="*,*,*" ShowGridLines="False" >
-                        <Label VerticalAlignment="Center" FontSize="36" Margin="20" >Welcome back!</Label>
-                        <Button Grid.Column="2" HorizontalAlignment="Right" Classes="icon" Margin="20" Height="80" Width="80">
-                            <Image Source="/Assets/avalonia-logo.ico" HorizontalAlignment="Right"  />
-                        </Button>
-                    </Grid>
-                </Border>
-                    <Border Background="Transparent" Grid.Row="1">
-                        <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
-                            <ItemsControl ItemsSource="{Binding Items}">
-                                <ItemsControl.ItemsPanel>
-                                    <ItemsPanelTemplate>
-                                        <StackPanel Orientation="Horizontal" />
-                                    </ItemsPanelTemplate>
-                                </ItemsControl.ItemsPanel>
-                                <ItemsControl.ItemTemplate>
-                                    <DataTemplate x:DataType="{x:Type model:Course}">
-                                        <Border Width="350" Background="#35373B" CornerRadius="15" BorderThickness="0" Margin="20">
-                                            <Grid RowDefinitions="Auto, Auto, Auto, *" ColumnDefinitions="Auto, *" Margin="20">
-                                                <Border Grid.Row="0" Grid.ColumnSpan="2" CornerRadius="15 15 0 0">
-                                                    <Image  Stretch="UniformToFill" Height="150"/>
-                                                </Border>
-                                                <TextBlock Grid.Row="1" Grid.ColumnSpan="2" Grid.Column="0" Text="{Binding CourseName}" FontSize="18" FontWeight="Bold" TextAlignment="Center" Margin="10" Foreground="White" TextWrapping="Wrap"/>
-                                                <TextBlock Grid.Row="3" Grid.Column="1" Text="{Binding CourseLanguageLevel}" FontSize="14" VerticalAlignment="Center" Margin="5,0,10,0" Foreground="#A0A0A0"/>
-                                                <StackPanel Grid.Row="2" Grid.ColumnSpan="2" Grid.Column="0" Orientation="Vertical" Margin="10">
-                                                    <TextBlock Text="{Binding CourseDescription}" FontSize="14" TextWrapping="Wrap" Foreground="#D0D0D0"/>
-                                                   
-                                                </StackPanel>
-                                            </Grid>
-                                        </Border>
-                                    </DataTemplate>
-                                </ItemsControl.ItemTemplate>
-                            </ItemsControl>
-                        </ScrollViewer>
-                    </Border>
-                </Grid>
-            </ScrollViewer>
-    
+
+    <Grid RowDefinitions="Auto,*">
+
+        <Border Background="Transparent" Grid.Row="0" Padding="10">
+            <Grid ColumnDefinitions="*,Auto,Auto">
+                <Button Grid.Column="1" Classes="icon" VerticalAlignment="Center" Margin="5,0">
+                    <Svg Height="30" Width="30" Path="/Assets/Icons/search.svg" />
+                </Button>
+                <Button Grid.Column="2" Classes="icon" VerticalAlignment="Center" Margin="5,0">
+                    <Svg Height="30" Width="30" Path="/Assets/Icons/filter.svg" />
+                </Button>
+            </Grid>
+        </Border>
+
+
+        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+            <ItemsControl ItemsSource="{Binding Items}" HorizontalAlignment="Stretch">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <UniformGrid HorizontalAlignment="Left" VerticalAlignment="Top" />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate x:DataType="{x:Type model:Course}">
+                        <Border Background="#35373B" CornerRadius="15" BoxShadow="5 5 5 2 Black"
+                                BorderThickness="0" Margin="20">
+                            <Grid RowDefinitions="Auto, Auto, Auto, Auto, Auto"
+                                  ColumnDefinitions="Auto, *">
+                                <Border Grid.Row="0" Grid.ColumnSpan="2" ClipToBounds="True"
+                                        CornerRadius="15 15 0 0">
+                                    <Image asyncImageLoader:ImageLoader.Source="{Binding ImageUrl}"
+                                           Stretch="UniformToFill" Height="150" />
+                                </Border>
+                                <TextBlock Grid.Row="1" Grid.ColumnSpan="2" Grid.Column="0"
+                                           Text="{Binding CourseName}" FontSize="20" Foreground="White"
+                                           TextAlignment="Center" Margin="10,15,10,10"
+                                           TextWrapping="Wrap" />
+
+                                <TextBlock Grid.Row="2" Grid.ColumnSpan="2" Grid.Column="0"
+                                           Text="{Binding CourseDescription}" FontSize="14"
+                                           TextWrapping="Wrap" TextAlignment="Center"
+                                           Margin="10,0,10,10" />
+
+                                <TextBlock Grid.Row="3" Grid.Column="0" Text="Level:" FontSize="14"
+                                           VerticalAlignment="Center" Margin="25,0,5,0"
+                                           Foreground="#777777" />
+
+                                <TextBlock Grid.Row="3" Grid.Column="1"
+                                           Text="{Binding CourseLanguageLevel}" FontSize="14"
+                                           VerticalAlignment="Center" Margin="5,0,10,0" />
+                                <TextBlock Grid.Row="4" Grid.Column="0" Text="Lessons: " FontSize="14"
+                                           VerticalAlignment="Center" Margin="25,0,5,25"
+                                           Foreground="#777777" />
+                                <TextBlock Grid.Row="4" Grid.Column="1"
+                                           Text="{Binding Lesson.Count, FallbackValue=0}" FontSize="14"
+                                           VerticalAlignment="Center" Margin="5,0,10,25" />
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
+    </Grid>
 </UserControl>

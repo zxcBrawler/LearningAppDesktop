@@ -3,7 +3,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:viewModels="clr-namespace:LearningApp.ViewModels"
-             xmlns:model="clr-namespace:LearningApp.Models"
+             xmlns:asyncImageLoader="clr-namespace:AsyncImageLoader;assembly=AsyncImageLoader.Avalonia"
              mc:Ignorable="d" d:DesignWidth="1920" d:DesignHeight="1080"
              x:Class="LearningApp.Views.MainAppView"
              x:DataType="viewModels:MainAppViewModel">
@@ -12,59 +12,115 @@
         <viewModels:MainAppViewModel />
     </Design.DataContext>
 
-    <Grid ShowGridLines="True" ColumnDefinitions="Auto, *">
-        <!-- Sidebar -->
-        <Border Background="#2A2E33" CornerRadius="0,10,10,0">
-            <Grid RowDefinitions="Auto,*, Auto" ShowGridLines="False">
-                <!-- Top Section  -->
-                <Border Height="100" Width="100" Margin="0,0,0,10">
-                    <Image Source="/Assets/Icons/book.png" Height="100" />
-                </Border>
-                <!-- Menu Items -->
-                <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
-                    <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Top" Spacing="15" Margin="10">
-                        <Button Command="{Binding NavigateToHomePageCommand}" Classes="icon" Padding="15" ToolTip.Tip="Home" ToolTip.Placement="Center"
-                                ToolTip.VerticalOffset="40">
-                            <StackPanel Orientation="Vertical">
+    <!-- Sidebar -->
+    <SplitView IsPaneOpen="{Binding IsPaneOpen}"
+               DisplayMode="CompactOverlay"
+               OpenPaneLength="250"
+               CompactPaneLength="100">
+        <SplitView.Pane>
+            <Border Background="#202125">
+                <Grid RowDefinitions="Auto,Auto,*, Auto, Auto" ShowGridLines="False">
+                    <!-- Top Section  -->
+                    <Button Classes="icon" Command="{Binding OpenPaneCommand}" HorizontalAlignment="Right" Height="45">
+                        <Svg
+                            Height="35"
+                            Width="35"
+                            Path="/Assets/Icons/chevron-right.svg" />
+                    </Button>
+                    <Border Grid.Row="1" Height="100" Width="100" Margin="0,0,0,10" HorizontalAlignment="Left">
+                        <Image Source="/Assets/Icons/book.png" Height="100" />
+                    </Border>
+                    <!-- Menu Items -->
+                    <ScrollViewer Grid.Row="2" VerticalScrollBarVisibility="Auto">
+                        <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Top" Spacing="15" Margin="10">
+                            <Button HorizontalAlignment="Stretch" Command="{Binding NavigateToHomePageCommand}"
+                                    Classes="sideMenuElement" Padding="15" CornerRadius="20"
+                                    ToolTip.Tip="Home" ToolTip.Placement="Center"
+                                    ToolTip.VerticalOffset="40">
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Spacing="20">
+                                    <Svg
+
+                                        Height="35"
+                                        Width="35"
+                                        Path="/Assets/Icons/house.svg" />
+                                    <TextBlock Foreground="#DFE0E2" FontSize="24" IsVisible="{Binding IsPaneOpen}"
+                                               Text="Home" />
+                                </StackPanel>
+                            </Button>
+                            <Button HorizontalAlignment="Stretch" Command="{Binding NavigateToCoursesPageCommand}"
+                                    Classes="sideMenuElement" Padding="15" CornerRadius="20"
+                                    ToolTip.Tip="Courses" ToolTip.Placement="Center"
+                                    ToolTip.VerticalOffset="40">
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Spacing="20">
+                                    <Svg
+                                        Height="35"
+                                        Width="35"
+                                        Path="/Assets/Icons/book-open.svg" />
+                                    <TextBlock Foreground="#DFE0E2" FontSize="24" IsVisible="{Binding IsPaneOpen}"
+                                               Text="Courses" />
+                                </StackPanel>
+                            </Button>
+                            <Button HorizontalAlignment="Stretch" Command="{Binding NavigateToSettingsPageCommand}"
+                                    Classes="sideMenuElement" Padding="15" CornerRadius="20"
+                                    ToolTip.Tip="Settings" ToolTip.Placement="Center"
+                                    ToolTip.VerticalOffset="40">
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Spacing="20">
+                                    <Svg
+                                        Height="35"
+                                        Width="35"
+                                        Path="/Assets/Icons/settings.svg" />
+                                    <TextBlock Foreground="#DFE0E2" FontSize="24" IsVisible="{Binding IsPaneOpen}"
+                                               Text="Settings" />
+                                </StackPanel>
+                            </Button>
+
+                        </StackPanel>
+
+                    </ScrollViewer>
+                    <StackPanel Grid.Row="3" HorizontalAlignment="Stretch" Margin="15" Spacing="15">
+                        <Button HorizontalAlignment="Stretch" Classes="sideMenuElement" Padding="15" CornerRadius="20"
+                                ToolTip.Tip="Log Out" ToolTip.Placement="Center">
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Spacing="20">
                                 <Svg
-                                    Height="35"
-                                    Width="35"
-                                    Path="/Assets/Icons/house.svg" />
+                                    Height="30"
+                                    Width="30"
+                                    Path="/Assets/Icons/log-out.svg" />
+                                <TextBlock Foreground="#DFE0E2" FontSize="24" IsVisible="{Binding IsPaneOpen}"
+                                           Text="Log Out" />
                             </StackPanel>
+                        </Button>
 
-                        </Button>
-                        <Button Command="{Binding NavigateToCoursesPageCommand}" Classes="icon" Padding="15" ToolTip.Tip="Courses" ToolTip.Placement="Center"
-                                ToolTip.VerticalOffset="40">
-                            <Svg
-                                Height="35"
-                                Width="35"
-                                Path="/Assets/Icons/book-open.svg" />
-                        </Button>
-                        <Button Command="{Binding NavigateToSettingsPageCommand}" Classes="icon" Padding="15" ToolTip.Tip="Settings" ToolTip.Placement="Center"
-                                ToolTip.VerticalOffset="40">
-                            <Svg
-                                Height="35"
-                                Width="35"
-                                Path="/Assets/Icons/settings.svg" />
-
-                        </Button>
-                        
                     </StackPanel>
-                </ScrollViewer>
-                <Button Grid.Row="2" HorizontalAlignment="Center" Classes="icon" Padding="10"
-                        ToolTip.Tip="Log Out" ToolTip.Placement="Center">
-                    <Svg
-                        Height="35"
-                        Width="35"
-                        Path="/Assets/Icons/log-out.svg" />
-                </Button>
-            </Grid>
-        </Border>
 
-        <!-- Main Content Area -->
-        <Grid Grid.Column="1" ShowGridLines="True" RowDefinitions="Auto, *">
-            <ContentControl Content="{Binding CurrentTabView}">
-            </ContentControl>
+                </Grid>
+            </Border>
+        </SplitView.Pane>
+
+        <Grid RowDefinitions="Auto, *" ShowGridLines="False">
+            <!-- Header Section -->
+            <Border Background="#35373B" CornerRadius="20" Margin="25">
+                <Grid ColumnDefinitions="*,Auto,Auto" ShowGridLines="False">
+                    <Label VerticalAlignment="Center" FontSize="36" Margin="20,10, 0, 10"
+                           Content="{Binding CurrentTabView.PageName}" Foreground="White" />
+                    <Button Grid.Column="2" HorizontalAlignment="Right" Classes="icon"
+                            Command="{Binding NavigateToProfilePageCommand}"
+                            CornerRadius="20"
+                            Height="60"
+                            Width="60"
+                            Margin="15">
+                        <!--User profile image. Change source to binding later-->
+                        <Border ClipToBounds="True" CornerRadius="20" Height="60" Width="60">
+                            <Image Stretch="UniformToFill"
+                                   asyncImageLoader:ImageLoader.Source="https://api.studio21.ru/images/Q5xwSeg6VAJw1gEEetis7xWBNjRvunREbUxUFbG7_horizontal_mobile.webp" />
+                        </Border>
+                    </Button>
+                </Grid>
+            </Border>
+            <ContentControl Margin="25" Grid.Row="1" Content="{Binding CurrentTabView}" />
         </Grid>
-    </Grid>
+    </SplitView>
+
+    <!-- Main Content Area -->
+
+
 </UserControl>

@@ -70,6 +70,17 @@
                 <Setter Property="Background" Value="Transparent" />
             </Style>
         </Style>
+        <Style Selector="Button.sideMenuElement">
+            <Setter Property="Background" Value="{StaticResource BackgroundColor}" />
+            <Setter Property="CornerRadius" Value="50" />
+            <Setter Property="Margin" Value="5" />
+            <Style Selector="^:pointerover">
+                <Setter Property="Background" Value="Transparent" />
+            </Style>
+            <Style Selector="^:btnfocused">
+                <Setter Property="Background" Value="Transparent" />
+            </Style>
+        </Style>
         <Style Selector="Button.textbutton">
             <Setter Property="Background" Value="Transparent" />
             <Setter Property="Foreground" Value="White" />
@@ -89,13 +100,25 @@
             <Setter Property="Height" Value="30" />
         </Style>
         <Style Selector="ToolTip">
-            <Setter Property="Background" Value="#333" />
-            <Setter Property="Foreground" Value="#fff" />
-            <Setter Property="BorderBrush" Value="#666" />
+            <Setter Property="Background" Value="{StaticResource SecondaryBackgroundColor}" />
+            <Setter Property="Foreground" Value="{StaticResource PrimaryTextColor}" />
+            <Setter Property="BorderBrush" Value="{StaticResource PrimaryTextColor}" />
             <Setter Property="BorderThickness" Value="1" />
             <Setter Property="Padding" Value="5" />
             <Setter Property="CornerRadius" Value="3" />
             <Setter Property="FontSize" Value="18" />
+
+        </Style>
+
+        <Style Selector="ProgressBar">
+
+            <Setter Property="Foreground" Value="{StaticResource AccentColor}" />
+            <Setter Property="Background" Value="{StaticResource PrimaryTextColor}" />
+            <Setter Property="BorderBrush" Value="{StaticResource PrimaryTextColor}" />
+            <Setter Property="BorderThickness" Value="2" />
+            <Setter Property="CornerRadius" Value="15" />
+            <Setter Property="Height" Value="15" />
+
 
         </Style>
 

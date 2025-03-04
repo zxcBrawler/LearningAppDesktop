@@ -2,8 +2,10 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             mc:Ignorable="d" d:DesignWidth="1920" d:DesignHeight="1080"
              xmlns:viewModels="clr-namespace:LearningApp.ViewModels"
+             xmlns:model="clr-namespace:LearningApp.Models"
+             xmlns:asyncImageLoader="clr-namespace:AsyncImageLoader;assembly=AsyncImageLoader.Avalonia"
              x:DataType="viewModels:HomeViewModel"
              x:Class="LearningApp.Views.HomeView">
     <Design.DataContext>
@@ -12,5 +14,92 @@
     <UserControl.DataContext>
         <viewModels:HomeViewModel />
     </UserControl.DataContext>
-    Welcome to Home!
+    <Grid RowDefinitions="Auto, Auto, *, Auto, Auto">
+        <!-- User Courses -->
+        <Border Grid.Row="0" Padding="10">
+            <TextBlock Text="Continue learning" FontSize="30" Foreground="White" />
+        </Border>
+        <ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
+            <ItemsControl ItemsSource="{Binding UserCourses}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate x:DataType="{x:Type model:UserCourse}">
+                        <Grid>
+                            <Border Width="350"
+                                    Background="#35373B"
+                                    CornerRadius="15"
+                                    BorderThickness="0"
+                                    BoxShadow="5 5 5 2 Black"
+                                    Margin="25">
+                                <Grid RowDefinitions="Auto, Auto, Auto, Auto, Auto"
+                                      ColumnDefinitions="Auto, *, Auto"
+                                      Margin="0">
+                                    <Border Grid.Row="0" Grid.ColumnSpan="2" CornerRadius="15 15 0 0"
+                                            ClipToBounds="True">
+                                        <Image
+                                            asyncImageLoader:ImageLoader.Source="{Binding Course.ImageUrl}"
+                                            Stretch="UniformToFill" Height="150" />
+                                    </Border>
+
+                                    <TextBlock Grid.Row="1" Grid.ColumnSpan="2" Grid.Column="0"
+                                               Text="{Binding Course.CourseName}"
+                                               FontSize="20"
+                                               Foreground="White"
+                                               TextAlignment="Center"
+                                               Margin="10,15,10,10"
+                                               TextWrapping="Wrap" />
+
+
+                                    <TextBlock Grid.Row="2" Grid.ColumnSpan="2" Grid.Column="0"
+                                               Text="{Binding Course.CourseDescription}"
+                                               FontSize="14"
+                                               TextWrapping="Wrap"
+                                               TextAlignment="Center"
+                                               Margin="10,0,10,10" />
+
+
+                                    <TextBlock Grid.Row="3" Grid.Column="0"
+                                               Text="Level:"
+                                               FontSize="14"
+                                               VerticalAlignment="Center"
+                                               Margin="25,0,5,0"
+                                               Foreground="#777777" />
+
+                                    <TextBlock Grid.Row="3" Grid.Column="1"
+                                               Text="{Binding Course.CourseLanguageLevel}"
+                                               FontSize="14"
+                                               VerticalAlignment="Center"
+                                               Margin="5,0,10,0" />
+
+
+                                    <Grid Grid.Row="4" Grid.ColumnSpan="2" Grid.Column="0"
+                                          ColumnDefinitions="*, Auto"
+                                          Margin="25,15,25,25">
+                                        <ProgressBar Grid.Column="0"
+                                                     Value="{Binding CourseProgress}"
+                                                     VerticalAlignment="Center" />
+
+                                        <TextBlock Grid.Column="1"
+                                                   HorizontalAlignment="Right"
+                                                   Text="{Binding CourseProgress, StringFormat='{}{0}%'}"
+                                                   VerticalAlignment="Center"
+                                                   Margin="10,0,0,0" />
+                                    </Grid>
+                                </Grid>
+                            </Border>
+                        </Grid>
+
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
+        <Border Grid.Row="2" Padding="10">
+            <TextBlock Text="Statistics" FontSize="30" Foreground="White" />
+        </Border>
+
+    </Grid>
 </UserControl>
