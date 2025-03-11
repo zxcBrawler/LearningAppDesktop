@@ -20,6 +20,10 @@ public interface IApiInterface
 
     #endregion
 
+    [Get("/api/Lesson")]
+    public Task<List<Lesson>> GetLessonsAsync();
+
+
     #region Authentication
 
     #endregion

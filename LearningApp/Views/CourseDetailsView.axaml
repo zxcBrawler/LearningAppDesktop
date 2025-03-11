@@ -10,6 +10,7 @@
         ExtendClientAreaToDecorationsHint="True"
         ExtendClientAreaChromeHints="NoChrome"
         Title="CourseDetails"
+        x:Name="CourseDetailsWindow"
         xmlns:model="clr-namespace:LearningApp.Models"
         x:DataType="viewModels:CourseDetailsViewModel">
 
@@ -91,7 +92,8 @@
 
                 <Button Grid.Row="3" Grid.ColumnSpan="2" Grid.Column="0" Classes="primary"
                         HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Content="Start course"
-                        HorizontalContentAlignment="Center" Margin="20" />
+                        HorizontalContentAlignment="Center" Margin="20" Command="{Binding OpenLessonsCommand}"
+                        CommandParameter="{Binding ElementName=CourseDetailsWindow}" />
             </Grid>
         </ScrollViewer>
     </Grid>

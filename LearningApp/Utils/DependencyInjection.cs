@@ -20,6 +20,7 @@ public static class DependencyInjection
         services.AddHttpClient("api", c => { c.BaseAddress = new Uri("https://localhost:7146"); })
             .AddTypedClient(RestService.For<IApiInterface>);
         services.AddSingleton<CourseService>();
+        services.AddSingleton<ExerciseService>();
         services.AddTransient<MainWindowViewModel>();
         services.AddTransient<LogInViewModel>();
         services.AddTransient<SignUpViewModel>();
@@ -28,8 +29,12 @@ public static class DependencyInjection
         services.AddTransient<HomeViewModel>();
         services.AddTransient<SettingsViewModel>();
         services.AddTransient<CourseDetailsViewModel>();
+        services.AddTransient<ExerciseViewModel>();
         services.AddTransient<ApiService>();
         services.AddTransient<CourseDetailsView>();
+        services.AddTransient<TrueFalseExerciseView>();
+        services.AddTransient<MultipleChoiceExerciseView>();
+        services.AddTransient<TextAnswerExerciseView>();
 
         services.AddSingleton<Func<Window>>(_ =>
         {
@@ -55,6 +60,16 @@ public static class DependencyInjection
             AppPageNames.Home => x.GetRequiredService<HomeViewModel>(),
             _ => throw new ArgumentOutOfRangeException(nameof(name), name, null)
         });
+
+        services.AddSingleton<Func<TypeExercise, UserControl>>(provider => exerciseType => exerciseType switch
+        {
+            TypeExercise.TrueFalse => provider.GetRequiredService<TrueFalseExerciseView>(),
+            TypeExercise.MultipleChoice => provider.GetRequiredService<MultipleChoiceExerciseView>(),
+            TypeExercise.TextAnswer => provider.GetRequiredService<TextAnswerExerciseView>(),
+            _ => throw new ArgumentOutOfRangeException(nameof(exerciseType), exerciseType, null)
+        });
+
         services.AddSingleton<PageFactory>();
+        services.AddSingleton<ExerciseViewFactory>();
     }
 }

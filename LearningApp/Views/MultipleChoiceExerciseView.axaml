@@ -1,0 +1,28 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="1920" d:DesignHeight="1080"
+             x:Class="LearningApp.Views.MultipleChoiceExerciseView"
+             xmlns:viewModels="clr-namespace:LearningApp.ViewModels"
+             x:DataType="viewModels:ExerciseViewModel">
+
+    <UserControl.Resources>
+    </UserControl.Resources>
+    <StackPanel>
+        <TextBlock Text="{Binding CurrentExercise.QuestionText}" FontSize="16" Margin="10" />
+        <ItemsControl ItemsSource="{Binding CurrentExercise.MultipleChoiceExercise.Options}">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <RadioButton Content="{Binding Text}"
+                                 GroupName="MultipleChoiceOptions"
+                                 Margin="5"
+                                 IsChecked="{Binding SelectedAnswerIndex,
+                                           RelativeSource={RelativeSource AncestorType={x:Type viewModels:ExerciseViewModel}}}"
+                                 IsCheckedChanged="ToggleButton_OnIsCheckedChanged" />
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+        <Button Classes="primary" Content="Submit" Command="{Binding SubmitMultipleAnswerCommand}" Margin="10" />
+    </StackPanel>
+</UserControl>

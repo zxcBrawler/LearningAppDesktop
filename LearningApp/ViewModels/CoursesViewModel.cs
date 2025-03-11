@@ -11,6 +11,7 @@ using LearningApp.Utils;
 using LearningApp.Views;
 using Avalonia.VisualTree;
 using LearningApp.Factories;
+using TypeExercise = LearningApp.Utils.TypeExercise;
 
 namespace LearningApp.ViewModels;
 
@@ -46,9 +47,9 @@ public partial class CoursesViewModel : PageViewModel
                             {
                                 QuestionName = "Select correct words",
                                 QuestionText = "Select correct words",
-                                TypeExercise = new TypeExercise
+                                TypeExercise = new Models.TypeExercise
                                 {
-                                    ExerciseTypeName = "TextExercise"
+                                    ExerciseTypeName = TypeExercise.TextAnswer
                                 },
                                 TextAnswerExercise = new TextAnswerExercise
                                 {
@@ -72,9 +73,9 @@ public partial class CoursesViewModel : PageViewModel
                             {
                                 QuestionName = "Select correct words",
                                 QuestionText = "Select correct words",
-                                TypeExercise = new TypeExercise
+                                TypeExercise = new Models.TypeExercise
                                 {
-                                    ExerciseTypeName = "TextExercise"
+                                    ExerciseTypeName = TypeExercise.TextAnswer
                                 },
                                 TextAnswerExercise = new TextAnswerExercise
                                 {
@@ -98,9 +99,9 @@ public partial class CoursesViewModel : PageViewModel
                             {
                                 QuestionName = "Select correct words",
                                 QuestionText = "Select correct words",
-                                TypeExercise = new TypeExercise
+                                TypeExercise = new Models.TypeExercise
                                 {
-                                    ExerciseTypeName = "TextExercise"
+                                    ExerciseTypeName = TypeExercise.TextAnswer
                                 },
                                 TextAnswerExercise = new TextAnswerExercise
                                 {
@@ -154,7 +155,7 @@ public partial class CoursesViewModel : PageViewModel
     [RelayCommand]
     private async Task OpenPopUpCourseDetails(Course course)
     {
-        var courseDetailsViewModel = new CourseDetailsViewModel(course);
+        var courseDetailsViewModel = new CourseDetailsViewModel(course, _mainWindowGetter);
         var courseDetailsView = new CourseDetailsView
         {
             DataContext = courseDetailsViewModel

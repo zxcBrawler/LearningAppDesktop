@@ -6,7 +6,7 @@ public class TypeExercise
 {
     public int Id { get; set; }
 
-    public string? ExerciseTypeName { get; set; }
+    public Utils.TypeExercise ExerciseTypeName { get; set; }
 
     public string? ExerciseTypeDescription { get; set; }
 }

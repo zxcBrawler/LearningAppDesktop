@@ -1,0 +1,20 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="1920" d:DesignHeight="1080"
+             x:Class="LearningApp.Views.TrueFalseExerciseView"
+             xmlns:viewModels="clr-namespace:LearningApp.ViewModels"
+             x:DataType="viewModels:ExerciseViewModel">
+
+    <StackPanel>
+        <TextBlock Text="{Binding CurrentExercise.QuestionName}" FontSize="16" Margin="10" />
+        <TextBlock Text="{Binding CurrentExercise.QuestionText}" FontSize="16" Margin="10" />
+        <StackPanel Orientation="Horizontal" Margin="10">
+            <Button Classes="primary" Content="True" Command="{Binding SubmitTrueAnswerCommand}"
+                    Margin="5" />
+            <Button Classes="primary" Content="False" Command="{Binding SubmitFalseAnswerCommand}"
+                    Margin="5" />
+        </StackPanel>
+    </StackPanel>
+</UserControl>

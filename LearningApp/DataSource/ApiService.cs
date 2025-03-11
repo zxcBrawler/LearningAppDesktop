@@ -28,4 +28,9 @@ public class ApiService(HttpClient httpClient, ILogger<ApiService> logger) : IAp
         logger.LogInformation("Fetching user's courses");
         return await _apiClient.GetUserCoursesAsync(userId);
     }
+
+    public async Task<List<Lesson>> GetLessonsAsync()
+    {
+        return await _apiClient.GetLessonsAsync();
+    }
 }

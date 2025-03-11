@@ -1,0 +1,21 @@
+﻿<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="1920" d:DesignHeight="1080"
+        WindowState="Maximized"
+        ExtendClientAreaToDecorationsHint="True"
+        ExtendClientAreaChromeHints="NoChrome"
+        x:Class="LearningApp.Views.ExerciseView"
+        xmlns:viewModels="clr-namespace:LearningApp.ViewModels"
+        x:DataType="viewModels:ExerciseViewModel"
+        Title="ExerciseView">
+    <StackPanel>
+        <!-- Progress Bar at the Top -->
+        <ProgressBar Minimum="0" Maximum="{Binding TotalExercises}" Value="{Binding CompletedExercises}" Height="30"
+                     Margin="25" />
+
+        <!-- Content Control for Exercise Views -->
+        <ContentControl Content="{Binding CurrentExerciseView}" Margin="25" />
+    </StackPanel>
+</Window>
