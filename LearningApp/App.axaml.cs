@@ -20,22 +20,17 @@ public partial class App : Application
 
     public override void OnFrameworkInitializationCompleted()
     {
-
         var collection = new ServiceCollection();
         collection.AddCommonServices();
+
         var services = collection.BuildServiceProvider();
         ServiceLocator.SetServiceProvider(services);
-        
 
         if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
-        {
-            
             desktop.MainWindow = new MainWindow
             {
                 DataContext = services.GetRequiredService<MainWindowViewModel>()
             };
-        }
-
         base.OnFrameworkInitializationCompleted();
     }
 
@@ -46,9 +41,6 @@ public partial class App : Application
             BindingPlugins.DataValidators.OfType<DataAnnotationsValidationPlugin>().ToArray();
 
         // remove each entry found
-        foreach (var plugin in dataValidationPluginsToRemove)
-        {
-            BindingPlugins.DataValidators.Remove(plugin);
-        }
+        foreach (var plugin in dataValidationPluginsToRemove) BindingPlugins.DataValidators.Remove(plugin);
     }
 }

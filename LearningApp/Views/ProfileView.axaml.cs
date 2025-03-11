@@ -1,14 +1,12 @@
 ﻿using Avalonia;
 using Avalonia.Controls;
-using Avalonia.Interactivity;
 using Avalonia.Markup.Xaml;
-using LearningApp.ViewModels;
 
 namespace LearningApp.Views;
 
-public partial class HomeView : UserControl
+public partial class ProfileView : UserControl
 {
-    public HomeView()
+    public ProfileView()
     {
         InitializeComponent();
     }

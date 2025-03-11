@@ -1,7 +1,15 @@
 ﻿using System;
+using Avalonia;
+using Avalonia.Controls;
+using Avalonia.Controls.ApplicationLifetimes;
+using LearningApp.DataSource;
 using LearningApp.Factories;
+using LearningApp.Models;
+using LearningApp.Service;
 using LearningApp.ViewModels;
+using LearningApp.Views;
 using Microsoft.Extensions.DependencyInjection;
+using Refit;
 
 namespace LearningApp.Utils;
 
@@ -9,13 +17,34 @@ public static class DependencyInjection
 {
     public static void AddCommonServices(this IServiceCollection services)
     {
-        services.AddSingleton<MainWindowViewModel>();
+        services.AddHttpClient("api", c => { c.BaseAddress = new Uri("https://localhost:7146"); })
+            .AddTypedClient(RestService.For<IApiInterface>);
+        services.AddSingleton<CourseService>();
+        services.AddTransient<MainWindowViewModel>();
         services.AddTransient<LogInViewModel>();
         services.AddTransient<SignUpViewModel>();
         services.AddTransient<MainAppViewModel>();
         services.AddTransient<CoursesViewModel>();
         services.AddTransient<HomeViewModel>();
         services.AddTransient<SettingsViewModel>();
+        services.AddTransient<CourseDetailsViewModel>();
+        services.AddTransient<ApiService>();
+        services.AddTransient<CourseDetailsView>();
+
+        services.AddSingleton<Func<Window>>(_ =>
+        {
+            return () =>
+            {
+                if (Application.Current?.ApplicationLifetime is IClassicDesktopStyleApplicationLifetime
+                    {
+                        MainWindow: not null
+                    } desktop)
+                    return desktop.MainWindow;
+                return null;
+            };
+        });
+
+
         services.AddSingleton<Func<AppPageNames, PageViewModel>>(x => name => name switch
         {
             AppPageNames.LogIn => x.GetRequiredService<LogInViewModel>(),

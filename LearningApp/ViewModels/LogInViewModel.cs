@@ -37,7 +37,7 @@ public partial class LogInViewModel : PageViewModel
     [RelayCommand(CanExecute = nameof(CanLogin))]
     private async Task Login()
     {
-        await Task.Delay(TimeSpan.FromSeconds(3));
+        await Task.Delay(TimeSpan.FromSeconds(1));
         WeakReferenceMessenger.Default.Send(new NavigateToPageMessage(AppPageNames.MainApp));
     }
 

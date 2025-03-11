@@ -6,21 +6,25 @@
              xmlns:viewModels="clr-namespace:LearningApp.ViewModels"
              xmlns:model="clr-namespace:LearningApp.Models"
              xmlns:asyncImageLoader="clr-namespace:AsyncImageLoader;assembly=AsyncImageLoader.Avalonia"
+             xmlns:li="clr-namespace:LoadingIndicators.Avalonia;assembly=LoadingIndicators.Avalonia"
              x:DataType="viewModels:HomeViewModel"
              x:Class="LearningApp.Views.HomeView">
-    <Design.DataContext>
-        <viewModels:HomeViewModel />
-    </Design.DataContext>
-    <UserControl.DataContext>
-        <viewModels:HomeViewModel />
-    </UserControl.DataContext>
-    <Grid RowDefinitions="Auto, Auto, *, Auto, Auto">
+
+
+    <Grid RowDefinitions="Auto, Auto, *, Auto, Auto" ShowGridLines="True">
         <!-- User Courses -->
         <Border Grid.Row="0" Padding="10">
+
             <TextBlock Text="Continue learning" FontSize="30" Foreground="White" />
         </Border>
+
+        <li:LoadingIndicator Grid.Row="1" HorizontalAlignment="Center" IsVisible="{Binding IsLoading}" Height="100"
+                             VerticalAlignment="Center"
+                             IsActive="{Binding IsLoading}"
+                             Mode="DoubleBounce" SpeedRatio="0.9" Foreground="Gray" />
         <ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
-            <ItemsControl ItemsSource="{Binding UserCourses}">
+
+            <ItemsControl ItemsSource="{Binding UserCourses}" IsVisible="{Binding !IsLoading}">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
                         <WrapPanel />
@@ -28,6 +32,7 @@
                 </ItemsControl.ItemsPanel>
                 <ItemsControl.ItemTemplate>
                     <DataTemplate x:DataType="{x:Type model:UserCourse}">
+
                         <Grid>
                             <Border Width="350"
                                     Background="#35373B"
@@ -41,12 +46,12 @@
                                     <Border Grid.Row="0" Grid.ColumnSpan="2" CornerRadius="15 15 0 0"
                                             ClipToBounds="True">
                                         <Image
-                                            asyncImageLoader:ImageLoader.Source="{Binding Course.ImageUrl}"
+                                            asyncImageLoader:ImageLoader.Source="{Binding Course.ImageUrl, FallbackValue=''}"
                                             Stretch="UniformToFill" Height="150" />
                                     </Border>
 
                                     <TextBlock Grid.Row="1" Grid.ColumnSpan="2" Grid.Column="0"
-                                               Text="{Binding Course.CourseName}"
+                                               Text="{Binding Course.CourseName, FallbackValue=''}"
                                                FontSize="20"
                                                Foreground="White"
                                                TextAlignment="Center"
@@ -55,7 +60,7 @@
 
 
                                     <TextBlock Grid.Row="2" Grid.ColumnSpan="2" Grid.Column="0"
-                                               Text="{Binding Course.CourseDescription}"
+                                               Text="{Binding Course.CourseDescription, FallbackValue=''}"
                                                FontSize="14"
                                                TextWrapping="Wrap"
                                                TextAlignment="Center"
@@ -70,7 +75,7 @@
                                                Foreground="#777777" />
 
                                     <TextBlock Grid.Row="3" Grid.Column="1"
-                                               Text="{Binding Course.CourseLanguageLevel}"
+                                               Text="{Binding Course.CourseLanguageLevel, FallbackValue=''}"
                                                FontSize="14"
                                                VerticalAlignment="Center"
                                                Margin="5,0,10,0" />

@@ -15,5 +15,10 @@ namespace LearningApp.Utils
         {
             ServiceProvider = serviceProvider;
         }
+
+        public static T? GetService<T>() where T : class
+        {
+            return ServiceProvider?.GetService<T>();
+        }
     }
 }

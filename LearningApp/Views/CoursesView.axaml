@@ -4,16 +4,10 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="1920" d:DesignHeight="1080"
              x:Class="LearningApp.Views.CoursesView"
-             xmlns:viewModels="clr-namespace:LearningApp.ViewModels"
              xmlns:model="clr-namespace:LearningApp.Models"
+             xmlns:viewModels="clr-namespace:LearningApp.ViewModels"
              xmlns:asyncImageLoader="clr-namespace:AsyncImageLoader;assembly=AsyncImageLoader.Avalonia"
              x:DataType="viewModels:CoursesViewModel">
-    <Design.DataContext>
-        <viewModels:CoursesViewModel />
-    </Design.DataContext>
-    <UserControl.DataContext>
-        <viewModels:CoursesViewModel />
-    </UserControl.DataContext>
 
     <Grid RowDefinitions="Auto,*">
 
@@ -30,7 +24,8 @@
 
 
         <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
-            <ItemsControl ItemsSource="{Binding Items}" HorizontalAlignment="Stretch">
+            <ItemsControl ItemsSource="{Binding Items}" HorizontalAlignment="Stretch"
+                          Tag="{Binding OpenPopUpCourseDetailsCommand}">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
                         <UniformGrid HorizontalAlignment="Left" VerticalAlignment="Top" />
@@ -38,40 +33,44 @@
                 </ItemsControl.ItemsPanel>
                 <ItemsControl.ItemTemplate>
                     <DataTemplate x:DataType="{x:Type model:Course}">
-                        <Border Background="#35373B" CornerRadius="15" BoxShadow="5 5 5 2 Black"
-                                BorderThickness="0" Margin="20">
-                            <Grid RowDefinitions="Auto, Auto, Auto, Auto, Auto"
-                                  ColumnDefinitions="Auto, *">
-                                <Border Grid.Row="0" Grid.ColumnSpan="2" ClipToBounds="True"
-                                        CornerRadius="15 15 0 0">
-                                    <Image asyncImageLoader:ImageLoader.Source="{Binding ImageUrl}"
-                                           Stretch="UniformToFill" Height="150" />
-                                </Border>
-                                <TextBlock Grid.Row="1" Grid.ColumnSpan="2" Grid.Column="0"
-                                           Text="{Binding CourseName}" FontSize="20" Foreground="White"
-                                           TextAlignment="Center" Margin="10,15,10,10"
-                                           TextWrapping="Wrap" />
+                        <Button
+                            CommandParameter="{Binding}"
+                            Command="{Binding Tag,  RelativeSource={RelativeSource FindAncestor,
+                                    AncestorType=ItemsControl}}"
+                            Background="Transparent">
+                            <Border Background="#35373B" CornerRadius="15" BoxShadow="5 5 5 2 Black"
+                                    BorderThickness="0" Margin="20">
+                                <Grid RowDefinitions="Auto, Auto, Auto, Auto, Auto"
+                                      ColumnDefinitions="Auto, *">
+                                    <Border Grid.Row="0" Grid.ColumnSpan="2" ClipToBounds="True"
+                                            CornerRadius="15 15 0 0">
 
-                                <TextBlock Grid.Row="2" Grid.ColumnSpan="2" Grid.Column="0"
-                                           Text="{Binding CourseDescription}" FontSize="14"
-                                           TextWrapping="Wrap" TextAlignment="Center"
-                                           Margin="10,0,10,10" />
-
-                                <TextBlock Grid.Row="3" Grid.Column="0" Text="Level:" FontSize="14"
-                                           VerticalAlignment="Center" Margin="25,0,5,0"
-                                           Foreground="#777777" />
-
-                                <TextBlock Grid.Row="3" Grid.Column="1"
-                                           Text="{Binding CourseLanguageLevel}" FontSize="14"
-                                           VerticalAlignment="Center" Margin="5,0,10,0" />
-                                <TextBlock Grid.Row="4" Grid.Column="0" Text="Lessons: " FontSize="14"
-                                           VerticalAlignment="Center" Margin="25,0,5,25"
-                                           Foreground="#777777" />
-                                <TextBlock Grid.Row="4" Grid.Column="1"
-                                           Text="{Binding Lesson.Count, FallbackValue=0}" FontSize="14"
-                                           VerticalAlignment="Center" Margin="5,0,10,25" />
-                            </Grid>
-                        </Border>
+                                        <Image asyncImageLoader:ImageLoader.Source="{Binding ImageUrl}"
+                                               Stretch="UniformToFill" Height="150" />
+                                    </Border>
+                                    <TextBlock Grid.Row="1" Grid.ColumnSpan="2" Grid.Column="0"
+                                               Text="{Binding CourseName}" FontSize="20" Foreground="White"
+                                               TextAlignment="Center" Margin="10,15,10,10"
+                                               TextWrapping="Wrap" />
+                                    <TextBlock Grid.Row="2" Grid.ColumnSpan="2" Grid.Column="0"
+                                               Text="{Binding CourseDescription}" FontSize="14"
+                                               TextWrapping="Wrap" TextAlignment="Center"
+                                               Margin="10,0,10,10" />
+                                    <TextBlock Grid.Row="3" Grid.Column="0" Text="Level:" FontSize="14"
+                                               VerticalAlignment="Center" Margin="25,0,5,0"
+                                               Foreground="#777777" />
+                                    <TextBlock Grid.Row="3" Grid.Column="1"
+                                               Text="{Binding CourseLanguageLevel}" FontSize="14"
+                                               VerticalAlignment="Center" Margin="5,0,10,0" />
+                                    <TextBlock Grid.Row="4" Grid.Column="0" Text="Lessons: " FontSize="14"
+                                               VerticalAlignment="Center" Margin="25,0,5,25"
+                                               Foreground="#777777" />
+                                    <TextBlock Grid.Row="4" Grid.Column="1"
+                                               Text="{Binding Lesson.Count, FallbackValue=0}" FontSize="14"
+                                               VerticalAlignment="Center" Margin="5,0,10,25" />
+                                </Grid>
+                            </Border>
+                        </Button>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
