@@ -4,10 +4,11 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="1920" d:DesignHeight="1080"
              x:Class="LearningApp.Views.CoursesView"
-             xmlns:model="clr-namespace:LearningApp.Models"
              xmlns:viewModels="clr-namespace:LearningApp.ViewModels"
              xmlns:asyncImageLoader="clr-namespace:AsyncImageLoader;assembly=AsyncImageLoader.Avalonia"
+
              x:DataType="viewModels:CoursesViewModel">
+
 
     <Grid RowDefinitions="Auto,*">
 
@@ -24,22 +25,20 @@
 
 
         <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
-            <ItemsControl ItemsSource="{Binding Items}" HorizontalAlignment="Stretch"
-                          Tag="{Binding OpenPopUpCourseDetailsCommand}">
+            <ItemsControl ItemsSource="{Binding Items}" HorizontalAlignment="Stretch">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
-                        <UniformGrid HorizontalAlignment="Left" VerticalAlignment="Top" />
+                        <WrapPanel VerticalAlignment="Top" HorizontalAlignment="Center" />
                     </ItemsPanelTemplate>
                 </ItemsControl.ItemsPanel>
                 <ItemsControl.ItemTemplate>
-                    <DataTemplate x:DataType="{x:Type model:Course}">
+                    <DataTemplate>
                         <Button
+                            Command="{Binding $parent[ItemsControl].((viewModels:CoursesViewModel)DataContext).OpenPopUpCourseDetailsCommand, FallbackValue='0'}"
                             CommandParameter="{Binding}"
-                            Command="{Binding Tag,  RelativeSource={RelativeSource FindAncestor,
-                                    AncestorType=ItemsControl}}"
                             Background="Transparent">
                             <Border Background="#35373B" CornerRadius="15" BoxShadow="5 5 5 2 Black"
-                                    BorderThickness="0" Margin="20">
+                                    BorderThickness="0" Margin="20" Height="350" Width="350">
                                 <Grid RowDefinitions="Auto, Auto, Auto, Auto, Auto"
                                       ColumnDefinitions="Auto, *">
                                     <Border Grid.Row="0" Grid.ColumnSpan="2" ClipToBounds="True"

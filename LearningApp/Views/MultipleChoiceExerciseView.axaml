@@ -7,22 +7,23 @@
              xmlns:viewModels="clr-namespace:LearningApp.ViewModels"
              x:DataType="viewModels:ExerciseViewModel">
 
-    <UserControl.Resources>
-    </UserControl.Resources>
-    <StackPanel>
-        <TextBlock Text="{Binding CurrentExercise.QuestionText}" FontSize="16" Margin="10" />
-        <ItemsControl ItemsSource="{Binding CurrentExercise.MultipleChoiceExercise.Options}">
+
+    <Grid RowDefinitions="Auto, *, Auto" Margin="75">
+        <Label Content="{Binding CurrentExercise.QuestionText}" FontSize="24" Margin="15" />
+        <ItemsControl Grid.Row="1" ItemsSource="{Binding CurrentExercise.MultipleChoiceExercise.Options}">
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
                     <RadioButton Content="{Binding Text}"
                                  GroupName="MultipleChoiceOptions"
-                                 Margin="5"
+                                 Margin="15"
                                  IsChecked="{Binding SelectedAnswerIndex,
                                            RelativeSource={RelativeSource AncestorType={x:Type viewModels:ExerciseViewModel}}}"
                                  IsCheckedChanged="ToggleButton_OnIsCheckedChanged" />
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>
-        <Button Classes="primary" Content="Submit" Command="{Binding SubmitMultipleAnswerCommand}" Margin="10" />
-    </StackPanel>
+        <Button Grid.Row="2" HorizontalAlignment="Stretch" Classes="primary" Content="Submit"
+                HorizontalContentAlignment="Center"
+                Command="{Binding SubmitAnswerCommand}" Margin="10" />
+    </Grid>
 </UserControl>

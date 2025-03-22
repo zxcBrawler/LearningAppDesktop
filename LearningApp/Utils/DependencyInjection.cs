@@ -21,6 +21,7 @@ public static class DependencyInjection
             .AddTypedClient(RestService.For<IApiInterface>);
         services.AddSingleton<CourseService>();
         services.AddSingleton<ExerciseService>();
+        services.AddTransient<ApiService>();
         services.AddTransient<MainWindowViewModel>();
         services.AddTransient<LogInViewModel>();
         services.AddTransient<SignUpViewModel>();
@@ -30,7 +31,6 @@ public static class DependencyInjection
         services.AddTransient<SettingsViewModel>();
         services.AddTransient<CourseDetailsViewModel>();
         services.AddTransient<ExerciseViewModel>();
-        services.AddTransient<ApiService>();
         services.AddTransient<CourseDetailsView>();
         services.AddTransient<TrueFalseExerciseView>();
         services.AddTransient<MultipleChoiceExerciseView>();

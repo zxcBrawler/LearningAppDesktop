@@ -31,8 +31,6 @@ public partial class LogInViewModel : PageViewModel
         }
     }
 
-    public string ImagePath => IsPasswordVisible ? "/Assets/Icons/eye-off.svg" : "/Assets/Icons/eye.svg";
-    private bool CanLogin => !string.IsNullOrEmpty(Username) && !string.IsNullOrEmpty(Password);
 
     [RelayCommand(CanExecute = nameof(CanLogin))]
     private async Task Login()
@@ -53,4 +51,11 @@ public partial class LogInViewModel : PageViewModel
     {
         WeakReferenceMessenger.Default.Send(new NavigateToPageMessage(AppPageNames.SignUp));
     }
+
+    #region Commands Handlers
+
+    public string ImagePath => IsPasswordVisible ? "/Assets/Icons/eye-off.svg" : "/Assets/Icons/eye.svg";
+    private bool CanLogin => !string.IsNullOrEmpty(Username) && !string.IsNullOrEmpty(Password);
+
+    #endregion
 }

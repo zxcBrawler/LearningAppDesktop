@@ -7,14 +7,21 @@
              xmlns:viewModels="clr-namespace:LearningApp.ViewModels"
              x:DataType="viewModels:ExerciseViewModel">
 
-    <StackPanel>
-        <TextBlock Text="{Binding CurrentExercise.QuestionName}" FontSize="16" Margin="10" />
-        <TextBlock Text="{Binding CurrentExercise.QuestionText}" FontSize="16" Margin="10" />
-        <StackPanel Orientation="Horizontal" Margin="10">
-            <Button Classes="primary" Content="True" Command="{Binding SubmitTrueAnswerCommand}"
-                    Margin="5" />
-            <Button Classes="primary" Content="False" Command="{Binding SubmitFalseAnswerCommand}"
-                    Margin="5" />
+
+    <Grid RowDefinitions="Auto,*, Auto" Margin="75">
+        <StackPanel Grid.Row="1">
+            <Label Content="{Binding CurrentExercise.QuestionName}" FontSize="24" Margin="10" />
+            <TextBlock Text="{Binding CurrentExercise.QuestionText}" FontSize="18" Margin="15" />
+            <Grid ColumnDefinitions="*,*">
+                <Button HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" Classes="primary"
+                        Content="Yes"
+                        Command="{Binding SubmitTrueAnswerCommand}"
+                        Margin="10" Padding="15" />
+                <Button Grid.Column="1" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch"
+                        Classes="primary" Content="No"
+                        Command="{Binding SubmitFalseAnswerCommand}"
+                        Margin="10" Padding="15" />
+            </Grid>
         </StackPanel>
-    </StackPanel>
+    </Grid>
 </UserControl>

@@ -7,21 +7,24 @@ namespace LearningApp.DataSource;
 
 public interface IApiInterface
 {
-    #region Courses
+    #region Courses/Lessons/Exercises
 
-    [Get("/api/Course")]
+    [Get("/api/Courses")]
     public Task<List<Course>> GetCoursesAsync();
 
-    [Get("/api/Course/{courseId}")]
-    public Task<List<Course>> GetCourseByIdAsync(int courseId);
+    [Get("/api/Courses/{courseId}")]
+    public Task<Course> GetCourseByIdAsync(int courseId);
 
     [Get("/api/UserCourses/{userId}")]
     public Task<List<UserCourse>> GetUserCoursesAsync(int userId);
 
-    #endregion
+    [Post("/api/UserCourses")]
+    public Task<UserCourse> PostUserCourse(UserCourse userCourse);
 
     [Get("/api/Lesson")]
     public Task<List<Lesson>> GetLessonsAsync();
+
+    #endregion
 
 
     #region Authentication

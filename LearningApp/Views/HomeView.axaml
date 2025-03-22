@@ -11,7 +11,7 @@
              x:Class="LearningApp.Views.HomeView">
 
 
-    <Grid RowDefinitions="Auto, Auto, *, Auto, Auto" ShowGridLines="True">
+    <Grid RowDefinitions="Auto, Auto, *, Auto, Auto" ShowGridLines="False">
         <!-- User Courses -->
         <Border Grid.Row="0" Padding="10">
 
@@ -19,6 +19,7 @@
         </Border>
 
         <li:LoadingIndicator Grid.Row="1" HorizontalAlignment="Center" IsVisible="{Binding IsLoading}" Height="100"
+                             Width="100"
                              VerticalAlignment="Center"
                              IsActive="{Binding IsLoading}"
                              Mode="DoubleBounce" SpeedRatio="0.9" Foreground="Gray" />

@@ -17,7 +17,7 @@ public class ApiService(HttpClient httpClient, ILogger<ApiService> logger) : IAp
         return await _apiClient.GetCoursesAsync();
     }
 
-    public async Task<List<Course>> GetCourseByIdAsync(int courseId)
+    public async Task<Course> GetCourseByIdAsync(int courseId)
     {
         logger.LogInformation("Fetching course by id");
         return await _apiClient.GetCourseByIdAsync(courseId);
@@ -27,6 +27,11 @@ public class ApiService(HttpClient httpClient, ILogger<ApiService> logger) : IAp
     {
         logger.LogInformation("Fetching user's courses");
         return await _apiClient.GetUserCoursesAsync(userId);
+    }
+
+    public async Task<UserCourse> PostUserCourse(UserCourse userCourse)
+    {
+        return await _apiClient.PostUserCourse(userCourse);
     }
 
     public async Task<List<Lesson>> GetLessonsAsync()

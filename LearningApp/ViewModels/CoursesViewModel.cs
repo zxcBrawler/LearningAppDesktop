@@ -20,141 +20,26 @@ public partial class CoursesViewModel : PageViewModel
     [ObservableProperty] private ObservableCollection<Course> _items = [];
     private readonly Func<Window> _mainWindowGetter;
 
-    public CoursesViewModel(Func<Window> mainWindowGetter)
+    private readonly CourseService _courseService;
+
+    public CoursesViewModel(Func<Window> mainWindowGetter, CourseService courseService)
     {
+        _courseService = courseService;
         _mainWindowGetter = mainWindowGetter;
         PageName = AppPageNames.Courses;
-        Items =
-        [
-            new Course
-            {
-                CourseName = "English Grammar for Beginners",
-                CourseDescription = "A comprehensive course covering basic English grammar rules.",
-                CourseLanguageLevel = "A1",
-                ImageUrl = "https://t4.ftcdn.net/jpg/02/25/31/89/360_F_225318919_klpkRFyiJjxWdwLptzfeCX2Bo6QsBndm.jpg",
-                Lesson =
-                [
-                    new Lesson
-                    {
-                        LessonName = "Beginners",
-                        LessonDescription = "Beginners course covering basic grammar rules.",
-                        CreatedAt = DateTime.Now,
-                        UpdatedAt = DateTime.Now,
-                        UID = "0000000001",
-                        Exercises =
-                        [
-                            new Exercise
-                            {
-                                QuestionName = "Select correct words",
-                                QuestionText = "Select correct words",
-                                TypeExercise = new Models.TypeExercise
-                                {
-                                    ExerciseTypeName = TypeExercise.TextAnswer
-                                },
-                                TextAnswerExercise = new TextAnswerExercise
-                                {
-                                    CaseSensitive = false,
-                                    ExpectedAnswer = "123",
-                                    Hint = "1 ... 3"
-                                }
-                            }
-                        ]
-                    },
-                    new Lesson
-                    {
-                        LessonName = "Beginners",
-                        LessonDescription = "Beginners course covering basic grammar rules.",
-                        CreatedAt = DateTime.Now,
-                        UpdatedAt = DateTime.Now,
-                        UID = "0000000002",
-                        Exercises =
-                        [
-                            new Exercise
-                            {
-                                QuestionName = "Select correct words",
-                                QuestionText = "Select correct words",
-                                TypeExercise = new Models.TypeExercise
-                                {
-                                    ExerciseTypeName = TypeExercise.TextAnswer
-                                },
-                                TextAnswerExercise = new TextAnswerExercise
-                                {
-                                    CaseSensitive = false,
-                                    ExpectedAnswer = "123",
-                                    Hint = "1 ... 3"
-                                }
-                            }
-                        ]
-                    },
-                    new Lesson
-                    {
-                        LessonName = "Beginners",
-                        LessonDescription = "Beginners course covering basic grammar rules.",
-                        CreatedAt = DateTime.Now,
-                        UpdatedAt = DateTime.Now,
-                        UID = "0000000003",
-                        Exercises =
-                        [
-                            new Exercise
-                            {
-                                QuestionName = "Select correct words",
-                                QuestionText = "Select correct words",
-                                TypeExercise = new Models.TypeExercise
-                                {
-                                    ExerciseTypeName = TypeExercise.TextAnswer
-                                },
-                                TextAnswerExercise = new TextAnswerExercise
-                                {
-                                    CaseSensitive = false,
-                                    ExpectedAnswer = "123",
-                                    Hint = "1 ... 3"
-                                }
-                            }
-                        ]
-                    }
-                ]
-            },
-            new Course
-            {
-                CourseName = "English Grammar for Beginners",
-                CourseDescription = "A comprehensive course covering basic English grammar rules.",
-                CourseLanguageLevel = "A2",
-                ImageUrl = "https://t4.ftcdn.net/jpg/02/25/31/89/360_F_225318919_klpkRFyiJjxWdwLptzfeCX2Bo6QsBndm.jpg"
-            },
-            new Course
-            {
-                CourseName = "English Grammar for Beginners",
-                CourseDescription = "A comprehensive course covering basic English grammar rules.",
-                CourseLanguageLevel = "B1",
-                ImageUrl = "https://t4.ftcdn.net/jpg/02/25/31/89/360_F_225318919_klpkRFyiJjxWdwLptzfeCX2Bo6QsBndm.jpg"
-            },
-            new Course
-            {
-                CourseName = "English Grammar for Beginners",
-                CourseDescription = "A comprehensive course covering basic English grammar rules.",
-                CourseLanguageLevel = "B2",
-                ImageUrl = "https://t4.ftcdn.net/jpg/02/25/31/89/360_F_225318919_klpkRFyiJjxWdwLptzfeCX2Bo6QsBndm.jpg"
-            },
-            new Course
-            {
-                CourseName = "English Grammar for Beginners",
-                CourseDescription = "A comprehensive course covering basic English grammar rules.",
-                CourseLanguageLevel = "C1",
-                ImageUrl = "https://t4.ftcdn.net/jpg/02/25/31/89/360_F_225318919_klpkRFyiJjxWdwLptzfeCX2Bo6QsBndm.jpg"
-            },
-            new Course
-            {
-                CourseName = "English Grammar for Beginners",
-                CourseDescription = "A comprehensive course covering basic English grammar rules.",
-                CourseLanguageLevel = "C1",
-                ImageUrl = "https://t4.ftcdn.net/jpg/02/25/31/89/360_F_225318919_klpkRFyiJjxWdwLptzfeCX2Bo6QsBndm.jpg"
-            }
-        ];
+        Task.Run(async () => await GetCoursesAsync());
+    }
+
+    private async Task GetCoursesAsync()
+    {
+        var courses = await _courseService.GetCourses();
+        Items = new ObservableCollection<Course>(courses);
     }
 
     [RelayCommand]
     private async Task OpenPopUpCourseDetails(Course course)
     {
+        course = await _courseService.GetCourse(course.Id);
         var courseDetailsViewModel = new CourseDetailsViewModel(course, _mainWindowGetter);
         var courseDetailsView = new CourseDetailsView
         {

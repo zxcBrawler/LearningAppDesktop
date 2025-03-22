@@ -8,8 +8,8 @@ namespace LearningApp.Service;
 
 public class ExerciseService(IApiInterface apiInterface)
 {
-    public async Task<List<Lesson>> GetLessonsWithExercisesAsync()
+    public async Task<UserCourse> StartNewCourse(UserCourse userCourse)
     {
-        return await apiInterface.GetLessonsAsync();
+        return await apiInterface.PostUserCourse(userCourse);
     }
 }

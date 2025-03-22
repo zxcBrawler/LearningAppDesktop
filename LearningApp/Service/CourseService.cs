@@ -11,4 +11,14 @@ public class CourseService(IApiInterface apiInterface)
     {
         return await apiInterface.GetUserCoursesAsync(userId);
     }
+
+    public async Task<List<Course>> GetCourses()
+    {
+        return await apiInterface.GetCoursesAsync();
+    }
+
+    public async Task<Course> GetCourse(int courseId)
+    {
+        return await apiInterface.GetCourseByIdAsync(courseId);
+    }
 }

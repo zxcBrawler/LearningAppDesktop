@@ -8,11 +8,15 @@
              x:DataType="viewModels:ExerciseViewModel">
 
 
-    <StackPanel>
-        <TextBlock Text="{Binding CurrentExercise.QuestionName}" FontSize="16" Margin="10" />
-        <TextBlock Text="{Binding CurrentExercise.QuestionText}" FontSize="16" Margin="10" />
-        <TextBox Text="{Binding UserTextAnswer, Mode=TwoWay}" Margin="10" Width="300" />
-        <Button Classes="primary" HorizontalAlignment="Stretch" Content="Submit"
+    <Grid RowDefinitions="Auto,*, Auto" Margin="75">
+        <StackPanel Grid.Row="1">
+            <Label Content="{Binding CurrentExercise.QuestionName}" FontSize="24" Margin="10" />
+            <TextBlock Text="{Binding CurrentExercise.QuestionText}" FontSize="18" Margin="15" />
+            <TextBox Text="{Binding UserTextAnswer, Mode=TwoWay}" Margin="10" HorizontalAlignment="Stretch"
+                     Watermark="Type your answer here" />
+        </StackPanel>
+        <Button Grid.Row="2" Classes="primary" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch"
+                Content="Submit"
                 Command="{Binding SubmitAnswerCommand}" Margin="10" />
-    </StackPanel>
+    </Grid>
 </UserControl>
