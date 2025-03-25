@@ -37,20 +37,33 @@ public class SettingsManager
         };
     }
 
-    public static void SaveSettings(Settings settings)
+    public static void ResetSettings()
     {
-        var json = JsonConvert.SerializeObject(settings, (Newtonsoft.Json.Formatting)Formatting.Indented);
+        var defaultSettings = new Settings
+        {
+            SelectedThemeIndex = 0,
+            IsDailyRemindersEnabled = false,
+            IsStreakRemindersEnabled = false,
+            SelectedTime = "00:00",
+            SelectedDailyGoalIndex = 0,
+            SelectedLanguageIndex = 0
+        };
+        SaveSettings(defaultSettings);
+    }
+
+    public static void SaveSettings(Settings? settings)
+    {
         try
         {
-            if (!Directory.Exists(SettingsPath))
-            {
-                Directory.CreateDirectory(SettingsPath);
-                File.WriteAllText(SettingsPath, json);
-            }
-            else
-            {
-                File.WriteAllText(SettingsPath, json);
-            }
+            var directoryPath = Path.GetDirectoryName(SettingsPath);
+
+            if (!Directory.Exists(directoryPath))
+                if (directoryPath != null)
+                    Directory.CreateDirectory(directoryPath);
+
+            var json = JsonConvert.SerializeObject(settings, Newtonsoft.Json.Formatting.Indented);
+
+            File.WriteAllText(SettingsPath, json);
         }
         catch (Exception ex)
         {

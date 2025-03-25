@@ -6,6 +6,7 @@ using LearningApp.DataSource;
 using LearningApp.Factories;
 using LearningApp.Service;
 using LearningApp.Utils.Enum;
+using LearningApp.Utils.Settings;
 using LearningApp.ViewModels;
 using LearningApp.Views;
 using Microsoft.Extensions.DependencyInjection;
@@ -21,6 +22,7 @@ public static class DependencyInjection
         services.AddHttpClient("api", c => { c.BaseAddress = new Uri("https://localhost:7146"); })
             .AddTypedClient(RestService.For<IApiInterface>);
         services.AddSingleton<CourseService>();
+        services.AddSingleton<SettingsManager>();
         services.AddSingleton<ExerciseService>();
         services.AddTransient<ApiService>();
         services.AddTransient<MainWindowViewModel>();
