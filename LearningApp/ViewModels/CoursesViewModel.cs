@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using Avalonia.Controls;
@@ -9,9 +8,6 @@ using LearningApp.Models;
 using LearningApp.Service;
 using LearningApp.Utils;
 using LearningApp.Views;
-using Avalonia.VisualTree;
-using LearningApp.Factories;
-using TypeExercise = LearningApp.Utils.TypeExercise;
 
 namespace LearningApp.ViewModels;
 

@@ -136,8 +136,13 @@
             <Setter Property="Foreground" Value="{StaticResource SecondaryTextColor}" />
             <Setter Property="FontFamily" Value="/Assets/Fonts/Roboto_Mono/static/RobotoMono-Bold.ttf#Roboto Mono" />
             <Setter Property="FontSize" Value="24" />
+        </Style>
 
-
+        <Style Selector="ToggleSwitch">
+            <Setter Property="Foreground" Value="Black" />
+            <Style Selector="^:checked /template/ Border#SwitchKnobBounds">
+                <Setter Property="Background" Value="{StaticResource AccentColor}" />
+            </Style>
         </Style>
     </Application.Styles>
 </Application>
