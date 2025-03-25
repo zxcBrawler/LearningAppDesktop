@@ -1,4 +1,4 @@
-﻿using LearningApp.Utils;
+﻿using LearningApp.Utils.Enum;
 
 namespace LearningApp.ViewModels;
 

@@ -1,4 +1,4 @@
-﻿namespace LearningApp.Utils;
+﻿namespace LearningApp.Utils.Enum;
 
 public enum TypeExercise
 {

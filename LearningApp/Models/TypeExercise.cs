@@ -8,7 +8,7 @@ public class TypeExercise
     public int Id { get; set; }
 
     [JsonPropertyName("exercise_Type_Name")]
-    public Utils.TypeExercise ExerciseTypeName { get; set; }
+    public Utils.Enum.TypeExercise ExerciseTypeName { get; set; }
 
     [JsonPropertyName("exercise_Type_Description")]
 

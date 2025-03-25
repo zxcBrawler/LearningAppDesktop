@@ -6,7 +6,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using LearningApp.Models;
 using LearningApp.Service;
-using LearningApp.Utils;
+using LearningApp.Utils.Enum;
 using LearningApp.Views;
 
 namespace LearningApp.ViewModels;

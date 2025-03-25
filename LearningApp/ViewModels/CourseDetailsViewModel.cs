@@ -2,15 +2,14 @@
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
-using Avalonia;
 using Avalonia.Controls;
-using Avalonia.Media;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using LearningApp.Factories;
 using LearningApp.Models;
 using LearningApp.Service;
 using LearningApp.Utils;
+using LearningApp.Utils.DependencyInjection;
 using LearningApp.Views;
 
 namespace LearningApp.ViewModels;

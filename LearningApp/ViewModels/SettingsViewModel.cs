@@ -1,5 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
-using LearningApp.Utils;
+using LearningApp.Utils.Enum;
 
 namespace LearningApp.ViewModels;
 

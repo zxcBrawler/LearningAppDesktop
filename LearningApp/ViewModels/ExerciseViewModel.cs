@@ -6,7 +6,7 @@ using CommunityToolkit.Mvvm.Input;
 using LearningApp.Factories;
 using LearningApp.Models;
 using LearningApp.Service;
-using TypeExercise = LearningApp.Utils.TypeExercise;
+using TypeExercise = LearningApp.Utils.Enum.TypeExercise;
 
 namespace LearningApp.ViewModels;
 

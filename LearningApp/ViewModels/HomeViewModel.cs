@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Threading.Tasks;
-using System.Timers;
-using Avalonia.Controls;
 using CommunityToolkit.Mvvm.ComponentModel;
-using CommunityToolkit.Mvvm.Input;
 using LearningApp.Models;
 using LearningApp.Service;
-using LearningApp.Utils;
+using LearningApp.Utils.Enum;
 
 namespace LearningApp.ViewModels;
 

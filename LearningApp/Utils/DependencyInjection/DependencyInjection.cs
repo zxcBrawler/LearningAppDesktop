@@ -4,14 +4,15 @@ using Avalonia.Controls;
 using Avalonia.Controls.ApplicationLifetimes;
 using LearningApp.DataSource;
 using LearningApp.Factories;
-using LearningApp.Models;
 using LearningApp.Service;
+using LearningApp.Utils.Enum;
 using LearningApp.ViewModels;
 using LearningApp.Views;
 using Microsoft.Extensions.DependencyInjection;
 using Refit;
+using TypeExercise = LearningApp.Utils.Enum.TypeExercise;
 
-namespace LearningApp.Utils;
+namespace LearningApp.Utils.DependencyInjection;
 
 public static class DependencyInjection
 {

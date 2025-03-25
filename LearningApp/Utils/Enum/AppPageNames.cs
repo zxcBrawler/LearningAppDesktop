@@ -1,4 +1,4 @@
-﻿namespace LearningApp.Utils;
+﻿namespace LearningApp.Utils.Enum;
 
 public enum AppPageNames
 {
@@ -8,5 +8,5 @@ public enum AppPageNames
     Home,
     Courses,
     Settings,
-    Profile,
+    Profile
 }

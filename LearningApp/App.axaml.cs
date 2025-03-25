@@ -5,6 +5,7 @@ using Avalonia.Data.Core.Plugins;
 using System.Linq;
 using Avalonia.Markup.Xaml;
 using LearningApp.Utils;
+using LearningApp.Utils.DependencyInjection;
 using LearningApp.ViewModels;
 using LearningApp.Views;
 using Microsoft.Extensions.DependencyInjection;

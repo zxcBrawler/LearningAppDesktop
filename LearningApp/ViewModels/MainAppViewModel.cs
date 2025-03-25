@@ -1,11 +1,7 @@
-﻿using System.Collections.ObjectModel;
-using System.Runtime.InteropServices.JavaScript;
-using Avalonia.Controls;
-using CommunityToolkit.Mvvm.ComponentModel;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using LearningApp.Factories;
-using LearningApp.Models;
-using LearningApp.Utils;
+using LearningApp.Utils.Enum;
 
 namespace LearningApp.ViewModels;
 
