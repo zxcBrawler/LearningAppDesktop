@@ -1,3 +1,4 @@
+using System.Globalization;
 using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Data.Core;
@@ -21,6 +22,7 @@ public partial class App : Application
 
     public override void OnFrameworkInitializationCompleted()
     {
+        Assets.Lang.Resources.Culture = new CultureInfo("en");
         var collection = new ServiceCollection();
         collection.AddCommonServices();
 

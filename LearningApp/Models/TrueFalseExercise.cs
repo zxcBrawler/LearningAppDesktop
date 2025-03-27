@@ -1,6 +1,8 @@
-﻿namespace LearningApp.Models;
+﻿using System.Text.Json.Serialization;
+
+namespace LearningApp.Models;
 
 public class TrueFalseExercise
 {
-    public bool IsTrue { get; set; }
+    [JsonPropertyName("answer_value")] public bool AnswerValue { get; set; }
 }

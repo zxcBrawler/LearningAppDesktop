@@ -60,4 +60,21 @@
         <UpToDateCheckInput Remove="Assets\Assets\Icons\eye.svg"/>
         <UpToDateCheckInput Remove="Assets\Assets\Resources\Colors.axaml"/>
     </ItemGroup>
+
+    <ItemGroup>
+        <EmbeddedResource Update="Assets\Lang\Resources.resx">
+            <Generator>PublicResXFileCodeGenerator</Generator>
+            <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+        </EmbeddedResource>
+    </ItemGroup>
+
+    <ItemGroup>
+        <Compile Update="Assets\Lang\Resources.Designer.cs">
+            <DesignTime>True</DesignTime>
+            <AutoGen>True</AutoGen>
+            <DependentUpon>Resources.resx</DependentUpon>
+        </Compile>
+    </ItemGroup>
+
+
 </Project>

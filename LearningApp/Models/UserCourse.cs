@@ -5,11 +5,11 @@ namespace LearningApp.Models;
 
 public class UserCourse
 {
-    public User? User { get; set; }
+    [JsonPropertyName("user")] public User? User { get; set; }
 
-    public Course? Course { get; set; }
+    [JsonPropertyName("course")] public Course? Course { get; init; }
 
-    [JsonPropertyName("isFinished")] public bool IsFinished { get; set; }
+    [JsonPropertyName("is_finished")] public bool IsFinished { get; set; }
 
-    [JsonPropertyName("course_Progress")] public float CourseProgress { get; set; }
+    [JsonPropertyName("course_progress")] public float CourseProgress { get; set; }
 }

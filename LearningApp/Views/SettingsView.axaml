@@ -34,7 +34,6 @@
                             <ComboBoxItem FontSize="22">3 (Beginner)</ComboBoxItem>
                             <ComboBoxItem FontSize="22">6 (Normal)</ComboBoxItem>
                             <ComboBoxItem FontSize="22">9 (Advanced)</ComboBoxItem>
-
                         </ComboBox>
                     </Grid>
 
@@ -48,7 +47,6 @@
 
                         <TextBlock Text="App theme" FontSize="24" Foreground="White" Margin="15 15 0 5" />
                         <TextBlock Grid.Row="1" Grid.Column="0" Text="Change app theme according to your preferences"
-
                                    Margin="15 5 0 15"
                                    TextWrapping="Wrap"
                                    FontSize="22" />
@@ -62,14 +60,12 @@
                             <ComboBoxItem FontSize="22">Dark</ComboBoxItem>
                             <ComboBoxItem FontSize="22">Light</ComboBoxItem>
                             <ComboBoxItem FontSize="22">System Default</ComboBoxItem>
-
                         </ComboBox>
                     </Grid>
 
                 </Border>
 
                 <Border Padding="10">
-
                     <TextBlock Text="Language" FontSize="28" Foreground="White" />
                 </Border>
 
@@ -79,7 +75,6 @@
                         <TextBlock Text="App language" FontSize="24" Foreground="White" Margin="15 15 0 5" />
                         <TextBlock Grid.Row="1" Grid.Column="0"
                                    Text="Change app language according to your preferences"
-
                                    Margin="15 5 0 15"
                                    TextWrapping="Wrap"
                                    FontSize="22" />
@@ -95,10 +90,8 @@
                             <ComboBoxItem FontSize="22">Deutsch</ComboBoxItem>
                             <ComboBoxItem FontSize="22">日本語</ComboBoxItem>
                             <ComboBoxItem FontSize="22">Français</ComboBoxItem>
-
                         </ComboBox>
                     </Grid>
-
                 </Border>
 
                 <Border Padding="10">
@@ -111,7 +104,6 @@
                                    Margin="15 5 0 15"
                                    TextWrapping="Wrap"
                                    FontSize="22" />
-
                         <Grid Grid.Row="0" Grid.RowSpan="2" Grid.Column="1"
                               HorizontalAlignment="Stretch" ColumnDefinitions="*, Auto" VerticalAlignment="Center">
                             <TimePicker ClockIdentifier="12HourClock"
@@ -129,7 +121,6 @@
                                     Margin="20" />
                             </Viewbox>
                         </Grid>
-
                     </Grid>
                 </Border>
                 <Border Background="#35373B" CornerRadius="20" Padding="10">
@@ -151,7 +142,7 @@
                 </Border>
 
                 <Button Classes="primary" Content="Save Settings" HorizontalAlignment="Stretch"
-                        HorizontalContentAlignment="Center"  Command="{Binding SaveSettingsCommand}" />
+                        HorizontalContentAlignment="Center" Command="{Binding SaveSettingsCommand}" />
 
                 <Button Classes="textbutton" Content="Reset Settings" HorizontalAlignment="Stretch"
                         HorizontalContentAlignment="Center" Command="{Binding ResetSettingsCommand}" />
@@ -185,9 +176,7 @@
                 </StackPanel>
                 <TextBlock Text="© 2025 Learning App. All rights reserved." FontSize="18" Margin="10"
                            HorizontalAlignment="Center" />
-
             </StackPanel>
         </Grid>
-
     </ScrollViewer>
 </UserControl>

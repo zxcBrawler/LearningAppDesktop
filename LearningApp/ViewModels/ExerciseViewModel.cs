@@ -121,7 +121,7 @@ public partial class ExerciseViewModel : ViewModelBase
     private bool CheckTrueFalseExercise(string exerciseTypeName)
     {
         if (exerciseTypeName != TypeExercise.TrueFalse.ToString()) return false;
-        return SelectedTrueFalseAnswer == CurrentExercise.TrueFalseExercise!.IsTrue;
+        return SelectedTrueFalseAnswer == CurrentExercise.TrueFalseExercise!.AnswerValue;
     }
 
     private bool CheckMultipleChoiceExercise(string exerciseTypeName)

@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:viewModels="clr-namespace:LearningApp.ViewModels"
              xmlns:anim="https://github.com/whistyun/AnimatedImage.Avalonia"
+             xmlns:lang="clr-namespace:LearningApp.Assets.Lang"
              mc:Ignorable="d" d:DesignWidth="1920" d:DesignHeight="1080"
              x:DataType="viewModels:LogInViewModel"
              x:Class="LearningApp.Views.LogInView">
@@ -17,18 +18,20 @@
             VerticalAlignment="Center"
             RowDefinitions="Auto, Auto, Auto, Auto, Auto">
             <TextBlock
+                TextWrapping="Wrap"
+                TextAlignment="Center"
                 Grid.Row="0"
                 Margin="0,0,0,10"
                 HorizontalAlignment="Center"
                 FontSize="44"
                 Foreground="#FFF"
-                Text="Welcome to Learning App!" />
+                Text="{x:Static lang:Resources.GreetingText}" />
 
             <TextBlock
                 Grid.Row="1"
                 Margin="0,0,0,20"
                 FontSize="20"
-                Text="Speak English confidently in any situation! [App Name] provides practical lessons for everyday conversations, travel, work, and more. Start your English journey today."
+                Text="{x:Static lang:Resources.GreetingSubText}"
                 TextAlignment="Center"
                 TextWrapping="Wrap" />
 
@@ -63,14 +66,14 @@
                         <TextBox
                             Margin="0,0,0,20"
                             Text="{Binding Username}"
-                            Watermark="Email or username" />
+                            Watermark="{x:Static lang:Resources.EmailField}" />
 
                         <Grid Margin="0,0,0,10">
                             <TextBox
                                 x:Name="PasswordField"
                                 PasswordChar="*"
                                 Text="{Binding Password}"
-                                Watermark="Enter your password" />
+                                Watermark="{x:Static lang:Resources.PasswordField}" />
                             <Button
                                 x:Name="ShowHideButton"
                                 HorizontalAlignment="Right"

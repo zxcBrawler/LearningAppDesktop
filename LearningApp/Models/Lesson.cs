@@ -8,15 +8,15 @@ public class Lesson
 {
     public int Id { get; set; }
 
-    [JsonPropertyName("lesson_Name")] public string? LessonName { get; set; }
+    [JsonPropertyName("lesson_name")] public string? LessonName { get; set; }
 
-    [JsonPropertyName("lesson_Description")]
+    [JsonPropertyName("lesson_description")]
     public string? LessonDescription { get; set; }
 
-    public DateTime? CreatedAt { get; set; }
-    public DateTime? UpdatedAt { get; set; }
+    [JsonPropertyName("created_at")] public DateTime? CreatedAt { get; set; }
 
-    public string? UID { get; set; }
+
+    [JsonPropertyName("uid")] public string? Uid { get; set; }
 
 
     public List<Exercise>? Exercises { get; set; }
