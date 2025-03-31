@@ -44,7 +44,6 @@
 
                 <Border Background="#35373B" CornerRadius="20" Padding="10">
                     <Grid ColumnDefinitions="*, *" RowDefinitions="Auto, Auto" ShowGridLines="False">
-
                         <TextBlock Text="App theme" FontSize="24" Foreground="White" Margin="15 15 0 5" />
                         <TextBlock Grid.Row="1" Grid.Column="0" Text="Change app theme according to your preferences"
                                    Margin="15 5 0 15"
@@ -71,7 +70,6 @@
 
                 <Border Background="#35373B" CornerRadius="20" Padding="10">
                     <Grid ColumnDefinitions="*, *" RowDefinitions="Auto, Auto" ShowGridLines="False">
-
                         <TextBlock Text="App language" FontSize="24" Foreground="White" Margin="15 15 0 5" />
                         <TextBlock Grid.Row="1" Grid.Column="0"
                                    Text="Change app language according to your preferences"

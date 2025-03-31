@@ -25,7 +25,7 @@
             <Setter Property="WindowState" Value="Maximized" />
         </Style>
         <Style Selector="TextBox">
-            <Setter Property="Background" Value="{StaticResource UIElementsPrimaryColor}" />
+            <Setter Property="Background" Value="{StaticResource UiElementsPrimaryColor}" />
             <Setter Property="CornerRadius" Value="20" />
             <Setter Property="FontSize" Value="24" />
             <Setter Property="Padding" Value="10" />
@@ -35,12 +35,12 @@
 
         </Style>
         <Style Selector="TextBox:pointerover /template/ Border">
-            <Setter Property="Background" Value="{StaticResource UIElementsPrimaryColor}" />
+            <Setter Property="Background" Value="{StaticResource UiElementsPrimaryColor}" />
             <Setter Property="CornerRadius" Value="20" />
             <Setter Property="BorderBrush" Value="Transparent" />
         </Style>
         <Style Selector="TextBox:focus /template/ Border">
-            <Setter Property="Background" Value="{StaticResource UIElementsPrimaryColor}" />
+            <Setter Property="Background" Value="{StaticResource UiElementsPrimaryColor}" />
             <Setter Property="CornerRadius" Value="20" />
             <Setter Property="BorderBrush" Value="Transparent" />
         </Style>

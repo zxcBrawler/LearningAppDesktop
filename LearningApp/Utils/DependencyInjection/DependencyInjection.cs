@@ -33,6 +33,7 @@ public static class DependencyInjection
         services.AddTransient<HomeViewModel>();
         services.AddTransient<SettingsViewModel>();
         services.AddTransient<CourseDetailsViewModel>();
+        services.AddTransient<DictionaryViewModel>();
         services.AddTransient<ExerciseViewModel>();
         services.AddTransient<CourseDetailsView>();
         services.AddTransient<TrueFalseExerciseView>();
@@ -61,6 +62,7 @@ public static class DependencyInjection
             AppPageNames.Courses => x.GetRequiredService<CoursesViewModel>(),
             AppPageNames.Settings => x.GetRequiredService<SettingsViewModel>(),
             AppPageNames.Home => x.GetRequiredService<HomeViewModel>(),
+            AppPageNames.Dictionaries => x.GetRequiredService<DictionaryViewModel>(),
             _ => throw new ArgumentOutOfRangeException(nameof(name), name, null)
         });
 

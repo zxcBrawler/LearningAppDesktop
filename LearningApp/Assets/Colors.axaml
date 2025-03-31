@@ -7,6 +7,6 @@
     <Color x:Key="AccentColorDark">#383D75</Color>
     <Color x:Key="PrimaryTextColor">#DFE0E2</Color>
     <Color x:Key="SecondaryTextColor">#B3C3C0</Color>
-    <Color x:Key="UIElementsPrimaryColor">#494C51</Color>
+    <Color x:Key="UiElementsPrimaryColor">#494C51</Color>
     <Color x:Key="DarkPrimary">#202125</Color>
 </ResourceDictionary>

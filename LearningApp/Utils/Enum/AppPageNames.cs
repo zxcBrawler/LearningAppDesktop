@@ -7,6 +7,7 @@ public enum AppPageNames
     MainApp,
     Home,
     Courses,
+    Dictionaries,
     Settings,
     Profile
 }

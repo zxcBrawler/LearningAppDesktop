@@ -15,7 +15,7 @@
     <!-- Sidebar -->
     <SplitView IsPaneOpen="{Binding IsPaneOpen}"
                DisplayMode="CompactOverlay"
-               OpenPaneLength="250"
+               OpenPaneLength="300"
                CompactPaneLength="100">
         <SplitView.Pane>
             <Border Background="#202125">
@@ -47,6 +47,7 @@
                                                Text="Home" />
                                 </StackPanel>
                             </Button>
+
                             <Button HorizontalAlignment="Stretch" Command="{Binding NavigateToCoursesPageCommand}"
                                     Classes="sideMenuElement" Padding="15" CornerRadius="20"
                                     ToolTip.Tip="Courses" ToolTip.Placement="Center"
@@ -60,6 +61,24 @@
                                                Text="Courses" />
                                 </StackPanel>
                             </Button>
+
+                            <!--TODO-->
+                            <Button HorizontalAlignment="Stretch"
+                                    Command="{Binding NavigateToDictionariesPageCommand }"
+                                    Classes="sideMenuElement" Padding="15" CornerRadius="20"
+                                    ToolTip.Tip="Dictionaries" ToolTip.Placement="Center"
+                                    ToolTip.VerticalOffset="40">
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Spacing="20">
+                                    <Svg
+                                        Height="35"
+                                        Width="35"
+                                        Path="/Assets/Icons/book-a.svg" />
+                                    <TextBlock TextWrapping="Wrap" Foreground="#DFE0E2" FontSize="24"
+                                               IsVisible="{Binding IsPaneOpen}"
+                                               Text="Dictionaries" />
+                                </StackPanel>
+                            </Button>
+                            <!--TODO-->
                             <Button HorizontalAlignment="Stretch" Command="{Binding NavigateToSettingsPageCommand}"
                                     Classes="sideMenuElement" Padding="15" CornerRadius="20"
                                     ToolTip.Tip="Settings" ToolTip.Placement="Center"

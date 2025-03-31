@@ -1,0 +1,68 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="1920" d:DesignHeight="1080"
+             xmlns:viewModels="clr-namespace:LearningApp.ViewModels"
+             x:DataType="viewModels:DictionaryViewModel"
+             x:Class="LearningApp.Views.DictionaryView">
+
+    <Design.DataContext>
+        <viewModels:DictionaryViewModel />
+    </Design.DataContext>
+    <Grid ColumnDefinitions="*" RowDefinitions="Auto,*" ShowGridLines="True">
+        <Border Background="Transparent" Grid.Row="0" Padding="10">
+            <Grid ColumnDefinitions="*,Auto,Auto,Auto">
+
+                <!--Change to + icon to add new dictionary-->
+                <Button Grid.Column="1" Classes="icon" VerticalAlignment="Center" Margin="5,0">
+                    <Svg Height="30" Width="30" Path="/Assets/Icons/plus.svg" />
+                </Button>
+                <Button Grid.Column="2" Classes="icon" VerticalAlignment="Center" Margin="5,0">
+                    <Svg Height="30" Width="30" Path="/Assets/Icons/filter.svg" />
+                </Button>
+                <!---->
+                <Button Grid.Column="3" Classes="icon" VerticalAlignment="Center" Margin="5,0">
+                    <Svg Height="30" Width="30" Path="/Assets/Icons/search.svg" />
+                </Button>
+
+            </Grid>
+        </Border>
+
+        <ScrollViewer Grid.Row="1">
+            <StackPanel Orientation="Vertical">
+                <ItemsRepeater ItemsSource="{Binding Items}" Margin="15">
+                    <ItemsRepeater.Layout>
+                        <StackLayout Spacing="10" />
+                    </ItemsRepeater.Layout>
+                    <ItemsRepeater.ItemTemplate>
+                        <DataTemplate>
+                            <Border CornerRadius="15" PointerPressed="OnPointerPressed"
+                                    Padding="15" Background="#35373B">
+                                <Grid ColumnDefinitions="Auto,*,*,*" ShowGridLines="False">
+                                    <Svg
+                                        Margin="15"
+                                        Height="30"
+                                        Width="30"
+                                        Path="/Assets/Icons/house.svg" />
+                                    <TextBlock Grid.Column="1" Text="{Binding  }" VerticalAlignment="Center"
+                                               FontSize="25" />
+                                    <StackPanel Grid.Column="3" Orientation="Horizontal" HorizontalAlignment="Right">
+                                        <Button Classes="icon">
+                                            <Svg Height="30" Width="30" Path="/Assets/Icons/ellipsis.svg" />
+                                        </Button>
+                                        <Button Classes="icon">
+                                            <Svg Height="30" Width="30" Path="/Assets/Icons/trash.svg" />
+                                        </Button>
+                                    </StackPanel>
+                                </Grid>
+
+                            </Border>
+
+                        </DataTemplate>
+                    </ItemsRepeater.ItemTemplate>
+                </ItemsRepeater>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</UserControl>
