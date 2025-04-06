@@ -8,11 +8,7 @@
         x:DataType="vm:MainWindowViewModel"
         Icon="/Assets/avalonia-logo.ico"
         Title="LearningApp">
-
-    <Design.DataContext>
-
-        <vm:MainWindowViewModel />
-    </Design.DataContext>
+    
     <TransitioningContentControl Content="{Binding CurrentView}">
         <TransitioningContentControl.PageTransition>
             <CrossFade Duration="0:00:00.2" />

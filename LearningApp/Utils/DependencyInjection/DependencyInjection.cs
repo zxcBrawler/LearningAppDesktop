@@ -87,6 +87,7 @@ public static class DependencyInjection
             AppPageNames.Settings => x.GetRequiredService<SettingsViewModel>(),
             AppPageNames.Home => x.GetRequiredService<HomeViewModel>(),
             AppPageNames.Dictionaries => x.GetRequiredService<DictionaryViewModel>(),
+            AppPageNames.Profile => x.GetRequiredService<ProfileViewModel>(),
             _ => throw new ArgumentOutOfRangeException(nameof(name), name, null)
         });
 

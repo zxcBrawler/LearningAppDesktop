@@ -1,12 +1,17 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+﻿using System.Threading.Tasks;
+using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using CommunityToolkit.Mvvm.Messaging;
 using LearningApp.Factories;
+using LearningApp.Service;
+using LearningApp.Service.Interface;
 using LearningApp.Utils.Enum;
 
 namespace LearningApp.ViewModels;
 
 public partial class MainAppViewModel : PageViewModel
 {
+    private readonly IAuthorizationService _authorizationService;
     [ObservableProperty] private bool _isPaneOpen;
     private readonly PageFactory _pageFactory;
 
@@ -20,9 +25,10 @@ public partial class MainAppViewModel : PageViewModel
     public bool IsCoursesPageActive => CurrentTabView.PageName == AppPageNames.Courses;
     public bool IsSettingsPageActive => CurrentTabView.PageName == AppPageNames.Settings;
 
-    public MainAppViewModel(PageFactory pageFactory)
+    public MainAppViewModel(PageFactory pageFactory, IAuthorizationService authorizationService)
     {
         _pageFactory = pageFactory;
+        _authorizationService = authorizationService;
         PageName = AppPageNames.MainApp;
         IsActive = true;
         CurrentTabView = _pageFactory.GetPageViewModel(AppPageNames.Home);
@@ -73,6 +79,10 @@ public partial class MainAppViewModel : PageViewModel
         IsPaneOpen = !IsPaneOpen;
     }
 
-    /*[RelayCommand]
-    private void LogOut() => ;*/
+    [RelayCommand]
+    private async Task LogOut()
+    {
+        await _authorizationService.LogOut();
+        WeakReferenceMessenger.Default.Send(new NavigateToPageMessage(AppPageNames.LogIn));
+    }
 }

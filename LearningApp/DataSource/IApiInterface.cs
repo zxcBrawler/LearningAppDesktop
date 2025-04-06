@@ -35,6 +35,9 @@ public interface IApiInterface
     [Post("/api/Authorization/Login")]
     public Task<LoginResponse> Login([Body] LoginRequestDto loginRequestDto);
 
+    [Post("/api/Authorization/LogOut")]
+    public Task<string> LogOut();
+
     [Post("/api/Authorization/Register")]
     public Task<DataState<string>> RegisterAsync(RegisterRequestDto registerRequestDto);
 

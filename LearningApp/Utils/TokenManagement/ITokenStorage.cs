@@ -6,4 +6,6 @@ public interface ITokenStorage
 {
     void SaveTokens(LoginResponse loginResponse);
     LoginResponse? LoadTokens();
+
+    void DeleteTokens();
 }

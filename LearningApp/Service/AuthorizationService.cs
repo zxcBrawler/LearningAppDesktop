@@ -12,6 +12,21 @@ namespace LearningApp.Service;
 
 public class AuthorizationService(IApiInterface apiService, ITokenStorage tokenStorage) : IAuthorizationService
 {
+    public async Task<DataState<string>> LogOut()
+    {
+        try
+        {
+            var response = await apiService.LogOut();
+            tokenStorage.DeleteTokens();
+            return DataState<string>.Success(response, 200);
+        }
+        catch (Exception e)
+        {
+            return DataState<string>.Failure("An unexpected error occurred during the login process.",
+                500);
+        }
+    }
+
     public async Task<DataState<LoginResponse>> Login(LoginRequestDto loginRequestDto)
     {
         try

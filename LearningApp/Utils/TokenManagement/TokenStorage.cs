@@ -56,6 +56,20 @@ public class TokenStorage : ITokenStorage
         }
     }
 
+    public void DeleteTokens()
+    {
+        try
+        {
+            var filePath = GetTokenFilePath();
+            if (File.Exists(filePath)) File.Delete(filePath);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+    }
+
     private static string GetTokenFilePath()
     {
         var appData = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);

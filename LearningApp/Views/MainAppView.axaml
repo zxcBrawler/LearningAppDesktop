@@ -95,7 +95,7 @@
                     </ScrollViewer>
                     <StackPanel Grid.Row="3" HorizontalAlignment="Stretch" Margin="15" Spacing="15">
                         <Button HorizontalAlignment="Stretch" Classes="sideMenuElement" Padding="15" CornerRadius="20"
-                                ToolTip.Tip="Log Out" ToolTip.Placement="Center">
+                                ToolTip.Tip="Log Out" ToolTip.Placement="Center" Command="{Binding LogOutCommand}">
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Spacing="20">
                                 <Svg
                                     Height="30"

@@ -8,5 +8,6 @@ namespace LearningApp.Service.Interface;
 public interface IAuthorizationService
 {
     Task<DataState<string>> Register(RegisterRequestDto registerRequestDto);
+    Task<DataState<string>> LogOut();
     Task<DataState<LoginResponse>> Login(LoginRequestDto loginRequestDto);
 }
