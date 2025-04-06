@@ -1,6 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using LearningApp.Models;
+using LearningApp.Models.Dto.Request;
+using LearningApp.Models.Dto.Response;
+using LearningApp.Models.Dto.Simple;
 using Refit;
 
 namespace LearningApp.DataSource;
@@ -15,8 +18,8 @@ public interface IApiInterface
     [Get("/api/Courses/{courseId}")]
     public Task<Course> GetCourseByIdAsync(int courseId);
 
-    [Get("/api/UserCourses/{userId}")]
-    public Task<List<UserCourse>> GetUserCoursesAsync(int userId);
+    [Get("/api/UserActions/GetUserCourses")]
+    public Task<List<UserCourseSimpleDto>> GetUserCoursesAsync();
 
     [Post("/api/UserCourses")]
     public Task<UserCourse> PostUserCourse(UserCourse userCourse);
@@ -28,6 +31,15 @@ public interface IApiInterface
 
 
     #region Authentication
+
+    [Post("/api/Authorization/Login")]
+    public Task<LoginResponse> Login([Body] LoginRequestDto loginRequestDto);
+
+    [Post("/api/Authorization/Register")]
+    public Task<DataState<string>> RegisterAsync(RegisterRequestDto registerRequestDto);
+
+    [Post("/api/Authorization/RefreshToken")]
+    public Task<TokenResponse> RefreshToken(RefreshTokenRequestDto refreshTokenRequestDto);
 
     #endregion
 }

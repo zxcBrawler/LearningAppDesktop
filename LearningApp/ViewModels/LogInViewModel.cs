@@ -3,6 +3,8 @@ using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
+using LearningApp.Models.Dto.Request;
+using LearningApp.Service.Interface;
 using LearningApp.Utils.Enum;
 
 namespace LearningApp.ViewModels;
@@ -11,15 +13,18 @@ public partial class LogInViewModel : PageViewModel
 {
     private bool _isPasswordVisible;
 
+    private readonly IAuthorizationService _authorizationService;
+
     [ObservableProperty] [NotifyCanExecuteChangedFor(nameof(LoginCommand))]
     private string? _password;
 
     [ObservableProperty] [NotifyCanExecuteChangedFor(nameof(LoginCommand))]
     private string? _username;
 
-    public LogInViewModel()
+    public LogInViewModel(IAuthorizationService authorizationService)
     {
         PageName = AppPageNames.LogIn;
+        _authorizationService = authorizationService;
     }
 
     public bool IsPasswordVisible
@@ -35,8 +40,14 @@ public partial class LogInViewModel : PageViewModel
     [RelayCommand(CanExecute = nameof(CanLogin))]
     private async Task Login()
     {
-        await Task.Delay(TimeSpan.FromSeconds(1));
+        LoginRequestDto loginRequestDto = new()
+        {
+            Email = _username,
+            Password = _password
+        };
+        var response = await _authorizationService.Login(loginRequestDto);
         WeakReferenceMessenger.Default.Send(new NavigateToPageMessage(AppPageNames.MainApp));
+        Console.WriteLine(response);
     }
 
 

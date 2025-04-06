@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.ComponentModel;
 using LearningApp.Models;
+using LearningApp.Models.Dto.Simple;
 using LearningApp.Service;
 using LearningApp.Utils.Enum;
 
@@ -11,7 +12,7 @@ public partial class HomeViewModel : PageViewModel
 {
     #region ObservableProperties
 
-    [ObservableProperty] private ObservableCollection<UserCourse>? _userCourses;
+    [ObservableProperty] private ObservableCollection<UserCourseSimpleDto>? _userCourses;
     [ObservableProperty] private bool _isLoading;
 
     #endregion
@@ -28,8 +29,8 @@ public partial class HomeViewModel : PageViewModel
     private async Task GetCoursesAsync()
     {
         IsLoading = true;
-        var courses = await _courseService.GetUserCourses(1);
-        UserCourses = new ObservableCollection<UserCourse>(courses);
+        var courses = await _courseService.GetUserCourses();
+        UserCourses = new ObservableCollection<UserCourseSimpleDto>(courses.Value);
         IsLoading = false;
     }
 }

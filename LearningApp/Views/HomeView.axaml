@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="1920" d:DesignHeight="1080"
              xmlns:viewModels="clr-namespace:LearningApp.ViewModels"
-             xmlns:model="clr-namespace:LearningApp.Models"
+             xmlns:model="clr-namespace:LearningApp.Models.Dto.Simple"
              xmlns:asyncImageLoader="clr-namespace:AsyncImageLoader;assembly=AsyncImageLoader.Avalonia"
              xmlns:li="clr-namespace:LoadingIndicators.Avalonia;assembly=LoadingIndicators.Avalonia"
              x:DataType="viewModels:HomeViewModel"
@@ -32,7 +32,7 @@
                     </ItemsPanelTemplate>
                 </ItemsControl.ItemsPanel>
                 <ItemsControl.ItemTemplate>
-                    <DataTemplate x:DataType="{x:Type model:UserCourse}">
+                    <DataTemplate x:DataType="{x:Type model:UserCourseSimpleDto}">
 
                         <Grid>
                             <Border Width="350"

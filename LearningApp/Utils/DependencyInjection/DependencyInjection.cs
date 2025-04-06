@@ -1,12 +1,15 @@
 ﻿using System;
+using System.Text.Json;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.ApplicationLifetimes;
 using LearningApp.DataSource;
 using LearningApp.Factories;
 using LearningApp.Service;
+using LearningApp.Service.Interface;
 using LearningApp.Utils.Enum;
 using LearningApp.Utils.Settings;
+using LearningApp.Utils.TokenManagement;
 using LearningApp.ViewModels;
 using LearningApp.Views;
 using Microsoft.Extensions.DependencyInjection;
@@ -19,12 +22,32 @@ public static class DependencyInjection
 {
     public static void AddCommonServices(this IServiceCollection services)
     {
-        services.AddHttpClient("api", c => { c.BaseAddress = new Uri("https://localhost:7146"); })
-            .AddTypedClient(RestService.For<IApiInterface>);
-        services.AddSingleton<CourseService>();
+        services.AddScoped<IAuthorizationService, AuthorizationService>();
+        services.AddScoped<ITokenRefreshService, TokenRefreshService>();
+        services.AddTransient<AuthTokenHandler>(sp => new AuthTokenHandler(
+            sp.GetRequiredService<ITokenStorage>(),
+            new Lazy<ITokenRefreshService>(sp.GetRequiredService<ITokenRefreshService>)
+        ));
+        services.AddScoped<ITokenStorage, TokenStorage>();
+
+        services.AddRefitClient<IApiInterface>(new RefitSettings
+            {
+                ContentSerializer = new SystemTextJsonContentSerializer(new JsonSerializerOptions()
+                {
+                    PropertyNameCaseInsensitive = true
+                })
+            })
+            .ConfigureHttpClient(c =>
+            {
+                c.BaseAddress = new Uri("https://localhost:7087");
+                c.DefaultRequestHeaders.Add("Accept", "application/json");
+            })
+            .AddHttpMessageHandler<AuthTokenHandler>()
+            .AddStandardResilienceHandler();
+
+        services.AddTransient<CourseService>();
         services.AddSingleton<SettingsManager>();
-        services.AddSingleton<ExerciseService>();
-        services.AddTransient<ApiService>();
+        services.AddTransient<ExerciseService>();
         services.AddTransient<MainWindowViewModel>();
         services.AddTransient<LogInViewModel>();
         services.AddTransient<SignUpViewModel>();
@@ -36,6 +59,7 @@ public static class DependencyInjection
         services.AddTransient<DictionaryViewModel>();
         services.AddTransient<ExerciseViewModel>();
         services.AddTransient<CourseDetailsView>();
+        services.AddTransient<ProfileViewModel>();
         services.AddTransient<TrueFalseExerciseView>();
         services.AddTransient<MultipleChoiceExerciseView>();
         services.AddTransient<TextAnswerExerciseView>();

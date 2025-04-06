@@ -1,0 +1,64 @@
+﻿using System;
+using System.IO;
+using System.Runtime.Versioning;
+using LearningApp.Models.Dto.Response;
+using System.Text.Json;
+using System.Security.Cryptography;
+using System.Text;
+
+namespace LearningApp.Utils.TokenManagement;
+
+[SupportedOSPlatform("windows")]
+public class TokenStorage : ITokenStorage
+{
+    public void SaveTokens(LoginResponse loginResponse)
+    {
+        try
+        {
+            var jsonTokenData = JsonSerializer.Serialize(loginResponse);
+            var encryptedData = ProtectedData.Protect(
+                Encoding.UTF8.GetBytes(jsonTokenData),
+                null,
+                DataProtectionScope.CurrentUser);
+
+            var filePath = GetTokenFilePath();
+            Directory.CreateDirectory(Path.GetDirectoryName(filePath) ?? throw new InvalidOperationException());
+            File.WriteAllBytes(filePath, encryptedData);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+    }
+
+    public LoginResponse? LoadTokens()
+    {
+        try
+        {
+            var filePath = GetTokenFilePath();
+            if (!File.Exists(filePath)) return null;
+
+            var encryptedData = File.ReadAllBytes(filePath);
+
+            var jsonData = Encoding.UTF8.GetString(
+                ProtectedData.Unprotect(
+                    encryptedData,
+                    null,
+                    DataProtectionScope.CurrentUser));
+
+            return JsonSerializer.Deserialize<LoginResponse>(jsonData);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+    }
+
+    private static string GetTokenFilePath()
+    {
+        var appData = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+        return Path.Combine(appData, "LearningApp", "tokens.bin");
+    }
+}

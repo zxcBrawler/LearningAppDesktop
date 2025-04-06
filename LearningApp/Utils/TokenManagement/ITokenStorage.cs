@@ -1,0 +1,9 @@
+﻿using LearningApp.Models.Dto.Response;
+
+namespace LearningApp.Utils.TokenManagement;
+
+public interface ITokenStorage
+{
+    void SaveTokens(LoginResponse loginResponse);
+    LoginResponse? LoadTokens();
+}

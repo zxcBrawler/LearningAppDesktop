@@ -20,7 +20,7 @@
         <SplitView.Pane>
             <Border Background="#202125">
                 <Grid RowDefinitions="Auto,Auto,*, Auto, Auto" ShowGridLines="False">
-                    <!-- Top Section  -->
+
                     <Button Classes="icon" Command="{Binding OpenPaneCommand}" HorizontalAlignment="Right" Height="45">
                         <Svg
                             Height="35"
@@ -61,8 +61,6 @@
                                                Text="Courses" />
                                 </StackPanel>
                             </Button>
-
-                            <!--TODO-->
                             <Button HorizontalAlignment="Stretch"
                                     Command="{Binding NavigateToDictionariesPageCommand }"
                                     Classes="sideMenuElement" Padding="15" CornerRadius="20"
@@ -78,7 +76,6 @@
                                                Text="Dictionaries" />
                                 </StackPanel>
                             </Button>
-                            <!--TODO-->
                             <Button HorizontalAlignment="Stretch" Command="{Binding NavigateToSettingsPageCommand}"
                                     Classes="sideMenuElement" Padding="15" CornerRadius="20"
                                     ToolTip.Tip="Settings" ToolTip.Placement="Center"

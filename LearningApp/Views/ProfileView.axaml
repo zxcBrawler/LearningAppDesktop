@@ -2,7 +2,67 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:asyncImageLoader="clr-namespace:AsyncImageLoader;assembly=AsyncImageLoader.Avalonia"
              mc:Ignorable="d" d:DesignWidth="1920" d:DesignHeight="1080"
              x:Class="LearningApp.Views.ProfileView">
-    Welcome to Avalonia!
+    <Grid ColumnDefinitions="*,*,*" RowDefinitions="*,*,*">
+
+        <!--User profile image. Change source to binding later-->
+        <Border Grid.RowSpan="3" Background="#35373B" CornerRadius="20" Margin="0,15,15,0">
+            <StackPanel Margin="15" Spacing="20" VerticalAlignment="Center">
+
+                <!--User profile image. Change source to binding later-->
+                <Border ClipToBounds="True" CornerRadius="100" Height="150" Width="150">
+                    <Image Stretch="UniformToFill"
+                           asyncImageLoader:ImageLoader.Source="https://api.studio21.ru/images/Q5xwSeg6VAJw1gEEetis7xWBNjRvunREbUxUFbG7_horizontal_mobile.webp" />
+                </Border>
+                <TextBox FontSize="20" Watermark="Email" IsEnabled="False" />
+                <TextBox FontSize="20" Watermark="Username" IsEnabled="False" />
+                <TextBox FontSize="20" Watermark="Birth Date" IsEnabled="False" />
+
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <Button
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Center"
+                        Classes="icon"
+                        ToolTip.Tip="Edit profile data"
+                        Background="Transparent"
+                        BorderThickness="0">
+                        <Svg
+                            Classes="passwordIcon"
+                            Path="/Assets/Icons/pencil-line.svg" />
+                    </Button>
+                    <Button
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Center"
+                        Classes="icon"
+                        ToolTip.Tip="Change password"
+                        Background="Transparent"
+                        BorderThickness="0">
+                        <Svg
+                            Classes="passwordIcon"
+                            Path="/Assets/Icons/square-asterisk.svg" />
+                    </Button>
+                    <Button
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Center"
+                        Classes="icon"
+                        ToolTip.Tip="Log out"
+                        Background="Transparent"
+                        BorderThickness="0">
+                        <Svg
+                            Classes="passwordIcon"
+                            Path="/Assets/Icons/log-out.svg" />
+                    </Button>
+                </StackPanel>
+            </StackPanel>
+
+        </Border>
+
+
+        <Border Grid.Row="0" Grid.Column="1" Grid.RowSpan="3" Grid.ColumnSpan="2" Background="#35373B"
+                Margin="0,15,0,0"
+                CornerRadius="20" />
+
+    </Grid>
 </UserControl>
