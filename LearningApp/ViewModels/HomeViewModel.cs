@@ -4,6 +4,8 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using LearningApp.Models;
 using LearningApp.Models.Dto.Simple;
 using LearningApp.Service;
+using LearningApp.Service.Interface;
+using LearningApp.Utils;
 using LearningApp.Utils.Enum;
 
 namespace LearningApp.ViewModels;
@@ -16,21 +18,25 @@ public partial class HomeViewModel : PageViewModel
     [ObservableProperty] private bool _isLoading;
 
     #endregion
+    
+    private readonly UserStateService _userStateService;
 
-    private readonly CourseService _courseService;
-
-    public HomeViewModel(CourseService courseService)
+    public HomeViewModel(UserStateService userStateService)
     {
-        _courseService = courseService;
         PageName = AppPageNames.Home;
-        Task.Run(async () => await GetCoursesAsync());
+        _userStateService = userStateService;
+        if (_userStateService.UserCourses == null)
+            Task.Run(async () => await GetCoursesAsync());
+        else
+            UserCourses = _userStateService.UserCourses;
     }
 
     private async Task GetCoursesAsync()
     {
         IsLoading = true;
-        var courses = await _courseService.GetUserCourses();
-        UserCourses = new ObservableCollection<UserCourseSimpleDto>(courses.Value);
+        Task.Delay(2000).Wait();
+        await _userStateService.LoadUserCourses();
+        UserCourses = _userStateService.UserCourses;
         IsLoading = false;
     }
 }

@@ -8,10 +8,6 @@
              x:Class="LearningApp.Views.MainAppView"
              x:DataType="viewModels:MainAppViewModel">
 
-    <Design.DataContext>
-        <viewModels:MainAppViewModel />
-    </Design.DataContext>
-
     <!-- Sidebar -->
     <SplitView IsPaneOpen="{Binding IsPaneOpen}"
                DisplayMode="CompactOverlay"
@@ -127,7 +123,7 @@
                         <!--User profile image. Change source to binding later-->
                         <Border ClipToBounds="True" CornerRadius="20" Height="60" Width="60">
                             <Image Stretch="UniformToFill"
-                                   asyncImageLoader:ImageLoader.Source="https://api.studio21.ru/images/Q5xwSeg6VAJw1gEEetis7xWBNjRvunREbUxUFbG7_horizontal_mobile.webp" />
+                                   asyncImageLoader:ImageLoader.Source="{Binding UserProfilePicture}" />
                         </Border>
                     </Button>
                 </Grid>

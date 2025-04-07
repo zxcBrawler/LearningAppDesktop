@@ -18,8 +18,6 @@ public interface IApiInterface
     [Get("/api/Courses/{courseId}")]
     public Task<Course> GetCourseByIdAsync(int courseId);
 
-    [Get("/api/UserActions/GetUserCourses")]
-    public Task<List<UserCourseSimpleDto>> GetUserCoursesAsync();
 
     [Post("/api/UserCourses")]
     public Task<UserCourse> PostUserCourse(UserCourse userCourse);
@@ -29,6 +27,15 @@ public interface IApiInterface
 
     #endregion
 
+    #region UserActions
+
+    [Get("/api/UserActions/GetUserCourses")]
+    public Task<List<UserCourseSimpleDto>> GetUserCoursesAsync();
+
+    [Get("/api/UserActions/GetUserProfile")]
+    public Task<UserSimpleDto> GetUserProfile();
+
+    #endregion
 
     #region Authentication
 

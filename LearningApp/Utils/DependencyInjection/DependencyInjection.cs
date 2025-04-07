@@ -24,6 +24,7 @@ public static class DependencyInjection
     {
         services.AddScoped<IAuthorizationService, AuthorizationService>();
         services.AddScoped<ITokenRefreshService, TokenRefreshService>();
+        services.AddScoped<IProfileService, ProfileService>();
         services.AddTransient<AuthTokenHandler>(sp => new AuthTokenHandler(
             sp.GetRequiredService<ITokenStorage>(),
             new Lazy<ITokenRefreshService>(sp.GetRequiredService<ITokenRefreshService>)
@@ -47,6 +48,7 @@ public static class DependencyInjection
 
         services.AddTransient<CourseService>();
         services.AddSingleton<SettingsManager>();
+        services.AddSingleton<UserStateService>();
         services.AddTransient<ExerciseService>();
         services.AddTransient<MainWindowViewModel>();
         services.AddTransient<LogInViewModel>();
