@@ -5,6 +5,7 @@
              mc:Ignorable="d" d:DesignWidth="1920" d:DesignHeight="1080"
              x:Class="LearningApp.Views.CoursesView"
              xmlns:viewModels="clr-namespace:LearningApp.ViewModels"
+             xmlns:imageControl="clr-namespace:LearningApp.Utils.ImageControl"
              xmlns:asyncImageLoader="clr-namespace:AsyncImageLoader;assembly=AsyncImageLoader.Avalonia"
 
              x:DataType="viewModels:CoursesViewModel">
@@ -28,13 +29,13 @@
             <ItemsControl ItemsSource="{Binding Items}" HorizontalAlignment="Stretch">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
-                        <WrapPanel VerticalAlignment="Top" HorizontalAlignment="Center" />
+                        <UniformGrid Columns="3" VerticalAlignment="Top" HorizontalAlignment="Center" />
                     </ItemsPanelTemplate>
                 </ItemsControl.ItemsPanel>
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
                         <Button
-                            Command="{Binding $parent[ItemsControl].((viewModels:CoursesViewModel)DataContext).OpenPopUpCourseDetailsCommand, FallbackValue='0'}"
+                            Command="{Binding $parent[ItemsControl].((viewModels:CoursesViewModel)DataContext).OpenPopUpCourseDetailsCommand}"
                             CommandParameter="{Binding}"
                             Background="Transparent">
                             <Border Background="#35373B" CornerRadius="15" BoxShadow="5 5 5 2 Black"
@@ -44,8 +45,10 @@
                                     <Border Grid.Row="0" Grid.ColumnSpan="2" ClipToBounds="True"
                                             CornerRadius="15 15 0 0">
 
-                                        <Image asyncImageLoader:ImageLoader.Source="{Binding ImageUrl}"
-                                               Stretch="UniformToFill" Height="150" />
+                                        <imageControl:CachedImage
+                                            Source="{Binding ImageUrl}"
+                                            Height="150"
+                                            Stretch="UniformToFill" />
                                     </Border>
                                     <TextBlock Grid.Row="1" Grid.ColumnSpan="2" Grid.Column="0"
                                                Text="{Binding CourseName}" FontSize="20" Foreground="White"

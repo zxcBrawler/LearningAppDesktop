@@ -7,6 +7,7 @@ using LearningApp.Factories;
 using LearningApp.Service.Interface;
 using LearningApp.Utils;
 using LearningApp.Utils.Enum;
+using LearningApp.Utils.ImageControl;
 
 namespace LearningApp.ViewModels;
 
@@ -90,6 +91,7 @@ public partial class MainAppViewModel : PageViewModel
     {
         await _authorizationService.LogOut();
         _userState.LogOut();
+        ImageCache.ClearCache();
         WeakReferenceMessenger.Default.Send(new NavigateToPageMessage(AppPageNames.LogIn));
     }
 

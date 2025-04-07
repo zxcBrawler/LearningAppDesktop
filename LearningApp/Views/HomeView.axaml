@@ -5,8 +5,8 @@
              mc:Ignorable="d" d:DesignWidth="1920" d:DesignHeight="1080"
              xmlns:viewModels="clr-namespace:LearningApp.ViewModels"
              xmlns:model="clr-namespace:LearningApp.Models.Dto.Simple"
-             xmlns:asyncImageLoader="clr-namespace:AsyncImageLoader;assembly=AsyncImageLoader.Avalonia"
              xmlns:li="clr-namespace:LoadingIndicators.Avalonia;assembly=LoadingIndicators.Avalonia"
+             xmlns:imageControl="clr-namespace:LearningApp.Utils.ImageControl"
              x:DataType="viewModels:HomeViewModel"
              x:Class="LearningApp.Views.HomeView">
 
@@ -33,7 +33,6 @@
                 </ItemsControl.ItemsPanel>
                 <ItemsControl.ItemTemplate>
                     <DataTemplate x:DataType="{x:Type model:UserCourseSimpleDto}">
-
                         <Grid>
                             <Border Width="350"
                                     Background="#35373B"
@@ -46,9 +45,10 @@
                                       Margin="0">
                                     <Border Grid.Row="0" Grid.ColumnSpan="2" CornerRadius="15 15 0 0"
                                             ClipToBounds="True">
-                                        <Image
-                                            asyncImageLoader:ImageLoader.Source="{Binding Course.ImageUrl, FallbackValue=''}"
-                                            Stretch="UniformToFill" Height="150" />
+                                        <imageControl:CachedImage
+                                            Source="{Binding Course.ImageUrl}"
+                                            Height="150"
+                                            Stretch="UniformToFill" />
                                     </Border>
 
                                     <TextBlock Grid.Row="1" Grid.ColumnSpan="2" Grid.Column="0"

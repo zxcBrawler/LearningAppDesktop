@@ -29,6 +29,6 @@ public partial class UserStateService(IProfileService profileService) : Observab
     public void LogOut()
     {
         CurrentUser = null;
-        UserCourses = [];
+        UserCourses = null;
     }
 }
