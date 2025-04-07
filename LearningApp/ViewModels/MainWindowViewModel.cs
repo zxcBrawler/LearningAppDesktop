@@ -1,6 +1,9 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+﻿using System.Threading.Tasks;
+using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Messaging;
+using LearningApp.DataSource;
 using LearningApp.Factories;
+using LearningApp.Service.Interface;
 using LearningApp.Utils.Enum;
 using LearningApp.Utils.TokenManagement;
 
@@ -10,7 +13,6 @@ public partial class MainWindowViewModel : ViewModelBase, IRecipient<NavigateToP
 {
     private readonly PageFactory _pageFactory;
 
-    private readonly ITokenStorage _tokenStorage;
 
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(IsLogInPageActive))]
@@ -20,14 +22,16 @@ public partial class MainWindowViewModel : ViewModelBase, IRecipient<NavigateToP
     public bool IsLogInPageActive => CurrentView.PageName == AppPageNames.LogIn;
     public bool IsSignUpPageActive => CurrentView.PageName == AppPageNames.SignUp;
 
-    public MainWindowViewModel(PageFactory pageFactory, ITokenStorage tokenStorage)
+    public MainWindowViewModel(PageFactory pageFactory, ITokenStorage tokenStorage, IApiInterface apiInterface)
     {
         _pageFactory = pageFactory;
-        _tokenStorage = tokenStorage;
         IsActive = true;
 
-        var tokens = tokenStorage.LoadTokens();
-        CurrentView = _pageFactory.GetPageViewModel(tokens != null ? AppPageNames.MainApp : AppPageNames.LogIn);
+        Task.Run(async () => await apiInterface.LaunchApp());
+        Task.Delay(2000);
+        var tokens = tokenStorage.ValidateTokens();
+
+        CurrentView = _pageFactory.GetPageViewModel(tokens ? AppPageNames.MainApp : AppPageNames.LogIn);
     }
 
     public void Receive(NavigateToPageMessage message)

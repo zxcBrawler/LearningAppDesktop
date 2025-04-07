@@ -36,10 +36,10 @@ public class AuthorizationService(IApiInterface apiService, ITokenStorage tokenS
             tokenStorage.SaveTokens(response);
             return DataState<LoginResponse>.Success(response, 200);
         }
-        catch (Exception e)
+        catch (ApiException e)
         {
-            return DataState<LoginResponse>.Failure("An unexpected error occurred during the login process.",
-                500);
+            return DataState<LoginResponse>.Failure(e.Content,
+                404);
         }
     }
 

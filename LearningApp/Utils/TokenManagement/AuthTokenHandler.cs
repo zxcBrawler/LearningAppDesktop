@@ -20,7 +20,8 @@ public class AuthTokenHandler(
     private readonly HashSet<string> _noAuthEndpoints =
     [
         "/api/Authorization/Login",
-        "/api/Authorization/Register"
+        "/api/Authorization/Register",
+        "/api/Authorization/RefreshToken"
     ];
 
     protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request,
@@ -28,7 +29,7 @@ public class AuthTokenHandler(
     {
         // skips authentication for several endpoints
         if (_noAuthEndpoints.Any(x => request.RequestUri?.AbsolutePath.Contains(x) == true))
-            return await base.SendAsync(request, cancellationToken).ConfigureAwait(false);
+            return await base.SendAsync(request, cancellationToken);
 
         var tokenData = tokenStorage.LoadTokens();
 
@@ -40,7 +41,6 @@ public class AuthTokenHandler(
             }
             else if (tokenData.IsRefreshTokenValid)
             {
-                // Use the TokenRefreshService to refresh the token
                 var refreshTokenRequest = new RefreshTokenRequestDto
                 {
                     RefreshToken = tokenData.RefreshToken,
@@ -60,26 +60,18 @@ public class AuthTokenHandler(
                     request.Headers.Authorization =
                         new AuthenticationHeaderValue("Bearer", refreshedTokenData.Value.Token);
                 }
-                else
-                {
-                }
             }
             else
             {
-                // No valid access or refresh token, redirect to login
+                tokenStorage.DeleteTokens();
             }
-        }
-        else
-        {
         }
 
         var response = await base.SendAsync(request, cancellationToken).ConfigureAwait(false);
-        ;
 
         if (response.IsSuccessStatusCode) return response;
         var content = await response.Content.ReadAsStringAsync(cancellationToken);
-        Console.WriteLine($"API Error: {response.StatusCode} - {content}");
-
+        Console.WriteLine($@"API Error: {response.StatusCode} - {content}");
         return response;
     }
 }

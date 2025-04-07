@@ -32,6 +32,9 @@ public interface IApiInterface
 
     #region Authentication
 
+    [Get("/api/UserActions/LaunchApp")]
+    public Task<string> LaunchApp();
+
     [Post("/api/Authorization/Login")]
     public Task<LoginResponse> Login([Body] LoginRequestDto loginRequestDto);
 

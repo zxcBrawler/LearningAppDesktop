@@ -17,7 +17,7 @@ public class DataState<T>
         return new DataState<T> { IsSuccess = true, Value = value, StatusCode = statusCode };
     }
 
-    public static DataState<T> Failure(string errorMessage, int statusCode)
+    public static DataState<T> Failure(string? errorMessage, int statusCode)
     {
         return new DataState<T> { IsSuccess = false, ErrorMessage = errorMessage, StatusCode = statusCode };
     }

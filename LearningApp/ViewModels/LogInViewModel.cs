@@ -46,8 +46,15 @@ public partial class LogInViewModel : PageViewModel
             Password = _password
         };
         var response = await _authorizationService.Login(loginRequestDto);
-        WeakReferenceMessenger.Default.Send(new NavigateToPageMessage(AppPageNames.MainApp));
-        Console.WriteLine(response);
+        if (response.IsSuccess)
+        {
+            WeakReferenceMessenger.Default.Send(new NavigateToPageMessage(AppPageNames.MainApp));
+            Console.WriteLine(response.StatusCode);
+        }
+        else
+        {
+            Console.WriteLine(response.ErrorMessage);
+        }
     }
 
 
