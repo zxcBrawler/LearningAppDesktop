@@ -1,9 +1,16 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Avalonia;
+using Avalonia.Layout;
+using AvaloniaDialogs.Views;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
+using DialogHostAvalonia;
+using LearningApp.Models.Dto.Request;
+using LearningApp.Service.Interface;
 using LearningApp.Utils.Enum;
+using LearningApp.Views.CustomDialog;
 
 namespace LearningApp.ViewModels;
 
@@ -23,9 +30,13 @@ public partial class SignUpViewModel : PageViewModel
     [ObservableProperty] [NotifyCanExecuteChangedFor(nameof(SignUpCommand))]
     private string? _username;
 
-    public SignUpViewModel()
+    private readonly IAuthorizationService _authorizationService;
+
+
+    public SignUpViewModel(IAuthorizationService authorizationService)
     {
         PageName = AppPageNames.SignUp;
+        _authorizationService = authorizationService;
     }
 
     public bool IsPasswordVisible
@@ -45,8 +56,27 @@ public partial class SignUpViewModel : PageViewModel
     [RelayCommand(CanExecute = nameof(CanSignUp))]
     private async Task SignUp()
     {
-        await Task.Delay(TimeSpan.FromSeconds(3));
-        NavigateToLogIn();
+        var response = await _authorizationService.Register(new RegisterRequestDto()
+        {
+            Email = Email,
+            Username = Username,
+            Password = Password
+        });
+
+        var baseDialog = new CustomPopUpDialog()
+        {
+            Message = (response.IsSuccess
+                ? $"We have sent you an email to {Email}. Please check your inbox."
+                : response.ErrorMessage) ?? string.Empty,
+            ButtonText = "Got it!",
+            HorizontalButtonAlignment = HorizontalAlignment.Stretch,
+            HorizontalContentAlignment = HorizontalAlignment.Center,
+        };
+        await baseDialog.ShowAsync();
+        if (response.IsSuccess)
+        {
+            NavigateToLogIn();
+        }
     }
 
     [RelayCommand]

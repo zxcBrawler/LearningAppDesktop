@@ -5,19 +5,23 @@ using System.Threading.Tasks;
 using Avalonia.Controls;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using CommunityToolkit.Mvvm.Messaging;
 using LearningApp.Factories;
 using LearningApp.Models;
 using LearningApp.Service;
 using LearningApp.Utils;
 using LearningApp.Utils.DependencyInjection;
+using LearningApp.Utils.Enum;
 using LearningApp.Views;
 
 namespace LearningApp.ViewModels;
 
-public partial class CourseDetailsViewModel : ViewModelBase
+public partial class CourseDetailsViewModel : PageViewModel
 {
     private readonly ExerciseService? _exerciseService;
-    [ObservableProperty] private Course _course;
+
+    [ObservableProperty] private CourseStateService _courseStateService;
+    private readonly INavigationFactory _navigationFactory;
 
     [ObservableProperty] private ObservableCollection<string> _segmentColors =
     [
@@ -31,44 +35,39 @@ public partial class CourseDetailsViewModel : ViewModelBase
 
     private readonly Func<Window> _mainWindowGetter;
 
-    public CourseDetailsViewModel(Course course, Func<Window> mainWindowGetter)
+    public CourseDetailsViewModel(Func<Window> mainWindowGetter, CourseStateService courseStateService,
+        INavigationFactory navigationFactory, ExerciseService? exerciseService)
     {
+        PageName = AppPageNames.CourseDetails;
         _mainWindowGetter = mainWindowGetter;
-        _course = course;
-        Course = _course;
-        _exerciseService = ServiceLocator.GetService<ExerciseService>();
+        _courseStateService = courseStateService;
+        _navigationFactory = navigationFactory;
+        _exerciseService = exerciseService;
         UpdateSegmentColors();
     }
 
     private void UpdateSegmentColors()
     {
         for (var i = 0; i < SegmentColors.Count; i++) SegmentColors[i] = "#202125";
-        if (!LevelColors.ColorMap.TryGetValue(Course.CourseLanguageLevel ?? "A1", out var color)) return;
-        var index = Array.IndexOf(LevelColors.ColorMap.Keys.ToArray(), Course.CourseLanguageLevel);
+        if (!LevelColors.ColorMap.TryGetValue(CourseStateService.Course.CourseLanguageLevel ?? "A1", out var color))
+            return;
+        var index = Array.IndexOf(LevelColors.ColorMap.Keys.ToArray(), CourseStateService.Course.CourseLanguageLevel);
         if (index >= 0) SegmentColors[index] = color;
     }
 
     [RelayCommand(CanExecute = nameof(IsLessonsNotNull))]
     private async Task OpenLessons(Window window)
     {
-        var exerciseViewFactory = ServiceLocator.GetService<ExerciseViewFactory>();
-
-        var exerciseViewModel = new ExerciseViewModel(exerciseViewFactory, _exerciseService,
-            new ObservableCollection<Lesson>(Course.Lesson!));
-        var courseDetailsView = new ExerciseView
-        {
-            DataContext = exerciseViewModel
-        };
-        // await StartCourse();
+        var exerciseDetailsWindow = _navigationFactory.CreateExerciseDetailsWindow();
         window.Close();
-        await courseDetailsView.ShowDialog(_mainWindowGetter());
+        await exerciseDetailsWindow.ShowDialog(_mainWindowGetter());
     }
 
     private async Task StartCourse()
     {
         var userCourse = new UserCourse
         {
-            Course = Course,
+            Course = CourseStateService.Course,
             // User = User, <--- save user auth data somewhere
             IsFinished = false,
             CourseProgress = 0
@@ -77,6 +76,6 @@ public partial class CourseDetailsViewModel : ViewModelBase
         await _exerciseService?.StartNewCourse(userCourse)!;
     }
 
-
-    public bool IsLessonsNotNull => Course.Lesson != null && Course.Lesson.Count != 0;
+    public bool IsLessonsNotNull =>
+        CourseStateService.Course.Lesson != null && CourseStateService.Course.Lesson.Count != 0;
 }

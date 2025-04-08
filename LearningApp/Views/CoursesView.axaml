@@ -6,7 +6,6 @@
              x:Class="LearningApp.Views.CoursesView"
              xmlns:viewModels="clr-namespace:LearningApp.ViewModels"
              xmlns:imageControl="clr-namespace:LearningApp.Utils.ImageControl"
-             xmlns:asyncImageLoader="clr-namespace:AsyncImageLoader;assembly=AsyncImageLoader.Avalonia"
 
              x:DataType="viewModels:CoursesViewModel">
 
@@ -29,7 +28,7 @@
             <ItemsControl ItemsSource="{Binding Items}" HorizontalAlignment="Stretch">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
-                        <UniformGrid Columns="3" VerticalAlignment="Top" HorizontalAlignment="Center" />
+                        <WrapPanel VerticalAlignment="Top" HorizontalAlignment="Stretch" />
                     </ItemsPanelTemplate>
                 </ItemsControl.ItemsPanel>
                 <ItemsControl.ItemTemplate>
@@ -38,10 +37,10 @@
                             Command="{Binding $parent[ItemsControl].((viewModels:CoursesViewModel)DataContext).OpenPopUpCourseDetailsCommand}"
                             CommandParameter="{Binding}"
                             Background="Transparent">
-                            <Border Background="#35373B" CornerRadius="15" BoxShadow="5 5 5 2 Black"
-                                    BorderThickness="0" Margin="20" Height="350" Width="350">
+                            <Border Background="#35373B" CornerRadius="15"
+                                    BorderThickness="0" Margin="20" Height="370" Width="370">
                                 <Grid RowDefinitions="Auto, Auto, Auto, Auto, Auto"
-                                      ColumnDefinitions="Auto, *">
+                                      ColumnDefinitions="Auto, *" Margin="15">
                                     <Border Grid.Row="0" Grid.ColumnSpan="2" ClipToBounds="True"
                                             CornerRadius="15 15 0 0">
 
@@ -57,7 +56,7 @@
                                     <TextBlock Grid.Row="2" Grid.ColumnSpan="2" Grid.Column="0"
                                                Text="{Binding CourseDescription}" FontSize="14"
                                                TextWrapping="Wrap" TextAlignment="Center"
-                                               Margin="10,0,10,10" />
+                                               Margin="20,5,20,10" />
                                     <TextBlock Grid.Row="3" Grid.Column="0" Text="Level:" FontSize="14"
                                                VerticalAlignment="Center" Margin="25,0,5,0"
                                                Foreground="#777777" />

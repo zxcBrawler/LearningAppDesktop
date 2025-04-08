@@ -5,6 +5,7 @@
         xmlns:asyncImageLoader="clr-namespace:AsyncImageLoader;assembly=AsyncImageLoader.Avalonia"
         mc:Ignorable="d" d:DesignWidth="1920" d:DesignHeight="1080"
         xmlns:viewModels="clr-namespace:LearningApp.ViewModels"
+        xmlns:imageControl="clr-namespace:LearningApp.Utils.ImageControl"
         WindowState="Maximized"
         x:Class="LearningApp.Views.CourseDetailsView"
         ExtendClientAreaToDecorationsHint="True"
@@ -22,7 +23,8 @@
                 <Button Classes="icon" Click="Go_Back">
                     <Svg Height="30" Width="25" Path="/Assets/Icons/chevron-left.svg" />
                 </Button>
-                <TextBlock Text="{Binding Course.CourseName}" FontSize="28" FontWeight="Bold" Foreground="#DFE0E2"
+                <TextBlock Text="{Binding CourseStateService.Course.CourseName}" FontSize="28" FontWeight="Bold"
+                           Foreground="#DFE0E2"
                            VerticalAlignment="Center" />
             </StackPanel>
         </Border>
@@ -31,13 +33,16 @@
         <ScrollViewer Grid.Row="1" Grid.ColumnSpan="2" Grid.Column="0" VerticalScrollBarVisibility="Auto" Padding="20">
             <Grid ColumnDefinitions="Auto,*" RowDefinitions="Auto,Auto,Auto,Auto,Auto">
                 <Border Grid.Row="0" Grid.Column="0" CornerRadius="15" ClipToBounds="True" Margin="0,0,20,0">
-                    <Image asyncImageLoader:ImageLoader.Source="{Binding Course.ImageUrl}" Width="300" Height="200"
-                           Stretch="UniformToFill" />
+                    <imageControl:CachedImage
+                        Source="{Binding CourseStateService.Course.ImageUrl}"
+                        Height="200"
+                        Width="300"
+                        Stretch="UniformToFill" />
                 </Border>
 
                 <StackPanel Grid.Row="0" Grid.Column="1" Spacing="20">
                     <TextBlock Foreground="#DFE0E2" FontSize="28" Text="Course Description" />
-                    <TextBlock Text="{Binding Course.CourseDescription}" />
+                    <TextBlock Text="{Binding CourseStateService.Course.CourseDescription}" />
 
                     <TextBlock Foreground="#DFE0E2" FontSize="28" Text="Language Level" />
                     <StackPanel Orientation="Horizontal" Spacing="10">
@@ -61,7 +66,8 @@
 
                 <TextBlock Foreground="#DFE0E2" FontSize="28" Grid.Row="1" Grid.ColumnSpan="2" Grid.Column="0"
                            Text="Lessons" Margin="0,20,0,10" />
-                <ItemsControl Grid.Row="2" Grid.ColumnSpan="2" Grid.Column="0" ItemsSource="{Binding Course.Lesson}">
+                <ItemsControl Grid.Row="2" Grid.ColumnSpan="2" Grid.Column="0"
+                              ItemsSource="{Binding CourseStateService.Course.Lesson}">
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
                             <StackPanel />

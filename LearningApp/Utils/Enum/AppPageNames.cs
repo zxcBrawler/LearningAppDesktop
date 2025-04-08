@@ -9,5 +9,7 @@ public enum AppPageNames
     Courses,
     Dictionaries,
     Settings,
-    Profile
+    Profile,
+    CourseDetails,
+    ExerciseWindow
 }

@@ -34,20 +34,21 @@
                 <ItemsControl.ItemTemplate>
                     <DataTemplate x:DataType="{x:Type model:UserCourseSimpleDto}">
                         <Grid>
-                            <Border Width="350"
+                            <Border Width="370"
+                                    Height="370"
                                     Background="#35373B"
                                     CornerRadius="15"
                                     BorderThickness="0"
-                                    BoxShadow="5 5 5 2 Black"
                                     Margin="25">
                                 <Grid RowDefinitions="Auto, Auto, Auto, Auto, Auto"
                                       ColumnDefinitions="Auto, *, Auto"
-                                      Margin="0">
+                                      Margin="15">
                                     <Border Grid.Row="0" Grid.ColumnSpan="2" CornerRadius="15 15 0 0"
                                             ClipToBounds="True">
                                         <imageControl:CachedImage
                                             Source="{Binding Course.ImageUrl}"
                                             Height="150"
+                                            
                                             Stretch="UniformToFill" />
                                     </Border>
 
@@ -65,7 +66,7 @@
                                                FontSize="14"
                                                TextWrapping="Wrap"
                                                TextAlignment="Center"
-                                               Margin="10,0,10,10" />
+                                               Margin="25,0,25,10" />
 
 
                                     <TextBlock Grid.Row="3" Grid.Column="0"

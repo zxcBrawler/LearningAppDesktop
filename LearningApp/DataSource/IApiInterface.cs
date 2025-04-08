@@ -35,6 +35,15 @@ public interface IApiInterface
     [Get("/api/UserActions/GetUserProfile")]
     public Task<UserSimpleDto> GetUserProfile();
 
+    [Put("/api/UserActions/UpdateProfileData")]
+    Task<bool> UpdateUserProfile([Body] UpdateProfileRequestDto updateProfileRequestDto);
+
+    [Put("/api/UserActions/UpdatePassword")]
+    Task<bool> UpdateUserPassword([Body] UpdatePasswordRequestDto updateProfileRequestDto);
+
+    [Post("/api/UserActions/UpdateTokens")]
+    Task<LoginResponse> UpdateAllTokens([Body] RefreshTokenRequestDto refreshTokenRequestDto);
+
     #endregion
 
     #region Authentication
@@ -49,7 +58,7 @@ public interface IApiInterface
     public Task<string> LogOut();
 
     [Post("/api/Authorization/Register")]
-    public Task<DataState<string>> RegisterAsync(RegisterRequestDto registerRequestDto);
+    public Task<string> RegisterAsync(RegisterRequestDto registerRequestDto);
 
     [Post("/api/Authorization/RefreshToken")]
     public Task<TokenResponse> RefreshToken(RefreshTokenRequestDto refreshTokenRequestDto);

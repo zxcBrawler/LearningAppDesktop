@@ -45,6 +45,15 @@ public class AuthorizationService(IApiInterface apiService, ITokenStorage tokenS
 
     public async Task<DataState<string>> Register(RegisterRequestDto registerRequestDto)
     {
-        return await apiService.RegisterAsync(registerRequestDto);
+        try
+        {
+            var response = await apiService.RegisterAsync(registerRequestDto);
+            return DataState<string>.Success(response, 201);
+        }
+        catch (ApiException e)
+        {
+            return DataState<string>.Failure(e.Content,
+                404);
+        }
     }
 }

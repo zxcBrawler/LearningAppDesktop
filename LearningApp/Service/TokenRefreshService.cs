@@ -23,4 +23,18 @@ public class TokenRefreshService(IApiInterface apiService) : ITokenRefreshServic
                 500);
         }
     }
+
+    public async Task<DataState<LoginResponse>> UpdateTokensAsync(RefreshTokenRequestDto request)
+    {
+        try
+        {
+            var response = await apiService.UpdateAllTokens(request);
+            return DataState<LoginResponse>.Success(response, 200);
+        }
+        catch (Exception e)
+        {
+            return DataState<LoginResponse>.Failure("An unexpected error occurred during the login process.",
+                500);
+        }
+    }
 }

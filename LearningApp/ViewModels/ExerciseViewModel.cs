@@ -3,14 +3,17 @@ using System.Collections.ObjectModel;
 using Avalonia.Controls;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using CommunityToolkit.Mvvm.Messaging;
 using LearningApp.Factories;
 using LearningApp.Models;
 using LearningApp.Service;
+using LearningApp.Utils;
+using LearningApp.Utils.Enum;
 using TypeExercise = LearningApp.Utils.Enum.TypeExercise;
 
 namespace LearningApp.ViewModels;
 
-public partial class ExerciseViewModel : ViewModelBase
+public partial class ExerciseViewModel : PageViewModel
 {
     private readonly ExerciseViewFactory _exerciseViewFactory;
     private readonly ExerciseService _exerciseService;
@@ -18,6 +21,7 @@ public partial class ExerciseViewModel : ViewModelBase
     [ObservableProperty] private Lesson _currentLesson;
     [ObservableProperty] private Exercise _currentExercise;
     [ObservableProperty] private UserControl _currentExerciseView;
+    [ObservableProperty] private CourseStateService _courseStateService;
     [ObservableProperty] private int _totalExercises;
     [ObservableProperty] private int _completedExercises;
     [ObservableProperty] private int _userAttempts;
@@ -35,12 +39,14 @@ public partial class ExerciseViewModel : ViewModelBase
     #endregion
 
     public ExerciseViewModel(ExerciseViewFactory exerciseViewFactory, ExerciseService exerciseService,
-        ObservableCollection<Lesson> lesson)
+        CourseStateService courseStateService)
     {
+        PageName = AppPageNames.ExerciseWindow;
         _exerciseService = exerciseService;
+        _courseStateService = courseStateService;
         _exerciseViewFactory = exerciseViewFactory;
         IsActive = true;
-        Items = lesson;
+        Items = new ObservableCollection<Lesson>(CourseStateService.Course.Lesson);
         CurrentLesson = Items[0];
         CurrentExercise = Items[0].Exercises![0];
         TotalExercises = Items[0].Exercises!.Count;
@@ -92,16 +98,16 @@ public partial class ExerciseViewModel : ViewModelBase
         var currentExerciseType = CurrentExercise.TypeExercise!.ExerciseTypeName;
         return currentExerciseType switch
         {
-            TypeExercise.MultipleChoice => CheckMultipleChoiceExercise(currentExerciseType.ToString()),
-            TypeExercise.TrueFalse => CheckTrueFalseExercise(currentExerciseType.ToString()),
-            TypeExercise.TextAnswer => CheckTextAnswerExercise(currentExerciseType.ToString()),
+            "MultipleChoice" => CheckMultipleChoiceExercise(currentExerciseType),
+            "TrueFalse" => CheckTrueFalseExercise(currentExerciseType),
+            "Text" => CheckTextAnswerExercise(currentExerciseType),
             _ => false
         };
     }
 
     private bool CheckTextAnswerExercise(string exerciseTypeName)
     {
-        if (exerciseTypeName != TypeExercise.TextAnswer.ToString()) return false;
+        if (exerciseTypeName != TypeExercise.Text.ToString()) return false;
 
         if (CurrentExercise.TextAnswerExercise!.CaseSensitive)
         {

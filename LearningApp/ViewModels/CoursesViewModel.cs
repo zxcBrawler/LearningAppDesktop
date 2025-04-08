@@ -4,9 +4,12 @@ using System.Threading.Tasks;
 using Avalonia.Controls;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using LearningApp.Factories;
 using LearningApp.Models;
 using LearningApp.Service;
+using LearningApp.Utils;
 using LearningApp.Utils.Enum;
+using LearningApp.Utils.TokenManagement;
 using LearningApp.Views;
 
 namespace LearningApp.ViewModels;
@@ -17,10 +20,15 @@ public partial class CoursesViewModel : PageViewModel
     private readonly Func<Window> _mainWindowGetter;
 
     private readonly CourseService _courseService;
+    private readonly INavigationFactory _navigationFactory;
+    private readonly CourseStateService _courseStateService;
 
-    public CoursesViewModel(Func<Window> mainWindowGetter, CourseService courseService)
+    public CoursesViewModel(Func<Window> mainWindowGetter, CourseService courseService,
+        INavigationFactory navigationFactory, CourseStateService courseStateService)
     {
         _courseService = courseService;
+        _navigationFactory = navigationFactory;
+        _courseStateService = courseStateService;
         _mainWindowGetter = mainWindowGetter;
         PageName = AppPageNames.Courses;
         Task.Run(async () => await GetCoursesAsync());
@@ -36,12 +44,8 @@ public partial class CoursesViewModel : PageViewModel
     private async Task OpenPopUpCourseDetails(Course course)
     {
         course = await _courseService.GetCourse(course.Id);
-        var courseDetailsViewModel = new CourseDetailsViewModel(course, _mainWindowGetter);
-        var courseDetailsView = new CourseDetailsView
-        {
-            DataContext = courseDetailsViewModel
-        };
-
-        await courseDetailsView.ShowDialog(_mainWindowGetter());
+        _courseStateService.Course = course;
+        var window = _navigationFactory.CreateCourseDetailsWindow();
+        await window.ShowDialog(_mainWindowGetter());
     }
 }

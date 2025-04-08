@@ -48,7 +48,9 @@ public static class DependencyInjection
 
         services.AddTransient<CourseService>();
         services.AddSingleton<SettingsManager>();
+
         services.AddSingleton<UserStateService>();
+        services.AddSingleton<CourseStateService>();
         services.AddTransient<ExerciseService>();
         services.AddTransient<MainWindowViewModel>();
         services.AddTransient<LogInViewModel>();
@@ -79,7 +81,6 @@ public static class DependencyInjection
             };
         });
 
-
         services.AddSingleton<Func<AppPageNames, PageViewModel>>(x => name => name switch
         {
             AppPageNames.LogIn => x.GetRequiredService<LogInViewModel>(),
@@ -90,18 +91,22 @@ public static class DependencyInjection
             AppPageNames.Home => x.GetRequiredService<HomeViewModel>(),
             AppPageNames.Dictionaries => x.GetRequiredService<DictionaryViewModel>(),
             AppPageNames.Profile => x.GetRequiredService<ProfileViewModel>(),
+            AppPageNames.ExerciseWindow => x.GetRequiredService<ExerciseViewModel>(),
+            AppPageNames.CourseDetails => x.GetRequiredService<CourseDetailsViewModel>(),
             _ => throw new ArgumentOutOfRangeException(nameof(name), name, null)
         });
-
-        services.AddSingleton<Func<TypeExercise, UserControl>>(provider => exerciseType => exerciseType switch
+        services.AddSingleton<Func<string, UserControl>>(provider => exerciseType => exerciseType switch
         {
-            TypeExercise.TrueFalse => provider.GetRequiredService<TrueFalseExerciseView>(),
-            TypeExercise.MultipleChoice => provider.GetRequiredService<MultipleChoiceExerciseView>(),
-            TypeExercise.TextAnswer => provider.GetRequiredService<TextAnswerExerciseView>(),
+            "TrueFalse" => provider.GetRequiredService<TrueFalseExerciseView>(),
+            "MultipleChoice" => provider.GetRequiredService<MultipleChoiceExerciseView>(),
+            "Text" => provider.GetRequiredService<TextAnswerExerciseView>(),
             _ => throw new ArgumentOutOfRangeException(nameof(exerciseType), exerciseType, null)
         });
 
         services.AddSingleton<PageFactory>();
         services.AddSingleton<ExerciseViewFactory>();
+        services.AddSingleton<INavigationFactory, NavigationFactory>();
+        services.AddSingleton<ICourseViewModelFactory, CourseViewModelFactory>();
+        services.AddSingleton<IExerciseViewModelFactory, ExerciseViewModelFactory>();
     }
 }

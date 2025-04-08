@@ -9,22 +9,20 @@
              x:DataType="viewModels:ProfileViewModel">
     <Grid ColumnDefinitions="*,*,*" RowDefinitions="*,*,*">
 
-        <!--User profile image. Change source to binding later-->
         <Border Grid.RowSpan="3" Background="#35373B" CornerRadius="20" Margin="0,15,15,0">
             <StackPanel Margin="15" Spacing="20" VerticalAlignment="Center">
-
-                <!--User profile image. Change source to binding later-->
                 <Border ClipToBounds="True" CornerRadius="100" Height="100" Width="100">
                     <Image Stretch="UniformToFill"
-                           asyncImageLoader:ImageLoader.Source="{Binding CurrentUser.ProfilePicture}" />
+                           asyncImageLoader:ImageLoader.Source="{Binding UserState.CurrentUser.ProfilePicture}" />
                 </Border>
                 <Label Content="Email" FontSize="20" />
-                <TextBox FontSize="20" Watermark="Email" IsEnabled="False" Text="{Binding CurrentUser.Email}" />
+                <TextBox FontSize="20" Watermark="Email" IsEnabled="False" Text="{Binding UserState.CurrentUser.Email}" />
                 <Label Content="Username" FontSize="20" />
-                <TextBox FontSize="20" Watermark="Username" IsEnabled="False" Text="{Binding CurrentUser.Username}" />
+                <TextBox FontSize="20" Watermark="Username" IsEnabled="False"
+                         Text="{Binding UserState.CurrentUser.Username}" />
                 <Label Content="Registration Date" FontSize="20" />
                 <TextBox FontSize="20" Watermark="Registration Date" IsEnabled="False"
-                         Text="{Binding CurrentUser.RegistrationDate}" />
+                         Text="{Binding UserState.CurrentUser.RegistrationDate}" />
 
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                     <Button
@@ -53,13 +51,10 @@
                     </Button>
                 </StackPanel>
             </StackPanel>
-
         </Border>
-
 
         <Border Grid.Row="0" Grid.Column="1" Grid.RowSpan="3" Grid.ColumnSpan="2" Background="#35373B"
                 Margin="0,15,0,0"
                 CornerRadius="20" />
-
     </Grid>
 </UserControl>

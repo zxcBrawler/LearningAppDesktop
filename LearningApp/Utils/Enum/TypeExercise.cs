@@ -4,5 +4,5 @@ public enum TypeExercise
 {
     TrueFalse,
     MultipleChoice,
-    TextAnswer
+    Text
 }

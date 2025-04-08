@@ -31,6 +31,7 @@ public class AuthTokenHandler(
         if (_noAuthEndpoints.Any(x => request.RequestUri?.AbsolutePath.Contains(x) == true))
             return await base.SendAsync(request, cancellationToken);
 
+
         var tokenData = tokenStorage.LoadTokens();
 
         if (tokenData != null && !string.IsNullOrEmpty(tokenData.AccessToken))
@@ -66,6 +67,7 @@ public class AuthTokenHandler(
                 tokenStorage.DeleteTokens();
             }
         }
+
 
         var response = await base.SendAsync(request, cancellationToken).ConfigureAwait(false);
 

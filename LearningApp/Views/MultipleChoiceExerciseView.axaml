@@ -9,7 +9,12 @@
 
 
     <Grid RowDefinitions="Auto, *, Auto" Margin="75">
-        <Label Content="{Binding CurrentExercise.QuestionText}" FontSize="24" Margin="15" />
+        <StackPanel Grid.Row="0">
+            <Label Content="{Binding CurrentExercise.QuestionName}" FontSize="24" Margin="10" />
+            <TextBlock Text="{Binding CurrentExercise.QuestionText}" FontSize="18" Margin="15" />
+
+
+        </StackPanel>
         <ItemsControl Grid.Row="1" ItemsSource="{Binding CurrentExercise.MultipleChoiceExercise.Options}">
             <ItemsControl.ItemTemplate>
                 <DataTemplate>

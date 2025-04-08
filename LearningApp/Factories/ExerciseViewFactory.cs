@@ -5,9 +5,9 @@ using LearningApp.Utils.Enum;
 
 namespace LearningApp.Factories;
 
-public class ExerciseViewFactory(Func<TypeExercise, UserControl> factory)
+public class ExerciseViewFactory(Func<string, UserControl> factory)
 {
-    public UserControl CurrentExerciseView(TypeExercise typeExercise)
+    public UserControl CurrentExerciseView(string typeExercise)
     {
         return factory.Invoke(typeExercise);
     }

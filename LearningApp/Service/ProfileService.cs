@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using LearningApp.DataSource;
+using LearningApp.Models.Dto.Request;
 using LearningApp.Models.Dto.Simple;
 using LearningApp.Service.Interface;
 using Refit;
@@ -21,6 +22,32 @@ public class ProfileService(IApiInterface apiInterface) : IProfileService
         {
             Console.WriteLine(e);
             throw;
+        }
+    }
+
+    public async Task<DataState<bool>> UpdateUserProfile(UpdateProfileRequestDto updateProfileRequestDto)
+    {
+        try
+        {
+            var response = await apiInterface.UpdateUserProfile(updateProfileRequestDto);
+            return DataState<bool>.Success(response, 200);
+        }
+        catch (ApiException e)
+        {
+            return DataState<bool>.Failure(e.Content, 400);
+        }
+    }
+
+    public async Task<DataState<bool>> UpdateUserPassword(UpdatePasswordRequestDto updatePasswordRequestDto)
+    {
+        try
+        {
+            var response = await apiInterface.UpdateUserPassword(updatePasswordRequestDto);
+            return DataState<bool>.Success(response, 200);
+        }
+        catch (ApiException e)
+        {
+            return DataState<bool>.Failure(e.Content, 400);
         }
     }
 

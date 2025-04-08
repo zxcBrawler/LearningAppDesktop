@@ -120,10 +120,9 @@
                             Height="60"
                             Width="60"
                             Margin="15">
-                        <!--User profile image. Change source to binding later-->
                         <Border ClipToBounds="True" CornerRadius="20" Height="60" Width="60">
                             <Image Stretch="UniformToFill"
-                                   asyncImageLoader:ImageLoader.Source="{Binding UserProfilePicture}" />
+                                   asyncImageLoader:ImageLoader.Source="{Binding UserState.CurrentUser.ProfilePicture}" />
                         </Border>
                     </Button>
                 </Grid>
@@ -131,8 +130,4 @@
             <ContentControl Margin="25" Grid.Row="1" Content="{Binding CurrentTabView}" />
         </Grid>
     </SplitView>
-
-    <!-- Main Content Area -->
-
-
 </UserControl>

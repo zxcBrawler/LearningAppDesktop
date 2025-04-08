@@ -1,0 +1,29 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:AvaloniaDialogs.Views;assembly=AvaloniaDialogs"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             Width="500"
+             x:DataType="vm:SingleActionDialog"
+             x:Class="LearningApp.Views.CustomDialog.CustomPopUpDialog">
+
+    <Border>
+        <StackPanel Orientation="Vertical" Margin="20">
+            <DockPanel Margin="0 8 0 0">
+                <TextBlock Text="{Binding Message}"
+                           Margin="0 8 8 8"
+                           DockPanel.Dock="Left"
+                           VerticalAlignment="Center"
+                           TextWrapping="Wrap"
+                           Foreground="White"
+                           TextAlignment="Center"
+                           HorizontalAlignment="Center" />
+            </DockPanel>
+            <Button Content="{Binding ButtonText}"
+                    Click="ButtonConfirm_Click" />
+        </StackPanel>
+
+    </Border>
+
+</UserControl>

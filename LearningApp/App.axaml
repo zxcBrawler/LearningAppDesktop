@@ -2,6 +2,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              x:Class="LearningApp.App"
              xmlns:local="using:LearningApp"
+             xmlns:dialogHostAvalonia="clr-namespace:DialogHostAvalonia;assembly=DialogHost.Avalonia"
+             xmlns:dialogs="clr-namespace:AvaloniaDialogs.Views;assembly=AvaloniaDialogs"
              RequestedThemeVariant="Dark">
     <!-- "Default" ThemeVariant follows system theme variant. "Dark" or "Light" are other available options. -->
 
@@ -19,6 +21,7 @@
 
 
     <Application.Styles>
+        <dialogHostAvalonia:DialogHostStyles />
         <FluentTheme />
         <Style Selector="Window">
             <Setter Property="Background" Value="{StaticResource BackgroundColor}" />
@@ -55,6 +58,39 @@
             <Setter Property="FontSize" Value="24" />
             <Setter Property="FontFamily" Value="/Assets/Fonts/Roboto_Mono/static/RobotoMono-Bold.ttf#Roboto Mono" />
             <Setter Property="Padding" Value="10" />
+            <Style Selector="^:pointerover /template/ ContentPresenter">
+                <Setter Property="Background" Value="{StaticResource AccentColorDark}" />
+            </Style>
+        </Style>
+        <Style Selector=":is(dialogs|BaseDialog)">
+            <Setter Property="CornerRadius" Value="20" />
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="Padding" Value="0"></Setter>
+            <Setter Property="FontSize" Value="24" />
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="HorizontalContentAlignment" Value="Center" />
+        </Style>
+        <Style Selector=":is(dialogs|BaseDialog) Button">
+            <Setter Property="Background" Value="{StaticResource AccentColor}" />
+            <Setter Property="CornerRadius" Value="20" />
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="FontSize" Value="24" />
+            <Setter Property="FontFamily" Value="/Assets/Fonts/Roboto_Mono/static/RobotoMono-Bold.ttf#Roboto Mono" />
+            <Setter Property="Padding" Value="10" />
+            <Setter Property="HorizontalAlignment" Value="Stretch" />
+            <Setter Property="HorizontalContentAlignment" Value="Center" />
+
+            <Style Selector="^:pointerover /template/ ContentPresenter">
+                <Setter Property="Background" Value="{StaticResource AccentColorDark}" />
+            </Style>
+        </Style>
+        <Style Selector=":is(dialogs|BaseDialog) TextBlock">
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="FontSize" Value="24" />
+            <Setter Property="FontFamily" Value="/Assets/Fonts/Roboto_Mono/static/RobotoMono-Bold.ttf#Roboto Mono" />
+            <Setter Property="Padding" Value="10" />
+            <Setter Property="HorizontalAlignment" Value="Center" />
+
             <Style Selector="^:pointerover /template/ ContentPresenter">
                 <Setter Property="Background" Value="{StaticResource AccentColorDark}" />
             </Style>
@@ -144,5 +180,6 @@
                 <Setter Property="Background" Value="{StaticResource AccentColor}" />
             </Style>
         </Style>
+
     </Application.Styles>
 </Application>

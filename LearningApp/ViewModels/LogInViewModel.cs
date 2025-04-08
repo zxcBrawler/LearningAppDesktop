@@ -52,6 +52,7 @@ public partial class LogInViewModel : PageViewModel
             Console.WriteLine(response.StatusCode);
         }
         else
+
         {
             Console.WriteLine(response.ErrorMessage);
         }
