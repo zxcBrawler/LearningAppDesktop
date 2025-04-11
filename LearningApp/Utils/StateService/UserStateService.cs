@@ -11,10 +11,26 @@ namespace LearningApp.Utils.StateService;
 public partial class UserStateService(
     IProfileService profileService,
     ITokenRefreshService tokenRefreshService,
+    IDictionaryService dictionaryService,
     ITokenStorage tokenStorage) : ObservableObject
 {
     [ObservableProperty] private UserSimpleDto? _currentUser;
     [ObservableProperty] private ObservableCollection<UserCourseSimpleDto>? _userCourses;
+    [ObservableProperty] private ObservableCollection<DictionarySimpleDto>? _userDictionaries;
+
+
+    public async Task GetUserDictionaries()
+    {
+        var response = await dictionaryService.GetUserDictionaries();
+        if (response is { IsSuccess: true, Value: not null })
+            UserDictionaries = new ObservableCollection<DictionarySimpleDto>(response.Value);
+    }
+
+    public async Task<DictionarySimpleDto> GetUserDictionaryById(int dictionaryId)
+    {
+        var response = await dictionaryService.GetUserDictionaryById(dictionaryId);
+        return response is { IsSuccess: true } ? response.Value : null;
+    }
 
     public async Task ReloadUserAsync()
     {

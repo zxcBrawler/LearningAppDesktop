@@ -11,5 +11,6 @@ public enum AppPageNames
     Settings,
     Profile,
     CourseDetails,
-    ExerciseWindow
+    ExerciseWindow,
+    Words
 }

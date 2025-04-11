@@ -84,6 +84,9 @@ public partial class MainAppViewModel : PageViewModel
     [RelayCommand]
     private void NavigateToProfilePage() => CurrentTabView = _pageFactory.GetPageViewModel(AppPageNames.Profile);
 
+    [RelayCommand]
+    private void NavigateToWordSearchPage() => CurrentTabView = _pageFactory.GetPageViewModel(AppPageNames.Words);
+
     #endregion
 
     #region Boolean properties

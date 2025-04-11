@@ -26,6 +26,7 @@ public static class DependencyInjection
     public static void AddCommonServices(this IServiceCollection services)
     {
         services.AddScoped<IAuthorizationService, AuthorizationService>();
+        services.AddScoped<IDictionaryService, DictionaryService>();
         services.AddScoped<ITokenRefreshService, TokenRefreshService>();
         services.AddScoped<IProfileService, ProfileService>();
         services.AddTransient<AuthTokenHandler>(sp => new AuthTokenHandler(
@@ -71,6 +72,7 @@ public static class DependencyInjection
         services.AddTransient<TextAnswerExerciseView>();
         services.AddTransient<ChangeProfileDataViewModel>();
         services.AddTransient<ChangePasswordViewModel>();
+        services.AddTransient<WordSearchViewModel>();
 
         services.AddSingleton<Func<Window>>(_ =>
         {
@@ -97,6 +99,7 @@ public static class DependencyInjection
             AppPageNames.Profile => x.GetRequiredService<ProfileViewModel>(),
             AppPageNames.ExerciseWindow => x.GetRequiredService<ExerciseViewModel>(),
             AppPageNames.CourseDetails => x.GetRequiredService<CourseDetailsViewModel>(),
+            AppPageNames.Words => x.GetRequiredService<WordSearchViewModel>(),
             _ => throw new ArgumentOutOfRangeException(nameof(name), name, null)
         });
         services.AddSingleton<Func<string, UserControl>>(provider => exerciseType => exerciseType switch

@@ -7,9 +7,6 @@
              x:DataType="viewModels:DictionaryViewModel"
              x:Class="LearningApp.Views.DictionaryView">
 
-    <Design.DataContext>
-        <viewModels:DictionaryViewModel />
-    </Design.DataContext>
     <Grid ColumnDefinitions="*" RowDefinitions="Auto,*" ShowGridLines="True">
         <Border Background="Transparent" Grid.Row="0" Padding="10">
             <Grid ColumnDefinitions="*,Auto,Auto,Auto">
@@ -40,15 +37,17 @@
                             <Border CornerRadius="15" PointerPressed="OnPointerPressed"
                                     Padding="15" Background="#35373B">
                                 <Grid ColumnDefinitions="Auto,*,*,*" ShowGridLines="False">
-                                    <Svg
-                                        Margin="15"
-                                        Height="30"
-                                        Width="30"
-                                        Path="/Assets/Icons/house.svg" />
-                                    <TextBlock Grid.Column="1" Text="{Binding  }" VerticalAlignment="Center"
+                                    <Label Grid.Column="0" Content="{Binding  Id}"
+                                           VerticalAlignment="Center"
+                                           FontSize="25"
+                                           Margin="10" />
+                                    <TextBlock Grid.Column="1" Text="{Binding  DictionaryName}"
+                                               VerticalAlignment="Center"
                                                FontSize="25" />
                                     <StackPanel Grid.Column="3" Orientation="Horizontal" HorizontalAlignment="Right">
-                                        <Button Classes="icon">
+                                        <Button Classes="icon"
+                                                Command="{Binding $parent[ItemsRepeater].((viewModels:DictionaryViewModel)DataContext).OpenDictionaryCommand}"
+                                                CommandParameter="{Binding Id}">
                                             <Svg Height="30" Width="30" Path="/Assets/Icons/ellipsis.svg" />
                                         </Button>
                                         <Button Classes="icon">

@@ -35,6 +35,12 @@ public interface IApiInterface
     [Get("/api/UserActions/GetUserProfile")]
     public Task<UserSimpleDto> GetUserProfile();
 
+    [Get("/api/UserActions/GetUserDictionaries")]
+    public Task<List<DictionarySimpleDto>> GetUserDictionaries();
+
+    [Get("/api/UserActions/GetUserDictionaryById/{dictionaryId}")]
+    public Task<DictionarySimpleDto> GetUserDictionaryById(int dictionaryId);
+
     [Put("/api/UserActions/UpdateProfileData")]
     Task<bool> UpdateUserProfile([Body] UpdateProfileRequestDto updateProfileRequestDto);
 

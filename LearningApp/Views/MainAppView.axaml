@@ -43,6 +43,20 @@
                                                Text="Home" />
                                 </StackPanel>
                             </Button>
+                            <Button HorizontalAlignment="Stretch" Command="{Binding NavigateToWordSearchPageCommand}"
+                                    Classes="sideMenuElement" Padding="15" CornerRadius="20"
+                                    ToolTip.Tip="Word Search" ToolTip.Placement="Center"
+                                    ToolTip.VerticalOffset="40">
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Spacing="20">
+                                    <Svg
+
+                                        Height="35"
+                                        Width="35"
+                                        Path="/Assets/Icons/search.svg" />
+                                    <TextBlock Foreground="#DFE0E2" FontSize="24" IsVisible="{Binding IsPaneOpen}"
+                                               Text="Words" />
+                                </StackPanel>
+                            </Button>
 
                             <Button HorizontalAlignment="Stretch" Command="{Binding NavigateToCoursesPageCommand}"
                                     Classes="sideMenuElement" Padding="15" CornerRadius="20"
