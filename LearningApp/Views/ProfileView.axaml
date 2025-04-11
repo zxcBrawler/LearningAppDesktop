@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:viewModels="clr-namespace:LearningApp.ViewModels"
              xmlns:asyncImageLoader="clr-namespace:AsyncImageLoader;assembly=AsyncImageLoader.Avalonia"
+             xmlns:lang="clr-namespace:LearningApp.Assets.Lang"
              mc:Ignorable="d" d:DesignWidth="1920" d:DesignHeight="1080"
              x:Class="LearningApp.Views.ProfileView"
              x:DataType="viewModels:ProfileViewModel">
@@ -13,40 +14,31 @@
             <StackPanel Margin="15" Spacing="20" VerticalAlignment="Top">
                 <Border ClipToBounds="True" Height="200" CornerRadius="20">
                     <Image Stretch="UniformToFill"
-                           
+
                            asyncImageLoader:ImageLoader.Source="{Binding UserState.CurrentUser.ProfilePicture}" />
                 </Border>
 
-                <Label Content="Email" FontSize="20" />
-                <TextBox FontSize="20" Watermark="Email" IsEnabled="False" Text="{Binding UserState.CurrentUser.Email}" />
-                <Label Content="Username" FontSize="20" />
-                <TextBox FontSize="20" Watermark="Username" IsEnabled="False"
+                <Label Content="{x:Static lang:Resources.EmailField}" FontSize="20" />
+                <TextBox FontSize="20" Watermark="{x:Static lang:Resources.EmailField}" IsEnabled="False"
+                         Text="{Binding UserState.CurrentUser.Email}" />
+                <Label Content="{x:Static lang:Resources.UsernameField}" FontSize="20" />
+                <TextBox FontSize="20" Watermark="{x:Static lang:Resources.UsernameField}" IsEnabled="False"
                          Text="{Binding UserState.CurrentUser.Username}" />
-                <Label Content="Registration Date" FontSize="20" />
-                <TextBox FontSize="20" Watermark="Registration Date" IsEnabled="False"
+                <Label Content="{x:Static lang:Resources.RegistrationDate}" FontSize="20" />
+                <TextBox FontSize="20" Watermark="{x:Static lang:Resources.RegistrationDate}" IsEnabled="False"
                          Text="{Binding UserState.CurrentUser.RegistrationDate}" />
 
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                    <Button
-                        Command="{Binding UpdateProfileDataCommand}"
-                        HorizontalAlignment="Right"
-                        VerticalAlignment="Center"
-                        Classes="icon"
-                        ToolTip.Tip="Edit profile data"
-                        Background="Transparent"
-                        BorderThickness="0">
-                        <Svg
-                            Classes="passwordIcon"
-                            Path="/Assets/Icons/pencil-line.svg" />
+                    <Button Command="{Binding UpdateProfileDataCommand}" HorizontalAlignment="Right"
+                            VerticalAlignment="Center" Classes="icon"
+                            ToolTip.Tip="{x:Static lang:Resources.EditProfileData}" Background="Transparent"
+                            BorderThickness="0">
+                        <Svg Classes="passwordIcon" Path="/Assets/Icons/pencil-line.svg" />
                     </Button>
-                    <Button
-                        Command="{Binding UpdatePasswordCommand}"
-                        HorizontalAlignment="Right"
-                        VerticalAlignment="Center"
-                        Classes="icon"
-                        ToolTip.Tip="Change password"
-                        Background="Transparent"
-                        BorderThickness="0">
+                    <Button Command="{Binding UpdatePasswordCommand}" HorizontalAlignment="Right"
+                            VerticalAlignment="Center" Classes="icon"
+                            ToolTip.Tip="{x:Static lang:Resources.ChangePassword}" Background="Transparent"
+                            BorderThickness="0">
                         <Svg
                             Classes="passwordIcon"
                             Path="/Assets/Icons/square-asterisk.svg" />
@@ -56,17 +48,16 @@
         </Border>
 
         <Border Grid.Row="0" Grid.Column="1" Grid.RowSpan="3" Grid.ColumnSpan="2" Background="#35373B"
-                Margin="0,15,0,0"
-                CornerRadius="20">
-            <StackPanel Orientation="Vertical" Spacing="20">
+                Margin="0,15,0,0" CornerRadius="20">
+            <StackPanel Orientation="Vertical" Spacing="20" Margin="20">
 
-                <Label Content="Current Level" FontSize="20" />
+                <Label Content="{x:Static lang:Resources.CurrentLevel}" FontSize="20" />
                 <Label FontSize="20" IsEnabled="False"
                        Content="{Binding UserState.CurrentUser.Level}" />
-                <Label Content="Current Streak" FontSize="20" />
+                <Label Content="{x:Static lang:Resources.CurrentStreak}" FontSize="20" />
                 <Label FontSize="20" IsEnabled="False"
                        Content="{Binding UserState.CurrentUser.CurrentStreak}" />
-                <Label Content="Current XP" FontSize="20" />
+                <Label Content="{x:Static lang:Resources.CurrentXP}" FontSize="20" />
                 <Label FontSize="20" IsEnabled="False"
                        Content="{Binding UserState.CurrentUser.CurrentXp}" />
             </StackPanel>

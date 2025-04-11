@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:viewModels="clr-namespace:LearningApp.ViewModels"
              xmlns:asyncImageLoader="clr-namespace:AsyncImageLoader;assembly=AsyncImageLoader.Avalonia"
+             xmlns:lang="clr-namespace:LearningApp.Assets.Lang"
              mc:Ignorable="d" d:DesignWidth="1920" d:DesignHeight="1080"
              x:Class="LearningApp.Views.MainAppView"
              x:DataType="viewModels:MainAppViewModel">
@@ -31,7 +32,7 @@
                         <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Top" Spacing="15" Margin="10">
                             <Button HorizontalAlignment="Stretch" Command="{Binding NavigateToHomePageCommand}"
                                     Classes="sideMenuElement" Padding="15" CornerRadius="20"
-                                    ToolTip.Tip="Home" ToolTip.Placement="Center"
+                                    ToolTip.Tip="{x:Static lang:Resources.Home}" ToolTip.Placement="Center"
                                     ToolTip.VerticalOffset="40">
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Spacing="20">
                                     <Svg
@@ -40,12 +41,12 @@
                                         Width="35"
                                         Path="/Assets/Icons/house.svg" />
                                     <TextBlock Foreground="#DFE0E2" FontSize="24" IsVisible="{Binding IsPaneOpen}"
-                                               Text="Home" />
+                                               Text="{x:Static lang:Resources.Home}" />
                                 </StackPanel>
                             </Button>
                             <Button HorizontalAlignment="Stretch" Command="{Binding NavigateToWordSearchPageCommand}"
                                     Classes="sideMenuElement" Padding="15" CornerRadius="20"
-                                    ToolTip.Tip="Word Search" ToolTip.Placement="Center"
+                                    ToolTip.Tip="{x:Static lang:Resources.Words}" ToolTip.Placement="Center"
                                     ToolTip.VerticalOffset="40">
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Spacing="20">
                                     <Svg
@@ -54,13 +55,13 @@
                                         Width="35"
                                         Path="/Assets/Icons/search.svg" />
                                     <TextBlock Foreground="#DFE0E2" FontSize="24" IsVisible="{Binding IsPaneOpen}"
-                                               Text="Words" />
+                                               Text="{x:Static lang:Resources.Words}" />
                                 </StackPanel>
                             </Button>
 
                             <Button HorizontalAlignment="Stretch" Command="{Binding NavigateToCoursesPageCommand}"
                                     Classes="sideMenuElement" Padding="15" CornerRadius="20"
-                                    ToolTip.Tip="Courses" ToolTip.Placement="Center"
+                                    ToolTip.Tip="{x:Static lang:Resources.Courses}" ToolTip.Placement="Center"
                                     ToolTip.VerticalOffset="40">
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Spacing="20">
                                     <Svg
@@ -68,13 +69,13 @@
                                         Width="35"
                                         Path="/Assets/Icons/book-open.svg" />
                                     <TextBlock Foreground="#DFE0E2" FontSize="24" IsVisible="{Binding IsPaneOpen}"
-                                               Text="Courses" />
+                                               Text="{x:Static lang:Resources.Courses}" />
                                 </StackPanel>
                             </Button>
                             <Button HorizontalAlignment="Stretch"
                                     Command="{Binding NavigateToDictionariesPageCommand }"
                                     Classes="sideMenuElement" Padding="15" CornerRadius="20"
-                                    ToolTip.Tip="Dictionaries" ToolTip.Placement="Center"
+                                    ToolTip.Tip="{x:Static lang:Resources.Dictionaries}" ToolTip.Placement="Center"
                                     ToolTip.VerticalOffset="40">
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Spacing="20">
                                     <Svg
@@ -83,12 +84,12 @@
                                         Path="/Assets/Icons/book-a.svg" />
                                     <TextBlock TextWrapping="Wrap" Foreground="#DFE0E2" FontSize="24"
                                                IsVisible="{Binding IsPaneOpen}"
-                                               Text="Dictionaries" />
+                                               Text="{x:Static lang:Resources.Dictionaries}" />
                                 </StackPanel>
                             </Button>
                             <Button HorizontalAlignment="Stretch" Command="{Binding NavigateToSettingsPageCommand}"
                                     Classes="sideMenuElement" Padding="15" CornerRadius="20"
-                                    ToolTip.Tip="Settings" ToolTip.Placement="Center"
+                                    ToolTip.Tip="{x:Static lang:Resources.Settings}" ToolTip.Placement="Center"
                                     ToolTip.VerticalOffset="40">
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Spacing="20">
                                     <Svg
@@ -96,7 +97,7 @@
                                         Width="35"
                                         Path="/Assets/Icons/settings.svg" />
                                     <TextBlock Foreground="#DFE0E2" FontSize="24" IsVisible="{Binding IsPaneOpen}"
-                                               Text="Settings" />
+                                               Text="{x:Static lang:Resources.Settings}" />
                                 </StackPanel>
                             </Button>
 
@@ -105,14 +106,15 @@
                     </ScrollViewer>
                     <StackPanel Grid.Row="3" HorizontalAlignment="Stretch" Margin="15" Spacing="15">
                         <Button HorizontalAlignment="Stretch" Classes="sideMenuElement" Padding="15" CornerRadius="20"
-                                ToolTip.Tip="Log Out" ToolTip.Placement="Center" Command="{Binding LogOutCommand}">
+                                ToolTip.Tip="{x:Static lang:Resources.LogOut}" ToolTip.Placement="Center"
+                                Command="{Binding LogOutCommand}">
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Spacing="20">
                                 <Svg
                                     Height="30"
                                     Width="30"
                                     Path="/Assets/Icons/log-out.svg" />
                                 <TextBlock Foreground="#DFE0E2" FontSize="24" IsVisible="{Binding IsPaneOpen}"
-                                           Text="Log Out" />
+                                           Text="{x:Static lang:Resources.LogOut}" />
                             </StackPanel>
                         </Button>
 

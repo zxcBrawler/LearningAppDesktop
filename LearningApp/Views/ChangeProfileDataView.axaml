@@ -3,6 +3,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:viewModels="clr-namespace:LearningApp.ViewModels"
+        xmlns:lang="clr-namespace:LearningApp.Assets.Lang"
         mc:Ignorable="d"
         Width="800"
         Height="550"
@@ -19,7 +20,7 @@
             HorizontalAlignment="Right"
             VerticalAlignment="Center"
             Classes="icon"
-            ToolTip.Tip="Change password"
+            ToolTip.Tip="{x:Static lang:Resources.Close}"
             Click="Button_OnClick"
             Background="Transparent"
             BorderThickness="0">
@@ -27,13 +28,16 @@
                 Classes="passwordIcon"
                 Path="/Assets/Icons/x.svg" />
         </Button>
-        <Label Content="Email" FontSize="20" />
-        <TextBox FontSize="20" Watermark="Email" Text="{Binding UserState.CurrentUser.Email}" />
-        <Label Content="Username" FontSize="20" />
-        <TextBox FontSize="20" Watermark="Username" Text="{Binding UserState.CurrentUser.Username}" />
-        <Label Content="Profile picture URL" FontSize="20" />
-        <TextBox FontSize="20" Watermark="Url" Text="{Binding UserState.CurrentUser.ProfilePicture}" />
-        <Button Classes="primary" Content="Change profile data" HorizontalAlignment="Stretch"
+        <Label Content="{x:Static lang:Resources.EmailField}" FontSize="20" />
+        <TextBox FontSize="20" Watermark="{x:Static lang:Resources.EmailField}"
+                 Text="{Binding UserState.CurrentUser.Email}" />
+        <Label Content="{x:Static lang:Resources.UsernameField}" FontSize="20" />
+        <TextBox FontSize="20" Watermark="{x:Static lang:Resources.UsernameField}"
+                 Text="{Binding UserState.CurrentUser.Username}" />
+        <Label Content="{x:Static lang:Resources.ProfilePictureURL}" FontSize="20" />
+        <TextBox FontSize="20" Watermark="{x:Static lang:Resources.ProfilePictureURL}"
+                 Text="{Binding UserState.CurrentUser.ProfilePicture}" />
+        <Button Classes="primary" Content="{x:Static lang:Resources.EditProfileData}" HorizontalAlignment="Stretch"
                 Command="{Binding UpdateProfileDataCommand}"
                 HorizontalContentAlignment="Center" />
     </StackPanel>

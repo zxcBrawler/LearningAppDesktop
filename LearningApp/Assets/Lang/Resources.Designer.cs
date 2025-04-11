@@ -83,5 +83,135 @@ namespace LearningApp.Assets.Lang {
                 return ResourceManager.GetString("PasswordField", resourceCulture);
             }
         }
+
+        public static string UsernameField {
+            get {
+                return ResourceManager.GetString("UsernameField", resourceCulture);
+            }
+        }
+        public static string RepeatPasswordField {
+            get {
+                return ResourceManager.GetString("RepeatPasswordField", resourceCulture);
+            }
+        }
+        public static string LogIn {
+            get {
+                return ResourceManager.GetString("LogIn", resourceCulture);
+            }
+        }
+        public static string SignUp {
+            get {
+                return ResourceManager.GetString("SignUp", resourceCulture);
+            }
+        } 
+        public static string DoNotHaveAnAccount {
+            get {
+                return ResourceManager.GetString("DoNotHaveAnAccount", resourceCulture);
+            }
+        }
+        public static string ForgotPassword {
+            get {
+                return ResourceManager.GetString("ForgotPassword", resourceCulture);
+            }
+        } 
+        public static string AllRightsReserved {
+            get {
+                return ResourceManager.GetString("AllRightsReserved", resourceCulture);
+            }
+        }
+        public static string OrAuthorizeWith {
+            get {
+                return ResourceManager.GetString("OrAuthorizeWith", resourceCulture);
+            }
+        } 
+        public static string CreateNewAccountText {
+            get {
+                return ResourceManager.GetString("CreateNewAccountText", resourceCulture);
+            }
+        }
+        public static string AlreadyHaveAnAccount {
+            get {
+                return ResourceManager.GetString("AlreadyHaveAnAccount", resourceCulture);
+            }
+        }
+        public static string RegistrationDate {
+            get {
+                return ResourceManager.GetString("RegistrationDate", resourceCulture);
+            }
+        } 
+        public static string EditProfileData {
+            get {
+                return ResourceManager.GetString("EditProfileData", resourceCulture);
+            }
+        }
+        public static string ChangePassword {
+            get {
+                return ResourceManager.GetString("ChangePassword", resourceCulture);
+            }
+        }
+        public static string CurrentLevel {
+            get {
+                return ResourceManager.GetString("CurrentLevel", resourceCulture);
+            }
+        }
+        public static string CurrentStreak {
+            get {
+                return ResourceManager.GetString("CurrentStreak", resourceCulture);
+            }
+        } 
+        public static string CurrentXP {
+            get {
+                return ResourceManager.GetString("CurrentXP", resourceCulture);
+            }
+        }
+        public static string Close {
+            get {
+                return ResourceManager.GetString("Close", resourceCulture);
+            }
+        } 
+        public static string OldPassword {
+            get {
+                return ResourceManager.GetString("OldPassword", resourceCulture);
+            }
+        }
+        public static string NewPassword {
+            get {
+                return ResourceManager.GetString("NewPassword", resourceCulture);
+            }
+        } 
+        public static string ProfilePictureURL {
+            get {
+                return ResourceManager.GetString("ProfilePictureURL", resourceCulture);
+            }
+        } 
+        public static string LogOut {
+            get {
+                return ResourceManager.GetString("LogOut", resourceCulture);
+            }
+        }
+        public static string Settings {
+            get {
+                return ResourceManager.GetString("Settings", resourceCulture);
+            }
+        }
+        public static string Dictionaries {
+            get {
+                return ResourceManager.GetString("Dictionaries", resourceCulture);
+            }
+        } 
+        public static string Courses {
+            get {
+                return ResourceManager.GetString("Courses", resourceCulture);
+            }
+        }
+        public static string Words {
+            get {
+                return ResourceManager.GetString("Words", resourceCulture);
+            }
+        }public static string Home {
+            get {
+                return ResourceManager.GetString("Home", resourceCulture);
+            }
+        }
     }
 }
