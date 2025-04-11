@@ -16,9 +16,11 @@
                 <Button HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" Classes="primary"
                         Content="Yes"
                         Command="{Binding SubmitTrueAnswerCommand}"
+                        IsEnabled="{Binding !IsUserFailed}"
                         Margin="10" Padding="15" />
                 <Button Grid.Column="1" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch"
                         Classes="primary" Content="No"
+                        IsEnabled="{Binding !IsUserFailed}"
                         Command="{Binding SubmitFalseAnswerCommand}"
                         Margin="10" Padding="15" />
             </Grid>

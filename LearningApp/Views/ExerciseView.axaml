@@ -4,42 +4,60 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d" d:DesignWidth="1920" d:DesignHeight="1080"
         WindowState="Maximized"
+        CanResize="False"
         ExtendClientAreaToDecorationsHint="True"
         ExtendClientAreaChromeHints="NoChrome"
         x:Class="LearningApp.Views.ExerciseView"
         xmlns:viewModels="clr-namespace:LearningApp.ViewModels"
+        xmlns:views="clr-namespace:AvaloniaDialogs.Views;assembly=AvaloniaDialogs"
         x:DataType="viewModels:ExerciseViewModel"
         Title="ExerciseView">
-    <StackPanel>
-        <Grid ColumnDefinitions="Auto, *, Auto" Margin="50">
-            <StackPanel Grid.Column="0" Orientation="Horizontal">
-                <Label Content="{Binding CompletedExercises, StringFormat='{}'}"
-                       VerticalAlignment="Center"
-                       Margin="0,0, 25, 0" FontSize="25" />
-                <TextBlock Text="/"
+    <views:ReactiveDialogHost CloseOnClickAway="True" Background="#494C51">
+        <StackPanel>
+            <Grid ColumnDefinitions="Auto, *, Auto, Auto" Margin="50">
+                <StackPanel Grid.Column="0" Orientation="Horizontal">
+                    <Label Content="{Binding CompletedExercises, StringFormat='{}'}"
                            VerticalAlignment="Center"
                            Margin="0,0, 25, 0" FontSize="25" />
-                <Label Content="{Binding TotalExercises, StringFormat='{}'}"
-                       VerticalAlignment="Center"
-                       Margin="0,0, 25, 0" FontSize="25" />
-            </StackPanel>
-            <ProgressBar Grid.Column="1" HorizontalAlignment="Stretch" Minimum="0" Maximum="{Binding TotalExercises}"
-                         Value="{Binding CompletedExercises}"
-                         Height="30"
-                         Margin="0,0,50, 0" />
-            <Button Grid.Column="2" HorizontalAlignment="Stretch"
-                    Classes="sideMenuElement" Padding="15" CornerRadius="20"
-                    ToolTip.Tip="Discard lesson" ToolTip.Placement="Center"
-                    Click="Button_OnClick"
-                    Command="{Binding StopLessonCommand}"
-                    ToolTip.VerticalOffset="40">
-                <Svg
-                    Height="35"
-                    Width="35"
-                    Path="/Assets/Icons/house.svg" />
+                    <TextBlock Text="/"
+                               VerticalAlignment="Center"
+                               Margin="0,0, 25, 0" FontSize="25" />
+                    <Label Content="{Binding TotalExercises, StringFormat='{}'}"
+                           VerticalAlignment="Center"
+                           Margin="0,0, 25, 0" FontSize="25" />
+                </StackPanel>
+                <ProgressBar Grid.Column="1" HorizontalAlignment="Stretch" Minimum="0"
+                             Maximum="{Binding TotalExercises}"
+                             Value="{Binding CompletedExercises}"
+                             Height="30"
+                             Margin="0,0,50, 0" />
 
-            </Button>
-        </Grid>
-        <ContentControl Content="{Binding CurrentExerciseView}" Margin="25" />
-    </StackPanel>
+                <Border Grid.Column="2" Background="#494C51" Margin="15" CornerRadius="20">
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                        <Label Content="{Binding UserAttempts}" FontSize="25" Margin="15" />
+                        <Svg
+                            Margin="15"
+                            Height="35"
+                            Width="35"
+                            Path="/Assets/Icons/heart.svg" />
+
+                    </StackPanel>
+                </Border>
+                <Button Grid.Column="3" HorizontalAlignment="Stretch"
+                        Classes="sideMenuElement" Padding="15" CornerRadius="20"
+                        ToolTip.Tip="Discard lesson" ToolTip.Placement="Center"
+                        Click="Button_OnClick"
+                        Command="{Binding StopLessonCommand}"
+                        ToolTip.VerticalOffset="40">
+                    <Svg
+                        Height="35"
+                        Width="35"
+                        Path="/Assets/Icons/x.svg" />
+
+                </Button>
+            </Grid>
+            <ContentControl Content="{Binding CurrentExerciseView}" Margin="25" />
+
+        </StackPanel>
+    </views:ReactiveDialogHost>
 </Window>

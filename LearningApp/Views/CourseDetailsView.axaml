@@ -42,7 +42,8 @@
 
                 <StackPanel Grid.Row="0" Grid.Column="1" Spacing="20">
                     <TextBlock Foreground="#DFE0E2" FontSize="28" Text="Course Description" />
-                    <TextBlock Text="{Binding CourseStateService.Course.CourseDescription}" />
+                    <TextBlock TextWrapping="Wrap" TextAlignment="DetectFromContent" FontSize="20"
+                               Text="{Binding CourseStateService.Course.CourseDescription}" />
 
                     <TextBlock Foreground="#DFE0E2" FontSize="28" Text="Language Level" />
                     <ItemsControl ItemsSource="{Binding LevelNames}">

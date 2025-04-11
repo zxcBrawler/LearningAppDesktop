@@ -55,20 +55,33 @@
                                                TextWrapping="Wrap" />
                                     <TextBlock Grid.Row="2" Grid.ColumnSpan="2" Grid.Column="0"
                                                Text="{Binding CourseDescription}" FontSize="14"
-                                               TextWrapping="Wrap" TextAlignment="Center"
+                                               TextAlignment="Center"
+                                               MaxLines="1"
+                                               TextTrimming="CharacterEllipsis"
                                                Margin="20,5,20,10" />
-                                    <TextBlock Grid.Row="3" Grid.Column="0" Text="Level:" FontSize="14"
-                                               VerticalAlignment="Center" Margin="25,0,5,0"
-                                               Foreground="#777777" />
-                                    <TextBlock Grid.Row="3" Grid.Column="1"
-                                               Text="{Binding CourseLanguageLevel}" FontSize="14"
-                                               VerticalAlignment="Center" Margin="5,0,10,0" />
-                                    <TextBlock Grid.Row="4" Grid.Column="0" Text="Lessons: " FontSize="14"
-                                               VerticalAlignment="Center" Margin="25,0,5,25"
-                                               Foreground="#777777" />
-                                    <TextBlock Grid.Row="4" Grid.Column="1"
-                                               Text="{Binding Lesson.Count, FallbackValue=0}" FontSize="14"
-                                               VerticalAlignment="Center" Margin="5,0,10,25" />
+
+                                    <Border Grid.Row="3" Grid.ColumnSpan="2" Grid.Column="0" Background="#202125"
+                                            CornerRadius="15" Margin="5">
+                                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Stretch" Margin="5">
+                                            <Label Content="Level:" FontSize="16"
+                                                   VerticalAlignment="Center" Margin="5,0,0,0" />
+                                            <TextBlock
+                                                       Text="{Binding CourseLanguageLevel}" FontSize="16"
+                                                       VerticalAlignment="Center"
+                                                      />
+                                        </StackPanel>
+                                    </Border>
+                                    <Border Grid.Row="4" Grid.ColumnSpan="2" Grid.Column="0" Background="#202125"
+                                            CornerRadius="15" Margin="5">
+                                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Stretch" Margin="5">
+                                            <Label Content="Total lessons: " FontSize="16"
+                                                   VerticalAlignment="Center" Margin="5,0,0,0" />
+                                            <TextBlock
+                                                Text="{Binding Lesson.Count, FallbackValue=0}" FontSize="16"
+                                                VerticalAlignment="Center"/>
+                                        </StackPanel>
+                                    </Border>
+
                                 </Grid>
                             </Border>
                         </Button>

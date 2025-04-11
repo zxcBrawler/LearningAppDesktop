@@ -17,6 +17,7 @@
         </StackPanel>
         <Button Grid.Row="2" Classes="primary" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch"
                 Content="Submit"
+                IsEnabled="{Binding !IsUserFailed}"
                 Command="{Binding SubmitAnswerCommand}" Margin="10" />
     </Grid>
 </UserControl>

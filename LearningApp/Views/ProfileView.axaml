@@ -10,9 +10,10 @@
     <Grid ColumnDefinitions="*,*,*" RowDefinitions="*,*,*">
 
         <Border Grid.RowSpan="3" Background="#35373B" CornerRadius="20" Margin="0,15,15,0">
-            <StackPanel Margin="15" Spacing="20" VerticalAlignment="Center">
-                <Border ClipToBounds="True" CornerRadius="100" Height="100" Width="100">
+            <StackPanel Margin="15" Spacing="20" VerticalAlignment="Top">
+                <Border ClipToBounds="True" Height="200" CornerRadius="20">
                     <Image Stretch="UniformToFill"
+                           
                            asyncImageLoader:ImageLoader.Source="{Binding UserState.CurrentUser.ProfilePicture}" />
                 </Border>
 

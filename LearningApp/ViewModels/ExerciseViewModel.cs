@@ -25,7 +25,8 @@ public partial class ExerciseViewModel : PageViewModel
     [ObservableProperty] private CourseStateService _courseStateService;
     [ObservableProperty] private int _totalExercises;
     [ObservableProperty] private int _completedExercises;
-    [ObservableProperty] private int _userAttempts;
+    [ObservableProperty] private int _userAttempts = 3;
+    [ObservableProperty] private bool _isUserFailed;
 
     #region UserExerciseAnswers
 
@@ -90,6 +91,13 @@ public partial class ExerciseViewModel : PageViewModel
     [RelayCommand]
     private void TryAgain()
     {
+        if (UserAttempts > 0)
+            UserAttempts--;
+        if (UserAttempts == 0)
+        {
+            IsUserFailed = true;
+        }
+
         Console.WriteLine("Try again");
     }
 
