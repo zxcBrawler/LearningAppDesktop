@@ -8,9 +8,6 @@
              mc:Ignorable="d" d:DesignWidth="1920" d:DesignHeight="1080"
              x:DataType="viewModels:LogInViewModel"
              x:Class="LearningApp.Views.LogInView">
-    <Design.DataContext>
-        <viewModels:LogInViewModel />
-    </Design.DataContext>
     <Grid ColumnDefinitions="*,*" RowDefinitions="*">
         <!--  Left Welcome Panel  -->
         <Grid
@@ -65,8 +62,9 @@
 
                         <TextBox
                             Margin="0,0,0,20"
-                            Text="{Binding Username}"
-                            Watermark="{x:Static lang:Resources.EmailField}" />
+                            Text="{Binding Email}"
+                            Watermark="{x:Static lang:Resources.EmailField}">
+                        </TextBox>
 
                         <Grid Margin="0,0,0,10">
                             <TextBox

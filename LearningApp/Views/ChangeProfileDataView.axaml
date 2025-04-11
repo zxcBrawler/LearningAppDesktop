@@ -1,0 +1,41 @@
+﻿<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:viewModels="clr-namespace:LearningApp.ViewModels"
+        mc:Ignorable="d"
+        Width="800"
+        Height="550"
+        WindowState="Normal"
+        ExtendClientAreaToDecorationsHint="True"
+        ExtendClientAreaChromeHints="NoChrome"
+        CanResize="False"
+        x:DataType="viewModels:ChangeProfileDataViewModel"
+        x:Class="LearningApp.Views.ChangeProfileDataView"
+        CornerRadius="25">
+
+    <StackPanel Margin="15" Spacing="20" VerticalAlignment="Top">
+        <Button
+            HorizontalAlignment="Right"
+            VerticalAlignment="Center"
+            Classes="icon"
+            ToolTip.Tip="Change password"
+            Click="Button_OnClick"
+            Background="Transparent"
+            BorderThickness="0">
+            <Svg
+                Classes="passwordIcon"
+                Path="/Assets/Icons/x.svg" />
+        </Button>
+        <Label Content="Email" FontSize="20" />
+        <TextBox FontSize="20" Watermark="Email" Text="{Binding UserState.CurrentUser.Email}" />
+        <Label Content="Username" FontSize="20" />
+        <TextBox FontSize="20" Watermark="Username" Text="{Binding UserState.CurrentUser.Username}" />
+        <Label Content="Profile picture URL" FontSize="20" />
+        <TextBox FontSize="20" Watermark="Url" Text="{Binding UserState.CurrentUser.ProfilePicture}" />
+        <Button Classes="primary" Content="Change profile data" HorizontalAlignment="Stretch"
+                Command="{Binding UpdateProfileDataCommand}"
+                HorizontalContentAlignment="Center">
+        </Button>
+    </StackPanel>
+</Window>

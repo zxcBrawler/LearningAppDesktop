@@ -1,14 +1,12 @@
-﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.ComponentModel;
-using LearningApp.DataSource;
 using LearningApp.Models.Dto.Request;
 using LearningApp.Models.Dto.Simple;
 using LearningApp.Service.Interface;
 using LearningApp.Utils.TokenManagement;
 
-namespace LearningApp.Utils;
+namespace LearningApp.Utils.StateService;
 
 public partial class UserStateService(
     IProfileService profileService,

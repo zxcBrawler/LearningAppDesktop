@@ -1,7 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using LearningApp.Models;
 
-namespace LearningApp.Utils;
+namespace LearningApp.Utils.StateService;
 
 public partial class CourseStateService : ObservableObject
 {

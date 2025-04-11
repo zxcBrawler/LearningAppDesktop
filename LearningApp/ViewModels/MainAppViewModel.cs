@@ -9,6 +9,7 @@ using LearningApp.Utils;
 using LearningApp.Utils.Enum;
 using LearningApp.Utils.ImageControl;
 using LearningApp.Utils.Settings;
+using UserStateService = LearningApp.Utils.StateService.UserStateService;
 
 namespace LearningApp.ViewModels;
 
@@ -54,7 +55,7 @@ public partial class MainAppViewModel : PageViewModel
     private async Task LogOut()
     {
         await _authorizationService.LogOut();
-        _userState.LogOut();
+        UserState.LogOut();
         ImageCache.ClearCache();
         SettingsManager.ResetSettings();
         WeakReferenceMessenger.Default.Send(new NavigateToPageMessage(AppPageNames.LogIn));
@@ -62,7 +63,7 @@ public partial class MainAppViewModel : PageViewModel
 
     private async Task LoadProfile()
     {
-        await _userState.ReloadUserAsync();
+        await UserState.ReloadUserAsync();
     }
 
     #region Navigation commands

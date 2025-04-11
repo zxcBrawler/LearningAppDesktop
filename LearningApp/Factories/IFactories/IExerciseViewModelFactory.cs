@@ -1,6 +1,6 @@
 ﻿using LearningApp.ViewModels;
 
-namespace LearningApp.Factories;
+namespace LearningApp.Factories.IFactories;
 
 public interface IExerciseViewModelFactory
 {

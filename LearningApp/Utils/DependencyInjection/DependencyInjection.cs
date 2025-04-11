@@ -5,6 +5,7 @@ using Avalonia.Controls;
 using Avalonia.Controls.ApplicationLifetimes;
 using LearningApp.DataSource;
 using LearningApp.Factories;
+using LearningApp.Factories.IFactories;
 using LearningApp.Service;
 using LearningApp.Service.Interface;
 using LearningApp.Utils.Enum;
@@ -49,8 +50,8 @@ public static class DependencyInjection
         services.AddTransient<CourseService>();
         services.AddSingleton<SettingsManager>();
 
-        services.AddSingleton<UserStateService>();
-        services.AddSingleton<CourseStateService>();
+        services.AddSingleton<StateService.UserStateService>();
+        services.AddSingleton<StateService.CourseStateService>();
         services.AddTransient<ExerciseService>();
         services.AddTransient<MainWindowViewModel>();
         services.AddTransient<LogInViewModel>();
@@ -67,6 +68,7 @@ public static class DependencyInjection
         services.AddTransient<TrueFalseExerciseView>();
         services.AddTransient<MultipleChoiceExerciseView>();
         services.AddTransient<TextAnswerExerciseView>();
+        services.AddTransient<ChangeProfileDataViewModel>();
 
         services.AddSingleton<Func<Window>>(_ =>
         {
@@ -108,5 +110,6 @@ public static class DependencyInjection
         services.AddSingleton<INavigationFactory, NavigationFactory>();
         services.AddSingleton<ICourseViewModelFactory, CourseViewModelFactory>();
         services.AddSingleton<IExerciseViewModelFactory, ExerciseViewModelFactory>();
+        services.AddSingleton<IChangeProfileViewModelFactory, ChangeProfileViewModelFactory>();
     }
 }

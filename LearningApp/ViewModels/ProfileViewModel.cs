@@ -1,40 +1,41 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Avalonia.Controls;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using LearningApp.Factories.IFactories;
 using LearningApp.Models.Dto.Request;
 using LearningApp.Utils;
 using LearningApp.Utils.Enum;
+using UserStateService = LearningApp.Utils.StateService.UserStateService;
 
 namespace LearningApp.ViewModels;
 
 public partial class ProfileViewModel : PageViewModel
 {
     [ObservableProperty] private UserStateService _userState;
+    private readonly INavigationFactory _navigationFactory;
+    private readonly Func<Window> _mainWindowGetter;
 
-    public ProfileViewModel(UserStateService userState)
+    public ProfileViewModel(UserStateService userState, INavigationFactory navigationFactory,
+        Func<Window> mainWindowGetter)
     {
         PageName = AppPageNames.Profile;
         _userState = userState;
+        _navigationFactory = navigationFactory;
+        _mainWindowGetter = mainWindowGetter;
     }
 
     [RelayCommand]
     private async Task UpdateProfileData()
     {
-        await UserState.ChangeProfileData(new UpdateProfileRequestDto()
-        {
-            Email = "admin@gmail.com",
-            ProfilePicture =
-                "https://mir-s3-cdn-cf.behance.net/projects/404/e28c10126211171.63ddd18ace32f.png",
-            Username = "qwertyuser123"
-        });
-        Console.WriteLine("updating.....");
+        var dialog = _navigationFactory.CreateChangeProfileView();
+        await dialog.ShowDialog(_mainWindowGetter());
     }
 
     [RelayCommand]
     private async Task UpdatePassword()
     {
-        //await _userState.UpdateUserPassword();
-        Console.WriteLine("updating password.....");
+        // open ChangePasswordView here
     }
 }

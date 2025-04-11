@@ -55,4 +55,6 @@ public class UserSimpleDto
     /// </summary>
     [JsonPropertyName("current_xp")]
     public int CurrentXp { get; set; }
+
+    [JsonPropertyName("current_streak")] public int CurrentStreak { get; set; }
 }

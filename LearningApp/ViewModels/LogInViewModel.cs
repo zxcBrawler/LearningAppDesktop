@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Collections;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
@@ -19,7 +22,7 @@ public partial class LogInViewModel : PageViewModel
     private string? _password;
 
     [ObservableProperty] [NotifyCanExecuteChangedFor(nameof(LoginCommand))]
-    private string? _username;
+    private string? _email;
 
     public LogInViewModel(IAuthorizationService authorizationService)
     {
@@ -42,7 +45,7 @@ public partial class LogInViewModel : PageViewModel
     {
         LoginRequestDto loginRequestDto = new()
         {
-            Email = _username,
+            Email = _email,
             Password = _password
         };
         var response = await _authorizationService.Login(loginRequestDto);
@@ -74,7 +77,26 @@ public partial class LogInViewModel : PageViewModel
     #region Commands Handlers
 
     public string ImagePath => IsPasswordVisible ? "/Assets/Icons/eye-off.svg" : "/Assets/Icons/eye.svg";
-    private bool CanLogin => !string.IsNullOrEmpty(Username) && !string.IsNullOrEmpty(Password);
+    private bool CanLogin => !string.IsNullOrEmpty(Email) && !string.IsNullOrEmpty(Password) && IsEmailValid;
+    private bool IsEmailValid => IsValidEmail(Email);
+
+    private bool IsValidEmail(string? email)
+    {
+        try
+        {
+            if (string.IsNullOrWhiteSpace(email))
+            {
+                return false;
+            }
+
+            var addr = new System.Net.Mail.MailAddress(email);
+            return addr.Address == email;
+        }
+        catch
+        {
+            return false;
+        }
+    }
 
     #endregion
 }

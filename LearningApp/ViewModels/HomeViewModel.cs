@@ -7,6 +7,7 @@ using LearningApp.Service;
 using LearningApp.Service.Interface;
 using LearningApp.Utils;
 using LearningApp.Utils.Enum;
+using UserStateService = LearningApp.Utils.StateService.UserStateService;
 
 namespace LearningApp.ViewModels;
 
@@ -18,7 +19,7 @@ public partial class HomeViewModel : PageViewModel
     [ObservableProperty] private bool _isLoading;
 
     #endregion
-    
+
     private readonly UserStateService _userStateService;
 
     public HomeViewModel(UserStateService userStateService)

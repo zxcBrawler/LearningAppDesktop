@@ -85,6 +85,7 @@
     </ItemGroup>
 
     <ItemGroup>
+        <Folder Include="Utils\FieldsValidation\"/>
         <Folder Include="Utils\UI\"/>
     </ItemGroup>
 

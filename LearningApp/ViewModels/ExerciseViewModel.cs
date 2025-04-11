@@ -9,6 +9,7 @@ using LearningApp.Models;
 using LearningApp.Service;
 using LearningApp.Utils;
 using LearningApp.Utils.Enum;
+using CourseStateService = LearningApp.Utils.StateService.CourseStateService;
 using TypeExercise = LearningApp.Utils.Enum.TypeExercise;
 
 namespace LearningApp.ViewModels;

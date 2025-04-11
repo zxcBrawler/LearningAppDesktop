@@ -41,6 +41,7 @@
             <Setter Property="Background" Value="{StaticResource UiElementsPrimaryColor}" />
             <Setter Property="CornerRadius" Value="20" />
             <Setter Property="BorderBrush" Value="Transparent" />
+
         </Style>
         <Style Selector="TextBox:focus /template/ Border">
             <Setter Property="Background" Value="{StaticResource UiElementsPrimaryColor}" />

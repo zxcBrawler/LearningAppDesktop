@@ -1,10 +1,11 @@
 ﻿using Avalonia.Controls;
-using LearningApp.Models;
 
-namespace LearningApp.Factories;
+namespace LearningApp.Factories.IFactories;
 
 public interface INavigationFactory
 {
     Window CreateCourseDetailsWindow();
     Window CreateExerciseDetailsWindow();
+
+    Window CreateChangeProfileView();
 }
