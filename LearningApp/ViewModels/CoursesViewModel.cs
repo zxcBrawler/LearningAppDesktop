@@ -22,14 +22,14 @@ public partial class CoursesViewModel : PageViewModel
     private readonly Func<Window> _mainWindowGetter;
 
     private readonly CourseService _courseService;
-    private readonly INavigationFactory _navigationFactory;
+    private readonly IWindowFactory _windowFactory;
     private readonly CourseStateService _courseStateService;
 
     public CoursesViewModel(Func<Window> mainWindowGetter, CourseService courseService,
-        INavigationFactory navigationFactory, CourseStateService courseStateService)
+        IWindowFactory windowFactory, CourseStateService courseStateService)
     {
         _courseService = courseService;
-        _navigationFactory = navigationFactory;
+        _windowFactory = windowFactory;
         _courseStateService = courseStateService;
         _mainWindowGetter = mainWindowGetter;
         PageName = AppPageNames.Courses;
@@ -47,7 +47,7 @@ public partial class CoursesViewModel : PageViewModel
     {
         course = await _courseService.GetCourse(course.Id);
         _courseStateService.Course = course;
-        var window = _navigationFactory.CreateCourseDetailsWindow();
+        var window = _windowFactory.CreateCourseDetailsWindow();
         await window.ShowDialog(_mainWindowGetter());
     }
 }

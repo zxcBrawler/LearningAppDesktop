@@ -1,21 +1,19 @@
 ﻿using Avalonia.Controls;
 using LearningApp.Factories.IFactories;
+using LearningApp.Factories.WindowViewModelFactoryImpl;
 using LearningApp.Views;
 
-namespace LearningApp.Factories;
+namespace LearningApp.Factories.WindowFactory;
 
-public class NavigationFactory(
-    ICourseViewModelFactory vmFactory,
-    IExerciseViewModelFactory exerciseViewModelFactory,
-    IChangeProfileViewModelFactory changeProfileViewModelFactory,
-    IChangePasswordViewModelFactory changePasswordViewModelFactory)
-    : INavigationFactory
+public class WindowFactory(
+    IWindowViewModelFactory windowViewModelFactory)
+    : IWindowFactory
 {
     public Window CreateCourseDetailsWindow()
     {
         var view = new CourseDetailsView
         {
-            DataContext = vmFactory.Create(),
+            DataContext = windowViewModelFactory.CreateCourseDetailsViewModel(),
             WindowStartupLocation = WindowStartupLocation.CenterOwner
         };
         return view;
@@ -25,7 +23,7 @@ public class NavigationFactory(
     {
         var view = new ExerciseView
         {
-            DataContext = exerciseViewModelFactory.Create(),
+            DataContext = windowViewModelFactory.CreateExerciseViewModel(),
             WindowStartupLocation = WindowStartupLocation.CenterOwner
         };
         return view;
@@ -35,7 +33,7 @@ public class NavigationFactory(
     {
         var view = new ChangeProfileDataView()
         {
-            DataContext = changeProfileViewModelFactory.Create(),
+            DataContext = windowViewModelFactory.CreateChangeProfileDataViewModel(),
             WindowStartupLocation = WindowStartupLocation.CenterOwner
         };
         return view;
@@ -45,7 +43,7 @@ public class NavigationFactory(
     {
         var view = new ChangePasswordView()
         {
-            DataContext = changePasswordViewModelFactory.Create(),
+            DataContext = windowViewModelFactory.CreateChangePasswordViewModel(),
             WindowStartupLocation = WindowStartupLocation.CenterOwner
         };
         return view;

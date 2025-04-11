@@ -14,29 +14,29 @@ namespace LearningApp.ViewModels;
 public partial class ProfileViewModel : PageViewModel
 {
     [ObservableProperty] private UserStateService _userState;
-    private readonly INavigationFactory _navigationFactory;
+    private readonly IWindowFactory _windowFactory;
     private readonly Func<Window> _mainWindowGetter;
 
-    public ProfileViewModel(UserStateService userState, INavigationFactory navigationFactory,
+    public ProfileViewModel(UserStateService userState, IWindowFactory windowFactory,
         Func<Window> mainWindowGetter)
     {
         PageName = AppPageNames.Profile;
         _userState = userState;
-        _navigationFactory = navigationFactory;
+        _windowFactory = windowFactory;
         _mainWindowGetter = mainWindowGetter;
     }
 
     [RelayCommand]
     private async Task UpdateProfileData()
     {
-        var dialog = _navigationFactory.CreateChangeProfileView();
+        var dialog = _windowFactory.CreateChangeProfileView();
         await dialog.ShowDialog(_mainWindowGetter());
     }
 
     [RelayCommand]
     private async Task UpdatePassword()
     {
-        var dialog = _navigationFactory.CreateChangePasswordView();
+        var dialog = _windowFactory.CreateChangePasswordView();
         await dialog.ShowDialog(_mainWindowGetter());
     }
 }

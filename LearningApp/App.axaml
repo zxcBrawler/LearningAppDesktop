@@ -4,6 +4,7 @@
              xmlns:local="using:LearningApp"
              xmlns:dialogHostAvalonia="clr-namespace:DialogHostAvalonia;assembly=DialogHost.Avalonia"
              xmlns:dialogs="clr-namespace:AvaloniaDialogs.Views;assembly=AvaloniaDialogs"
+             xmlns:converter="clr-namespace:LearningApp.Utils.Converter"
              RequestedThemeVariant="Dark">
     <!-- "Default" ThemeVariant follows system theme variant. "Dark" or "Light" are other available options. -->
 
@@ -16,6 +17,7 @@
                 <ResourceInclude Source="/Assets/Colors.axaml" />
                 <ResourceInclude Source="avares://LoadingIndicators.Avalonia/LoadingIndicators.axaml" />
             </ResourceDictionary.MergedDictionaries>
+            <converter:LevelToColorConverter x:Key="LevelToColorConverter" />
         </ResourceDictionary>
     </Application.Resources>
 

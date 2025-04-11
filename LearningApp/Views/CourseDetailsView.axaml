@@ -45,23 +45,27 @@
                     <TextBlock Text="{Binding CourseStateService.Course.CourseDescription}" />
 
                     <TextBlock Foreground="#DFE0E2" FontSize="28" Text="Language Level" />
-                    <StackPanel Orientation="Horizontal" Spacing="10">
-                        <Border CornerRadius="25" Height="30" Width="150" Background="{Binding SegmentColors[0]}">
-                            <Label HorizontalAlignment="Center" Content="A1" />
-                        </Border>
-                        <Border CornerRadius="25" Height="30" Width="150" Background="{Binding SegmentColors[1]}">
-                            <Label HorizontalAlignment="Center" Content="A2" />
-                        </Border>
-                        <Border CornerRadius="25" Height="30" Width="150" Background="{Binding SegmentColors[2]}">
-                            <Label HorizontalAlignment="Center" Content="B1" />
-                        </Border>
-                        <Border CornerRadius="25" Height="30" Width="150" Background="{Binding SegmentColors[3]}">
-                            <Label HorizontalAlignment="Center" Content="B2" />
-                        </Border>
-                        <Border CornerRadius="25" Height="30" Width="150" Background="{Binding SegmentColors[4]}">
-                            <Label HorizontalAlignment="Center" Content="C1+" />
-                        </Border>
-                    </StackPanel>
+                    <ItemsControl ItemsSource="{Binding LevelNames}">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <StackPanel Orientation="Horizontal" Spacing="10" />
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Border CornerRadius="25" Height="30" Width="150">
+                                    <Border.Background>
+                                        <MultiBinding Converter="{StaticResource LevelToColorConverter}">
+                                            <Binding Path="." />
+                                            <Binding Path="DataContext"
+                                                     RelativeSource="{RelativeSource AncestorType=ItemsControl}" />
+                                        </MultiBinding>
+                                    </Border.Background>
+                                    <Label HorizontalAlignment="Center" Content="{Binding}" />
+                                </Border>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
                 </StackPanel>
 
                 <TextBlock Foreground="#DFE0E2" FontSize="28" Grid.Row="1" Grid.ColumnSpan="2" Grid.Column="0"

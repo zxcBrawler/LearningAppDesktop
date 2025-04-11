@@ -2,7 +2,7 @@
 
 namespace LearningApp.Factories.IFactories;
 
-public interface INavigationFactory
+public interface IWindowFactory
 {
     Window CreateCourseDetailsWindow();
     Window CreateExerciseDetailsWindow();
