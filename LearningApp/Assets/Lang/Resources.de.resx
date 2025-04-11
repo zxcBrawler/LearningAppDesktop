@@ -1,0 +1,104 @@
+﻿<root>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <data name="AllRightsReserved" xml:space="preserve">
+        <value>© 2025 Learning App. Alle Rechte vorbehalten.</value>
+    </data>
+    <data name="AlreadyHaveAnAccount" xml:space="preserve">
+        <value>Sie haben bereits ein Konto? Anmelden</value>
+    </data>
+    <data name="ChangePassword" xml:space="preserve">
+        <value>Passwort ändern</value>
+    </data>
+    <data name="Close" xml:space="preserve">
+        <value>Schließen</value>
+    </data>
+    <data name="Courses" xml:space="preserve">
+        <value>Kurse</value>
+    </data>
+    <data name="CreateNewAccountText" xml:space="preserve">
+        <value>Neues Konto erstellen oder sich über folgende Dienste anmelden</value>
+    </data>
+    <data name="CurrentLevel" xml:space="preserve">
+        <value>Aktuelles Level</value>
+    </data>
+    <data name="CurrentStreak" xml:space="preserve">
+        <value>Aktuelle Serie</value>
+    </data>
+    <data name="CurrentXP" xml:space="preserve">
+        <value>Aktuelle XP</value>
+    </data>
+    <data name="Dictionaries" xml:space="preserve">
+        <value>Wörterbücher</value>
+    </data>
+    <data name="DoNotHaveAnAccount" xml:space="preserve">
+        <value>Sie haben kein Konto? Registrieren</value>
+    </data>
+    <data name="EditProfileData" xml:space="preserve">
+        <value>Profildaten bearbeiten</value>
+    </data>
+    <data name="EmailField" xml:space="preserve">
+        <value>E-Mail</value>
+    </data>
+    <data name="ForgotPassword" xml:space="preserve">
+        <value>Passwort vergessen?</value>
+    </data>
+    <data name="Home" xml:space="preserve">
+        <value>Startseite</value>
+    </data>
+    <data name="LogOut" xml:space="preserve">
+        <value>Abmelden</value>
+    </data>
+    <data name="LogIn" xml:space="preserve">
+        <value>Anmelden</value>
+    </data>
+    <data name="NewPassword" xml:space="preserve">
+        <value>Neues Passwort</value>
+    </data>
+    <data name="OldPassword" xml:space="preserve">
+        <value>Altes Passwort</value>
+    </data>
+    <data name="OrAuthorizeWith" xml:space="preserve">
+        <value>Oder anmelden mit</value>
+    </data>
+    <data name="PasswordField" xml:space="preserve">
+        <value>Passwort</value>
+    </data>
+    <data name="ProfilePictureURL" xml:space="preserve">
+        <value>Profilbild-URL</value>
+    </data>
+    <data name="RegistrationDate" xml:space="preserve">
+        <value>Registrierungsdatum</value>
+    </data>
+    <data name="RepeatPasswordField" xml:space="preserve">
+        <value>Passwort wiederholen</value>
+    </data>
+    <data name="Settings" xml:space="preserve">
+        <value>Einstellungen</value>
+    </data>
+    <data name="SignUp" xml:space="preserve">
+        <value>Registrieren</value>
+    </data>
+    <data name="UsernameField" xml:space="preserve">
+        <value>Benutzername</value>
+    </data>
+    <data name="Words" xml:space="preserve">
+        <value>Wörter</value>
+    </data>
+    <data name="GreetingText" xml:space="preserve">
+        <value>Willkommen bei Learning App!</value>
+    </data>
+    <data name="GreetingSubText" xml:space="preserve">
+        <value>Sprechen Sie selbstbewusst Englisch in jeder Situation! [App Name] bietet praktische Lektionen für Alltagsgespräche, Reisen, Arbeit und mehr. Starten Sie noch heute Ihre Englisch-Reise.</value>
+    </data>
+</root>
