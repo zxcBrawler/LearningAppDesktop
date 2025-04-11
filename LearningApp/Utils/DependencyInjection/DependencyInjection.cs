@@ -69,6 +69,7 @@ public static class DependencyInjection
         services.AddTransient<MultipleChoiceExerciseView>();
         services.AddTransient<TextAnswerExerciseView>();
         services.AddTransient<ChangeProfileDataViewModel>();
+        services.AddTransient<ChangePasswordViewModel>();
 
         services.AddSingleton<Func<Window>>(_ =>
         {
@@ -111,5 +112,6 @@ public static class DependencyInjection
         services.AddSingleton<ICourseViewModelFactory, CourseViewModelFactory>();
         services.AddSingleton<IExerciseViewModelFactory, ExerciseViewModelFactory>();
         services.AddSingleton<IChangeProfileViewModelFactory, ChangeProfileViewModelFactory>();
+        services.AddSingleton<IChangePasswordViewModelFactory, ChangePasswordViewModelFactory>();
     }
 }

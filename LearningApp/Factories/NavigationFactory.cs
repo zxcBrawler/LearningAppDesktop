@@ -7,7 +7,8 @@ namespace LearningApp.Factories;
 public class NavigationFactory(
     ICourseViewModelFactory vmFactory,
     IExerciseViewModelFactory exerciseViewModelFactory,
-    IChangeProfileViewModelFactory changeProfileViewModelFactory)
+    IChangeProfileViewModelFactory changeProfileViewModelFactory,
+    IChangePasswordViewModelFactory changePasswordViewModelFactory)
     : INavigationFactory
 {
     public Window CreateCourseDetailsWindow()
@@ -35,6 +36,16 @@ public class NavigationFactory(
         var view = new ChangeProfileDataView()
         {
             DataContext = changeProfileViewModelFactory.Create(),
+            WindowStartupLocation = WindowStartupLocation.CenterOwner
+        };
+        return view;
+    }
+
+    public Window CreateChangePasswordView()
+    {
+        var view = new ChangePasswordView()
+        {
+            DataContext = changePasswordViewModelFactory.Create(),
             WindowStartupLocation = WindowStartupLocation.CenterOwner
         };
         return view;

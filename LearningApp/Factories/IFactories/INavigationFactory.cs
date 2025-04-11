@@ -8,4 +8,5 @@ public interface INavigationFactory
     Window CreateExerciseDetailsWindow();
 
     Window CreateChangeProfileView();
+    Window CreateChangePasswordView();
 }

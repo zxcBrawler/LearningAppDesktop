@@ -36,6 +36,7 @@ public partial class ProfileViewModel : PageViewModel
     [RelayCommand]
     private async Task UpdatePassword()
     {
-        // open ChangePasswordView here
+        var dialog = _navigationFactory.CreateChangePasswordView();
+        await dialog.ShowDialog(_mainWindowGetter());
     }
 }
