@@ -7,6 +7,7 @@
              xmlns:model="clr-namespace:LearningApp.Models.Dto.Simple"
              xmlns:li="clr-namespace:LoadingIndicators.Avalonia;assembly=LoadingIndicators.Avalonia"
              xmlns:imageControl="clr-namespace:LearningApp.Utils.ImageControl"
+             xmlns:localizationManager="clr-namespace:LearningApp.Utils.LocalizationManager"
              x:DataType="viewModels:HomeViewModel"
              x:Class="LearningApp.Views.HomeView">
 
@@ -15,7 +16,7 @@
         <!-- User Courses -->
         <Border Grid.Row="0" Padding="10">
 
-            <TextBlock Text="Continue learning" FontSize="30" Foreground="White" />
+            <TextBlock Text="{localizationManager:Localize ContinueLearning}" FontSize="30" Foreground="White" />
         </Border>
 
         <li:LoadingIndicator Grid.Row="1" HorizontalAlignment="Center" IsVisible="{Binding IsLoading}" Height="100"
@@ -48,7 +49,7 @@
                                         <imageControl:CachedImage
                                             Source="{Binding Course.ImageUrl}"
                                             Height="150"
-                                            
+
                                             Stretch="UniformToFill" />
                                     </Border>
 
@@ -105,7 +106,7 @@
             </ItemsControl>
         </ScrollViewer>
         <Border Grid.Row="2" Padding="10">
-            <TextBlock Text="Statistics" FontSize="30" Foreground="White" />
+            <TextBlock Text="{localizationManager:Localize Statistics}" FontSize="30" Foreground="White" />
         </Border>
 
     </Grid>

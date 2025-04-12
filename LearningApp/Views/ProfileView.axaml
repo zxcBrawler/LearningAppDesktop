@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:viewModels="clr-namespace:LearningApp.ViewModels"
              xmlns:asyncImageLoader="clr-namespace:AsyncImageLoader;assembly=AsyncImageLoader.Avalonia"
-             xmlns:lang="clr-namespace:LearningApp.Assets.Lang"
+             xmlns:localizationManager="clr-namespace:LearningApp.Utils.LocalizationManager"
              mc:Ignorable="d" d:DesignWidth="1920" d:DesignHeight="1080"
              x:Class="LearningApp.Views.ProfileView"
              x:DataType="viewModels:ProfileViewModel">
@@ -18,26 +18,26 @@
                            asyncImageLoader:ImageLoader.Source="{Binding UserState.CurrentUser.ProfilePicture}" />
                 </Border>
 
-                <Label Content="{x:Static lang:Resources.EmailField}" FontSize="20" />
-                <TextBox FontSize="20" Watermark="{x:Static lang:Resources.EmailField}" IsEnabled="False"
+                <Label Content="{localizationManager:Localize EmailField}" FontSize="20" />
+                <TextBox FontSize="20" Watermark="{localizationManager:Localize EmailField}" IsEnabled="False"
                          Text="{Binding UserState.CurrentUser.Email}" />
-                <Label Content="{x:Static lang:Resources.UsernameField}" FontSize="20" />
-                <TextBox FontSize="20" Watermark="{x:Static lang:Resources.UsernameField}" IsEnabled="False"
+                <Label Content="{localizationManager:Localize UsernameField}" FontSize="20" />
+                <TextBox FontSize="20" Watermark="{localizationManager:Localize UsernameField}" IsEnabled="False"
                          Text="{Binding UserState.CurrentUser.Username}" />
-                <Label Content="{x:Static lang:Resources.RegistrationDate}" FontSize="20" />
-                <TextBox FontSize="20" Watermark="{x:Static lang:Resources.RegistrationDate}" IsEnabled="False"
+                <Label Content="{localizationManager:Localize RegistrationDate}" FontSize="20" />
+                <TextBox FontSize="20" Watermark="{localizationManager:Localize RegistrationDate}" IsEnabled="False"
                          Text="{Binding UserState.CurrentUser.RegistrationDate}" />
 
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                     <Button Command="{Binding UpdateProfileDataCommand}" HorizontalAlignment="Right"
                             VerticalAlignment="Center" Classes="icon"
-                            ToolTip.Tip="{x:Static lang:Resources.EditProfileData}" Background="Transparent"
+                            ToolTip.Tip="{localizationManager:Localize EditProfileData}" Background="Transparent"
                             BorderThickness="0">
                         <Svg Classes="passwordIcon" Path="/Assets/Icons/pencil-line.svg" />
                     </Button>
                     <Button Command="{Binding UpdatePasswordCommand}" HorizontalAlignment="Right"
                             VerticalAlignment="Center" Classes="icon"
-                            ToolTip.Tip="{x:Static lang:Resources.ChangePassword}" Background="Transparent"
+                            ToolTip.Tip="{localizationManager:Localize ChangePassword}" Background="Transparent"
                             BorderThickness="0">
                         <Svg
                             Classes="passwordIcon"
@@ -51,13 +51,13 @@
                 Margin="0,15,0,0" CornerRadius="20">
             <StackPanel Orientation="Vertical" Spacing="20" Margin="20">
 
-                <Label Content="{x:Static lang:Resources.CurrentLevel}" FontSize="20" />
+                <Label Content="{localizationManager:Localize CurrentLevel}" FontSize="20" />
                 <Label FontSize="20" IsEnabled="False"
                        Content="{Binding UserState.CurrentUser.Level}" />
-                <Label Content="{x:Static lang:Resources.CurrentStreak}" FontSize="20" />
+                <Label Content="{localizationManager:Localize CurrentStreak}" FontSize="20" />
                 <Label FontSize="20" IsEnabled="False"
                        Content="{Binding UserState.CurrentUser.CurrentStreak}" />
-                <Label Content="{x:Static lang:Resources.CurrentXP}" FontSize="20" />
+                <Label Content="{localizationManager:Localize CurrentXP}" FontSize="20" />
                 <Label FontSize="20" IsEnabled="False"
                        Content="{Binding UserState.CurrentUser.CurrentXp}" />
             </StackPanel>

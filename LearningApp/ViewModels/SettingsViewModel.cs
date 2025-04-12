@@ -3,6 +3,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using LearningApp.Utils.DependencyInjection;
 using LearningApp.Utils.Enum;
+using LearningApp.Utils.LocalizationManager;
 using LearningApp.Utils.Settings;
 
 namespace LearningApp.ViewModels;
@@ -36,6 +37,25 @@ public partial class SettingsViewModel : PageViewModel
         Settings.IsStreakRemindersEnabled = IsStreakRemindersEnabled;
         SettingsManager.SaveSettings(Settings);
         Settings = SettingsManager.LoadSettings();
+    }
+
+    [RelayCommand]
+    private void ChangeLanguage(int selectedIndex)
+    {
+        var languageCode = selectedIndex switch
+        {
+            0 => "en",
+            1 => "ru",
+            2 => "de",
+            3 => "ja-jp",
+            4 => "fr",
+            _ => "en"
+        };
+
+        LocalizationManager.SetLanguage(languageCode);
+        Settings.SelectedLanguageIndex = selectedIndex;
+        Settings.SelectedLanguageCode = languageCode;
+        SaveSettings();
     }
 
     [RelayCommand]

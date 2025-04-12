@@ -33,7 +33,8 @@ public class SettingsManager
             IsStreakRemindersEnabled = false,
             SelectedTime = "00:00",
             SelectedDailyGoalIndex = 0,
-            SelectedLanguageIndex = 0
+            SelectedLanguageIndex = 0,
+            SelectedLanguageCode = "en",
         };
     }
 
@@ -46,7 +47,8 @@ public class SettingsManager
             IsStreakRemindersEnabled = false,
             SelectedTime = "00:00",
             SelectedDailyGoalIndex = 0,
-            SelectedLanguageIndex = 0
+            SelectedLanguageIndex = 0,
+            SelectedLanguageCode = "en",
         };
         SaveSettings(defaultSettings);
     }

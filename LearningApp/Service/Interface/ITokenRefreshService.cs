@@ -8,5 +8,5 @@ namespace LearningApp.Service.Interface;
 public interface ITokenRefreshService
 {
     Task<DataState<TokenResponse>> RefreshTokenAsync(RefreshTokenRequestDto request);
-    Task<DataState<LoginResponse>> UpdateTokensAsync(RefreshTokenRequestDto request);
+    Task<DataState<LoginResponse?>> UpdateTokensAsync(RefreshTokenRequestDto request);
 }

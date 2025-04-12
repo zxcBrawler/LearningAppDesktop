@@ -26,10 +26,10 @@ public partial class UserStateService(
             UserDictionaries = new ObservableCollection<DictionarySimpleDto>(response.Value);
     }
 
-    public async Task<DictionarySimpleDto> GetUserDictionaryById(int dictionaryId)
+    public async Task<DictionarySimpleDto?> GetUserDictionaryById(int dictionaryId)
     {
         var response = await dictionaryService.GetUserDictionaryById(dictionaryId);
-        return response is { IsSuccess: true } ? response.Value : null;
+        return response.Value;
     }
 
     public async Task ReloadUserAsync()
@@ -65,24 +65,28 @@ public partial class UserStateService(
         }
     }
 
+    private async Task ForceRefreshTokens()
+    {
+        var currentUserTokens = tokenStorage.LoadTokens();
+        if (currentUserTokens != null)
+        {
+            var newTokens = await tokenRefreshService.UpdateTokensAsync(new RefreshTokenRequestDto()
+            {
+                OldAccessToken = currentUserTokens.AccessToken,
+                RefreshToken = currentUserTokens.RefreshToken,
+            });
+            if (newTokens.IsSuccess)
+            {
+                tokenStorage.SaveTokens(newTokens.Value);
+                await ReloadUserAsync();
+            }
+        }
+    }
+
     public void LogOut()
     {
         CurrentUser = null;
         UserCourses = null;
-    }
-
-    private async Task ForceRefreshTokens()
-    {
-        var currentUserTokens = tokenStorage.LoadTokens();
-        var newTokens = await tokenRefreshService.UpdateTokensAsync(new RefreshTokenRequestDto()
-        {
-            OldAccessToken = currentUserTokens.AccessToken,
-            RefreshToken = currentUserTokens.RefreshToken,
-        });
-        if (newTokens.IsSuccess)
-        {
-            tokenStorage.SaveTokens(newTokens.Value);
-            await ReloadUserAsync();
-        }
+        UserDictionaries = null;
     }
 }

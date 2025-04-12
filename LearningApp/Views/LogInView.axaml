@@ -5,6 +5,7 @@
              xmlns:viewModels="clr-namespace:LearningApp.ViewModels"
              xmlns:anim="https://github.com/whistyun/AnimatedImage.Avalonia"
              xmlns:lang="clr-namespace:LearningApp.Assets.Lang"
+             xmlns:localizationManager="clr-namespace:LearningApp.Utils.LocalizationManager"
              mc:Ignorable="d" d:DesignWidth="1920" d:DesignHeight="1080"
              x:DataType="viewModels:LogInViewModel"
              x:Class="LearningApp.Views.LogInView">
@@ -14,16 +15,16 @@
 
             <TextBlock TextWrapping="Wrap" TextAlignment="Center" Margin="0,0,0,10"
                        HorizontalAlignment="Center" FontSize="44" Foreground="White"
-                       Text="{x:Static lang:Resources.GreetingText}" />
+                       Text="{localizationManager:Localize GreetingText}" />
 
             <TextBlock Grid.Row="1" Margin="0,0,0,20" FontSize="20"
-                       Text="{x:Static lang:Resources.GreetingSubText}" TextAlignment="Center" TextWrapping="Wrap" />
+                       Text="{localizationManager:Localize GreetingSubText}" TextAlignment="Center" TextWrapping="Wrap" />
 
             <Image Grid.Row="2" Width="250" Height="250" HorizontalAlignment="Center" VerticalAlignment="Center"
                    anim:ImageBehavior.AnimatedSource="avares://LearningApp/Assets/book.gif" Stretch="UniformToFill" />
 
             <TextBlock Grid.Row="4" Margin="0,10,0,0" HorizontalAlignment="Center" FontSize="12"
-                       Text="{x:Static lang:Resources.AllRightsReserved}" />
+                       Text="{localizationManager:Localize AllRightsReserved}" />
         </Grid>
         <!--  Right Panel Log In screen  -->
         <Grid Grid.Row="0" Grid.Column="1">
@@ -31,14 +32,14 @@
                 <Grid RowDefinitions="Auto, *, Auto">
                     <StackPanel Grid.Row="1" Margin="75" HorizontalAlignment="Stretch" VerticalAlignment="Center">
                         <Label Margin="0,0,0,30" FontSize="30" HorizontalAlignment="Left"
-                               Content="{x:Static lang:Resources.LogIn}" />
+                               Content="{localizationManager:Localize LogIn}" />
 
                         <TextBox Margin="0,0,0,20" Text="{Binding Email}"
-                                 Watermark="{x:Static lang:Resources.EmailField}" />
+                                 Watermark="{localizationManager:Localize EmailField}" />
 
                         <Grid Margin="0,0,0,10">
                             <TextBox x:Name="PasswordField" PasswordChar="*" Text="{Binding Password}"
-                                     Watermark="{x:Static lang:Resources.PasswordField}" />
+                                     Watermark="{localizationManager:Localize PasswordField}" />
 
                             <Button x:Name="ShowHideButton" HorizontalAlignment="Right" VerticalAlignment="Center"
                                     Classes="icon"
@@ -51,11 +52,11 @@
                         </Grid>
 
                         <TextBlock Margin="0,0,0,20" HorizontalAlignment="Right"
-                                   Text="{x:Static lang:Resources.ForgotPassword}" />
+                                   Text="{localizationManager:Localize ForgotPassword}" />
 
                         <Button HorizontalAlignment="Stretch" HorizontalContentAlignment="Center"
                                 Classes="primary"
-                                Command="{Binding LoginCommand}" Content="{x:Static lang:Resources.LogIn}" />
+                                Command="{Binding LoginCommand}" Content="{localizationManager:Localize LogIn}" />
 
                         <Grid Margin="20,30" ColumnDefinitions="*, Auto, *">
                             <Rectangle Grid.Column="0" Height="1" Margin="0,5,10,5" HorizontalAlignment="Stretch"
@@ -63,7 +64,7 @@
                             <Label Grid.Column="1" Margin="10,0" HorizontalAlignment="Center"
                                    VerticalAlignment="Center"
                                    Foreground="#B3C3C0"
-                                   Content="{x:Static lang:Resources.OrAuthorizeWith}" />
+                                   Content="{localizationManager:Localize OrAuthorizeWith}" />
 
                             <Rectangle Grid.Column="2" Height="1" Margin="10,5,0,5" HorizontalAlignment="Stretch"
                                        Fill="#494C51" />
@@ -79,7 +80,7 @@
 
                     <Button Grid.Row="2" Classes="textbutton" Command="{Binding NavigateToSignUp}"
                             HorizontalAlignment="Center" Margin="0,0,0,30"
-                            Content="{x:Static lang:Resources.DoNotHaveAnAccount}" />
+                            Content="{localizationManager:Localize DoNotHaveAnAccount}" />
                 </Grid>
             </Border>
         </Grid>

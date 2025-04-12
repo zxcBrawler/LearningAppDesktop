@@ -6,10 +6,14 @@
         <value>1.3</value>
     </resheader>
     <resheader name="reader">
-        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral,
+            PublicKeyToken=b77a5c561934e089
+        </value>
     </resheader>
     <resheader name="writer">
-        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral,
+            PublicKeyToken=b77a5c561934e089
+        </value>
     </resheader>
     <data name="AllRightsReserved" xml:space="preserve">
         <value>© 2025 Learning App. 全著作権所有</value>
@@ -100,5 +104,89 @@
     </data>
     <data name="GreetingSubText" xml:space="preserve">
         <value>どんな状況でも自信を持って英語を話しましょう！[App Name]は日常会話、旅行、仕事などに役立つ実践的なレッスンを提供します。今日から英語の旅を始めましょう。</value>
+    </data>
+    <data name="Profile" xml:space="preserve">
+        <value>プロフィール</value>
+    </data>
+    <data name="Normal" xml:space="preserve">
+        <value>6 (普通)</value>
+    </data>
+    <data name="Beginner" xml:space="preserve">
+        <value>3 (初心者)</value>
+    </data>
+    <data name="Advanced" xml:space="preserve">
+        <value>9 (上級者)</value>
+    </data>
+    <data name="LearningPreferences" xml:space="preserve">
+        <value>学習設定</value>
+    </data>
+    <data name="DailyGoal" xml:space="preserve">
+        <value>毎日の目標</value>
+    </data>
+    <data name="DailyGoalText" xml:space="preserve">
+        <value>1日に完了したいレッスン数を設定</value>
+    </data>
+    <data name="Appearance" xml:space="preserve">
+        <value>外観</value>
+    </data>
+    <data name="AppTheme" xml:space="preserve">
+        <value>アプリのテーマ</value>
+    </data>
+    <data name="AppThemeText" xml:space="preserve">
+        <value>好みに応じてアプリのテーマを変更</value>
+    </data>
+    <data name="Dark" xml:space="preserve">
+        <value>ダーク</value>
+    </data>
+    <data name="Light" xml:space="preserve">
+        <value>ライト</value>
+    </data>
+    <data name="SystemDefault" xml:space="preserve">
+        <value>システムデフォルト</value>
+    </data>
+    <data name="Language" xml:space="preserve">
+        <value>言語</value>
+    </data>
+    <data name="AppLanguage" xml:space="preserve">
+        <value>アプリの言語</value>
+    </data>
+    <data name="AppLanguageText" xml:space="preserve">
+        <value>好みに応じてアプリの言語を変更</value>
+    </data>
+    <data name="Notifications" xml:space="preserve">
+        <value>通知</value>
+    </data>
+    <data name="DailyReminders" xml:space="preserve">
+        <value>毎日のリマインダー</value>
+    </data>
+    <data name="AllowNotificationsText" xml:space="preserve">
+        <value>アプリが通知を送信することを許可</value>
+    </data>
+    <data name="StreakReminders" xml:space="preserve">
+        <value>連続記録リマインダー</value>
+    </data>
+    <data name="AllowStreakNotificationsText" xml:space="preserve">
+        <value>現在の連続学習記録について通知を送信することを許可</value>
+    </data>
+    <data name="SaveSettings" xml:space="preserve">
+        <value>設定を保存</value>
+    </data>
+    <data name="ResetSettings" xml:space="preserve">
+        <value>設定をリセット</value>
+    </data>
+    <data name="About" xml:space="preserve">
+        <value>について</value>
+    </data>
+    <data name="TermsOfService" xml:space="preserve">
+        <value>利用規約</value>
+    </data>
+    <data name="PrivacyPolicy" xml:space="preserve">
+        <value>プライバシーポリシー</value>
+    </data>
+    <data name="Statistics" xml:space="preserve">
+        <value>統計</value>
+    </data>
+    <data name="ContinueLearning" xml:space="preserve">
+        <value>学習を続ける</value>
     </data>
 </root>

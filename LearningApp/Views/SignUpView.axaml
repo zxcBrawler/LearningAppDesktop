@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:viewModels="clr-namespace:LearningApp.ViewModels"
              xmlns:dialogs="using:AvaloniaDialogs.Views"
-             xmlns:lang="clr-namespace:LearningApp.Assets.Lang"
+             xmlns:localizationManager="clr-namespace:LearningApp.Utils.LocalizationManager"
              mc:Ignorable="d" d:DesignWidth="1920" d:DesignHeight="1080"
              x:Class="LearningApp.Views.SignUpView"
              x:DataType="viewModels:SignUpViewModel">
@@ -21,20 +21,20 @@
                                 HorizontalAlignment="Stretch"
                                 VerticalAlignment="Center">
                         <Label Margin="0,0,0,20" FontSize="30" HorizontalAlignment="Center"
-                               Content="{x:Static lang:Resources.SignUp}" />
+                               Content="{localizationManager:Localize SignUp}" />
 
 
                         <TextBlock Margin="0,0,0,20" FontSize="20"
-                                   Text="{x:Static lang:Resources.CreateNewAccountText}" TextAlignment="Center"
+                                   Text="{localizationManager:Localize CreateNewAccountText}" TextAlignment="Center"
                                    TextWrapping="Wrap" />
                         <TextBox Margin="0,0,0,20" Text="{Binding Email}"
-                                 Watermark="{x:Static lang:Resources.EmailField}" />
+                                 Watermark="{localizationManager:Localize EmailField}" />
                         <TextBox Margin="0,0,0,20" Text="{Binding Username}"
-                                 Watermark="{x:Static lang:Resources.UsernameField}" />
+                                 Watermark="{localizationManager:Localize UsernameField}" />
 
                         <Grid Margin="0,0,0,20">
                             <TextBox x:Name="PasswordField" PasswordChar="*" Text="{Binding Password}"
-                                     Watermark="{x:Static lang:Resources.PasswordField}" />
+                                     Watermark="{localizationManager:Localize PasswordField}" />
                             <Button x:Name="ShowHideButton" HorizontalAlignment="Right" VerticalAlignment="Center"
                                     Classes="icon" Click="TogglePasswordVisibility" Background="Transparent"
                                     BorderThickness="0">
@@ -43,18 +43,18 @@
                         </Grid>
 
                         <TextBox Margin="0,0,0,40" x:Name="RepeatPasswordField" Text="{Binding RepeatPassword}"
-                                 PasswordChar="*" Watermark="{x:Static lang:Resources.RepeatPasswordField}" />
+                                 PasswordChar="*" Watermark="{localizationManager:Localize RepeatPasswordField}" />
 
 
                         <Button HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" Classes="primary"
-                                Command="{Binding SignUpCommand}" Content="{x:Static lang:Resources.SignUp}" />
+                                Command="{Binding SignUpCommand}" Content="{localizationManager:Localize SignUp}" />
 
                         <Grid Margin="20,30" ColumnDefinitions="*, Auto, *">
                             <Rectangle Grid.Column="0" Height="1" Margin="10,5,0,5" HorizontalAlignment="Stretch"
                                        Fill="#494C51" />
                             <Label Grid.Column="1" Margin="10,0" HorizontalAlignment="Center"
                                    VerticalAlignment="Center" Foreground="#B3C3C0"
-                                   Content="{x:Static lang:Resources.OrAuthorizeWith}" />
+                                   Content="{localizationManager:Localize OrAuthorizeWith}" />
                             <Rectangle Grid.Column="2" Height="1" Margin="10,5,0,5" HorizontalAlignment="Stretch"
                                        Fill="#494C51" />
                         </Grid>
@@ -66,7 +66,7 @@
 
                         </StackPanel>
                         <Button Classes="textbutton" Command="{Binding NavigateToLogIn}" HorizontalAlignment="Center"
-                                Content="{x:Static lang:Resources.AlreadyHaveAnAccount}" Margin="0,50,0,0" />
+                                Content="{localizationManager:Localize AlreadyHaveAnAccount}" Margin="0,50,0,0" />
                     </StackPanel>
 
                 </Grid>

@@ -24,7 +24,7 @@ public class TokenRefreshService(IApiInterface apiService) : ITokenRefreshServic
         }
     }
 
-    public async Task<DataState<LoginResponse>> UpdateTokensAsync(RefreshTokenRequestDto request)
+    public async Task<DataState<LoginResponse?>> UpdateTokensAsync(RefreshTokenRequestDto request)
     {
         try
         {

@@ -4,6 +4,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:viewModels="clr-namespace:LearningApp.ViewModels"
         xmlns:lang="clr-namespace:LearningApp.Assets.Lang"
+        xmlns:localizationManager="clr-namespace:LearningApp.Utils.LocalizationManager"
         mc:Ignorable="d"
         Width="800"
         Height="550"
@@ -20,7 +21,7 @@
             HorizontalAlignment="Right"
             VerticalAlignment="Center"
             Classes="icon"
-            ToolTip.Tip="{x:Static lang:Resources.Close}"
+            ToolTip.Tip="{localizationManager:Localize Close}"
             Click="Button_OnClick"
             Background="Transparent"
             BorderThickness="0">
@@ -28,16 +29,17 @@
                 Classes="passwordIcon"
                 Path="/Assets/Icons/x.svg" />
         </Button>
-        <Label Content="{x:Static lang:Resources.EmailField}" FontSize="20" />
-        <TextBox FontSize="20" Watermark="{x:Static lang:Resources.EmailField}"
+        <Label Content="{localizationManager:Localize EmailField}" FontSize="20" />
+        <TextBox FontSize="20" Watermark="{localizationManager:Localize EmailField}"
                  Text="{Binding UserState.CurrentUser.Email}" />
-        <Label Content="{x:Static lang:Resources.UsernameField}" FontSize="20" />
-        <TextBox FontSize="20" Watermark="{x:Static lang:Resources.UsernameField}"
+        <Label Content="{localizationManager:Localize UsernameField}" FontSize="20" />
+        <TextBox FontSize="20" Watermark="{localizationManager:Localize UsernameField}"
                  Text="{Binding UserState.CurrentUser.Username}" />
-        <Label Content="{x:Static lang:Resources.ProfilePictureURL}" FontSize="20" />
-        <TextBox FontSize="20" Watermark="{x:Static lang:Resources.ProfilePictureURL}"
+        <Label Content="{localizationManager:Localize ProfilePictureURL}" FontSize="20" />
+        <TextBox FontSize="20" Watermark="{localizationManager:Localize ProfilePictureURL}"
                  Text="{Binding UserState.CurrentUser.ProfilePicture}" />
-        <Button Classes="primary" Content="{x:Static lang:Resources.EditProfileData}" HorizontalAlignment="Stretch"
+        <Button Classes="primary" Content="{localizationManager:Localize EditProfileData}"
+                HorizontalAlignment="Stretch"
                 Command="{Binding UpdateProfileDataCommand}"
                 HorizontalContentAlignment="Center" />
     </StackPanel>

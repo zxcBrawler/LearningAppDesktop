@@ -208,9 +208,148 @@ namespace LearningApp.Assets.Lang {
             get {
                 return ResourceManager.GetString("Words", resourceCulture);
             }
-        }public static string Home {
+        }
+        public static string Home {
             get {
                 return ResourceManager.GetString("Home", resourceCulture);
+            }
+        }
+        public static string Profile {
+            get {
+                return ResourceManager.GetString("Profile", resourceCulture);
+            }
+        }
+        public static string PrivacyPolicy {
+            get {
+                return ResourceManager.GetString("PrivacyPolicy", resourceCulture);
+            }
+        }
+        public static string TermsOfService {
+            get {
+                return ResourceManager.GetString("TermsOfService", resourceCulture);
+            }
+        }
+        public static string About {
+            get {
+                return ResourceManager.GetString("About", resourceCulture);
+            }
+        }
+        public static string ResetSettings {
+            get {
+                return ResourceManager.GetString("ResetSettings", resourceCulture);
+            }
+        }
+        public static string SaveSettings {
+            get {
+                return ResourceManager.GetString("SaveSettings", resourceCulture);
+            }
+        }
+        public static string AllowStreakNotificationsText {
+            get {
+                return ResourceManager.GetString("AllowStreakNotificationsText", resourceCulture);
+            }
+        }
+        public static string StreakReminders {
+            get {
+                return ResourceManager.GetString("StreakReminders", resourceCulture);
+            }
+        }
+        public static string AllowNotificationsText {
+            get {
+                return ResourceManager.GetString("AllowNotificationsText", resourceCulture);
+            }
+        }
+        public static string DailyReminders {
+            get {
+                return ResourceManager.GetString("DailyReminders", resourceCulture);
+            }
+        }
+        public static string Notifications {
+            get {
+                return ResourceManager.GetString("Notifications", resourceCulture);
+            }
+        }
+        public static string AppLanguageText {
+            get {
+                return ResourceManager.GetString("AppLanguageText", resourceCulture);
+            }
+        }
+        public static string AppLanguage {
+            get {
+                return ResourceManager.GetString("AppLanguage", resourceCulture);
+            }
+        }
+        public static string Language {
+            get {
+                return ResourceManager.GetString("Language", resourceCulture);
+            }
+        }
+        public static string SystemDefault {
+            get {
+                return ResourceManager.GetString("SystemDefault", resourceCulture);
+            }
+        }
+        public static string Light {
+            get {
+                return ResourceManager.GetString("Light", resourceCulture);
+            }
+        }
+        public static string Dark {
+            get {
+                return ResourceManager.GetString("Dark", resourceCulture);
+            }
+        }
+        public static string AppThemeText {
+            get {
+                return ResourceManager.GetString("AppThemeText", resourceCulture);
+            }
+        }
+        public static string AppTheme {
+            get {
+                return ResourceManager.GetString("AppTheme", resourceCulture);
+            }
+        }
+        public static string Appearance {
+            get {
+                return ResourceManager.GetString("Appearance", resourceCulture);
+            }
+        }
+        public static string Advanced {
+            get {
+                return ResourceManager.GetString("Advanced", resourceCulture);
+            }
+        }
+        public static string Normal {
+            get {
+                return ResourceManager.GetString("Normal", resourceCulture);
+            }
+        }
+        public static string Beginner {
+            get {
+                return ResourceManager.GetString("Beginner", resourceCulture);
+            }
+        }
+        public static string DailyGoalText {
+            get {
+                return ResourceManager.GetString("DailyGoalText", resourceCulture);
+            }
+        }
+        public static string DailyGoal {
+            get {
+                return ResourceManager.GetString("DailyGoal", resourceCulture);
+            }
+        }
+        public static string LearningPreferences {
+            get {
+                return ResourceManager.GetString("LearningPreferences", resourceCulture);
+            }
+        }public static string ContinueLearning {
+            get {
+                return ResourceManager.GetString("ContinueLearning", resourceCulture);
+            }
+        }public static string Statistics {
+            get {
+                return ResourceManager.GetString("Statistics", resourceCulture);
             }
         }
     }

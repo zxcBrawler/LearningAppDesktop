@@ -23,16 +23,16 @@ public class DictionaryService(IApiInterface apiInterface) : IDictionaryService
         }
     }
 
-    public async Task<DataState<DictionarySimpleDto>> GetUserDictionaryById(int dictionaryId)
+    public async Task<DataState<DictionarySimpleDto?>> GetUserDictionaryById(int dictionaryId)
     {
         try
         {
             var result = await apiInterface.GetUserDictionaryById(dictionaryId);
-            return DataState<DictionarySimpleDto>.Success(result, 200);
+            return DataState<DictionarySimpleDto?>.Success(result, 200);
         }
         catch (ApiException e)
         {
-            return DataState<DictionarySimpleDto>.Failure(e.Content, 404);
+            return DataState<DictionarySimpleDto?>.Failure(e.Content, 404);
         }
     }
 }

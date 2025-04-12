@@ -113,4 +113,88 @@
     <data name="Home" xml:space="preserve">
         <value>Home</value>
     </data>
+    <data name="Profile" xml:space="preserve">
+        <value>Profile</value>
+    </data>
+    <data name="LearningPreferences" xml:space="preserve">
+        <value>Learning preferences</value>
+    </data>
+    <data name="DailyGoal" xml:space="preserve">
+        <value>Daily goal </value>
+    </data>
+    <data name="DailyGoalText" xml:space="preserve">
+        <value>Set a number of lessons you want to complete in one day</value>
+    </data>
+    <data name="Beginner" xml:space="preserve">
+        <value>3 (Beginner)</value>
+    </data>
+    <data name="Normal" xml:space="preserve">
+        <value>6 (Normal)</value>
+    </data>
+    <data name="Advanced" xml:space="preserve">
+        <value>9 (Advanced)</value>
+    </data>
+    <data name="Appearance" xml:space="preserve">
+        <value>Appearance </value>
+    </data>
+    <data name="AppTheme" xml:space="preserve">
+        <value>App theme</value>
+    </data>
+    <data name="AppThemeText" xml:space="preserve">
+        <value>Change app theme according to your preferences</value>
+    </data>
+    <data name="Dark" xml:space="preserve">
+        <value>Dark</value>
+    </data>
+    <data name="Light" xml:space="preserve">
+        <value>Light</value>
+    </data>
+    <data name="SystemDefault" xml:space="preserve">
+        <value>System default</value>
+    </data>
+    <data name="Language" xml:space="preserve">
+        <value>Language</value>
+    </data>
+    <data name="AppLanguage" xml:space="preserve">
+        <value>App language</value>
+    </data>
+    <data name="AppLanguageText" xml:space="preserve">
+        <value>Change app language according to your preferences</value>
+    </data>
+    <data name="Notifications" xml:space="preserve">
+        <value>Notifications</value>
+    </data>
+    <data name="DailyReminders" xml:space="preserve">
+        <value>Daily reminders</value>
+    </data>
+    <data name="AllowNotificationsText" xml:space="preserve">
+        <value>Allow app to send you notifications</value>
+    </data>
+    <data name="StreakReminders" xml:space="preserve">
+        <value>Streak reminders</value>
+    </data>
+    <data name="AllowStreakNotificationsText" xml:space="preserve">
+        <value>Allow app to send you notifications about current learning streak</value>
+    </data>
+    <data name="SaveSettings" xml:space="preserve">
+        <value>Save settings</value>
+    </data>
+    <data name="ResetSettings" xml:space="preserve">
+        <value>Reset settings</value>
+    </data>
+    <data name="About" xml:space="preserve">
+        <value>About </value>
+    </data>
+    <data name="TermsOfService" xml:space="preserve">
+        <value>Terms of Service</value>
+    </data>
+    <data name="PrivacyPolicy" xml:space="preserve">
+        <value>Privacy Policy</value>
+    </data>
+    <data name="ContinueLearning" xml:space="preserve">
+        <value>Continue learning</value>
+    </data>
+    <data name="Statistics" xml:space="preserve">
+        <value>Statistics</value>
+    </data>
 </root>

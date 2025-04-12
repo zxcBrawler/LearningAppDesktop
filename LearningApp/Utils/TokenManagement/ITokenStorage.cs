@@ -5,7 +5,7 @@ namespace LearningApp.Utils.TokenManagement;
 
 public interface ITokenStorage
 {
-    void SaveTokens(LoginResponse loginResponse);
+    void SaveTokens(LoginResponse? loginResponse);
     LoginResponse? LoadTokens();
     void DeleteTokens();
     public bool ValidateTokens();

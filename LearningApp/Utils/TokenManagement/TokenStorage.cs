@@ -11,7 +11,7 @@ namespace LearningApp.Utils.TokenManagement;
 [SupportedOSPlatform("windows")]
 public class TokenStorage : ITokenStorage
 {
-    public void SaveTokens(LoginResponse loginResponse)
+    public void SaveTokens(LoginResponse? loginResponse)
     {
         try
         {
@@ -85,7 +85,7 @@ public class TokenStorage : ITokenStorage
             if (tokens.AccessTokenExpiryDate <= DateTime.UtcNow)
             {
                 Console.WriteLine("Access token has expired.");
-                return false; 
+                return false;
             }
 
             if (tokens.RefreshTokenExpiryDate <= DateTime.UtcNow)

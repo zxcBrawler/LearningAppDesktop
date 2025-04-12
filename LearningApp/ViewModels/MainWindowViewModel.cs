@@ -5,6 +5,8 @@ using LearningApp.DataSource;
 using LearningApp.Factories;
 using LearningApp.Service.Interface;
 using LearningApp.Utils.Enum;
+using LearningApp.Utils.LocalizationManager;
+using LearningApp.Utils.Settings;
 using LearningApp.Utils.TokenManagement;
 
 namespace LearningApp.ViewModels;
@@ -31,6 +33,7 @@ public partial class MainWindowViewModel : ViewModelBase, IRecipient<NavigateToP
         var tokens = tokenStorage.ValidateTokens();
 
         CurrentView = _pageFactory.GetPageViewModel(tokens ? AppPageNames.MainApp : AppPageNames.LogIn);
+        LocalizationManager.SetLanguage(SettingsManager.LoadSettings().SelectedLanguageCode);
     }
 
     public void Receive(NavigateToPageMessage message)

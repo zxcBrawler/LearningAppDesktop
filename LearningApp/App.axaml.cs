@@ -7,6 +7,7 @@ using System.Linq;
 using Avalonia.Markup.Xaml;
 using LearningApp.Utils;
 using LearningApp.Utils.DependencyInjection;
+using LearningApp.Utils.LocalizationManager;
 using LearningApp.ViewModels;
 using LearningApp.Views;
 using Microsoft.Extensions.DependencyInjection;
@@ -22,7 +23,6 @@ public partial class App : Application
 
     public override void OnFrameworkInitializationCompleted()
     {
-        Assets.Lang.Resources.Culture = new CultureInfo("ja-jp");
         var collection = new ServiceCollection();
         collection.AddCommonServices();
 

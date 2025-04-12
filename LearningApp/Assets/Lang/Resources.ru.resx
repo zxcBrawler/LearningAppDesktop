@@ -105,4 +105,88 @@
     <data name="Home" xml:space="preserve">
         <value>Домой</value>
     </data>
+    <data name="Profile" xml:space="preserve">
+        <value>Профиль</value>
+    </data>
+    <data name="About" xml:space="preserve">
+        <value>О приложении</value>
+    </data>
+    <data name="Advanced" xml:space="preserve">
+        <value>9 (Продвинутый)</value>
+    </data>
+    <data name="AllowNotificationsText" xml:space="preserve">
+        <value>Разрешить приложению отправлять уведомления</value>
+    </data>
+    <data name="AllowStreakNotificationsText" xml:space="preserve">
+        <value>Разрешить уведомления о текущей серии обучения</value>
+    </data>
+    <data name="Appearance" xml:space="preserve">
+        <value>Внешний вид</value>
+    </data>
+    <data name="AppLanguage" xml:space="preserve">
+        <value>Язык приложения</value>
+    </data>
+    <data name="AppLanguageText" xml:space="preserve">
+        <value>Измените язык приложения по вашему желанию</value>
+    </data>
+    <data name="AppTheme" xml:space="preserve">
+        <value>Тема приложения</value>
+    </data>
+    <data name="AppThemeText" xml:space="preserve">
+        <value>Измените тему приложения по вашему желанию</value>
+    </data>
+    <data name="Beginner" xml:space="preserve">
+        <value>3 (Новичок)</value>
+    </data>
+    <data name="DailyGoal" xml:space="preserve">
+        <value>Ежедневная цель</value>
+    </data>
+    <data name="DailyGoalText" xml:space="preserve">
+        <value>Установите количество уроков для прохождения в день</value>
+    </data>
+    <data name="DailyReminders" xml:space="preserve">
+        <value>Ежедневные напоминания</value>
+    </data>
+    <data name="Dark" xml:space="preserve">
+        <value>Тёмная</value>
+    </data>
+    <data name="Language" xml:space="preserve">
+        <value>Язык</value>
+    </data>
+    <data name="LearningPreferences" xml:space="preserve">
+        <value>Настройки обучения</value>
+    </data>
+    <data name="Light" xml:space="preserve">
+        <value>Светлая</value>
+    </data>
+    <data name="Normal" xml:space="preserve">
+        <value>6 (Средний)</value>
+    </data>
+    <data name="Notifications" xml:space="preserve">
+        <value>Уведомления</value>
+    </data>
+    <data name="PrivacyPolicy" xml:space="preserve">
+        <value>Политика конфиденциальности</value>
+    </data>
+    <data name="ResetSettings" xml:space="preserve">
+        <value>Сбросить настройки</value>
+    </data>
+    <data name="SaveSettings" xml:space="preserve">
+        <value>Сохранить настройки</value>
+    </data>
+    <data name="StreakReminders" xml:space="preserve">
+        <value>Напоминания о серии</value>
+    </data>
+    <data name="SystemDefault" xml:space="preserve">
+        <value>Как в системе</value>
+    </data>
+    <data name="TermsOfService" xml:space="preserve">
+        <value>Условия использования</value>
+    </data>
+    <data name="ContinueLearning" xml:space="preserve">
+        <value>Продолжить обучение</value>
+    </data>
+    <data name="Statistics" xml:space="preserve">
+        <value>Статистика</value>
+    </data>
 </root>

@@ -58,7 +58,7 @@ public interface IApiInterface
     public Task<string> LaunchApp();
 
     [Post("/api/Authorization/Login")]
-    public Task<LoginResponse> Login([Body] LoginRequestDto loginRequestDto);
+    public Task<LoginResponse?> Login([Body] LoginRequestDto loginRequestDto);
 
     [Post("/api/Authorization/LogOut")]
     public Task<string> LogOut();

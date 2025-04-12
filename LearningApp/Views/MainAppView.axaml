@@ -5,6 +5,7 @@
              xmlns:viewModels="clr-namespace:LearningApp.ViewModels"
              xmlns:asyncImageLoader="clr-namespace:AsyncImageLoader;assembly=AsyncImageLoader.Avalonia"
              xmlns:lang="clr-namespace:LearningApp.Assets.Lang"
+             xmlns:localizationManager="clr-namespace:LearningApp.Utils.LocalizationManager"
              mc:Ignorable="d" d:DesignWidth="1920" d:DesignHeight="1080"
              x:Class="LearningApp.Views.MainAppView"
              x:DataType="viewModels:MainAppViewModel">
@@ -32,7 +33,7 @@
                         <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Top" Spacing="15" Margin="10">
                             <Button HorizontalAlignment="Stretch" Command="{Binding NavigateToHomePageCommand}"
                                     Classes="sideMenuElement" Padding="15" CornerRadius="20"
-                                    ToolTip.Tip="{x:Static lang:Resources.Home}" ToolTip.Placement="Center"
+                                    ToolTip.Tip="{localizationManager:Localize Home}" ToolTip.Placement="Center"
                                     ToolTip.VerticalOffset="40">
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Spacing="20">
                                     <Svg
@@ -41,12 +42,12 @@
                                         Width="35"
                                         Path="/Assets/Icons/house.svg" />
                                     <TextBlock Foreground="#DFE0E2" FontSize="24" IsVisible="{Binding IsPaneOpen}"
-                                               Text="{x:Static lang:Resources.Home}" />
+                                               Text="{localizationManager:Localize Home}" />
                                 </StackPanel>
                             </Button>
                             <Button HorizontalAlignment="Stretch" Command="{Binding NavigateToWordSearchPageCommand}"
                                     Classes="sideMenuElement" Padding="15" CornerRadius="20"
-                                    ToolTip.Tip="{x:Static lang:Resources.Words}" ToolTip.Placement="Center"
+                                    ToolTip.Tip="{localizationManager:Localize Words}" ToolTip.Placement="Center"
                                     ToolTip.VerticalOffset="40">
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Spacing="20">
                                     <Svg
@@ -55,13 +56,13 @@
                                         Width="35"
                                         Path="/Assets/Icons/search.svg" />
                                     <TextBlock Foreground="#DFE0E2" FontSize="24" IsVisible="{Binding IsPaneOpen}"
-                                               Text="{x:Static lang:Resources.Words}" />
+                                               Text="{localizationManager:Localize Words}" />
                                 </StackPanel>
                             </Button>
 
                             <Button HorizontalAlignment="Stretch" Command="{Binding NavigateToCoursesPageCommand}"
                                     Classes="sideMenuElement" Padding="15" CornerRadius="20"
-                                    ToolTip.Tip="{x:Static lang:Resources.Courses}" ToolTip.Placement="Center"
+                                    ToolTip.Tip="{localizationManager:Localize Courses}" ToolTip.Placement="Center"
                                     ToolTip.VerticalOffset="40">
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Spacing="20">
                                     <Svg
@@ -69,13 +70,14 @@
                                         Width="35"
                                         Path="/Assets/Icons/book-open.svg" />
                                     <TextBlock Foreground="#DFE0E2" FontSize="24" IsVisible="{Binding IsPaneOpen}"
-                                               Text="{x:Static lang:Resources.Courses}" />
+                                               Text="{localizationManager:Localize Courses}" />
                                 </StackPanel>
                             </Button>
                             <Button HorizontalAlignment="Stretch"
                                     Command="{Binding NavigateToDictionariesPageCommand }"
                                     Classes="sideMenuElement" Padding="15" CornerRadius="20"
-                                    ToolTip.Tip="{x:Static lang:Resources.Dictionaries}" ToolTip.Placement="Center"
+                                    ToolTip.Tip="{localizationManager:Localize Dictionaries}"
+                                    ToolTip.Placement="Center"
                                     ToolTip.VerticalOffset="40">
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Spacing="20">
                                     <Svg
@@ -84,12 +86,12 @@
                                         Path="/Assets/Icons/book-a.svg" />
                                     <TextBlock TextWrapping="Wrap" Foreground="#DFE0E2" FontSize="24"
                                                IsVisible="{Binding IsPaneOpen}"
-                                               Text="{x:Static lang:Resources.Dictionaries}" />
+                                               Text="{localizationManager:Localize Dictionaries}" />
                                 </StackPanel>
                             </Button>
                             <Button HorizontalAlignment="Stretch" Command="{Binding NavigateToSettingsPageCommand}"
                                     Classes="sideMenuElement" Padding="15" CornerRadius="20"
-                                    ToolTip.Tip="{x:Static lang:Resources.Settings}" ToolTip.Placement="Center"
+                                    ToolTip.Tip="{localizationManager:Localize Settings}" ToolTip.Placement="Center"
                                     ToolTip.VerticalOffset="40">
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Spacing="20">
                                     <Svg
@@ -97,7 +99,7 @@
                                         Width="35"
                                         Path="/Assets/Icons/settings.svg" />
                                     <TextBlock Foreground="#DFE0E2" FontSize="24" IsVisible="{Binding IsPaneOpen}"
-                                               Text="{x:Static lang:Resources.Settings}" />
+                                               Text="{localizationManager:Localize Settings}" />
                                 </StackPanel>
                             </Button>
 
@@ -106,7 +108,7 @@
                     </ScrollViewer>
                     <StackPanel Grid.Row="3" HorizontalAlignment="Stretch" Margin="15" Spacing="15">
                         <Button HorizontalAlignment="Stretch" Classes="sideMenuElement" Padding="15" CornerRadius="20"
-                                ToolTip.Tip="{x:Static lang:Resources.LogOut}" ToolTip.Placement="Center"
+                                ToolTip.Tip="{localizationManager:Localize LogOut}" ToolTip.Placement="Center"
                                 Command="{Binding LogOutCommand}">
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Spacing="20">
                                 <Svg
@@ -114,7 +116,7 @@
                                     Width="30"
                                     Path="/Assets/Icons/log-out.svg" />
                                 <TextBlock Foreground="#DFE0E2" FontSize="24" IsVisible="{Binding IsPaneOpen}"
-                                           Text="{x:Static lang:Resources.LogOut}" />
+                                           Text="{localizationManager:Localize LogOut}" />
                             </StackPanel>
                         </Button>
 
@@ -129,7 +131,7 @@
             <Border Background="#35373B" CornerRadius="20" Margin="25">
                 <Grid ColumnDefinitions="*,Auto,Auto" ShowGridLines="False">
                     <Label VerticalAlignment="Center" FontSize="36" Margin="20,10, 0, 10"
-                           Content="{Binding CurrentTabView.PageName}" Foreground="White" />
+                           Content="{Binding CurrentTabView.LocalizedPageName}" Foreground="White" />
                     <Button Grid.Column="2" HorizontalAlignment="Right" Classes="icon"
                             Command="{Binding NavigateToProfilePageCommand}"
                             CornerRadius="20"

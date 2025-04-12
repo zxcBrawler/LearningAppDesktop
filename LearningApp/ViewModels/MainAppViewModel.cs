@@ -57,7 +57,6 @@ public partial class MainAppViewModel : PageViewModel
         await _authorizationService.LogOut();
         UserState.LogOut();
         ImageCache.ClearCache();
-        SettingsManager.ResetSettings();
         WeakReferenceMessenger.Default.Send(new NavigateToPageMessage(AppPageNames.LogIn));
     }
 

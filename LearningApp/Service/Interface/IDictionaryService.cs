@@ -8,5 +8,5 @@ namespace LearningApp.Service.Interface;
 public interface IDictionaryService
 {
     Task<DataState<List<DictionarySimpleDto>>> GetUserDictionaries();
-    Task<DataState<DictionarySimpleDto>> GetUserDictionaryById(int dictionaryId);
+    Task<DataState<DictionarySimpleDto?>> GetUserDictionaryById(int dictionaryId);
 }

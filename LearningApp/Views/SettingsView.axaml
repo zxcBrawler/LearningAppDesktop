@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="1920" d:DesignHeight="1080"
              xmlns:viewModels="clr-namespace:LearningApp.ViewModels"
+             xmlns:localizationManager="clr-namespace:LearningApp.Utils.LocalizationManager"
              x:DataType="viewModels:SettingsViewModel"
              x:Class="LearningApp.Views.SettingsView">
     <Design.DataContext>
@@ -14,13 +15,15 @@
         <Grid RowDefinitions="*,*,*,*" ColumnDefinitions="*,*,*">
             <StackPanel Grid.ColumnSpan="3" Spacing="20">
                 <Border Padding="10">
-                    <TextBlock Text="Learning preferences" FontSize="28" Foreground="White" />
+                    <TextBlock Text="{localizationManager:Localize LearningPreferences}" FontSize="28"
+                               Foreground="White" />
                 </Border>
                 <Border Background="#35373B" CornerRadius="20" Padding="10">
                     <Grid ColumnDefinitions="*,  *" RowDefinitions="Auto, Auto" ShowGridLines="False">
-                        <TextBlock Text="Daily Goal" FontSize="24" Foreground="White" Margin="15 15 0 5" />
+                        <TextBlock Text="{localizationManager:Localize DailyGoal}" FontSize="24" Foreground="White"
+                                   Margin="15 15 0 5" />
                         <TextBlock Grid.Row="1" Grid.Column="0"
-                                   Text="Set a number of lessons you want to complete in one day"
+                                   Text="{localizationManager:Localize DailyGoalText}"
                                    Margin="15 5 0 15"
                                    TextWrapping="Wrap"
                                    FontSize="22" />
@@ -31,21 +34,22 @@
                                   Margin="20"
                                   SelectedIndex="{Binding Settings.SelectedDailyGoalIndex, FallbackValue='0'}"
                                   FontSize="22">
-                            <ComboBoxItem FontSize="22">3 (Beginner)</ComboBoxItem>
-                            <ComboBoxItem FontSize="22">6 (Normal)</ComboBoxItem>
-                            <ComboBoxItem FontSize="22">9 (Advanced)</ComboBoxItem>
+                            <ComboBoxItem FontSize="22" Content="{localizationManager:Localize Beginner}" />
+                            <ComboBoxItem FontSize="22" Content="{localizationManager:Localize Normal}" />
+                            <ComboBoxItem FontSize="22" Content="{localizationManager:Localize Advanced}" />
                         </ComboBox>
                     </Grid>
 
                 </Border>
                 <Border Padding="10">
-                    <TextBlock Text="Appearance" FontSize="28" Foreground="White" />
+                    <TextBlock Text="{localizationManager:Localize Appearance}" FontSize="28" Foreground="White" />
                 </Border>
 
                 <Border Background="#35373B" CornerRadius="20" Padding="10">
                     <Grid ColumnDefinitions="*, *" RowDefinitions="Auto, Auto" ShowGridLines="False">
-                        <TextBlock Text="App theme" FontSize="24" Foreground="White" Margin="15 15 0 5" />
-                        <TextBlock Grid.Row="1" Grid.Column="0" Text="Change app theme according to your preferences"
+                        <TextBlock Text="{localizationManager:Localize AppTheme}" FontSize="24" Foreground="White"
+                                   Margin="15 15 0 5" />
+                        <TextBlock Grid.Row="1" Grid.Column="0" Text="{localizationManager:Localize AppThemeText}"
                                    Margin="15 5 0 15"
                                    TextWrapping="Wrap"
                                    FontSize="22" />
@@ -54,25 +58,27 @@
                                   VerticalAlignment="Center"
                                   CornerRadius="20"
                                   Margin="20"
+                                  SelectionChanged="SelectingItemsControlLang_OnSelectionChanged"
                                   SelectedIndex="{Binding Settings.SelectedThemeIndex, FallbackValue='0'}"
                                   FontSize="22">
-                            <ComboBoxItem FontSize="22">Dark</ComboBoxItem>
-                            <ComboBoxItem FontSize="22">Light</ComboBoxItem>
-                            <ComboBoxItem FontSize="22">System Default</ComboBoxItem>
+                            <ComboBoxItem FontSize="22" Content="{localizationManager:Localize Dark}" />
+                            <ComboBoxItem FontSize="22" Content="{localizationManager:Localize Light}" />
+                            <ComboBoxItem FontSize="22" Content="{localizationManager:Localize SystemDefault}" />
                         </ComboBox>
                     </Grid>
 
                 </Border>
 
                 <Border Padding="10">
-                    <TextBlock Text="Language" FontSize="28" Foreground="White" />
+                    <TextBlock Text="{localizationManager:Localize Language}" FontSize="28" Foreground="White" />
                 </Border>
 
                 <Border Background="#35373B" CornerRadius="20" Padding="10">
                     <Grid ColumnDefinitions="*, *" RowDefinitions="Auto, Auto" ShowGridLines="False">
-                        <TextBlock Text="App language" FontSize="24" Foreground="White" Margin="15 15 0 5" />
+                        <TextBlock Text="{localizationManager:Localize AppLanguage}" FontSize="24" Foreground="White"
+                                   Margin="15 15 0 5" />
                         <TextBlock Grid.Row="1" Grid.Column="0"
-                                   Text="Change app language according to your preferences"
+                                   Text="{localizationManager:Localize AppLanguageText}"
                                    Margin="15 5 0 15"
                                    TextWrapping="Wrap"
                                    FontSize="22" />
@@ -82,7 +88,9 @@
                                   CornerRadius="20"
                                   Margin="20"
                                   SelectedIndex="{Binding Settings.SelectedLanguageIndex, FallbackValue='0'}"
+                                  SelectionChanged="SelectingItemsControl_OnSelectionChanged"
                                   FontSize="22">
+
                             <ComboBoxItem FontSize="22">English</ComboBoxItem>
                             <ComboBoxItem FontSize="22">Русский</ComboBoxItem>
                             <ComboBoxItem FontSize="22">Deutsch</ComboBoxItem>
@@ -93,12 +101,14 @@
                 </Border>
 
                 <Border Padding="10">
-                    <TextBlock Text="Notifications" FontSize="28" Foreground="White" />
+                    <TextBlock Text="{localizationManager:Localize Notifications}" FontSize="28" Foreground="White" />
                 </Border>
                 <Border Background="#35373B" CornerRadius="20" Padding="10">
                     <Grid ColumnDefinitions="*, *" RowDefinitions="Auto, Auto" ShowGridLines="False">
-                        <TextBlock Text="Daily Reminders" FontSize="24" Foreground="White" Margin="15 15 0 5" />
-                        <TextBlock Grid.Row="1" Grid.Column="0" Text="Allow app to send you notifications"
+                        <TextBlock Text="{localizationManager:Localize DailyReminders}" FontSize="24"
+                                   Foreground="White" Margin="15 15 0 5" />
+                        <TextBlock Grid.Row="1" Grid.Column="0"
+                                   Text="{localizationManager:Localize AllowNotificationsText}"
                                    Margin="15 5 0 15"
                                    TextWrapping="Wrap"
                                    FontSize="22" />
@@ -123,9 +133,10 @@
                 </Border>
                 <Border Background="#35373B" CornerRadius="20" Padding="10">
                     <Grid ColumnDefinitions="*, *" RowDefinitions="Auto, Auto" ShowGridLines="False">
-                        <TextBlock Text="Streak reminders" FontSize="24" Foreground="White" Margin="15 15 0 5" />
+                        <TextBlock Text="{localizationManager:Localize StreakReminders}" FontSize="24"
+                                   Foreground="White" Margin="15 15 0 5" />
                         <TextBlock Grid.Row="1" Grid.Column="0"
-                                   Text="Allow app to send you notifications about current learning streak"
+                                   Text="{localizationManager:Localize AllowStreakNotificationsText}"
                                    Margin="15 5 0 15"
                                    TextWrapping="Wrap"
                                    FontSize="22" />
@@ -139,18 +150,22 @@
                     </Grid>
                 </Border>
 
-                <Button Classes="primary" Content="Save Settings" HorizontalAlignment="Stretch"
+                <Button Classes="primary" Content="{localizationManager:Localize SaveSettings}"
+                        HorizontalAlignment="Stretch"
                         HorizontalContentAlignment="Center" Command="{Binding SaveSettingsCommand}" />
 
-                <Button Classes="textbutton" Content="Reset Settings" HorizontalAlignment="Stretch"
+                <Button Classes="textbutton" Content="{localizationManager:Localize ResetSettings}"
+                        HorizontalAlignment="Stretch"
                         HorizontalContentAlignment="Center" Command="{Binding ResetSettingsCommand}" />
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Spacing="25" Margin="0 10 0 0">
-                    <Button Content="About" FontSize="20" Classes="textbutton" Foreground="White"
+                    <Button Content="{localizationManager:Localize About}" FontSize="20" Classes="textbutton"
+                            Foreground="White"
                             HorizontalAlignment="Center" />
                     <Button Command="{Binding OpenTermsOfServiceCommand}" Classes="textbutton" Foreground="White"
                             HorizontalAlignment="Center">
                         <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="Terms of Service" FontSize="20" Margin="0 0 10 0" Foreground="White"
+                            <TextBlock Text="{localizationManager:Localize TermsOfService}" FontSize="20"
+                                       Margin="0 0 10 0" Foreground="White"
                                        HorizontalAlignment="Center" />
                             <Svg
                                 Height="20"
@@ -162,7 +177,8 @@
                     <Button Command="{Binding OpenPrivacyPolicyCommand}" Classes="textbutton" Foreground="White"
                             HorizontalAlignment="Center">
                         <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="Privacy Policy" FontSize="20" Margin="0 0 10 0" Foreground="White"
+                            <TextBlock Text="{localizationManager:Localize PrivacyPolicy}" FontSize="20"
+                                       Margin="0 0 10 0" Foreground="White"
                                        HorizontalAlignment="Center" />
                             <Svg
                                 Height="20"
@@ -172,7 +188,7 @@
                     </Button>
 
                 </StackPanel>
-                <TextBlock Text="© 2025 Learning App. All rights reserved." FontSize="18" Margin="10"
+                <TextBlock Text="{localizationManager:Localize AllRightsReserved}" FontSize="18" Margin="10"
                            HorizontalAlignment="Center" />
             </StackPanel>
         </Grid>
