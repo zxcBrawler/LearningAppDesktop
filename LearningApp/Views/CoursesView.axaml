@@ -6,9 +6,7 @@
              x:Class="LearningApp.Views.CoursesView"
              xmlns:viewModels="clr-namespace:LearningApp.ViewModels"
              xmlns:imageControl="clr-namespace:LearningApp.Utils.ImageControl"
-
              x:DataType="viewModels:CoursesViewModel">
-
 
     <Grid RowDefinitions="Auto,*">
 

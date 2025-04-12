@@ -4,7 +4,6 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:viewModels="clr-namespace:LearningApp.ViewModels"
              xmlns:asyncImageLoader="clr-namespace:AsyncImageLoader;assembly=AsyncImageLoader.Avalonia"
-             xmlns:lang="clr-namespace:LearningApp.Assets.Lang"
              xmlns:localizationManager="clr-namespace:LearningApp.Utils.LocalizationManager"
              mc:Ignorable="d" d:DesignWidth="1920" d:DesignHeight="1080"
              x:Class="LearningApp.Views.MainAppView"
@@ -37,7 +36,6 @@
                                     ToolTip.VerticalOffset="40">
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Spacing="20">
                                     <Svg
-
                                         Height="35"
                                         Width="35"
                                         Path="/Assets/Icons/house.svg" />
@@ -51,7 +49,6 @@
                                     ToolTip.VerticalOffset="40">
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Spacing="20">
                                     <Svg
-
                                         Height="35"
                                         Width="35"
                                         Path="/Assets/Icons/search.svg" />
@@ -119,9 +116,7 @@
                                            Text="{localizationManager:Localize LogOut}" />
                             </StackPanel>
                         </Button>
-
                     </StackPanel>
-
                 </Grid>
             </Border>
         </SplitView.Pane>

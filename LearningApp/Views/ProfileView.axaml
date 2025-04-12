@@ -3,19 +3,19 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:viewModels="clr-namespace:LearningApp.ViewModels"
-             xmlns:asyncImageLoader="clr-namespace:AsyncImageLoader;assembly=AsyncImageLoader.Avalonia"
              xmlns:localizationManager="clr-namespace:LearningApp.Utils.LocalizationManager"
+             xmlns:imageControl="clr-namespace:LearningApp.Utils.ImageControl"
              mc:Ignorable="d" d:DesignWidth="1920" d:DesignHeight="1080"
              x:Class="LearningApp.Views.ProfileView"
              x:DataType="viewModels:ProfileViewModel">
     <Grid ColumnDefinitions="*,*,*" RowDefinitions="*,*,*">
-
         <Border Grid.RowSpan="3" Background="#35373B" CornerRadius="20" Margin="0,15,15,0">
             <StackPanel Margin="15" Spacing="20" VerticalAlignment="Top">
                 <Border ClipToBounds="True" Height="200" CornerRadius="20">
-                    <Image Stretch="UniformToFill"
-
-                           asyncImageLoader:ImageLoader.Source="{Binding UserState.CurrentUser.ProfilePicture}" />
+                    <imageControl:CachedImage
+                        Source="{Binding UserState.CurrentUser.ProfilePicture}"
+                        Height="150"
+                        Stretch="UniformToFill" />
                 </Border>
 
                 <Label Content="{localizationManager:Localize EmailField}" FontSize="20" />
@@ -50,7 +50,6 @@
         <Border Grid.Row="0" Grid.Column="1" Grid.RowSpan="3" Grid.ColumnSpan="2" Background="#35373B"
                 Margin="0,15,0,0" CornerRadius="20">
             <StackPanel Orientation="Vertical" Spacing="20" Margin="20">
-
                 <Label Content="{localizationManager:Localize CurrentLevel}" FontSize="20" />
                 <Label FontSize="20" IsEnabled="False"
                        Content="{Binding UserState.CurrentUser.Level}" />

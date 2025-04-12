@@ -10,15 +10,12 @@
     <Grid ColumnDefinitions="*" RowDefinitions="Auto,*" ShowGridLines="True">
         <Border Background="Transparent" Grid.Row="0" Padding="10">
             <Grid ColumnDefinitions="*,Auto,Auto,Auto">
-
-                <!--Change to + icon to add new dictionary-->
                 <Button Grid.Column="1" Classes="icon" VerticalAlignment="Center" Margin="5,0">
                     <Svg Height="30" Width="30" Path="/Assets/Icons/plus.svg" />
                 </Button>
                 <Button Grid.Column="2" Classes="icon" VerticalAlignment="Center" Margin="5,0">
                     <Svg Height="30" Width="30" Path="/Assets/Icons/filter.svg" />
                 </Button>
-                <!---->
                 <Button Grid.Column="3" Classes="icon" VerticalAlignment="Center" Margin="5,0">
                     <Svg Height="30" Width="30" Path="/Assets/Icons/search.svg" />
                 </Button>
@@ -55,9 +52,7 @@
                                         </Button>
                                     </StackPanel>
                                 </Grid>
-
                             </Border>
-
                         </DataTemplate>
                     </ItemsRepeater.ItemTemplate>
                 </ItemsRepeater>

@@ -10,10 +10,8 @@
              xmlns:localizationManager="clr-namespace:LearningApp.Utils.LocalizationManager"
              x:DataType="viewModels:HomeViewModel"
              x:Class="LearningApp.Views.HomeView">
-
-
+    
     <Grid RowDefinitions="Auto, Auto, *, Auto, Auto" ShowGridLines="False">
-        <!-- User Courses -->
         <Border Grid.Row="0" Padding="10">
 
             <TextBlock Text="{localizationManager:Localize ContinueLearning}" FontSize="30" Foreground="White" />
@@ -49,7 +47,6 @@
                                         <imageControl:CachedImage
                                             Source="{Binding Course.ImageUrl}"
                                             Height="150"
-
                                             Stretch="UniformToFill" />
                                     </Border>
 
@@ -100,7 +97,6 @@
                                 </Grid>
                             </Border>
                         </Grid>
-
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
@@ -108,6 +104,5 @@
         <Border Grid.Row="2" Padding="10">
             <TextBlock Text="{localizationManager:Localize Statistics}" FontSize="30" Foreground="White" />
         </Border>
-
     </Grid>
 </UserControl>

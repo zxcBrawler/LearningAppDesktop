@@ -40,7 +40,6 @@
                             Height="35"
                             Width="35"
                             Path="/Assets/Icons/heart.svg" />
-
                     </StackPanel>
                 </Border>
                 <Button Grid.Column="3" HorizontalAlignment="Stretch"
@@ -53,7 +52,6 @@
                         Height="35"
                         Width="35"
                         Path="/Assets/Icons/x.svg" />
-
                 </Button>
             </Grid>
             <ContentControl Content="{Binding CurrentExerciseView}" Margin="25" />

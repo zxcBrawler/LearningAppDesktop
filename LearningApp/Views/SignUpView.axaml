@@ -8,10 +8,8 @@
              mc:Ignorable="d" d:DesignWidth="1920" d:DesignHeight="1080"
              x:Class="LearningApp.Views.SignUpView"
              x:DataType="viewModels:SignUpViewModel">
-
     <dialogs:ReactiveDialogHost CloseOnClickAway="True" Background="#494C51">
         <Grid ColumnDefinitions="*" RowDefinitions="*" ShowGridLines="True">
-
             <Border
                 Margin="25"
                 Background="#35373B"
@@ -22,8 +20,6 @@
                                 VerticalAlignment="Center">
                         <Label Margin="0,0,0,20" FontSize="30" HorizontalAlignment="Center"
                                Content="{localizationManager:Localize SignUp}" />
-
-
                         <TextBlock Margin="0,0,0,20" FontSize="20"
                                    Text="{localizationManager:Localize CreateNewAccountText}" TextAlignment="Center"
                                    TextWrapping="Wrap" />
@@ -44,8 +40,6 @@
 
                         <TextBox Margin="0,0,0,40" x:Name="RepeatPasswordField" Text="{Binding RepeatPassword}"
                                  PasswordChar="*" Watermark="{localizationManager:Localize RepeatPasswordField}" />
-
-
                         <Button HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" Classes="primary"
                                 Command="{Binding SignUpCommand}" Content="{localizationManager:Localize SignUp}" />
 
@@ -68,7 +62,6 @@
                         <Button Classes="textbutton" Command="{Binding NavigateToLogIn}" HorizontalAlignment="Center"
                                 Content="{localizationManager:Localize AlreadyHaveAnAccount}" Margin="0,50,0,0" />
                     </StackPanel>
-
                 </Grid>
             </Border>
         </Grid>
