@@ -1,12 +1,8 @@
-﻿using System;
-using System.Threading.Tasks;
-using Avalonia;
+﻿using System.Threading.Tasks;
 using Avalonia.Layout;
-using AvaloniaDialogs.Views;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
-using DialogHostAvalonia;
 using LearningApp.Models.Dto.Request;
 using LearningApp.Service.Interface;
 using LearningApp.Utils.Enum;

@@ -1,8 +1,4 @@
 ﻿using Avalonia.Controls;
-using Avalonia.Interactivity;
-using LearningApp.Models;
-using LearningApp.Utils;
-using LearningApp.ViewModels;
 
 namespace LearningApp.Views;
 

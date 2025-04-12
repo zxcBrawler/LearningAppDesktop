@@ -3,9 +3,7 @@ using System.Threading.Tasks;
 using Avalonia.Controls;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using LearningApp.Factories.IFactories;
-using LearningApp.Models.Dto.Request;
-using LearningApp.Utils;
+using LearningApp.Factories.WindowFactory;
 using LearningApp.Utils.Enum;
 using UserStateService = LearningApp.Utils.StateService.UserStateService;
 

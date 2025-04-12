@@ -8,7 +8,6 @@ using System.Threading.Tasks;
 using LearningApp.Models.Dto.Request;
 using LearningApp.Models.Dto.Response;
 using LearningApp.Service.Interface;
-using Microsoft.AspNetCore.Http;
 
 namespace LearningApp.Utils.TokenManagement;
 

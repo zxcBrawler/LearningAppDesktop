@@ -1,17 +1,13 @@
 ﻿using System;
 using System.Globalization;
 using System.Resources;
-using Avalonia;
-using Avalonia.Controls;
-using Avalonia.Platform;
-using Avalonia.Styling;
 using LearningApp.Assets.Lang;
 
 namespace LearningApp.Utils.LocalizationManager;
 
 public static class LocalizationManager
 {
-    public static event EventHandler LanguageChanged;
+    public static event EventHandler? LanguageChanged;
 
     public static void SetLanguage(string languageCode)
     {

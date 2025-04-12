@@ -1,7 +1,6 @@
 ﻿using System.Diagnostics;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using LearningApp.Utils.DependencyInjection;
 using LearningApp.Utils.Enum;
 using LearningApp.Utils.LocalizationManager;
 using LearningApp.Utils.Settings;

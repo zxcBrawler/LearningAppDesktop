@@ -1,6 +1,6 @@
 ﻿using Avalonia.Controls;
 
-namespace LearningApp.Factories.IFactories;
+namespace LearningApp.Factories.WindowFactory;
 
 public interface IWindowFactory
 {

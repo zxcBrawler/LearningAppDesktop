@@ -4,7 +4,6 @@ using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using LearningApp.Models.Dto.Simple;
-using LearningApp.Service.Interface;
 using LearningApp.Utils.Enum;
 using LearningApp.Utils.StateService;
 

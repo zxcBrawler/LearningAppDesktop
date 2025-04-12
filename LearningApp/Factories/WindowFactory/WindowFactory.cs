@@ -1,5 +1,4 @@
 ﻿using Avalonia.Controls;
-using LearningApp.Factories.IFactories;
 using LearningApp.Factories.WindowViewModelFactoryImpl;
 using LearningApp.Views;
 

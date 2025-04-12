@@ -1,9 +1,7 @@
 ﻿using System;
-using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
 using Avalonia.Layout;
-using Avalonia.Markup.Xaml;
 using AvaloniaDialogs.Views;
 
 namespace LearningApp.Views;

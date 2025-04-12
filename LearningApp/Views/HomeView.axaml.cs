@@ -1,8 +1,4 @@
-﻿using Avalonia;
-using Avalonia.Controls;
-using Avalonia.Interactivity;
-using Avalonia.Markup.Xaml;
-using LearningApp.ViewModels;
+﻿using Avalonia.Controls;
 
 namespace LearningApp.Views;
 

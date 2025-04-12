@@ -1,14 +1,11 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using LearningApp.Factories;
 using LearningApp.Service.Interface;
-using LearningApp.Utils;
 using LearningApp.Utils.Enum;
 using LearningApp.Utils.ImageControl;
-using LearningApp.Utils.Settings;
 using UserStateService = LearningApp.Utils.StateService.UserStateService;
 
 namespace LearningApp.ViewModels;

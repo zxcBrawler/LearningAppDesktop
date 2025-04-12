@@ -1,13 +1,9 @@
-using System.Globalization;
 using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
-using Avalonia.Data.Core;
 using Avalonia.Data.Core.Plugins;
 using System.Linq;
 using Avalonia.Markup.Xaml;
-using LearningApp.Utils;
 using LearningApp.Utils.DependencyInjection;
-using LearningApp.Utils.LocalizationManager;
 using LearningApp.ViewModels;
 using LearningApp.Views;
 using Microsoft.Extensions.DependencyInjection;

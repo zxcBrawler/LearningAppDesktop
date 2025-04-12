@@ -9,11 +9,6 @@ namespace LearningApp.Utils.Converter;
 
 public class LevelToColorConverter : IMultiValueConverter
 {
-    public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-    {
-        throw new NotImplementedException();
-    }
-
     public object? Convert(IList<object?> values, Type targetType, object? parameter, CultureInfo culture)
     {
         if (values.Count < 2 ||

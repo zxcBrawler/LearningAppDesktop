@@ -4,14 +4,10 @@ using System.Threading.Tasks;
 using Avalonia.Controls;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using LearningApp.Factories;
-using LearningApp.Factories.IFactories;
+using LearningApp.Factories.WindowFactory;
 using LearningApp.Models;
 using LearningApp.Service;
-using LearningApp.Utils;
 using LearningApp.Utils.Enum;
-using LearningApp.Utils.TokenManagement;
-using LearningApp.Views;
 using CourseStateService = LearningApp.Utils.StateService.CourseStateService;
 
 namespace LearningApp.ViewModels;

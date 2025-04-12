@@ -5,7 +5,6 @@ using Avalonia.Controls;
 using Avalonia.Controls.ApplicationLifetimes;
 using LearningApp.DataSource;
 using LearningApp.Factories;
-using LearningApp.Factories.IFactories;
 using LearningApp.Factories.WindowFactory;
 using LearningApp.Factories.WindowViewModelFactoryImpl;
 using LearningApp.Service;
@@ -17,7 +16,6 @@ using LearningApp.ViewModels;
 using LearningApp.Views;
 using Microsoft.Extensions.DependencyInjection;
 using Refit;
-using TypeExercise = LearningApp.Utils.Enum.TypeExercise;
 
 namespace LearningApp.Utils.DependencyInjection;
 

@@ -1,11 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.ComponentModel;
-using LearningApp.Models;
 using LearningApp.Models.Dto.Simple;
-using LearningApp.Service;
-using LearningApp.Service.Interface;
-using LearningApp.Utils;
 using LearningApp.Utils.Enum;
 using UserStateService = LearningApp.Utils.StateService.UserStateService;
 

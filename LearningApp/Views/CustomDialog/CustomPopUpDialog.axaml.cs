@@ -1,7 +1,4 @@
-﻿using Avalonia;
-using Avalonia.Controls;
-using Avalonia.Interactivity;
-using Avalonia.Markup.Xaml;
+﻿using Avalonia.Interactivity;
 using AvaloniaDialogs.Views;
 
 namespace LearningApp.Views.CustomDialog;

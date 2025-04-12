@@ -3,7 +3,6 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Messaging;
 using LearningApp.DataSource;
 using LearningApp.Factories;
-using LearningApp.Service.Interface;
 using LearningApp.Utils.Enum;
 using LearningApp.Utils.LocalizationManager;
 using LearningApp.Utils.Settings;

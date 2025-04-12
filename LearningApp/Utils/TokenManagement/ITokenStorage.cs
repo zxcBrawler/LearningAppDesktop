@@ -1,5 +1,4 @@
-﻿using System.Threading.Tasks;
-using LearningApp.Models.Dto.Response;
+﻿using LearningApp.Models.Dto.Response;
 
 namespace LearningApp.Utils.TokenManagement;
 

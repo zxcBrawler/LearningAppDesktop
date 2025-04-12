@@ -1,6 +1,4 @@
-﻿using System.ComponentModel;
-using LearningApp.Assets.Lang;
-using LearningApp.Utils.Converter;
+﻿using LearningApp.Assets.Lang;
 using LearningApp.Utils.LocalizationManager;
 
 namespace LearningApp.Utils.Enum;

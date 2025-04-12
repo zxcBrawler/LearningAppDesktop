@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Avalonia.Controls;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using LearningApp.Factories.IFactories;
+using LearningApp.Factories.WindowFactory;
 using LearningApp.Models;
 using LearningApp.Service;
 using LearningApp.Utils.Enum;
@@ -17,8 +17,10 @@ namespace LearningApp.ViewModels;
 public partial class CourseDetailsViewModel : PageViewModel
 {
     #region Level colors
+
     public const string DefaultColor = "#202125";
     public string[] LevelNames { get; } = ["A1", "A2", "B1", "B2", "C1"];
+
     private static readonly Dictionary<string, string> LevelColorMap = new()
     {
         ["A1"] = "#007700",
@@ -31,13 +33,14 @@ public partial class CourseDetailsViewModel : PageViewModel
     [ObservableProperty] private ObservableCollection<string> _segmentColors = new(
         Enumerable.Repeat(DefaultColor, 5).ToList()
     );
+
     #endregion
-    
+
     private readonly ExerciseService? _exerciseService;
 
     [ObservableProperty] private CourseStateService _courseStateService;
     private readonly IWindowFactory _windowFactory;
-    
+
     private readonly Func<Window> _mainWindowGetter;
 
     public CourseDetailsViewModel(Func<Window> mainWindowGetter, CourseStateService courseStateService,
@@ -57,6 +60,7 @@ public partial class CourseDetailsViewModel : PageViewModel
         {
             SegmentColors[i] = DefaultColor;
         }
+
         var currentLevel = CourseStateService.Course?.CourseLanguageLevel;
         if (string.IsNullOrEmpty(currentLevel) ||
             !LevelColorMap.TryGetValue(currentLevel, out var color)) return;

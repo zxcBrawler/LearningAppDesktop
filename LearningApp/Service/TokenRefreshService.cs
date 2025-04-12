@@ -4,7 +4,6 @@ using LearningApp.DataSource;
 using LearningApp.Models.Dto.Request;
 using LearningApp.Models.Dto.Response;
 using LearningApp.Service.Interface;
-using LearningApp.Utils.TokenManagement;
 
 namespace LearningApp.Service;
 
@@ -29,11 +28,11 @@ public class TokenRefreshService(IApiInterface apiService) : ITokenRefreshServic
         try
         {
             var response = await apiService.UpdateAllTokens(request);
-            return DataState<LoginResponse>.Success(response, 200);
+            return DataState<LoginResponse?>.Success(response, 200);
         }
         catch (Exception e)
         {
-            return DataState<LoginResponse>.Failure("An unexpected error occurred during the login process.",
+            return DataState<LoginResponse?>.Failure("An unexpected error occurred during the login process.",
                 500);
         }
     }
