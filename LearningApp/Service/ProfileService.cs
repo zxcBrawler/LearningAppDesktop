@@ -65,4 +65,17 @@ public class ProfileService(IApiInterface apiInterface) : IProfileService
             throw;
         }
     }
+
+    public async Task<DataState<UserCourseSimpleDto>> GetUserCourse(long courseId)
+    {
+        try
+        {
+            var response = await apiInterface.GetUserCourse(courseId);
+            return DataState<UserCourseSimpleDto>.Success(response, 200);
+        }
+        catch (ApiException e)
+        {
+            return DataState<UserCourseSimpleDto>.Failure(e.Content, 400);
+        }
+    }
 }

@@ -10,8 +10,8 @@
              xmlns:localizationManager="clr-namespace:LearningApp.Utils.LocalizationManager"
              x:DataType="viewModels:HomeViewModel"
              x:Class="LearningApp.Views.HomeView">
-    
-    <Grid RowDefinitions="Auto, Auto, *, Auto, Auto" ShowGridLines="False">
+
+    <Grid RowDefinitions="Auto, Auto, *, Auto, Auto, Auto" ShowGridLines="False">
         <Border Grid.Row="0" Padding="10">
 
             <TextBlock Text="{localizationManager:Localize ContinueLearning}" FontSize="30" Foreground="White" />
@@ -28,12 +28,11 @@
                     <DataTemplate x:DataType="{x:Type model:UserCourseSimpleDto}">
                         <Grid>
                             <Border Width="370"
-                                    Height="370"
                                     Background="#35373B"
                                     CornerRadius="15"
                                     BorderThickness="0"
                                     Margin="25">
-                                <Grid RowDefinitions="Auto, Auto, Auto, Auto, Auto"
+                                <Grid RowDefinitions="Auto, Auto, Auto, Auto, Auto, Auto"
                                       ColumnDefinitions="Auto, *, Auto"
                                       Margin="15">
                                     <Border Grid.Row="0" Grid.ColumnSpan="2" CornerRadius="15 15 0 0"
@@ -56,8 +55,9 @@
                                     <TextBlock Grid.Row="2" Grid.ColumnSpan="2" Grid.Column="0"
                                                Text="{Binding Course.CourseDescription, FallbackValue=''}"
                                                FontSize="14"
-                                               TextWrapping="Wrap"
                                                TextAlignment="Center"
+                                               MaxLines="1"
+                                               TextTrimming="CharacterEllipsis"
                                                Margin="25,0,25,10" />
 
 
@@ -88,8 +88,16 @@
                                                    VerticalAlignment="Center"
                                                    Margin="10,0,0,0" />
                                     </Grid>
+                                    <Button Grid.ColumnSpan="2" Grid.Column="0" Grid.Row="5" Content="Continue"
+                                            Command="{Binding $parent[ItemsControl].((viewModels:HomeViewModel)DataContext).ContinueCourseCommand}"
+                                            FontSize="16"
+                                            HorizontalContentAlignment="Center"
+                                            CommandParameter="{Binding CourseId}" Classes="primary"
+                                            HorizontalAlignment="Stretch" IsEnabled="{Binding !IsFinished}" />
+
                                 </Grid>
                             </Border>
+
                         </Grid>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>

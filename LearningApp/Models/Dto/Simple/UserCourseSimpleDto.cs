@@ -8,6 +8,15 @@ namespace LearningApp.Models.Dto.Simple;
 /// </summary>
 public class UserCourseSimpleDto
 {
+    [JsonPropertyName("user_id")] public long UserId { get; init; }
+
+
+    /// <summary>
+    ///
+    /// </summary>
+    [JsonPropertyName("course_id")]
+    public long CourseId { get; init; }
+
     /// <summary>
     /// 
     /// </summary>
@@ -27,4 +36,7 @@ public class UserCourseSimpleDto
     /// </summary>
     [JsonPropertyName("course_progress")]
     public float CourseProgress { get; set; }
+
+    [JsonPropertyName("total_lessons")] public int TotalLessons { get; set; }
+    [JsonPropertyName("current_lesson")] public int CurrentLesson { get; set; }
 }

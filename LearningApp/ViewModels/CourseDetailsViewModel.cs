@@ -89,6 +89,7 @@ public partial class CourseDetailsViewModel : PageViewModel
     private async Task StartCourse()
     {
         await _exerciseService.StartNewCourse(CourseStateService.Course.Id);
+        await UserStateService.LoadUserCourse(CourseStateService.Course.Id);
     }
 
     public bool IsLessonsNotNull =>

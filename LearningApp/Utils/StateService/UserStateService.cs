@@ -18,6 +18,7 @@ public partial class UserStateService(
 {
     [ObservableProperty] private UserSimpleDto? _currentUser;
     [ObservableProperty] private ObservableCollection<UserCourseSimpleDto>? _userCourses;
+    [ObservableProperty] private UserCourseSimpleDto? _currentUserCourse;
     [ObservableProperty] private ObservableCollection<DictionarySimpleDto>? _userDictionaries;
 
 
@@ -45,6 +46,13 @@ public partial class UserStateService(
         var response = await profileService.GetUserCourses();
         if (response is { IsSuccess: true, Value: not null })
             UserCourses = new ObservableCollection<UserCourseSimpleDto>(response.Value);
+    }
+
+    public async Task LoadUserCourse(long courseId)
+    {
+        var response = await profileService.GetUserCourse(courseId);
+        if (response is { IsSuccess: true, Value: not null })
+            CurrentUserCourse = response.Value;
     }
 
     public async Task ChangeProfileData(UpdateProfileRequestDto updateProfileRequestDto)

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 using Avalonia.Controls;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
@@ -8,6 +9,7 @@ using LearningApp.Models;
 using LearningApp.Models.Dto.Complex;
 using LearningApp.Models.Dto.Response;
 using LearningApp.Service;
+using LearningApp.Service.Interface;
 using LearningApp.Utils.Enum;
 using LearningApp.Utils.StateService;
 using CourseStateService = LearningApp.Utils.StateService.CourseStateService;
@@ -18,7 +20,7 @@ namespace LearningApp.ViewModels;
 public partial class ExerciseViewModel : PageViewModel
 {
     private readonly ExerciseViewFactory _exerciseViewFactory;
-    private readonly ExerciseService _exerciseService;
+    private readonly IExerciseService _exerciseService;
     [ObservableProperty] private ObservableCollection<LessonComplexDto> _items = [];
     [ObservableProperty] private LessonComplexDto _currentLesson;
     [ObservableProperty] private ExerciseComplexDto _currentExercise;
@@ -42,7 +44,7 @@ public partial class ExerciseViewModel : PageViewModel
 
     #endregion
 
-    public ExerciseViewModel(ExerciseViewFactory exerciseViewFactory, ExerciseService exerciseService,
+    public ExerciseViewModel(ExerciseViewFactory exerciseViewFactory, IExerciseService exerciseService,
         CourseStateService courseStateService, UserStateService userStateService)
     {
         PageName = AppPageNames.ExerciseWindow;
@@ -52,9 +54,9 @@ public partial class ExerciseViewModel : PageViewModel
         _exerciseViewFactory = exerciseViewFactory;
         IsActive = true;
         Items = new ObservableCollection<LessonComplexDto>(CourseStateService.Course.Lesson);
-        CurrentLesson = Items[0];
-        CurrentExercise = Items[0].Exercises![0];
-        TotalExercises = Items[0].Exercises!.Count;
+        CurrentLesson = Items[UserStateService.CurrentUserCourse.CurrentLesson - 1];
+        CurrentExercise = CurrentLesson.Exercises[0];
+        TotalExercises = CurrentLesson.Exercises.Count;
 
         CurrentExerciseView = UpdateCurrentExerciseView();
     }
@@ -151,7 +153,7 @@ public partial class ExerciseViewModel : PageViewModel
     }
 
     [RelayCommand]
-    private void GoToNextExercise()
+    private async Task GoToNextExercise()
     {
         var currentIndex = CurrentLesson.Exercises!.IndexOf(CurrentExercise);
         if (currentIndex < CurrentLesson.Exercises.Count - 1)
@@ -161,7 +163,10 @@ public partial class ExerciseViewModel : PageViewModel
         }
         else
         {
-            // if all exercises are completed do this
+            await _exerciseService.CompleteLesson(CourseStateService.Course.Id);
+            UserStateService.CurrentUserCourse = null;
+            await UserStateService.LoadUserCourses();
+            await UserStateService.ReloadUserAsync();
         }
     }
 

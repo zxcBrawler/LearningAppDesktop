@@ -13,4 +13,5 @@ public interface IProfileService
     Task<DataState<bool>> UpdateUserProfile(UpdateProfileRequestDto updateProfileRequestDto);
     Task<DataState<bool>> UpdateUserPassword(UpdatePasswordRequestDto updatePasswordRequestDto);
     Task<DataState<List<UserCourseSimpleDto>>> GetUserCourses();
+    Task<DataState<UserCourseSimpleDto>> GetUserCourse(long courseId);
 }
