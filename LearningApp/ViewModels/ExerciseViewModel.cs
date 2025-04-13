@@ -5,8 +5,11 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using LearningApp.Factories;
 using LearningApp.Models;
+using LearningApp.Models.Dto.Complex;
+using LearningApp.Models.Dto.Response;
 using LearningApp.Service;
 using LearningApp.Utils.Enum;
+using LearningApp.Utils.StateService;
 using CourseStateService = LearningApp.Utils.StateService.CourseStateService;
 using TypeExercise = LearningApp.Utils.Enum.TypeExercise;
 
@@ -16,11 +19,12 @@ public partial class ExerciseViewModel : PageViewModel
 {
     private readonly ExerciseViewFactory _exerciseViewFactory;
     private readonly ExerciseService _exerciseService;
-    [ObservableProperty] private ObservableCollection<Lesson> _items = [];
-    [ObservableProperty] private Lesson _currentLesson;
-    [ObservableProperty] private Exercise _currentExercise;
+    [ObservableProperty] private ObservableCollection<LessonComplexDto> _items = [];
+    [ObservableProperty] private LessonComplexDto _currentLesson;
+    [ObservableProperty] private ExerciseComplexDto _currentExercise;
     [ObservableProperty] private UserControl _currentExerciseView;
     [ObservableProperty] private CourseStateService _courseStateService;
+    [ObservableProperty] private UserStateService _userStateService;
     [ObservableProperty] private int _totalExercises;
     [ObservableProperty] private int _completedExercises;
     [ObservableProperty] private int _userAttempts = 3;
@@ -39,14 +43,15 @@ public partial class ExerciseViewModel : PageViewModel
     #endregion
 
     public ExerciseViewModel(ExerciseViewFactory exerciseViewFactory, ExerciseService exerciseService,
-        CourseStateService courseStateService)
+        CourseStateService courseStateService, UserStateService userStateService)
     {
         PageName = AppPageNames.ExerciseWindow;
         _exerciseService = exerciseService;
         _courseStateService = courseStateService;
+        _userStateService = userStateService;
         _exerciseViewFactory = exerciseViewFactory;
         IsActive = true;
-        Items = new ObservableCollection<Lesson>(CourseStateService.Course.Lesson);
+        Items = new ObservableCollection<LessonComplexDto>(CourseStateService.Course.Lesson);
         CurrentLesson = Items[0];
         CurrentExercise = Items[0].Exercises![0];
         TotalExercises = Items[0].Exercises!.Count;

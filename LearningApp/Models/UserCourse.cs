@@ -4,7 +4,10 @@ namespace LearningApp.Models;
 
 public class UserCourse
 {
-    [JsonPropertyName("user")] public User? User { get; set; }
+    [JsonPropertyName("user_id")] public long UserId { get; set; }
+
+    [JsonPropertyName("course_id")] public long CourseId { get; set; }
+    [JsonPropertyName("user")] public User? User { get; init; }
 
     [JsonPropertyName("course")] public Course? Course { get; init; }
 

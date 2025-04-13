@@ -27,6 +27,8 @@ public static class DependencyInjection
         services.AddScoped<IDictionaryService, DictionaryService>();
         services.AddScoped<ITokenRefreshService, TokenRefreshService>();
         services.AddScoped<IProfileService, ProfileService>();
+        services.AddScoped<ICourseService, CourseService>();
+        services.AddScoped<IExerciseService, ExerciseService>();
         services.AddTransient<AuthTokenHandler>(sp => new AuthTokenHandler(
             sp.GetRequiredService<ITokenStorage>(),
             new Lazy<ITokenRefreshService>(sp.GetRequiredService<ITokenRefreshService>)

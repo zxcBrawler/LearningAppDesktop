@@ -9,7 +9,9 @@ using CommunityToolkit.Mvvm.Input;
 using LearningApp.Factories.WindowFactory;
 using LearningApp.Models;
 using LearningApp.Service;
+using LearningApp.Service.Interface;
 using LearningApp.Utils.Enum;
+using LearningApp.Utils.StateService;
 using CourseStateService = LearningApp.Utils.StateService.CourseStateService;
 
 namespace LearningApp.ViewModels;
@@ -36,21 +38,23 @@ public partial class CourseDetailsViewModel : PageViewModel
 
     #endregion
 
-    private readonly ExerciseService? _exerciseService;
+    private readonly IExerciseService _exerciseService;
 
     [ObservableProperty] private CourseStateService _courseStateService;
+    [ObservableProperty] private UserStateService _userStateService;
     private readonly IWindowFactory _windowFactory;
 
     private readonly Func<Window> _mainWindowGetter;
 
     public CourseDetailsViewModel(Func<Window> mainWindowGetter, CourseStateService courseStateService,
-        IWindowFactory windowFactory, ExerciseService? exerciseService)
+        IWindowFactory windowFactory, IExerciseService exerciseService, UserStateService userStateService)
     {
         PageName = AppPageNames.CourseDetails;
         _mainWindowGetter = mainWindowGetter;
         _courseStateService = courseStateService;
         _windowFactory = windowFactory;
         _exerciseService = exerciseService;
+        _userStateService = userStateService;
         UpdateSegmentColors();
     }
 
@@ -74,6 +78,9 @@ public partial class CourseDetailsViewModel : PageViewModel
     [RelayCommand(CanExecute = nameof(IsLessonsNotNull))]
     private async Task OpenLessons(Window window)
     {
+        await StartCourse();
+        await UserStateService.LoadUserCourses();
+        await CourseStateService.LoadCourses();
         var exerciseDetailsWindow = _windowFactory.CreateExerciseDetailsWindow();
         window.Close();
         await exerciseDetailsWindow.ShowDialog(_mainWindowGetter());
@@ -81,15 +88,7 @@ public partial class CourseDetailsViewModel : PageViewModel
 
     private async Task StartCourse()
     {
-        var userCourse = new UserCourse
-        {
-            Course = CourseStateService.Course,
-            // User = User, <--- save user auth data somewhere
-            IsFinished = false,
-            CourseProgress = 0
-        };
-
-        await _exerciseService?.StartNewCourse(userCourse)!;
+        await _exerciseService.StartNewCourse(CourseStateService.Course.Id);
     }
 
     public bool IsLessonsNotNull =>

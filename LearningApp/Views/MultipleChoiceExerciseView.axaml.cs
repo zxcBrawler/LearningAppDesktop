@@ -2,6 +2,7 @@
 using Avalonia.Controls;
 using Avalonia.Interactivity;
 using LearningApp.Models;
+using LearningApp.Models.Dto.Simple;
 using LearningApp.ViewModels;
 
 namespace LearningApp.Views;
@@ -17,7 +18,7 @@ public partial class MultipleChoiceExerciseView : UserControl
     {
         if (sender is not RadioButton radioButton) return;
         if (DataContext is not ExerciseViewModel viewModel) return;
-        var selectedOption = (Option)radioButton.DataContext;
+        var selectedOption = (OptionSimpleDto)radioButton.DataContext;
         if (selectedOption == null || radioButton.IsChecked != true) return;
 
         viewModel.SelectedAnswerIndex =

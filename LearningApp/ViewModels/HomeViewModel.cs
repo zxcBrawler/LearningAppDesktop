@@ -9,30 +9,18 @@ namespace LearningApp.ViewModels;
 
 public partial class HomeViewModel : PageViewModel
 {
-    #region ObservableProperties
 
-    [ObservableProperty] private ObservableCollection<UserCourseSimpleDto>? _userCourses;
-    [ObservableProperty] private bool _isLoading;
-
-    #endregion
-
-    private readonly UserStateService _userStateService;
+    [ObservableProperty] private UserStateService _userStateService;
 
     public HomeViewModel(UserStateService userStateService)
     {
         PageName = AppPageNames.Home;
         _userStateService = userStateService;
-        if (_userStateService.UserCourses == null)
-            Task.Run(async () => await GetCoursesAsync());
-        else
-            UserCourses = _userStateService.UserCourses;
+        Task.Run(async () => await GetCoursesAsync());
     }
 
     private async Task GetCoursesAsync()
     {
-        IsLoading = true;
-        await _userStateService.LoadUserCourses();
-        UserCourses = _userStateService.UserCourses;
-        IsLoading = false;
+        await UserStateService.LoadUserCourses();
     }
 }

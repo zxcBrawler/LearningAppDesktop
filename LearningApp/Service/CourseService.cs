@@ -2,36 +2,39 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using LearningApp.DataSource;
-using LearningApp.Models;
-using LearningApp.Models.Dto.Simple;
+using LearningApp.Models.Dto.Complex;
+using LearningApp.Models.Dto.Response;
+using LearningApp.Service.Interface;
+using Refit;
 
 namespace LearningApp.Service;
 
-public class CourseService(IApiInterface apiInterface)
+public class CourseService(IApiInterface apiInterface) : ICourseService
 {
-    public async Task<DataState<List<UserCourseSimpleDto>>> GetUserCourses()
+    public async Task<DataState<CourseComplexDto>> GetCourse(long courseId)
     {
         try
         {
-            var response = await apiInterface.GetUserCoursesAsync();
-
-            return DataState<List<UserCourseSimpleDto>>.Success(response, 200);
+            var response =  await apiInterface.GetCourseByIdAsync(courseId);
+            return DataState<CourseComplexDto>.Success(response, 200);
         }
-        catch (Exception e)
+        catch (ApiException e)
         {
-            return DataState<List<UserCourseSimpleDto>>.Failure(
-                "An unexpected error occurred during the login process.",
-                500);
+           return DataState<CourseComplexDto>.Failure(e.Content, 404);
         }
+        
     }
 
-    public async Task<List<Course>> GetCourses()
+    public async Task<DataState<List<CourseComplexDto>>> GetOtherCourses()
     {
-        return await apiInterface.GetCoursesAsync();
-    }
-
-    public async Task<Course> GetCourse(int courseId)
-    {
-        return await apiInterface.GetCourseByIdAsync(courseId);
+        try
+        {
+            var response = await apiInterface.GetOtherCourses();
+            return DataState<List<CourseComplexDto>>.Success(response, 200);
+        }
+        catch (ApiException e)
+        {
+            return DataState<List<CourseComplexDto>>.Failure(e.Content, 404);
+        }
     }
 }

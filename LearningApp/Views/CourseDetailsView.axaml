@@ -13,6 +13,8 @@
         x:Name="CourseDetailsWindow"
         xmlns:model="clr-namespace:LearningApp.Models"
         xmlns:localizationManager="clr-namespace:LearningApp.Utils.LocalizationManager"
+        xmlns:response="clr-namespace:LearningApp.Models.Dto.Response"
+        xmlns:complex="clr-namespace:LearningApp.Models.Dto.Complex"
         x:DataType="viewModels:CourseDetailsViewModel">
 
 
@@ -41,7 +43,8 @@
                 </Border>
 
                 <StackPanel Grid.Row="0" Grid.Column="1" Spacing="20">
-                    <TextBlock Foreground="#DFE0E2" FontSize="28" Text="{localizationManager:Localize CourseDescription}" />
+                    <TextBlock Foreground="#DFE0E2" FontSize="28"
+                               Text="{localizationManager:Localize CourseDescription}" />
                     <TextBlock TextWrapping="Wrap" TextAlignment="DetectFromContent" FontSize="20"
                                Text="{Binding CourseStateService.Course.CourseDescription}" />
 
@@ -79,7 +82,7 @@
                         </ItemsPanelTemplate>
                     </ItemsControl.ItemsPanel>
                     <ItemsControl.ItemTemplate>
-                        <DataTemplate x:DataType="model:Lesson">
+                        <DataTemplate x:DataType="complex:LessonComplexDto">
                             <Border Margin="0,0,0,10" Padding="10" Background="#35373B" CornerRadius="5">
                                 <Grid ColumnDefinitions="*,Auto">
                                     <StackPanel Grid.Column="0">
@@ -102,7 +105,8 @@
                 </ItemsControl>
 
                 <Button Grid.Row="3" Grid.ColumnSpan="2" Grid.Column="0" Classes="primary"
-                        HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Content="{localizationManager:Localize StartCourse}"
+                        HorizontalAlignment="Stretch" VerticalAlignment="Bottom"
+                        Content="{localizationManager:Localize StartCourse}"
                         HorizontalContentAlignment="Center" Margin="20" Command="{Binding OpenLessonsCommand}"
                         CommandParameter="{Binding ElementName=CourseDetailsWindow}" />
             </Grid>

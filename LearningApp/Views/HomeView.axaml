@@ -16,15 +16,9 @@
 
             <TextBlock Text="{localizationManager:Localize ContinueLearning}" FontSize="30" Foreground="White" />
         </Border>
-
-        <li:LoadingIndicator Grid.Row="1" HorizontalAlignment="Center" IsVisible="{Binding IsLoading}" Height="100"
-                             Width="100"
-                             VerticalAlignment="Center"
-                             IsActive="{Binding IsLoading}"
-                             Mode="DoubleBounce" SpeedRatio="0.9" Foreground="Gray" />
         <ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
 
-            <ItemsControl ItemsSource="{Binding UserCourses}" IsVisible="{Binding !IsLoading}">
+            <ItemsControl ItemsSource="{Binding UserStateService.UserCourses}">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
                         <WrapPanel />

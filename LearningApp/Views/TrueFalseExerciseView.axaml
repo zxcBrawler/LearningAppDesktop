@@ -10,7 +10,7 @@
     <Grid RowDefinitions="Auto,*, Auto" Margin="75">
         <StackPanel Grid.Row="1">
             <Label Content="{Binding CurrentExercise.QuestionName}" FontSize="24" Margin="10" />
-            <TextBlock Text="{Binding CurrentExercise.QuestionText}" FontSize="18" Margin="15" />
+            <TextBlock Text="{Binding CurrentExercise.QuestionDescription}" FontSize="18" Margin="15" />
             <Grid ColumnDefinitions="*,*">
                 <Button HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" Classes="primary"
                         Content="Yes"

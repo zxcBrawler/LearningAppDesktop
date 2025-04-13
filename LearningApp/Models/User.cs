@@ -17,4 +17,6 @@ public class User
     [JsonPropertyName("level")] public int Level { get; set; }
     [JsonPropertyName("current_xp")] public int CurrentXp { get; set; }
     public List<Course>? Courses { get; set; }
+
+    [JsonPropertyName("current_streak")] public int CurrentStreak { get; set; }
 }

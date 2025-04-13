@@ -1,13 +1,23 @@
 ﻿using System.Threading.Tasks;
 using LearningApp.DataSource;
-using LearningApp.Models;
+using LearningApp.Models.Dto.Simple;
+using LearningApp.Service.Interface;
+using Refit;
 
 namespace LearningApp.Service;
 
-public class ExerciseService(IApiInterface apiInterface)
+public class ExerciseService(IApiInterface apiInterface) : IExerciseService
 {
-    public async Task<UserCourse> StartNewCourse(UserCourse userCourse)
+    public async Task<DataState<UserCourseSimpleDto>> StartNewCourse(long courseId)
     {
-        return await apiInterface.PostUserCourse(userCourse);
+        try
+        {
+            var response = await apiInterface.StartCourse(courseId);
+            return DataState<UserCourseSimpleDto>.Success(response, 201);
+        }
+        catch (ApiException e)
+        {
+            return DataState<UserCourseSimpleDto>.Failure(e.Content, 404);
+        }
     }
 }

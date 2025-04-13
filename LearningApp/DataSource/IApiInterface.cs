@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using LearningApp.Models;
+using LearningApp.Models.Dto.Complex;
 using LearningApp.Models.Dto.Request;
 using LearningApp.Models.Dto.Response;
 using LearningApp.Models.Dto.Simple;
@@ -16,11 +17,8 @@ public interface IApiInterface
     public Task<List<Course>> GetCoursesAsync();
 
     [Get("/api/Courses/{courseId}")]
-    public Task<Course> GetCourseByIdAsync(int courseId);
+    public Task<CourseComplexDto> GetCourseByIdAsync(long courseId);
 
-
-    [Post("/api/UserCourses")]
-    public Task<UserCourse> PostUserCourse(UserCourse userCourse);
 
     [Get("/api/Lesson")]
     public Task<List<Lesson>> GetLessonsAsync();
@@ -49,6 +47,12 @@ public interface IApiInterface
 
     [Post("/api/UserActions/UpdateTokens")]
     Task<LoginResponse> UpdateAllTokens([Body] RefreshTokenRequestDto refreshTokenRequestDto);
+
+    [Post("/api/UserActions/StartCourse/{courseId}")]
+    public Task<UserCourseSimpleDto> StartCourse(long courseId);
+
+    [Get("/api/UserActions/GetOtherCourses")]
+    public Task<List<CourseComplexDto>> GetOtherCourses();
 
     #endregion
 

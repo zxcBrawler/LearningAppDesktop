@@ -6,7 +6,10 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using LearningApp.Factories.WindowFactory;
 using LearningApp.Models;
+using LearningApp.Models.Dto.Complex;
+using LearningApp.Models.Dto.Response;
 using LearningApp.Service;
+using LearningApp.Service.Interface;
 using LearningApp.Utils.Enum;
 using CourseStateService = LearningApp.Utils.StateService.CourseStateService;
 
@@ -14,17 +17,16 @@ namespace LearningApp.ViewModels;
 
 public partial class CoursesViewModel : PageViewModel
 {
-    [ObservableProperty] private ObservableCollection<Course> _items = [];
+   
     private readonly Func<Window> _mainWindowGetter;
 
-    private readonly CourseService _courseService;
-    private readonly IWindowFactory _windowFactory;
-    private readonly CourseStateService _courseStateService;
 
-    public CoursesViewModel(Func<Window> mainWindowGetter, CourseService courseService,
+    private readonly IWindowFactory _windowFactory;
+    [ObservableProperty] private CourseStateService _courseStateService;
+
+    public CoursesViewModel(Func<Window> mainWindowGetter,
         IWindowFactory windowFactory, CourseStateService courseStateService)
     {
-        _courseService = courseService;
         _windowFactory = windowFactory;
         _courseStateService = courseStateService;
         _mainWindowGetter = mainWindowGetter;
@@ -34,15 +36,13 @@ public partial class CoursesViewModel : PageViewModel
 
     private async Task GetCoursesAsync()
     {
-        var courses = await _courseService.GetCourses();
-        Items = new ObservableCollection<Course>(courses);
+        await CourseStateService.LoadCourses();
     }
 
     [RelayCommand]
-    private async Task OpenPopUpCourseDetails(Course course)
+    private async Task OpenPopUpCourseDetails(CourseComplexDto course)
     {
-        course = await _courseService.GetCourse(course.Id);
-        _courseStateService.Course = course;
+        await CourseStateService.GetCourseById(course.Id);
         var window = _windowFactory.CreateCourseDetailsWindow();
         await window.ShowDialog(_mainWindowGetter());
     }

@@ -23,7 +23,7 @@
 
 
         <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
-            <ItemsControl ItemsSource="{Binding Items}" HorizontalAlignment="Stretch">
+            <ItemsControl ItemsSource="{Binding CourseStateService.AvailableCourses}" HorizontalAlignment="Stretch">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
                         <WrapPanel VerticalAlignment="Top" HorizontalAlignment="Stretch" />
