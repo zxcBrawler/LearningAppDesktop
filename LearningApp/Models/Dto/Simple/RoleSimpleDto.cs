@@ -17,5 +17,5 @@ public class RoleSimpleDto
     ///
     /// </summary>
     [JsonPropertyName("role_name")]
-    public string? RoleName { get; init; }
+    public required string RoleName { get; init; }
 }

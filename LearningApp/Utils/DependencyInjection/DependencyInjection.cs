@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.Versioning;
 using System.Text.Json;
 using Avalonia;
 using Avalonia.Controls;
@@ -19,6 +20,7 @@ using Refit;
 
 namespace LearningApp.Utils.DependencyInjection;
 
+[SupportedOSPlatform("windows")]
 public static class DependencyInjection
 {
     public static void AddCommonServices(this IServiceCollection services)

@@ -20,6 +20,6 @@ public partial class ChangeProfileDataViewModel(UserStateService userState) : Vi
             ProfilePicture = UserState.CurrentUser.ProfilePicture,
             Username = UserState.CurrentUser.Username
         });
-        Console.WriteLine("updating.....");
+        // TODO: If response is successful show pop up dialog 
     }
 }

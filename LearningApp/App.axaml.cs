@@ -2,6 +2,7 @@ using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Data.Core.Plugins;
 using System.Linq;
+using System.Runtime.Versioning;
 using Avalonia.Markup.Xaml;
 using LearningApp.Utils.DependencyInjection;
 using LearningApp.ViewModels;
@@ -10,6 +11,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace LearningApp;
 
+[SupportedOSPlatform("windows")]
 public partial class App : Application
 {
     public override void Initialize()

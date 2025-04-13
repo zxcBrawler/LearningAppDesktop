@@ -9,7 +9,7 @@ namespace LearningApp.Utils.Converter;
 
 public class LevelToColorConverter : IMultiValueConverter
 {
-    public object? Convert(IList<object?> values, Type targetType, object? parameter, CultureInfo culture)
+    public object Convert(IList<object?> values, Type targetType, object? parameter, CultureInfo culture)
     {
         if (values.Count < 2 ||
             values[0] is not string levelName ||

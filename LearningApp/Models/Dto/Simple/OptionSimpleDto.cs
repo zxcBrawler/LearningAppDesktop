@@ -14,5 +14,5 @@ public class OptionSimpleDto
     /// <summary>
     ///
     /// </summary>
-    public string? Text { get; init; }
+    public required string Text { get; init; }
 }

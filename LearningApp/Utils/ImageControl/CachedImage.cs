@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Media;
@@ -33,7 +34,7 @@ public class CachedImage : Control
         SourceProperty.Changed.AddClassHandler<CachedImage>((x, e) => x.OnSourceChanged(e));
     }
 
-    private async void OnSourceChanged(AvaloniaPropertyChangedEventArgs e)
+    private async Task OnSourceChanged(AvaloniaPropertyChangedEventArgs e)
     {
         if (e.NewValue is not string url) return;
         _bitmap = await ImageCache.GetImageAsync(url);

@@ -5,10 +5,7 @@ using Avalonia.Controls;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using LearningApp.Factories;
-using LearningApp.Models;
 using LearningApp.Models.Dto.Complex;
-using LearningApp.Models.Dto.Response;
-using LearningApp.Service;
 using LearningApp.Service.Interface;
 using LearningApp.Utils.Enum;
 using LearningApp.Utils.StateService;
@@ -27,18 +24,23 @@ public partial class ExerciseViewModel : PageViewModel
     [ObservableProperty] private UserControl _currentExerciseView;
     [ObservableProperty] private CourseStateService _courseStateService;
     [ObservableProperty] private UserStateService _userStateService;
+
+    #region Current Lesson Props
+
     [ObservableProperty] private int _totalExercises;
     [ObservableProperty] private int _completedExercises;
     [ObservableProperty] private int _userAttempts = 3;
     [ObservableProperty] private bool _isUserFailed;
 
-    #region UserExerciseAnswers
+    #endregion
+
+    #region User Exercise Answers
 
     [ObservableProperty] [NotifyCanExecuteChangedFor(nameof(SubmitAnswerCommand))]
-    private string? _userTextAnswer;
+    private string _userTextAnswer = string.Empty;
 
     [ObservableProperty] [NotifyCanExecuteChangedFor(nameof(SubmitAnswerCommand))]
-    private int? _selectedAnswerIndex;
+    private int _selectedAnswerIndex = -1;
 
     [ObservableProperty] private bool _selectedTrueFalseAnswer;
 
@@ -57,7 +59,6 @@ public partial class ExerciseViewModel : PageViewModel
         CurrentLesson = Items[UserStateService.CurrentUserCourse.CurrentLesson - 1];
         CurrentExercise = CurrentLesson.Exercises[0];
         TotalExercises = CurrentLesson.Exercises.Count;
-
         CurrentExerciseView = UpdateCurrentExerciseView();
     }
 
@@ -65,11 +66,11 @@ public partial class ExerciseViewModel : PageViewModel
     #region ExercisesControl
 
     [RelayCommand(CanExecute = nameof(CanSubmit))]
-    private void SubmitAnswer()
+    private async Task SubmitAnswer()
     {
         if (CheckAnswer())
         {
-            GoToNextExercise();
+            await GoToNextExercise();
             CompletedExercises++;
         }
         else
@@ -79,19 +80,18 @@ public partial class ExerciseViewModel : PageViewModel
     }
 
     [RelayCommand]
-    private void SubmitTrueAnswer()
+    private async Task SubmitTrueAnswer()
     {
         SelectedTrueFalseAnswer = true;
-        SubmitAnswer();
+        await SubmitAnswer();
     }
 
     [RelayCommand]
-    private void SubmitFalseAnswer()
+    private async Task SubmitFalseAnswer()
     {
         SelectedTrueFalseAnswer = false;
-        SubmitAnswer();
+        await SubmitAnswer();
     }
-
 
     [RelayCommand]
     private void TryAgain()
@@ -103,13 +103,36 @@ public partial class ExerciseViewModel : PageViewModel
             IsUserFailed = true;
         }
 
-        Console.WriteLine("Try again");
+        Console.WriteLine(@"Try again");
     }
 
+    [RelayCommand]
+    private async Task GoToNextExercise()
+    {
+        var currentIndex = CurrentLesson.Exercises!.IndexOf(CurrentExercise);
+        if (currentIndex < CurrentLesson.Exercises.Count - 1)
+        {
+            CurrentExercise = CurrentLesson.Exercises[currentIndex + 1];
+            CurrentExerciseView = UpdateCurrentExerciseView();
+        }
+        else
+        {
+            await _exerciseService.CompleteLesson(CourseStateService.Course.Id);
+            UserStateService.CurrentUserCourse = null;
+            CourseStateService.Course = null;
+            await UserStateService.LoadUserCourses();
+            await UserStateService.ReloadUserAsync();
+        }
+    }
+
+    #endregion
+
+
+    #region Answers Handling
 
     private bool CheckAnswer()
     {
-        var currentExerciseType = CurrentExercise.TypeExercise!.ExerciseTypeName;
+        var currentExerciseType = CurrentExercise.TypeExercise.ExerciseTypeName;
         return currentExerciseType switch
         {
             "MultipleChoice" => CheckMultipleChoiceExercise(currentExerciseType),
@@ -134,7 +157,7 @@ public partial class ExerciseViewModel : PageViewModel
             return false;
         }
 
-        UserTextAnswer = null;
+        UserTextAnswer = string.Empty;
         return true;
     }
 
@@ -152,24 +175,6 @@ public partial class ExerciseViewModel : PageViewModel
         return true;
     }
 
-    [RelayCommand]
-    private async Task GoToNextExercise()
-    {
-        var currentIndex = CurrentLesson.Exercises!.IndexOf(CurrentExercise);
-        if (currentIndex < CurrentLesson.Exercises.Count - 1)
-        {
-            CurrentExercise = CurrentLesson.Exercises[currentIndex + 1];
-            CurrentExerciseView = UpdateCurrentExerciseView();
-        }
-        else
-        {
-            await _exerciseService.CompleteLesson(CourseStateService.Course.Id);
-            UserStateService.CurrentUserCourse = null;
-            await UserStateService.LoadUserCourses();
-            await UserStateService.ReloadUserAsync();
-        }
-    }
-
     #endregion
 
 
@@ -177,9 +182,7 @@ public partial class ExerciseViewModel : PageViewModel
 
     private UserControl UpdateCurrentExerciseView()
     {
-        return CurrentExercise.TypeExercise != null
-            ? _exerciseViewFactory.CurrentExerciseView(CurrentExercise.TypeExercise.ExerciseTypeName)
-            : throw new NotImplementedException();
+        return _exerciseViewFactory.CurrentExerciseView(CurrentExercise.TypeExercise.ExerciseTypeName);
     }
 
     #endregion

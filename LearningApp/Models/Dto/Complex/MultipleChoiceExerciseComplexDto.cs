@@ -15,6 +15,6 @@ namespace LearningApp.Models.Dto.Complex
         /// 
         /// </summary>
         [JsonPropertyName("options")]
-        public List<OptionSimpleDto>? Options { get; set; }
+        public List<OptionSimpleDto> Options { get; set; } = [];
     }
 }

@@ -12,7 +12,7 @@ public class TextAnswerExerciseSimpleDto
     /// 
     /// </summary>
     [JsonPropertyName("expected_answer")]
-    public string? ExpectedAnswer { get; set; }
+    public required string ExpectedAnswer { get; set; }
 
     /// <summary>
     /// 

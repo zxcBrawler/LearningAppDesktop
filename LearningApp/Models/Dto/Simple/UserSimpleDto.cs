@@ -18,7 +18,7 @@ public class UserSimpleDto
     /// 
     /// </summary>
     [JsonPropertyName("username")]
-    public string? Username { get; set; }
+    public required string Username { get; set; }
 
     /// <summary>
     /// 
@@ -36,13 +36,13 @@ public class UserSimpleDto
     /// 
     /// </summary>
     [JsonPropertyName("email")]
-    public string? Email { get; set; }
+    public required string Email { get; set; }
 
     /// <summary>
     /// 
     /// </summary>
     [JsonPropertyName("role")]
-    public RoleSimpleDto? Role { get; set; }
+    public required RoleSimpleDto Role { get; set; }
 
     /// <summary>
     /// 

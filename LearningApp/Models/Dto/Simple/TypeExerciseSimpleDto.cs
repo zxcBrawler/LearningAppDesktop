@@ -17,11 +17,11 @@ public class TypeExerciseSimpleDto
     ///
     /// </summary>
     [JsonPropertyName("exercise_type_name")]
-    public string? ExerciseTypeName { get; set; }
+    public required string ExerciseTypeName { get; set; }
 
     /// <summary>
     /// 
     /// </summary>
     [JsonPropertyName("exercise_type_description")]
-    public string? ExerciseTypeDescription { get; set; }
+    public required string ExerciseTypeDescription { get; set; }
 }

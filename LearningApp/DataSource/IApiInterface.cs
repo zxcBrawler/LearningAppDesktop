@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using LearningApp.Models;
 using LearningApp.Models.Dto.Complex;
 using LearningApp.Models.Dto.Request;
 using LearningApp.Models.Dto.Response;
@@ -13,15 +12,8 @@ public interface IApiInterface
 {
     #region Courses/Lessons/Exercises
 
-    [Get("/api/Courses")]
-    public Task<List<Course>> GetCoursesAsync();
-
     [Get("/api/Courses/{courseId}")]
     public Task<CourseComplexDto> GetCourseByIdAsync(long courseId);
-
-
-    [Get("/api/Lesson")]
-    public Task<List<Lesson>> GetLessonsAsync();
 
     #endregion
 
@@ -68,7 +60,7 @@ public interface IApiInterface
     public Task<string> LaunchApp();
 
     [Post("/api/Authorization/Login")]
-    public Task<LoginResponse?> Login([Body] LoginRequestDto loginRequestDto);
+    public Task<LoginResponse> Login([Body] LoginRequestDto loginRequestDto);
 
     [Post("/api/Authorization/LogOut")]
     public Task<string> LogOut();

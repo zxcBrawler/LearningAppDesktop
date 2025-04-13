@@ -12,7 +12,7 @@ public class LocalizeExtension : MarkupExtension, INotifyPropertyChanged
     public LocalizeExtension(string resourceKey)
     {
         _resourceKey = resourceKey;
-        LocalizationManager.LanguageChanged += (s, e) =>
+        LocalizationManager.LanguageChanged += (_, _) =>
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Value)));
     }
 

@@ -65,13 +65,13 @@ public partial class SettingsViewModel : PageViewModel
     }
 
     [RelayCommand]
-    private void OpenPrivacyPolicy()
+    private static void OpenPrivacyPolicy()
     {
         Process.Start(new ProcessStartInfo { FileName = "https://www.google.com", UseShellExecute = true });
     }
 
     [RelayCommand]
-    private void OpenTermsOfService()
+    private static void OpenTermsOfService()
     {
         Process.Start(new ProcessStartInfo { FileName = "https://docs.avaloniaui.net", UseShellExecute = true });
     }

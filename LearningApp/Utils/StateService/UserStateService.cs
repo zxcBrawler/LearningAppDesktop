@@ -1,12 +1,10 @@
 ﻿using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.ComponentModel;
-using LearningApp.Models;
 using LearningApp.Models.Dto.Request;
 using LearningApp.Models.Dto.Simple;
 using LearningApp.Service.Interface;
 using LearningApp.Utils.TokenManagement;
-using User = LearningApp.Models.User;
 
 namespace LearningApp.Utils.StateService;
 
@@ -80,10 +78,10 @@ public partial class UserStateService(
         var currentUserTokens = tokenStorage.LoadTokens();
         if (currentUserTokens != null)
         {
-            var newTokens = await tokenRefreshService.UpdateTokensAsync(new RefreshTokenRequestDto()
+            var newTokens = await tokenRefreshService.UpdateTokensAsync(new RefreshTokenRequestDto
             {
                 OldAccessToken = currentUserTokens.AccessToken,
-                RefreshToken = currentUserTokens.RefreshToken,
+                RefreshToken = currentUserTokens.RefreshToken
             });
             if (newTokens.IsSuccess)
             {
@@ -96,6 +94,7 @@ public partial class UserStateService(
     public void LogOut()
     {
         CurrentUser = null;
+        CurrentUserCourse = null;
         UserCourses = null;
         UserDictionaries = null;
     }

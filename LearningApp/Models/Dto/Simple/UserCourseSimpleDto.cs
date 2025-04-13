@@ -10,7 +10,6 @@ public class UserCourseSimpleDto
 {
     [JsonPropertyName("user_id")] public long UserId { get; init; }
 
-
     /// <summary>
     ///
     /// </summary>
@@ -23,13 +22,11 @@ public class UserCourseSimpleDto
     [JsonPropertyName("course")]
     public CourseSimpleDto? Course { get; set; }
 
-
     /// <summary>
     /// 
     /// </summary>
     [JsonPropertyName("is_finished")]
     public bool IsFinished { get; set; }
-
 
     /// <summary>
     /// 

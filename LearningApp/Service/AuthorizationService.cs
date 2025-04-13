@@ -19,9 +19,9 @@ public class AuthorizationService(IApiInterface apiService, ITokenStorage tokenS
             tokenStorage.DeleteTokens();
             return DataState<string>.Success(response, 200);
         }
-        catch (Exception e)
+        catch (ApiException e)
         {
-            return DataState<string>.Failure("An unexpected error occurred during the login process.",
+            return DataState<string>.Failure(e.Content,
                 500);
         }
     }

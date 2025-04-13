@@ -30,7 +30,7 @@ public class LessonSimpleDto
     /// 
     /// </summary>
     [JsonPropertyName("created_at")]
-    public DateTime? CreatedAt { get; init; }
+    public DateTime CreatedAt { get; init; }
 
     /// <summary>
     /// 

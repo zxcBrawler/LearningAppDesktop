@@ -4,6 +4,6 @@ namespace LearningApp.Models.Dto.Response;
 
 public class TokenResponse
 {
-    public string Token { get; set; }
+    public required string Token { get; set; }
     public DateTime ExpiryDate { get; set; }
 }

@@ -1,15 +1,10 @@
 ﻿using System;
-using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using Avalonia.Controls;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using LearningApp.Factories.WindowFactory;
-using LearningApp.Models;
 using LearningApp.Models.Dto.Complex;
-using LearningApp.Models.Dto.Response;
-using LearningApp.Service;
-using LearningApp.Service.Interface;
 using LearningApp.Utils.Enum;
 using CourseStateService = LearningApp.Utils.StateService.CourseStateService;
 

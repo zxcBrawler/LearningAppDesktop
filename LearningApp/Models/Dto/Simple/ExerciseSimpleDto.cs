@@ -12,6 +12,7 @@ public class ExerciseSimpleDto
     /// <summary>
     /// Gets or sets the value of the id
     /// </summary>
+    [JsonPropertyName("id_exercise")]
     public int Id { get; init; }
 
     /// <summary>
@@ -42,5 +43,5 @@ public class ExerciseSimpleDto
     /// 
     /// </summary>
     [JsonPropertyName("type_exercise")]
-    public TypeExerciseSimpleDto? TypeExercise { get; init; }
+    public required TypeExerciseSimpleDto TypeExercise { get; set; }
 }

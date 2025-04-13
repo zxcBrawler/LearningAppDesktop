@@ -15,6 +15,6 @@ namespace LearningApp.Models.Dto.Complex
         /// 
         /// </summary>
         [JsonPropertyName("exercises")]
-        public List<ExerciseComplexDto>? Exercises { get; set; }
+        public List<ExerciseComplexDto> Exercises { get; set; } = [];
     }
 }

@@ -13,20 +13,19 @@ namespace LearningApp.ViewModels;
 public partial class SignUpViewModel : PageViewModel
 {
     [ObservableProperty] [NotifyCanExecuteChangedFor(nameof(SignUpCommand))]
-    private string? _email;
-
-    private bool _isPasswordVisible;
+    private string _email = string.Empty;
 
     [ObservableProperty] [NotifyCanExecuteChangedFor(nameof(SignUpCommand))]
-    private string? _password;
+    private string _password = string.Empty;
 
     [ObservableProperty] [NotifyCanExecuteChangedFor(nameof(SignUpCommand))]
-    private string? _repeatPassword;
+    private string _repeatPassword = string.Empty;
 
     [ObservableProperty] [NotifyCanExecuteChangedFor(nameof(SignUpCommand))]
-    private string? _username;
+    private string _username = string.Empty;
 
     private readonly IAuthorizationService _authorizationService;
+    private bool _isPasswordVisible;
 
 
     public SignUpViewModel(IAuthorizationService authorizationService)
