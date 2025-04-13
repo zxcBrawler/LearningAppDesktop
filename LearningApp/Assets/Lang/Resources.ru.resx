@@ -189,4 +189,16 @@
     <data name="Statistics" xml:space="preserve">
         <value>Статистика</value>
     </data>
+    <data name="StartCourse" xml:space="preserve">
+        <value>Начать курс</value>
+    </data>
+    <data name="Lessons" xml:space="preserve">
+        <value>Уроки</value>
+    </data>
+    <data name="LanguageLevel" xml:space="preserve">
+        <value>Рекомендуемый уровень языка</value>
+    </data>
+    <data name="CourseDescription" xml:space="preserve">
+        <value>Описание курса</value>
+    </data>
 </root>

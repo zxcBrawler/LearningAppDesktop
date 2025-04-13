@@ -46,7 +46,6 @@
                         Classes="sideMenuElement" Padding="15" CornerRadius="20"
                         ToolTip.Tip="Discard lesson" ToolTip.Placement="Center"
                         Click="Button_OnClick"
-                        Command="{Binding StopLessonCommand}"
                         ToolTip.VerticalOffset="40">
                     <Svg
                         Height="35"

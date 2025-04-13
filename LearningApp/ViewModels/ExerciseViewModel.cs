@@ -156,14 +156,8 @@ public partial class ExerciseViewModel : PageViewModel
         }
         else
         {
+            // if all exercises are completed do this
         }
-    }
-
-    // TODO
-
-    [RelayCommand]
-    private void StopLesson()
-    {
     }
 
     #endregion

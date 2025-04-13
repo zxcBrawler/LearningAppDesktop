@@ -189,4 +189,16 @@
     <data name="ContinueLearning" xml:space="preserve">
         <value>Weiter lernen</value>
     </data>
+    <data name="Lessons" xml:space="preserve">
+        <value>Lektionen</value>
+    </data>
+    <data name="LanguageLevel" xml:space="preserve">
+        <value>Sprachniveau</value>
+    </data>
+    <data name="StartCourse" xml:space="preserve">
+        <value>Kurs starten</value>
+    </data>
+    <data name="CourseDescription" xml:space="preserve">
+        <value>Kursbeschreibung</value>
+    </data>
 </root>

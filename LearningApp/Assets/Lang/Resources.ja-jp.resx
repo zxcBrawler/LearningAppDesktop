@@ -189,4 +189,16 @@
     <data name="ContinueLearning" xml:space="preserve">
         <value>学習を続ける</value>
     </data>
+    <data name="CourseDescription" xml:space="preserve">
+        <value>コース説明</value>
+    </data>
+    <data name="LanguageLevel" xml:space="preserve">
+        <value>言語レベル</value>
+    </data>
+    <data name="StartCourse" xml:space="preserve">
+        <value>コースを開始</value>
+    </data>
+    <data name="Lessons" xml:space="preserve">
+        <value>レッスン</value>
+    </data>
 </root>

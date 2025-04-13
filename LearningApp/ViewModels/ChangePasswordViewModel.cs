@@ -9,8 +9,8 @@ namespace LearningApp.ViewModels;
 public partial class ChangePasswordViewModel : ViewModelBase
 {
     [ObservableProperty] private UserStateService _userState;
-    [ObservableProperty] private string? _oldPassword;
-    [ObservableProperty] private string? _newPassword;
+    [ObservableProperty] private string _oldPassword = string.Empty;
+    [ObservableProperty] private string _newPassword = string.Empty;
 
     public ChangePasswordViewModel(UserStateService userState)
     {

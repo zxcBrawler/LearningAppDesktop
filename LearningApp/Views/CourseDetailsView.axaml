@@ -12,6 +12,7 @@
         Title="CourseDetails"
         x:Name="CourseDetailsWindow"
         xmlns:model="clr-namespace:LearningApp.Models"
+        xmlns:localizationManager="clr-namespace:LearningApp.Utils.LocalizationManager"
         x:DataType="viewModels:CourseDetailsViewModel">
 
 
@@ -40,11 +41,11 @@
                 </Border>
 
                 <StackPanel Grid.Row="0" Grid.Column="1" Spacing="20">
-                    <TextBlock Foreground="#DFE0E2" FontSize="28" Text="Course Description" />
+                    <TextBlock Foreground="#DFE0E2" FontSize="28" Text="{localizationManager:Localize CourseDescription}" />
                     <TextBlock TextWrapping="Wrap" TextAlignment="DetectFromContent" FontSize="20"
                                Text="{Binding CourseStateService.Course.CourseDescription}" />
 
-                    <TextBlock Foreground="#DFE0E2" FontSize="28" Text="Language Level" />
+                    <TextBlock Foreground="#DFE0E2" FontSize="28" Text="{localizationManager:Localize LanguageLevel}" />
                     <ItemsControl ItemsSource="{Binding LevelNames}">
                         <ItemsControl.ItemsPanel>
                             <ItemsPanelTemplate>
@@ -69,7 +70,7 @@
                 </StackPanel>
 
                 <TextBlock Foreground="#DFE0E2" FontSize="28" Grid.Row="1" Grid.ColumnSpan="2" Grid.Column="0"
-                           Text="Lessons" Margin="0,20,0,10" />
+                           Text="{localizationManager:Localize Lessons}" Margin="0,20,0,10" />
                 <ItemsControl Grid.Row="2" Grid.ColumnSpan="2" Grid.Column="0"
                               ItemsSource="{Binding CourseStateService.Course.Lesson}">
                     <ItemsControl.ItemsPanel>
@@ -101,7 +102,7 @@
                 </ItemsControl>
 
                 <Button Grid.Row="3" Grid.ColumnSpan="2" Grid.Column="0" Classes="primary"
-                        HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Content="Start course"
+                        HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Content="{localizationManager:Localize StartCourse}"
                         HorizontalContentAlignment="Center" Margin="20" Command="{Binding OpenLessonsCommand}"
                         CommandParameter="{Binding ElementName=CourseDetailsWindow}" />
             </Grid>

@@ -343,13 +343,35 @@ namespace LearningApp.Assets.Lang {
             get {
                 return ResourceManager.GetString("LearningPreferences", resourceCulture);
             }
-        }public static string ContinueLearning {
+        }
+        public static string ContinueLearning {
             get {
                 return ResourceManager.GetString("ContinueLearning", resourceCulture);
             }
-        }public static string Statistics {
+        }
+        public static string Statistics {
             get {
                 return ResourceManager.GetString("Statistics", resourceCulture);
+            }
+        }
+        public static string StartCourse {
+            get {
+                return ResourceManager.GetString("StartCourse", resourceCulture);
+            }
+        }
+        public static string Lessons {
+            get {
+                return ResourceManager.GetString("Lessons", resourceCulture);
+            }
+        }
+        public static string LanguageLevel {
+            get {
+                return ResourceManager.GetString("LanguageLevel", resourceCulture);
+            }
+        }
+        public static string CourseDescription {
+            get {
+                return ResourceManager.GetString("CourseDescription", resourceCulture);
             }
         }
     }

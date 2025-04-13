@@ -31,7 +31,6 @@ public partial class HomeViewModel : PageViewModel
     private async Task GetCoursesAsync()
     {
         IsLoading = true;
-        Task.Delay(2000).Wait();
         await _userStateService.LoadUserCourses();
         UserCourses = _userStateService.UserCourses;
         IsLoading = false;

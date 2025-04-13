@@ -16,10 +16,10 @@ public partial class LogInViewModel : PageViewModel
     private readonly IAuthorizationService _authorizationService;
 
     [ObservableProperty] [NotifyCanExecuteChangedFor(nameof(LoginCommand))]
-    private string? _password;
+    private string _password = string.Empty;
 
     [ObservableProperty] [NotifyCanExecuteChangedFor(nameof(LoginCommand))]
-    private string? _email;
+    private string _email = string.Empty;
 
     public LogInViewModel(IAuthorizationService authorizationService)
     {
@@ -42,8 +42,8 @@ public partial class LogInViewModel : PageViewModel
     {
         LoginRequestDto loginRequestDto = new()
         {
-            Email = _email,
-            Password = _password
+            Email = Email,
+            Password = Password
         };
         var response = await _authorizationService.Login(loginRequestDto);
         if (response.IsSuccess)
@@ -77,7 +77,7 @@ public partial class LogInViewModel : PageViewModel
     private bool CanLogin => !string.IsNullOrEmpty(Email) && !string.IsNullOrEmpty(Password) && IsEmailValid;
     private bool IsEmailValid => IsValidEmail(Email);
 
-    private bool IsValidEmail(string? email)
+    private static bool IsValidEmail(string? email)
     {
         try
         {

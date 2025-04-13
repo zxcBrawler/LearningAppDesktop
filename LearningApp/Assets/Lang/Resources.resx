@@ -197,4 +197,16 @@
     <data name="Statistics" xml:space="preserve">
         <value>Statistics</value>
     </data>
+    <data name="StartCourse" xml:space="preserve">
+        <value>Start course</value>
+    </data>
+    <data name="Lessons" xml:space="preserve">
+        <value>Lessons</value>
+    </data>
+    <data name="LanguageLevel" xml:space="preserve">
+        <value>Language level</value>
+    </data>
+    <data name="CourseDescription" xml:space="preserve">
+        <value>Course description</value>
+    </data>
 </root>
