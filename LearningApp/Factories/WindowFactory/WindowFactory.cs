@@ -30,7 +30,7 @@ public class WindowFactory(
 
     public Window CreateChangeProfileView()
     {
-        var view = new ChangeProfileDataView()
+        var view = new ChangeProfileDataView
         {
             DataContext = windowViewModelFactory.CreateChangeProfileDataViewModel(),
             WindowStartupLocation = WindowStartupLocation.CenterOwner
@@ -40,9 +40,19 @@ public class WindowFactory(
 
     public Window CreateChangePasswordView()
     {
-        var view = new ChangePasswordView()
+        var view = new ChangePasswordView
         {
             DataContext = windowViewModelFactory.CreateChangePasswordViewModel(),
+            WindowStartupLocation = WindowStartupLocation.CenterOwner
+        };
+        return view;
+    }
+
+    public Window CreateAddDictionaryView()
+    {
+        var view = new AddDictionaryView
+        {
+            DataContext = windowViewModelFactory.CreateAddDictionaryViewModel(),
             WindowStartupLocation = WindowStartupLocation.CenterOwner
         };
         return view;

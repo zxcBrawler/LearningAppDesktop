@@ -373,6 +373,11 @@ namespace LearningApp.Assets.Lang {
             get {
                 return ResourceManager.GetString("CourseDescription", resourceCulture);
             }
+        } 
+        public static string Continue {
+            get {
+                return ResourceManager.GetString("Continue", resourceCulture);
+            }
         }
     }
 }

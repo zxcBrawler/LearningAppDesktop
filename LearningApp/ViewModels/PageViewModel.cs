@@ -20,6 +20,6 @@ public partial class PageViewModel : ViewModelBase
 
     protected PageViewModel()
     {
-        LocalizationManager.LanguageChanged += (s, e) => { OnPropertyChanged(nameof(LocalizedPageName)); };
+        LocalizationManager.LanguageChanged += (_, _) => { OnPropertyChanged(nameof(LocalizedPageName)); };
     }
 }

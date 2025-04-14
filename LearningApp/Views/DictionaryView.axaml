@@ -4,13 +4,15 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="1920" d:DesignHeight="1080"
              xmlns:viewModels="clr-namespace:LearningApp.ViewModels"
+             xmlns:imageControl="clr-namespace:LearningApp.Utils.ImageControl"
              x:DataType="viewModels:DictionaryViewModel"
              x:Class="LearningApp.Views.DictionaryView">
 
-    <Grid ColumnDefinitions="*" RowDefinitions="Auto,*" ShowGridLines="True">
+    <Grid ColumnDefinitions="*" RowDefinitions="Auto,*">
         <Border Background="Transparent" Grid.Row="0" Padding="10">
             <Grid ColumnDefinitions="*,Auto,Auto,Auto">
-                <Button Grid.Column="1" Classes="icon" VerticalAlignment="Center" Margin="5,0">
+                <Button Command="{Binding OpenAddDictionaryDialogCommand}" Grid.Column="1" Classes="icon"
+                        VerticalAlignment="Center" Margin="5,0">
                     <Svg Height="30" Width="30" Path="/Assets/Icons/plus.svg" />
                 </Button>
                 <Button Grid.Column="2" Classes="icon" VerticalAlignment="Center" Margin="5,0">
@@ -25,7 +27,7 @@
 
         <ScrollViewer Grid.Row="1">
             <StackPanel Orientation="Vertical">
-                <ItemsRepeater ItemsSource="{Binding Items}" Margin="15">
+                <ItemsRepeater ItemsSource="{Binding UserStateService.UserDictionaries}" Margin="15">
                     <ItemsRepeater.Layout>
                         <StackLayout Spacing="10" />
                     </ItemsRepeater.Layout>
@@ -34,10 +36,14 @@
                             <Border CornerRadius="15" PointerPressed="OnPointerPressed"
                                     Padding="15" Background="#35373B">
                                 <Grid ColumnDefinitions="Auto,*,*,*" ShowGridLines="False">
-                                    <Label Grid.Column="0" Content="{Binding  Id}"
-                                           VerticalAlignment="Center"
-                                           FontSize="25"
-                                           Margin="10" />
+                                    <Border ClipToBounds="True" CornerRadius="15" Margin="0,0,25,0">
+                                        <imageControl:CachedImage
+                                            Source="{Binding ImageUrl}"
+                                            Height="50"
+                                            Width="50"
+                                            Stretch="UniformToFill" />
+                                    </Border>
+
                                     <TextBlock Grid.Column="1" Text="{Binding  DictionaryName}"
                                                VerticalAlignment="Center"
                                                FontSize="25" />
@@ -47,7 +53,9 @@
                                                 CommandParameter="{Binding Id}">
                                             <Svg Height="30" Width="30" Path="/Assets/Icons/ellipsis.svg" />
                                         </Button>
-                                        <Button Classes="icon">
+                                        <Button Classes="icon"
+                                                Command="{Binding $parent[ItemsRepeater].((viewModels:DictionaryViewModel)DataContext).DeleteDictionaryCommand}"
+                                                CommandParameter="{Binding Id}">
                                             <Svg Height="30" Width="30" Path="/Assets/Icons/trash.svg" />
                                         </Button>
                                     </StackPanel>

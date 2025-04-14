@@ -1,11 +1,9 @@
 ﻿using System;
-using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using Avalonia.Controls;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using LearningApp.Factories.WindowFactory;
-using LearningApp.Models.Dto.Simple;
 using LearningApp.Utils.Enum;
 using LearningApp.Utils.StateService;
 using UserStateService = LearningApp.Utils.StateService.UserStateService;
@@ -27,12 +25,12 @@ public partial class HomeViewModel : PageViewModel
         _windowFactory = windowFactory;
         _mainWindowGetter = mainWindowGetter;
         _courseStateService = courseStateService;
-        Task.Run(async () => await GetCoursesAsync());
+        GetCoursesAsync().ConfigureAwait(false);
     }
 
     private async Task GetCoursesAsync()
     {
-        await UserStateService.LoadUserCourses();
+        await UserStateService.LoadUserCourses().ConfigureAwait(false);
     }
 
     [RelayCommand]

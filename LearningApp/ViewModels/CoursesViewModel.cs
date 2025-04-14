@@ -12,7 +12,6 @@ namespace LearningApp.ViewModels;
 
 public partial class CoursesViewModel : PageViewModel
 {
-   
     private readonly Func<Window> _mainWindowGetter;
 
 
@@ -26,12 +25,12 @@ public partial class CoursesViewModel : PageViewModel
         _courseStateService = courseStateService;
         _mainWindowGetter = mainWindowGetter;
         PageName = AppPageNames.Courses;
-        Task.Run(async () => await GetCoursesAsync());
+        GetCoursesAsync().ConfigureAwait(false);
     }
 
     private async Task GetCoursesAsync()
     {
-        await CourseStateService.LoadCourses();
+        await CourseStateService.LoadCourses().ConfigureAwait(false);
     }
 
     [RelayCommand]

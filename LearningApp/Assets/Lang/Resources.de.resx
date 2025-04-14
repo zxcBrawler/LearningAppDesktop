@@ -201,4 +201,7 @@
     <data name="CourseDescription" xml:space="preserve">
         <value>Kursbeschreibung</value>
     </data>
+    <data name="Continue" xml:space="preserve">
+        <value>Weiter</value>
+    </data>
 </root>

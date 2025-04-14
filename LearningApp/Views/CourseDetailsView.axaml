@@ -11,9 +11,7 @@
         ExtendClientAreaChromeHints="NoChrome"
         Title="CourseDetails"
         x:Name="CourseDetailsWindow"
-        xmlns:model="clr-namespace:LearningApp.Models"
         xmlns:localizationManager="clr-namespace:LearningApp.Utils.LocalizationManager"
-        xmlns:response="clr-namespace:LearningApp.Models.Dto.Response"
         xmlns:complex="clr-namespace:LearningApp.Models.Dto.Complex"
         x:DataType="viewModels:CourseDetailsViewModel">
 

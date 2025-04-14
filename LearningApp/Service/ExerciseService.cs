@@ -1,5 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using LearningApp.DataSource;
 using LearningApp.Models.Dto.Simple;
 using LearningApp.Service.Interface;

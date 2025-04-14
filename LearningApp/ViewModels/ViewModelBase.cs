@@ -2,6 +2,4 @@
 
 namespace LearningApp.ViewModels;
 
-public class ViewModelBase : ObservableRecipient
-{
-}
+public class ViewModelBase : ObservableRecipient;

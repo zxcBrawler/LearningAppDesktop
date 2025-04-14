@@ -41,7 +41,7 @@ public partial class MainAppViewModel : PageViewModel
         IsActive = true;
         CurrentTabView = _pageFactory.GetPageViewModel(AppPageNames.Home);
         _userState = userState;
-        Task.Run(async () => await LoadProfile());
+        LoadProfile().ConfigureAwait(false);
     }
 
     [RelayCommand]
@@ -59,7 +59,7 @@ public partial class MainAppViewModel : PageViewModel
 
     private async Task LoadProfile()
     {
-        await UserState.ReloadUserAsync();
+        await UserState.ReloadUserAsync().ConfigureAwait(false);
     }
 
     #region Navigation commands

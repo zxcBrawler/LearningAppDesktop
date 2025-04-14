@@ -6,24 +6,20 @@ using LearningApp.Utils.StateService;
 
 namespace LearningApp.ViewModels;
 
-public partial class ChangePasswordViewModel : ViewModelBase
+public partial class ChangePasswordViewModel(UserStateService userState) : ViewModelBase
 {
-    [ObservableProperty] private UserStateService _userState;
+    [ObservableProperty] private UserStateService _userState = userState;
     [ObservableProperty] private string _oldPassword = string.Empty;
     [ObservableProperty] private string _newPassword = string.Empty;
-
-    public ChangePasswordViewModel(UserStateService userState)
-    {
-        _userState = userState;
-    }
 
     [RelayCommand]
     private async Task UpdatePassword()
     {
-        await UserState.UpdateUserPassword(new UpdatePasswordRequestDto()
+        await UserState.UpdateUserPassword(new UpdatePasswordRequestDto
         {
             OldPassword = OldPassword,
             NewPassword = NewPassword
         });
+        // TODO: If response is successful show pop up dialog 
     }
 }

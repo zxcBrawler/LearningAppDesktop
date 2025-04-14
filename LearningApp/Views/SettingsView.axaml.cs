@@ -15,9 +15,4 @@ public partial class SettingsView : UserControl
         if (sender is not ComboBox { DataContext: SettingsViewModel viewModel } comboBox) return;
         viewModel.ChangeLanguageCommand.Execute(comboBox.SelectedIndex);
     }
-
-    private void SelectingItemsControlLang_OnSelectionChanged(object? sender, SelectionChangedEventArgs e)
-    {
-        if (sender is not ComboBox { DataContext: SettingsViewModel viewModel } comboBox) return;
-    }
 }

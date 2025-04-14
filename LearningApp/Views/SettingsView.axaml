@@ -58,7 +58,6 @@
                                   VerticalAlignment="Center"
                                   CornerRadius="20"
                                   Margin="20"
-                                  SelectionChanged="SelectingItemsControlLang_OnSelectionChanged"
                                   SelectedIndex="{Binding Settings.SelectedThemeIndex, FallbackValue='0'}"
                                   FontSize="22">
                             <ComboBoxItem FontSize="22" Content="{localizationManager:Localize Dark}" />

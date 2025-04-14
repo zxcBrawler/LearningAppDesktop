@@ -9,4 +9,6 @@ public interface IWindowFactory
 
     Window CreateChangeProfileView();
     Window CreateChangePasswordView();
+
+    Window CreateAddDictionaryView();
 }

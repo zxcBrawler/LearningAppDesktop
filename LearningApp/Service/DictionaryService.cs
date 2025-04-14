@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using LearningApp.DataSource;
+using LearningApp.Models.Dto.Request;
 using LearningApp.Models.Dto.Simple;
 using LearningApp.Service.Interface;
 using Refit;
@@ -32,6 +34,32 @@ public class DictionaryService(IApiInterface apiInterface) : IDictionaryService
         catch (ApiException e)
         {
             return DataState<DictionarySimpleDto?>.Failure(e.Content, 404);
+        }
+    }
+
+    public async Task<DataState<DictionarySimpleDto?>> AddNewDictionary(AddDictionaryRequestDto dictionaryRequestDto)
+    {
+        try
+        {
+            var response = await apiInterface.AddNewDictionary(dictionaryRequestDto);
+            return DataState<DictionarySimpleDto?>.Success(response, 200);
+        }
+        catch (ApiException e)
+        {
+            return DataState<DictionarySimpleDto?>.Failure(e.Content, 500);
+        }
+    }
+
+    public async Task<DataState<bool>> DeleteDictionary(int dictionaryId)
+    {
+        try
+        {
+            var response = await apiInterface.DeleteDictionary(dictionaryId);
+            return DataState<bool>.Success(response, 200);
+        }
+        catch (ApiException e)
+        {
+            return DataState<bool>.Failure(e.Content, 500);
         }
     }
 }

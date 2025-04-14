@@ -12,7 +12,7 @@ using Microsoft.Extensions.DependencyInjection;
 namespace LearningApp;
 
 [SupportedOSPlatform("windows")]
-public partial class App : Application
+public class App : Application
 {
     public override void Initialize()
     {

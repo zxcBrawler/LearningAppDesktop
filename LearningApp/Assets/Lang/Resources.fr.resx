@@ -201,4 +201,7 @@
     <data name="Lessons" xml:space="preserve">
         <value>Leçons</value>
     </data>
+    <data name="Continue" xml:space="preserve">
+        <value>Continuer</value>
+    </data>
 </root>

@@ -1,0 +1,38 @@
+﻿<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:localizationManager="clr-namespace:LearningApp.Utils.LocalizationManager"
+        xmlns:viewmodel="clr-namespace:LearningApp.ViewModels"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="LearningApp.Views.AddDictionaryView"
+        Width="800"
+        Height="450"
+        WindowState="Normal"
+        ExtendClientAreaToDecorationsHint="True"
+        ExtendClientAreaChromeHints="NoChrome"
+        CanResize="False"
+        x:DataType="viewmodel:AddDictionaryViewModel"
+        Title="AddDictionaryView">
+    <StackPanel Margin="15" Spacing="20" VerticalAlignment="Top">
+        <Button
+            HorizontalAlignment="Right"
+            VerticalAlignment="Center"
+            Classes="icon"
+            ToolTip.Tip="{localizationManager:Localize Close}"
+            Click="Button_OnClick"
+            Background="Transparent"
+            BorderThickness="0">
+            <Svg
+                Classes="passwordIcon"
+                Path="/Assets/Icons/x.svg" />
+        </Button>
+        <Label Content="Dictionary name" FontSize="20" />
+        <TextBox FontSize="20" Watermark="Dictionary name" Text="{Binding DictionaryName}" />
+        <Label Content="Image Url (optional)" FontSize="20" />
+        <TextBox FontSize="20" Watermark="Image Url" Text="{Binding ImageUrl}" />
+        <Button Classes="primary" Content="Add new dictionary" HorizontalAlignment="Stretch"
+                Command="{Binding AddDictionaryCommand}"
+                HorizontalContentAlignment="Center" />
+    </StackPanel>
+</Window>

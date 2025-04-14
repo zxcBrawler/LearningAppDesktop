@@ -31,6 +31,12 @@ public interface IApiInterface
     [Get("/api/UserActions/GetUserDictionaryById/{dictionaryId}")]
     public Task<DictionarySimpleDto> GetUserDictionaryById(int dictionaryId);
 
+    [Post("/api/UserActions/AddNewDictionary")]
+    public Task<DictionarySimpleDto> AddNewDictionary([Body] AddDictionaryRequestDto dictionaryRequestDto);
+
+    [Delete("/api/UserActions/DeleteDictionary/{dictionaryId}")]
+    public Task<bool> DeleteDictionary(int dictionaryId);
+
     [Put("/api/UserActions/UpdateProfileData")]
     Task<bool> UpdateUserProfile([Body] UpdateProfileRequestDto updateProfileRequestDto);
 

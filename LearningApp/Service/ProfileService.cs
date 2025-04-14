@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using LearningApp.DataSource;
-using LearningApp.Models;
 using LearningApp.Models.Dto.Request;
 using LearningApp.Models.Dto.Simple;
 using LearningApp.Service.Interface;

@@ -109,7 +109,7 @@ public partial class ExerciseViewModel : PageViewModel
     [RelayCommand]
     private async Task GoToNextExercise()
     {
-        var currentIndex = CurrentLesson.Exercises!.IndexOf(CurrentExercise);
+        var currentIndex = CurrentLesson.Exercises.IndexOf(CurrentExercise);
         if (currentIndex < CurrentLesson.Exercises.Count - 1)
         {
             CurrentExercise = CurrentLesson.Exercises[currentIndex + 1];

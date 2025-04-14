@@ -33,6 +33,23 @@ public partial class UserStateService(
         return response.Value;
     }
 
+    public async Task AddNewDictionary(AddDictionaryRequestDto addDictionaryRequestDto)
+    {
+        var response = await dictionaryService.AddNewDictionary(addDictionaryRequestDto);
+        if (response.IsSuccess)
+        {
+            await GetUserDictionaries();
+        }
+    }
+    public async Task DeleteDictionary(int id)
+    {
+        var response = await dictionaryService.DeleteDictionary(id);
+        if (response.IsSuccess)
+        {
+            await GetUserDictionaries();
+        }
+    }
+
     public async Task ReloadUserAsync()
     {
         var response = await profileService.GetUserProfile();

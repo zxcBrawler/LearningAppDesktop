@@ -5,7 +5,6 @@
              mc:Ignorable="d" d:DesignWidth="1920" d:DesignHeight="1080"
              xmlns:viewModels="clr-namespace:LearningApp.ViewModels"
              xmlns:model="clr-namespace:LearningApp.Models.Dto.Simple"
-             xmlns:li="clr-namespace:LoadingIndicators.Avalonia;assembly=LoadingIndicators.Avalonia"
              xmlns:imageControl="clr-namespace:LearningApp.Utils.ImageControl"
              xmlns:localizationManager="clr-namespace:LearningApp.Utils.LocalizationManager"
              x:DataType="viewModels:HomeViewModel"
@@ -88,7 +87,8 @@
                                                    VerticalAlignment="Center"
                                                    Margin="10,0,0,0" />
                                     </Grid>
-                                    <Button Grid.ColumnSpan="2" Grid.Column="0" Grid.Row="5" Content="Continue"
+                                    <Button Grid.ColumnSpan="2" Grid.Column="0" Grid.Row="5"
+                                            Content="{localizationManager:Localize Continue}"
                                             Command="{Binding $parent[ItemsControl].((viewModels:HomeViewModel)DataContext).ContinueCourseCommand}"
                                             FontSize="16"
                                             HorizontalContentAlignment="Center"

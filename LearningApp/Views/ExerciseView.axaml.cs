@@ -17,13 +17,13 @@ public partial class ExerciseView : Window
     {
         try
         {
-            var dialog = new TwofoldDialog()
+            var dialog = new TwofoldDialog
             {
                 Message = "Do you want to discard this lesson?",
                 PositiveText = "Yes",
                 NegativeText = "No",
                 Width = 400,
-                HorizontalButtonAlignment = HorizontalAlignment.Stretch,
+                HorizontalButtonAlignment = HorizontalAlignment.Stretch
             };
             var result = await dialog.ShowAsync();
             if (result is { HasValue: true, Value: true })

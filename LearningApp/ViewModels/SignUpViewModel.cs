@@ -51,21 +51,21 @@ public partial class SignUpViewModel : PageViewModel
     [RelayCommand(CanExecute = nameof(CanSignUp))]
     private async Task SignUp()
     {
-        var response = await _authorizationService.Register(new RegisterRequestDto()
+        var response = await _authorizationService.Register(new RegisterRequestDto
         {
             Email = Email,
             Username = Username,
             Password = Password
         });
 
-        var baseDialog = new CustomPopUpDialog()
+        var baseDialog = new CustomPopUpDialog
         {
             Message = (response.IsSuccess
                 ? $"We have sent you an email to {Email}. Please check your inbox."
                 : response.ErrorMessage) ?? string.Empty,
             ButtonText = "Got it!",
             HorizontalButtonAlignment = HorizontalAlignment.Stretch,
-            HorizontalContentAlignment = HorizontalAlignment.Center,
+            HorizontalContentAlignment = HorizontalAlignment.Center
         };
         await baseDialog.ShowAsync();
         if (response.IsSuccess)

@@ -209,4 +209,7 @@
     <data name="CourseDescription" xml:space="preserve">
         <value>Course description</value>
     </data>
+    <data name="Continue" xml:space="preserve">
+        <value>Continue</value>
+    </data>
 </root>

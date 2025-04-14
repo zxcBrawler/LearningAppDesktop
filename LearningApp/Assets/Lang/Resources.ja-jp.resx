@@ -201,4 +201,7 @@
     <data name="Lessons" xml:space="preserve">
         <value>レッスン</value>
     </data>
+    <data name="Continue" xml:space="preserve">
+        <value>続く</value>
+    </data>
 </root>

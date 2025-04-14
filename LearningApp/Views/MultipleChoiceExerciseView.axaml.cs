@@ -1,7 +1,6 @@
 ﻿using System;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
-using LearningApp.Models;
 using LearningApp.Models.Dto.Simple;
 using LearningApp.ViewModels;
 

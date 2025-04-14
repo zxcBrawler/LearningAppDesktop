@@ -31,19 +31,14 @@ public static class DependencyInjection
         services.AddScoped<IProfileService, ProfileService>();
         services.AddScoped<ICourseService, CourseService>();
         services.AddScoped<IExerciseService, ExerciseService>();
+        services.AddScoped<IDictionaryService, DictionaryService>();
         services.AddTransient<AuthTokenHandler>(sp => new AuthTokenHandler(
             sp.GetRequiredService<ITokenStorage>(),
             new Lazy<ITokenRefreshService>(sp.GetRequiredService<ITokenRefreshService>)
         ));
         services.AddScoped<ITokenStorage, TokenStorage>();
 
-        services.AddRefitClient<IApiInterface>(new RefitSettings
-            {
-                ContentSerializer = new SystemTextJsonContentSerializer(new JsonSerializerOptions()
-                {
-                    PropertyNameCaseInsensitive = true
-                })
-            })
+        services.AddRefitClient<IApiInterface>()
             .ConfigureHttpClient(c =>
             {
                 c.BaseAddress = new Uri("https://localhost:7087");
@@ -75,6 +70,7 @@ public static class DependencyInjection
         services.AddTransient<ChangeProfileDataViewModel>();
         services.AddTransient<ChangePasswordViewModel>();
         services.AddTransient<WordSearchViewModel>();
+        services.AddTransient<AddDictionaryViewModel>();
 
         services.AddSingleton<Func<Window>>(_ =>
         {

@@ -7,8 +7,6 @@ using Avalonia.Controls;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using LearningApp.Factories.WindowFactory;
-using LearningApp.Models;
-using LearningApp.Service;
 using LearningApp.Service.Interface;
 using LearningApp.Utils.Enum;
 using LearningApp.Utils.StateService;

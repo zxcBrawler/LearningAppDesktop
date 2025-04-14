@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using LearningApp.DataSource;
 using LearningApp.Models.Dto.Complex;
-using LearningApp.Models.Dto.Response;
 using LearningApp.Service.Interface;
 using Refit;
 
@@ -15,14 +13,13 @@ public class CourseService(IApiInterface apiInterface) : ICourseService
     {
         try
         {
-            var response =  await apiInterface.GetCourseByIdAsync(courseId);
+            var response = await apiInterface.GetCourseByIdAsync(courseId);
             return DataState<CourseComplexDto>.Success(response, 200);
         }
         catch (ApiException e)
         {
-           return DataState<CourseComplexDto>.Failure(e.Content, 404);
+            return DataState<CourseComplexDto>.Failure(e.Content, 404);
         }
-        
     }
 
     public async Task<DataState<List<CourseComplexDto>>> GetOtherCourses()

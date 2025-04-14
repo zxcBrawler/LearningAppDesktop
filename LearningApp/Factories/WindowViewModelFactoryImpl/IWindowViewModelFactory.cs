@@ -8,4 +8,6 @@ public interface IWindowViewModelFactory
     CourseDetailsViewModel CreateCourseDetailsViewModel();
     ChangePasswordViewModel CreateChangePasswordViewModel();
     ChangeProfileDataViewModel CreateChangeProfileDataViewModel();
+
+    AddDictionaryViewModel CreateAddDictionaryViewModel();
 }

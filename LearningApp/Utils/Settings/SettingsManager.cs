@@ -22,7 +22,7 @@ public class SettingsManager
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"Error loading settings: {ex.Message}");
+            Console.WriteLine($@"Error loading settings: {ex.Message}");
         }
 
         return new Settings
@@ -33,7 +33,7 @@ public class SettingsManager
             SelectedTime = "00:00",
             SelectedDailyGoalIndex = 0,
             SelectedLanguageIndex = 0,
-            SelectedLanguageCode = "en",
+            SelectedLanguageCode = "en"
         };
     }
 
@@ -47,7 +47,7 @@ public class SettingsManager
             SelectedTime = "00:00",
             SelectedDailyGoalIndex = 0,
             SelectedLanguageIndex = 0,
-            SelectedLanguageCode = "en",
+            SelectedLanguageCode = "en"
         };
         SaveSettings(defaultSettings);
     }
@@ -62,13 +62,13 @@ public class SettingsManager
                 if (directoryPath != null)
                     Directory.CreateDirectory(directoryPath);
 
-            var json = JsonConvert.SerializeObject(settings, Newtonsoft.Json.Formatting.Indented);
+            var json = JsonConvert.SerializeObject(settings, Formatting.Indented);
 
             File.WriteAllText(SettingsPath, json);
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"Error saving settings: {ex.Message}");
+            Console.WriteLine($@"Error saving settings: {ex.Message}");
         }
     }
 }

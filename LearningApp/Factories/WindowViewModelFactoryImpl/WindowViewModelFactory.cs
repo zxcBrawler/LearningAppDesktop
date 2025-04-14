@@ -25,4 +25,9 @@ public class WindowViewModelFactory(IServiceProvider serviceProvider) : IWindowV
     {
         return serviceProvider.GetRequiredService<ChangeProfileDataViewModel>();
     }
+
+    public AddDictionaryViewModel CreateAddDictionaryViewModel()
+    {
+        return serviceProvider.GetRequiredService<AddDictionaryViewModel>();
+    }
 }

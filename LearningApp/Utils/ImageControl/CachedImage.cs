@@ -31,7 +31,7 @@ public class CachedImage : Control
 
     static CachedImage()
     {
-        SourceProperty.Changed.AddClassHandler<CachedImage>((x, e) => x.OnSourceChanged(e));
+        SourceProperty.Changed.AddClassHandler<CachedImage>((x, e) => _ = x.OnSourceChanged(e));
     }
 
     private async Task OnSourceChanged(AvaloniaPropertyChangedEventArgs e)
