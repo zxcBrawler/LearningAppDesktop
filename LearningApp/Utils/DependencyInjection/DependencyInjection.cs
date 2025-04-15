@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Runtime.Versioning;
-using System.Text.Json;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.ApplicationLifetimes;
@@ -25,18 +24,22 @@ public static class DependencyInjection
 {
     public static void AddCommonServices(this IServiceCollection services)
     {
-        services.AddScoped<IAuthorizationService, AuthorizationService>();
-        services.AddScoped<IDictionaryService, DictionaryService>();
-        services.AddScoped<ITokenRefreshService, TokenRefreshService>();
-        services.AddScoped<IProfileService, ProfileService>();
-        services.AddScoped<ICourseService, CourseService>();
-        services.AddScoped<IExerciseService, ExerciseService>();
-        services.AddScoped<IDictionaryService, DictionaryService>();
+        AddHttpClients(services);
+        AddAuthenticationServices(services);
+        AddApplicationServices(services);
+        AddViewModels(services);
+        AddViews(services);
+        AddFactories(services);
+        AddStateServices(services);
+        AddUtilities(services);
+    }
+
+    private static void AddHttpClients(IServiceCollection services)
+    {
         services.AddTransient<AuthTokenHandler>(sp => new AuthTokenHandler(
             sp.GetRequiredService<ITokenStorage>(),
             new Lazy<ITokenRefreshService>(sp.GetRequiredService<ITokenRefreshService>)
         ));
-        services.AddScoped<ITokenStorage, TokenStorage>();
 
         services.AddRefitClient<IApiInterface>()
             .ConfigureHttpClient(c =>
@@ -46,62 +49,99 @@ public static class DependencyInjection
             })
             .AddHttpMessageHandler<AuthTokenHandler>()
             .AddStandardResilienceHandler();
+    }
 
-        services.AddTransient<CourseService>();
-        services.AddSingleton<SettingsManager>();
-        services.AddSingleton<StateService.UserStateService>();
-        services.AddSingleton<StateService.CourseStateService>();
-        services.AddTransient<ExerciseService>();
-        services.AddTransient<MainWindowViewModel>();
-        services.AddTransient<LogInViewModel>();
-        services.AddTransient<SignUpViewModel>();
-        services.AddTransient<MainAppViewModel>();
-        services.AddTransient<CoursesViewModel>();
-        services.AddTransient<HomeViewModel>();
-        services.AddTransient<SettingsViewModel>();
-        services.AddTransient<CourseDetailsViewModel>();
-        services.AddTransient<DictionaryViewModel>();
-        services.AddTransient<ExerciseViewModel>();
-        services.AddTransient<CourseDetailsView>();
-        services.AddTransient<ProfileViewModel>();
+    private static void AddAuthenticationServices(IServiceCollection services)
+    {
+        services.AddScoped<ITokenStorage, TokenStorage>();
+        services.AddScoped<IAuthorizationService, AuthorizationService>();
+        services.AddScoped<ITokenRefreshService, TokenRefreshService>();
+    }
+
+    private static void AddApplicationServices(IServiceCollection services)
+    {
+        services.AddScoped<IProfileService, ProfileService>();
+        services.AddScoped<ICourseService, CourseService>();
+        services.AddScoped<IExerciseService, ExerciseService>();
+        services.AddScoped<IDictionaryService, DictionaryService>();
+    }
+
+    private static void AddViewModels(IServiceCollection services)
+    {
+        var viewModels = new[]
+        {
+            typeof(MainWindowViewModel),
+            typeof(LogInViewModel),
+            typeof(SignUpViewModel),
+            typeof(MainAppViewModel),
+            typeof(CoursesViewModel),
+            typeof(HomeViewModel),
+            typeof(SettingsViewModel),
+            typeof(CourseDetailsViewModel),
+            typeof(DictionaryViewModel),
+            typeof(ExerciseViewModel),
+            typeof(ProfileViewModel),
+            typeof(ChangeProfileDataViewModel),
+            typeof(ChangePasswordViewModel),
+            typeof(WordSearchViewModel),
+            typeof(AddDictionaryViewModel),
+            typeof(StatisticsViewModel)
+        };
+
+        foreach (var vmType in viewModels)
+        {
+            services.AddTransient(vmType);
+        }
+    }
+
+    private static void AddViews(IServiceCollection services)
+    {
         services.AddTransient<TrueFalseExerciseView>();
         services.AddTransient<MultipleChoiceExerciseView>();
         services.AddTransient<TextAnswerExerciseView>();
-        services.AddTransient<ChangeProfileDataViewModel>();
-        services.AddTransient<ChangePasswordViewModel>();
-        services.AddTransient<WordSearchViewModel>();
-        services.AddTransient<AddDictionaryViewModel>();
-        services.AddTransient<StatisticsViewModel>();
+    }
 
-        services.AddSingleton<Func<Window>>(_ =>
+
+    private static void AddStateServices(IServiceCollection services)
+    {
+        services.AddSingleton<StateService.UserStateService>();
+        services.AddSingleton<StateService.CourseStateService>();
+    }
+
+    private static void AddUtilities(IServiceCollection services)
+    {
+        services.AddSingleton<SettingsManager>();
+    }
+
+    private static void AddFactories(IServiceCollection services)
+    {
+        services.AddSingleton<Func<Window>>(provider => () =>
         {
-            return () =>
-            {
-                if (Application.Current?.ApplicationLifetime is IClassicDesktopStyleApplicationLifetime
-                    {
-                        MainWindow: not null
-                    } desktop)
-                    return desktop.MainWindow;
-                return null;
-            };
+            if (Application.Current?.ApplicationLifetime is IClassicDesktopStyleApplicationLifetime
+                {
+                    MainWindow: not null
+                } desktop)
+                return desktop.MainWindow;
+            return null;
         });
 
-        services.AddSingleton<Func<AppPageNames, PageViewModel>>(x => name => name switch
+        services.AddSingleton<Func<AppPageNames, PageViewModel>>(provider => name => name switch
         {
-            AppPageNames.LogIn => x.GetRequiredService<LogInViewModel>(),
-            AppPageNames.SignUp => x.GetRequiredService<SignUpViewModel>(),
-            AppPageNames.MainApp => x.GetRequiredService<MainAppViewModel>(),
-            AppPageNames.Courses => x.GetRequiredService<CoursesViewModel>(),
-            AppPageNames.Settings => x.GetRequiredService<SettingsViewModel>(),
-            AppPageNames.Home => x.GetRequiredService<HomeViewModel>(),
-            AppPageNames.Dictionaries => x.GetRequiredService<DictionaryViewModel>(),
-            AppPageNames.Profile => x.GetRequiredService<ProfileViewModel>(),
-            AppPageNames.ExerciseWindow => x.GetRequiredService<ExerciseViewModel>(),
-            AppPageNames.CourseDetails => x.GetRequiredService<CourseDetailsViewModel>(),
-            AppPageNames.Words => x.GetRequiredService<WordSearchViewModel>(),
-            AppPageNames.Statistics => x.GetRequiredService<StatisticsViewModel>(),
+            AppPageNames.LogIn => provider.GetRequiredService<LogInViewModel>(),
+            AppPageNames.SignUp => provider.GetRequiredService<SignUpViewModel>(),
+            AppPageNames.MainApp => provider.GetRequiredService<MainAppViewModel>(),
+            AppPageNames.Courses => provider.GetRequiredService<CoursesViewModel>(),
+            AppPageNames.Settings => provider.GetRequiredService<SettingsViewModel>(),
+            AppPageNames.Home => provider.GetRequiredService<HomeViewModel>(),
+            AppPageNames.Dictionaries => provider.GetRequiredService<DictionaryViewModel>(),
+            AppPageNames.Profile => provider.GetRequiredService<ProfileViewModel>(),
+            AppPageNames.ExerciseWindow => provider.GetRequiredService<ExerciseViewModel>(),
+            AppPageNames.CourseDetails => provider.GetRequiredService<CourseDetailsViewModel>(),
+            AppPageNames.Words => provider.GetRequiredService<WordSearchViewModel>(),
+            AppPageNames.Statistics => provider.GetRequiredService<StatisticsViewModel>(),
             _ => throw new ArgumentOutOfRangeException(nameof(name), name, null)
         });
+
         services.AddSingleton<Func<string, UserControl>>(provider => exerciseType => exerciseType switch
         {
             "TrueFalse" => provider.GetRequiredService<TrueFalseExerciseView>(),

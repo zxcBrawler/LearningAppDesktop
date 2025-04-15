@@ -1,10 +1,12 @@
+using CommunityToolkit.Mvvm.ComponentModel;
+
 namespace LearningApp.Models.Dto.Simple;
 
 // TODO: Complete docs
 /// <summary>
 /// The option simple dto class
 /// </summary>
-public class OptionSimpleDto
+public partial class OptionSimpleDto : ObservableObject
 {
     /// <summary>
     ///
@@ -15,4 +17,6 @@ public class OptionSimpleDto
     ///
     /// </summary>
     public required string Text { get; init; }
+
+    [ObservableProperty] private bool _isSelected;
 }

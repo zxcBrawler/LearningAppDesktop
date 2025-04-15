@@ -24,4 +24,10 @@ public partial class CourseStateService(ICourseService courseService) : Observab
         if (response is { IsSuccess: true, Value: not null })
             Course = response.Value;
     }
+
+    public void LogOut()
+    {
+        AvailableCourses = null;
+        Course = null;
+    }
 }

@@ -6,6 +6,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using LearningApp.Factories;
 using LearningApp.Models.Dto.Complex;
+using LearningApp.Models.Dto.Simple;
 using LearningApp.Service.Interface;
 using LearningApp.Utils.Enum;
 using LearningApp.Utils.StateService;
@@ -64,6 +65,16 @@ public partial class ExerciseViewModel : PageViewModel
 
 
     #region ExercisesControl
+
+    [RelayCommand]
+    private void SelectAnswer(OptionSimpleDto option)
+    {
+        SelectedAnswerIndex = CurrentExercise.MultipleChoiceExercise.Options.IndexOf(option);
+        foreach (var opt in CurrentExercise.MultipleChoiceExercise.Options)
+        {
+            opt.IsSelected = (opt == option);
+        }
+    }
 
     [RelayCommand(CanExecute = nameof(CanSubmit))]
     private async Task SubmitAnswer()

@@ -12,16 +12,4 @@ public partial class MultipleChoiceExerciseView : UserControl
     {
         InitializeComponent();
     }
-
-    private void ToggleButton_OnIsCheckedChanged(object? sender, RoutedEventArgs e)
-    {
-        if (sender is not RadioButton radioButton) return;
-        if (DataContext is not ExerciseViewModel viewModel) return;
-        var selectedOption = (OptionSimpleDto)radioButton.DataContext;
-        if (selectedOption == null || radioButton.IsChecked != true) return;
-
-        viewModel.SelectedAnswerIndex =
-            viewModel.CurrentExercise.MultipleChoiceExercise.Options.IndexOf(selectedOption);
-        Console.WriteLine(viewModel.SelectedAnswerIndex);
-    }
 }

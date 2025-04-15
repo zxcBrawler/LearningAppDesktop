@@ -6,6 +6,7 @@ using LearningApp.Factories;
 using LearningApp.Service.Interface;
 using LearningApp.Utils.Enum;
 using LearningApp.Utils.ImageControl;
+using LearningApp.Utils.StateService;
 using UserStateService = LearningApp.Utils.StateService.UserStateService;
 
 namespace LearningApp.ViewModels;
@@ -17,6 +18,7 @@ public partial class MainAppViewModel : PageViewModel
     private readonly IAuthorizationService _authorizationService;
     private readonly PageFactory _pageFactory;
     [ObservableProperty] private UserStateService _userState;
+    [ObservableProperty] private CourseStateService _courseState;
 
     #endregion
 
@@ -38,14 +40,16 @@ public partial class MainAppViewModel : PageViewModel
     #endregion
 
     public MainAppViewModel(PageFactory pageFactory, IAuthorizationService authorizationService,
-        UserStateService userState)
+        UserStateService userState, CourseStateService courseState)
     {
         _pageFactory = pageFactory;
         _authorizationService = authorizationService;
+        _userState = userState;
+        _courseState = courseState;
         PageName = AppPageNames.MainApp;
         IsActive = true;
         CurrentTabView = _pageFactory.GetPageViewModel(AppPageNames.Home);
-        _userState = userState;
+
         LoadProfile().ConfigureAwait(false);
     }
 
@@ -58,6 +62,7 @@ public partial class MainAppViewModel : PageViewModel
     {
         await _authorizationService.LogOut();
         UserState.LogOut();
+        CourseState.LogOut();
         ImageCache.ClearCache();
         WeakReferenceMessenger.Default.Send(new NavigateToPageMessage(AppPageNames.LogIn));
     }

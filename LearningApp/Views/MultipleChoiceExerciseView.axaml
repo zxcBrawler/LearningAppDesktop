@@ -18,9 +18,9 @@
                     <RadioButton Content="{Binding Text}"
                                  GroupName="MultipleChoiceOptions"
                                  Margin="15"
-                                 IsChecked="{Binding SelectedAnswerIndex,
-                                           RelativeSource={RelativeSource AncestorType={x:Type viewModels:ExerciseViewModel}}}"
-                                 IsCheckedChanged="ToggleButton_OnIsCheckedChanged" />
+                                 IsChecked="{Binding IsSelected, Mode=TwoWay}"
+                                 Command="{Binding $parent[ItemsControl].((viewModels:ExerciseViewModel)DataContext).SelectAnswerCommand}"
+                                 CommandParameter="{Binding}" />
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>

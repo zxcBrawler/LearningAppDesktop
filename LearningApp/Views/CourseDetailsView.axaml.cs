@@ -14,9 +14,5 @@ public partial class CourseDetailsView : Window
     private void Go_Back(object? sender, RoutedEventArgs e)
     {
         Close();
-        if (DataContext is CourseDetailsViewModel courseDetailsViewModel)
-        {
-            courseDetailsViewModel.CourseStateService.Course = null;
-        }
     }
 }
