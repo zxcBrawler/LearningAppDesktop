@@ -378,6 +378,10 @@ namespace LearningApp.Assets.Lang {
             get {
                 return ResourceManager.GetString("Continue", resourceCulture);
             }
+        }public static string XpToNextLevel {
+            get {
+                return ResourceManager.GetString("XpToNextLevel", resourceCulture);
+            }
         }
     }
 }

@@ -70,7 +70,7 @@
         <value>Уровень</value>
     </data>
     <data name="CurrentStreak" xml:space="preserve">
-        <value>Стрик</value>
+        <value>Активные дни</value>
     </data>
     <data name="CurrentXP" xml:space="preserve">
         <value>Количество опыта</value>
@@ -203,5 +203,8 @@
     </data>
     <data name="Continue" xml:space="preserve">
         <value>Продолжить</value>
+    </data>
+    <data name="XpToNextLevel" xml:space="preserve">
+        <value>опыта до следующего уровня</value>
     </data>
 </root>

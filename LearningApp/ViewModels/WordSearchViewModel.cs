@@ -2,7 +2,7 @@
 
 namespace LearningApp.ViewModels;
 
-public class WordSearchViewModel : PageViewModel
+public partial class WordSearchViewModel : PageViewModel
 {
     public WordSearchViewModel()
     {

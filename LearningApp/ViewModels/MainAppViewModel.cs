@@ -28,6 +28,11 @@ public partial class MainAppViewModel : PageViewModel
     [NotifyPropertyChangedFor(nameof(IsHomePageActive))]
     [NotifyPropertyChangedFor(nameof(IsCoursesPageActive))]
     [NotifyPropertyChangedFor(nameof(IsSettingsPageActive))]
+    [NotifyPropertyChangedFor(nameof(IsDictionariesPageActive))]
+    [NotifyPropertyChangedFor(nameof(IsProfilePageActive))]
+    [NotifyPropertyChangedFor(nameof(IsWordSearchPageActive))]
+    [NotifyPropertyChangedFor(nameof(IsStatisticsPageActive))]
+    [NotifyPropertyChangedFor(nameof(IsStatisticsPageActive))]
     private PageViewModel _currentTabView;
 
     #endregion
@@ -83,6 +88,9 @@ public partial class MainAppViewModel : PageViewModel
     [RelayCommand]
     private void NavigateToWordSearchPage() => CurrentTabView = _pageFactory.GetPageViewModel(AppPageNames.Words);
 
+    [RelayCommand]
+    private void NavigateToStatisticsPage() => CurrentTabView = _pageFactory.GetPageViewModel(AppPageNames.Statistics);
+
     #endregion
 
     #region Boolean properties
@@ -90,6 +98,10 @@ public partial class MainAppViewModel : PageViewModel
     public bool IsHomePageActive => CurrentTabView.PageName == AppPageNames.Home;
     public bool IsCoursesPageActive => CurrentTabView.PageName == AppPageNames.Courses;
     public bool IsSettingsPageActive => CurrentTabView.PageName == AppPageNames.Settings;
+    public bool IsDictionariesPageActive => CurrentTabView.PageName == AppPageNames.Dictionaries;
+    public bool IsProfilePageActive => CurrentTabView.PageName == AppPageNames.Profile;
+    public bool IsWordSearchPageActive => CurrentTabView.PageName == AppPageNames.Words;
+    public bool IsStatisticsPageActive => CurrentTabView.PageName == AppPageNames.Statistics;
 
     #endregion
 }

@@ -5,6 +5,7 @@
              xmlns:dialogHostAvalonia="clr-namespace:DialogHostAvalonia;assembly=DialogHost.Avalonia"
              xmlns:dialogs="clr-namespace:AvaloniaDialogs.Views;assembly=AvaloniaDialogs"
              xmlns:converter="clr-namespace:LearningApp.Utils.Converter"
+             xmlns:avalonia="clr-namespace:LiveChartsCore.SkiaSharpView.Avalonia;assembly=LiveChartsCore.SkiaSharpView.Avalonia"
              RequestedThemeVariant="Dark">
     <!-- "Default" ThemeVariant follows system theme variant. "Dark" or "Light" are other available options. -->
 
@@ -182,6 +183,10 @@
             <Style Selector="^:checked /template/ Border#SwitchKnobBounds">
                 <Setter Property="Background" Value="{StaticResource AccentColor}" />
             </Style>
+        </Style>
+
+        <Style Selector="avalonia|PieChart Label">
+            <Setter Property="FontFamily" Value="/Assets/Fonts/Roboto_Mono/static/RobotoMono-Medium.ttf#Roboto Mono" />
         </Style>
 
     </Application.Styles>

@@ -212,4 +212,7 @@
     <data name="Continue" xml:space="preserve">
         <value>Continue</value>
     </data>
+    <data name="XpToNextLevel" xml:space="preserve">
+        <value>XP to next level</value>
+    </data>
 </root>

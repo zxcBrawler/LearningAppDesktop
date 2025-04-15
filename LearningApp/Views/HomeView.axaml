@@ -103,8 +103,5 @@
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
         </ScrollViewer>
-        <Border Grid.Row="2" Padding="10">
-            <TextBlock Text="{localizationManager:Localize Statistics}" FontSize="30" Foreground="White" />
-        </Border>
     </Grid>
 </UserControl>

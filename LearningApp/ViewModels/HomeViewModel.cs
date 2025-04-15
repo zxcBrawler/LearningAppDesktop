@@ -17,6 +17,7 @@ public partial class HomeViewModel : PageViewModel
     private readonly IWindowFactory _windowFactory;
     private readonly Func<Window> _mainWindowGetter;
 
+
     public HomeViewModel(UserStateService userStateService, IWindowFactory windowFactory, Func<Window> mainWindowGetter,
         CourseStateService courseStateService)
     {

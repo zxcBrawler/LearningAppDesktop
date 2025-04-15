@@ -1,0 +1,32 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:viewmodel="clr-namespace:LearningApp.ViewModels"
+             xmlns:avalonia="clr-namespace:LiveChartsCore.SkiaSharpView.Avalonia;assembly=LiveChartsCore.SkiaSharpView.Avalonia"
+             mc:Ignorable="d" d:DesignWidth="1920" d:DesignHeight="1080"
+             x:DataType="viewmodel:StatisticsViewModel"
+             x:Class="LearningApp.Views.StatisticsView">
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <Grid RowDefinitions="Auto,Auto">
+            <Border CornerRadius="25" Background="#35373B" Margin="25">
+                <avalonia:CartesianChart
+                    Height="500"
+                    XAxes="{Binding XAxes}"
+                    Series="{Binding Series}"
+                    Title="{Binding Title}"
+                    Foreground="White">
+                </avalonia:CartesianChart>
+            </Border>
+            <Border Grid.Row="1" CornerRadius="25" Background="#35373B" Margin="25">
+                <avalonia:CartesianChart
+                    Height="500"
+                    XAxes="{Binding XAxes}"
+                    Series="{Binding Series}"
+                    Title="{Binding Title}">
+                </avalonia:CartesianChart>
+            </Border>
+        </Grid>
+    </ScrollViewer>
+</UserControl>

@@ -28,7 +28,7 @@ public partial class MainWindowViewModel : ViewModelBase, IRecipient<NavigateToP
         _pageFactory = pageFactory;
         IsActive = true;
 
-        apiInterface.LaunchApp().Wait();
+        apiInterface.LaunchApp().ConfigureAwait(false);
         var tokens = tokenStorage.ValidateTokens();
 
         CurrentView = _pageFactory.GetPageViewModel(tokens ? AppPageNames.MainApp : AppPageNames.LogIn);

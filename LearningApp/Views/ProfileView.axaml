@@ -5,11 +5,12 @@
              xmlns:viewModels="clr-namespace:LearningApp.ViewModels"
              xmlns:localizationManager="clr-namespace:LearningApp.Utils.LocalizationManager"
              xmlns:imageControl="clr-namespace:LearningApp.Utils.ImageControl"
+             xmlns:avalonia="clr-namespace:LiveChartsCore.SkiaSharpView.Avalonia;assembly=LiveChartsCore.SkiaSharpView.Avalonia"
              mc:Ignorable="d" d:DesignWidth="1920" d:DesignHeight="1080"
              x:Class="LearningApp.Views.ProfileView"
              x:DataType="viewModels:ProfileViewModel">
     <Grid ColumnDefinitions="*,*,*" RowDefinitions="*,*,*">
-        <Border Grid.RowSpan="3" Background="#35373B" CornerRadius="20" Margin="0,15,15,0">
+        <Border Grid.RowSpan="3" Background="#35373B" CornerRadius="20" Margin="0,15,15,15">
             <StackPanel Margin="15" Spacing="20" VerticalAlignment="Top">
                 <Border ClipToBounds="True" Height="200" CornerRadius="20">
                     <imageControl:CachedImage
@@ -47,20 +48,55 @@
             </StackPanel>
         </Border>
 
-        <Border Grid.Row="0" Grid.Column="1" Grid.RowSpan="3" Grid.ColumnSpan="2" Background="#35373B"
-                Margin="0,15,0,0" CornerRadius="20">
-            <StackPanel Orientation="Vertical" Spacing="20" Margin="20">
-                <Label Content="{localizationManager:Localize CurrentLevel}" FontSize="20" />
-                <Label FontSize="20" IsEnabled="False"
-                       Content="{Binding UserState.CurrentUser.Level}" />
-                <Label Content="{localizationManager:Localize CurrentStreak}" FontSize="20" />
-                <Label FontSize="20" IsEnabled="False"
-                       Content="{Binding UserState.CurrentUser.CurrentStreak}" />
-                <Label Content="{localizationManager:Localize CurrentXP}" FontSize="20" />
-                <Label FontSize="20" IsEnabled="False"
-                       Content="{Binding UserState.CurrentUser.CurrentXp}" />
-            </StackPanel>
+        <Border Margin="0,15,0,0" Grid.Row="0" Grid.Column="1" Grid.RowSpan="3" Grid.ColumnSpan="2"
+                Background="Transparent" CornerRadius="20">
+            <Grid RowDefinitions="*,*,*,*" ColumnDefinitions="*,*">
+                <Border Background="#35373B" CornerRadius="20" Margin="0,0,15,15">
+                    <StackPanel Spacing="10" Margin="15" VerticalAlignment="Center">
+                        <Label Content="{localizationManager:Localize CurrentLevel}" HorizontalAlignment="Center"
+                                   FontSize="24" />
+                        <TextBlock HorizontalAlignment="Center" Text="{Binding UserState.CurrentUser.Level}"
+                                   FontSize="32" FontWeight="Bold" />
+                    </StackPanel>
+                </Border>
 
+                <Border Grid.Row="0" Grid.Column="1" Background="#35373B" CornerRadius="20" Margin="0,0,0,15">
+                    <StackPanel Spacing="10" Margin="15" VerticalAlignment="Center">
+                        <Label Content="{localizationManager:Localize CurrentStreak}"
+                                   HorizontalAlignment="Center"
+                                   FontSize="24" />
+                        <TextBlock Text="{Binding UserState.CurrentUser.CurrentStreak}"
+                                   FontSize="32" FontWeight="Bold" HorizontalAlignment="Center" />
+                    </StackPanel>
+
+                </Border>
+
+                <Border Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="3" Margin="0,0,0,15"
+                        Background="#35373B" CornerRadius="20">
+                    <StackPanel VerticalAlignment="Center" Spacing="5">
+                        <Label Content="{localizationManager:Localize CurrentXP}" HorizontalAlignment="Center"
+                                   FontSize="24" />
+
+                        <avalonia:PieChart
+                            Series="{Binding Series}"
+                            InitialRotation="-90"
+                            MinValue="0"
+                            Height="300"
+                            Width="300"
+                            MaxValue="{Binding CurrentLevelCap}">
+                        </avalonia:PieChart>
+                        <TextBlock FontSize="16" TextAlignment="Center">
+                            <Run Text="{Binding UserState.CurrentUser.CurrentXp}" />
+                            <Run Text="/" />
+                            <Run Text="{Binding CurrentLevelCap}" />
+                            <LineBreak />
+                            <Run Text="{Binding RemainingXp}" />
+                            <Run Text="{localizationManager:Localize XpToNextLevel}" />
+                        </TextBlock>
+                    </StackPanel>
+
+                </Border>
+            </Grid>
         </Border>
     </Grid>
 </UserControl>

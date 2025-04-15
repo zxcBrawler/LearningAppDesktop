@@ -71,6 +71,7 @@ public static class DependencyInjection
         services.AddTransient<ChangePasswordViewModel>();
         services.AddTransient<WordSearchViewModel>();
         services.AddTransient<AddDictionaryViewModel>();
+        services.AddTransient<StatisticsViewModel>();
 
         services.AddSingleton<Func<Window>>(_ =>
         {
@@ -98,6 +99,7 @@ public static class DependencyInjection
             AppPageNames.ExerciseWindow => x.GetRequiredService<ExerciseViewModel>(),
             AppPageNames.CourseDetails => x.GetRequiredService<CourseDetailsViewModel>(),
             AppPageNames.Words => x.GetRequiredService<WordSearchViewModel>(),
+            AppPageNames.Statistics => x.GetRequiredService<StatisticsViewModel>(),
             _ => throw new ArgumentOutOfRangeException(nameof(name), name, null)
         });
         services.AddSingleton<Func<string, UserControl>>(provider => exerciseType => exerciseType switch

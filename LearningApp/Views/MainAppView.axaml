@@ -86,6 +86,22 @@
                                                Text="{localizationManager:Localize Dictionaries}" />
                                 </StackPanel>
                             </Button>
+                            <Button HorizontalAlignment="Stretch"
+                                    Command="{Binding NavigateToStatisticsPageCommand }"
+                                    Classes="sideMenuElement" Padding="15" CornerRadius="20"
+                                    ToolTip.Tip="{localizationManager:Localize Statistics}"
+                                    ToolTip.Placement="Center"
+                                    ToolTip.VerticalOffset="40">
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Spacing="20">
+                                    <Svg
+                                        Height="35"
+                                        Width="35"
+                                        Path="/Assets/Icons/chart-line.svg" />
+                                    <TextBlock TextWrapping="Wrap" Foreground="#DFE0E2" FontSize="24"
+                                               IsVisible="{Binding IsPaneOpen}"
+                                               Text="{localizationManager:Localize Statistics}" />
+                                </StackPanel>
+                            </Button>
                             <Button HorizontalAlignment="Stretch" Command="{Binding NavigateToSettingsPageCommand}"
                                     Classes="sideMenuElement" Padding="15" CornerRadius="20"
                                     ToolTip.Tip="{localizationManager:Localize Settings}" ToolTip.Placement="Center"

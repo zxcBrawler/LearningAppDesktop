@@ -30,5 +30,8 @@ public enum AppPageNames
     ExerciseWindow,
 
     [LocalizedDescription("Words", typeof(Resources))]
-    Words
+    Words,
+
+    [LocalizedDescription("Statistics", typeof(Resources))]
+    Statistics
 }
