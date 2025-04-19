@@ -7,5 +7,5 @@ namespace LearningApp.Service.Interface;
 public interface IExerciseService
 {
     Task<DataState<UserCourseSimpleDto>> StartNewCourse(long courseId);
-    Task<DataState<UserCourseSimpleDto>> CompleteLesson(long courseId);
+    Task<DataState<UserCourseSimpleDto>> CompleteLesson(long courseId, int userLifeCount);
 }

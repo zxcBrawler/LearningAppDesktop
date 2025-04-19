@@ -50,7 +50,7 @@ public interface IApiInterface
     public Task<UserCourseSimpleDto> StartCourse(long courseId);
 
     [Post("/api/UserActions/CompleteLesson/{courseId}")]
-    public Task<UserCourseSimpleDto> CompleteLesson(long courseId);
+    public Task<UserCourseSimpleDto> CompleteLesson(long courseId, int userLifeCount);
 
     [Get("/api/UserActions/GetUserCourse/{courseId}")]
     public Task<UserCourseSimpleDto> GetUserCourse(long courseId);

@@ -21,11 +21,11 @@ public class ExerciseService(IApiInterface apiInterface) : IExerciseService
         }
     }
 
-    public async Task<DataState<UserCourseSimpleDto>> CompleteLesson(long courseId)
+    public async Task<DataState<UserCourseSimpleDto>> CompleteLesson(long courseId, int userLifeCount)
     {
         try
         {
-            var response = await apiInterface.CompleteLesson(courseId);
+            var response = await apiInterface.CompleteLesson(courseId, userLifeCount);
             return DataState<UserCourseSimpleDto>.Success(response, 200);
         }
         catch (ApiException e)

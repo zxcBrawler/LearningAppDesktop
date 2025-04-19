@@ -128,7 +128,7 @@ public partial class ExerciseViewModel : PageViewModel
         }
         else
         {
-            await _exerciseService.CompleteLesson(CourseStateService.Course.Id);
+            await _exerciseService.CompleteLesson(CourseStateService.Course.Id, UserAttempts);
             UserStateService.CurrentUserCourse = null;
             CourseStateService.Course = null;
             await UserStateService.LoadUserCourses();

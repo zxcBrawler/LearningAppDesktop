@@ -13,22 +13,22 @@ namespace LearningApp.ViewModels;
 public partial class CoursesViewModel : PageViewModel
 {
     private readonly Func<Window> _mainWindowGetter;
-
-
     private readonly IWindowFactory _windowFactory;
+
     [ObservableProperty] private CourseStateService _courseStateService;
 
     public CoursesViewModel(Func<Window> mainWindowGetter,
         IWindowFactory windowFactory, CourseStateService courseStateService)
     {
+        PageName = AppPageNames.Courses;
         _windowFactory = windowFactory;
         _courseStateService = courseStateService;
         _mainWindowGetter = mainWindowGetter;
-        PageName = AppPageNames.Courses;
-        GetCoursesAsync().ConfigureAwait(false);
+        OnWindowLoaded().ConfigureAwait(false);
     }
 
-    private async Task GetCoursesAsync()
+    [RelayCommand]
+    private async Task OnWindowLoaded()
     {
         await CourseStateService.LoadCourses().ConfigureAwait(false);
     }

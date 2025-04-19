@@ -60,23 +60,24 @@
 
                                     <Border Grid.Row="3" Grid.ColumnSpan="2" Grid.Column="0" Background="#202125"
                                             CornerRadius="15" Margin="5">
-                                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Stretch" Margin="5">
+                                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center"
+                                                    HorizontalAlignment="Stretch" Margin="5">
                                             <Label Content="Level:" FontSize="16"
                                                    VerticalAlignment="Center" Margin="5,0,0,0" />
                                             <TextBlock
-                                                       Text="{Binding CourseLanguageLevel}" FontSize="16"
-                                                       VerticalAlignment="Center"
-                                                      />
+                                                Text="{Binding CourseLanguageLevel}" FontSize="16"
+                                                VerticalAlignment="Center" />
                                         </StackPanel>
                                     </Border>
                                     <Border Grid.Row="4" Grid.ColumnSpan="2" Grid.Column="0" Background="#202125"
                                             CornerRadius="15" Margin="5">
-                                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Stretch" Margin="5">
+                                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center"
+                                                    HorizontalAlignment="Stretch" Margin="5">
                                             <Label Content="Total lessons: " FontSize="16"
                                                    VerticalAlignment="Center" Margin="5,0,0,0" />
                                             <TextBlock
                                                 Text="{Binding Lesson.Count, FallbackValue=0}" FontSize="16"
-                                                VerticalAlignment="Center"/>
+                                                VerticalAlignment="Center" />
                                         </StackPanel>
                                     </Border>
 
