@@ -20,6 +20,7 @@ public partial class SettingsViewModel : PageViewModel
     }
 
 
+    [RelayCommand]
     private void LoadSettings()
     {
         Settings = SettingsManager.LoadSettings();

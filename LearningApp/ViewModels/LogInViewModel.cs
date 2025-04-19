@@ -40,7 +40,7 @@ public partial class LogInViewModel : PageViewModel
     [RelayCommand(CanExecute = nameof(CanLogin))]
     private async Task Login()
     {
-        LoginRequestDto loginRequestDto = new()
+        var loginRequestDto = new LoginRequestDto
         {
             Email = Email,
             Password = Password
@@ -52,7 +52,6 @@ public partial class LogInViewModel : PageViewModel
             Console.WriteLine(response.StatusCode);
         }
         else
-
         {
             Console.WriteLine(response.ErrorMessage);
         }

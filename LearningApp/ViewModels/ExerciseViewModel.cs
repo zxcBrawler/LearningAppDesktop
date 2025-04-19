@@ -56,15 +56,19 @@ public partial class ExerciseViewModel : PageViewModel
         _userStateService = userStateService;
         _exerciseViewFactory = exerciseViewFactory;
         IsActive = true;
+    }
+
+    #region ExercisesControl
+
+    [RelayCommand]
+    private void WindowLoaded()
+    {
         Items = new ObservableCollection<LessonComplexDto>(CourseStateService.Course.Lesson);
         CurrentLesson = Items[UserStateService.CurrentUserCourse.CurrentLesson - 1];
         CurrentExercise = CurrentLesson.Exercises[0];
         TotalExercises = CurrentLesson.Exercises.Count;
         CurrentExerciseView = UpdateCurrentExerciseView();
     }
-
-
-    #region ExercisesControl
 
     [RelayCommand]
     private void SelectAnswer(OptionSimpleDto option)

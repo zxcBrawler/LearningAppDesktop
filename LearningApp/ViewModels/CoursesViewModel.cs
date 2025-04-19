@@ -24,7 +24,6 @@ public partial class CoursesViewModel : PageViewModel
         _windowFactory = windowFactory;
         _courseStateService = courseStateService;
         _mainWindowGetter = mainWindowGetter;
-        OnWindowLoaded().ConfigureAwait(false);
     }
 
     [RelayCommand]

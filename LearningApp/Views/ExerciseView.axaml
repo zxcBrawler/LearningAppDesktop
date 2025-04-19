@@ -2,6 +2,9 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+
+        xmlns:i="clr-namespace:Avalonia.Xaml.Interactivity;assembly=Avalonia.Xaml.Interactivity"
+        xmlns:ia="clr-namespace:Avalonia.Xaml.Interactions.Core;assembly=Avalonia.Xaml.Interactions"
         mc:Ignorable="d" d:DesignWidth="1920" d:DesignHeight="1080"
         WindowState="Maximized"
         CanResize="False"
@@ -12,6 +15,14 @@
         xmlns:views="clr-namespace:AvaloniaDialogs.Views;assembly=AvaloniaDialogs"
         x:DataType="viewModels:ExerciseViewModel"
         Title="ExerciseView">
+
+    <i:Interaction.Behaviors>
+        <ia:EventTriggerBehavior EventName="Loaded">
+            <InvokeCommandAction Command="{Binding WindowLoadedCommand}" CommandParameter="{Binding}" />
+        </ia:EventTriggerBehavior>
+    </i:Interaction.Behaviors>
+
+
     <views:ReactiveDialogHost CloseOnClickAway="True" Background="#494C51">
         <StackPanel>
             <Grid ColumnDefinitions="Auto, *, Auto, Auto" Margin="50">

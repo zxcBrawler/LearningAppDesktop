@@ -26,10 +26,10 @@ public partial class HomeViewModel : PageViewModel
         _windowFactory = windowFactory;
         _mainWindowGetter = mainWindowGetter;
         _courseStateService = courseStateService;
-        GetCoursesAsync().ConfigureAwait(false);
     }
 
-    private async Task GetCoursesAsync()
+    [RelayCommand]
+    private async Task OnWindowLoaded()
     {
         await UserStateService.LoadUserCourses().ConfigureAwait(false);
     }

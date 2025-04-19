@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using LearningApp.DataSource;
 using LearningApp.Factories;
@@ -13,7 +14,6 @@ namespace LearningApp.ViewModels;
 public partial class MainWindowViewModel : ViewModelBase, IRecipient<NavigateToPageMessage>
 {
     private readonly PageFactory _pageFactory;
-
 
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(IsLogInPageActive))]

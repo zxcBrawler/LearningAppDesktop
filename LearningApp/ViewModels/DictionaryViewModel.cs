@@ -25,11 +25,10 @@ public partial class DictionaryViewModel : PageViewModel
         _windowFactory = windowFactory;
         _mainWindowGetter = mainWindowGetter;
         PageName = AppPageNames.Dictionaries;
-
-        GetDictionariesAsync().ConfigureAwait(false);
     }
 
-    private async Task GetDictionariesAsync()
+    [RelayCommand]
+    private async Task OnWindowLoaded()
     {
         await UserStateService.GetUserDictionaries().ConfigureAwait(false);
     }

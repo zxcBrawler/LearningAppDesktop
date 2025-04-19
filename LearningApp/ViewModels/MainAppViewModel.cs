@@ -49,8 +49,6 @@ public partial class MainAppViewModel : PageViewModel
         PageName = AppPageNames.MainApp;
         IsActive = true;
         CurrentTabView = _pageFactory.GetPageViewModel(AppPageNames.Home);
-
-        LoadProfile().ConfigureAwait(false);
     }
 
     [RelayCommand]
@@ -67,6 +65,7 @@ public partial class MainAppViewModel : PageViewModel
         WeakReferenceMessenger.Default.Send(new NavigateToPageMessage(AppPageNames.LogIn));
     }
 
+    [RelayCommand]
     private async Task LoadProfile()
     {
         await UserState.ReloadUserAsync().ConfigureAwait(false);
