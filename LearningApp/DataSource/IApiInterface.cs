@@ -61,6 +61,12 @@ public interface IApiInterface
     [Get("/api/Words/GetWordFromDictionary")]
     public Task<List<MerriamWebsterResponseDto>> GetWordFromDictionary(string requestWord);
 
+    [Post("/api/Words/AddWord")]
+    public Task<WordSimpleDto> AddWord([Body] MerriamWebsterResponseDto word, int dictionaryId);
+
+    [Post("/api/UserActions/AddWordToDictionary/{dictionaryId}/{wordId}")]
+    public Task<DictionarySimpleDto> AddWordToDictionary(int wordId, int dictionaryId);
+
     #endregion
 
     #region Authentication

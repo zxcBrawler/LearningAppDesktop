@@ -3,6 +3,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:viewModels="clr-namespace:LearningApp.ViewModels"
+        xmlns:imageControl="clr-namespace:LearningApp.Utils.ImageControl"
         mc:Ignorable="d" d:DesignWidth="1920" d:DesignHeight="1080"
         x:Class="LearningApp.Views.WordDetailsView"
         WindowState="Maximized"
@@ -27,7 +28,7 @@
                       HorizontalScrollBarVisibility="Disabled"
                       Padding="20">
             <Grid ColumnDefinitions="*"
-                  RowDefinitions="Auto,Auto,Auto,Auto,Auto"
+                  RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto"
                   MaxWidth="1300"
                   HorizontalAlignment="Stretch"
                   Margin="20,0">
@@ -80,14 +81,12 @@
                     </StackPanel>
                 </Border>
 
-                <!-- Definitions Header -->
                 <TextBlock Grid.Row="2"
                            FontSize="28"
-                           Foreground="#DFE0E2"
+                           Foreground="White"
                            Text="Definitions"
                            Margin="0,20,0,10" />
 
-                <!-- Definitions List -->
                 <ItemsRepeater Grid.Row="3"
                                ItemsSource="{Binding WordStateService.SelectedWord.ShortDefinitions}">
                     <ItemsRepeater.Layout>
@@ -107,14 +106,52 @@
                     </ItemsRepeater.ItemTemplate>
                 </ItemsRepeater>
 
-                <!-- Add Button -->
-                <Button Grid.Row="4"
-                        Classes="primary"
-                        HorizontalAlignment="Stretch"
-                        VerticalAlignment="Bottom"
-                        Content="Add to dictionary"
-                        HorizontalContentAlignment="Center"
-                        Margin="0,20,0,0" />
+                <TextBlock Grid.Row="4"
+                           FontSize="28"
+                           Foreground="White"
+                           Text="Add to dictionary"
+                           Margin="0,20,0,10" />
+                <ScrollViewer Grid.Row="5">
+                    <StackPanel Orientation="Vertical">
+                        <ItemsRepeater ItemsSource="{Binding UserStateService.UserDictionaries}">
+                            <ItemsRepeater.Layout>
+                                <StackLayout Spacing="10" />
+                            </ItemsRepeater.Layout>
+                            <ItemsRepeater.ItemTemplate>
+                                <DataTemplate>
+                                    <Border CornerRadius="15"
+                                            Padding="15" Background="#35373B">
+                                        <Grid ColumnDefinitions="Auto,*,*,*" ShowGridLines="False">
+                                            <Border ClipToBounds="True" CornerRadius="15" Margin="0,0,25,0">
+                                                <imageControl:CachedImage
+                                                    Source="{Binding ImageUrl}"
+                                                    Height="50"
+                                                    Width="50"
+                                                    Stretch="UniformToFill" />
+                                            </Border>
+
+                                            <TextBlock Grid.Column="1" Text="{Binding  DictionaryName}"
+                                                       VerticalAlignment="Center"
+                                                       FontSize="25" />
+                                            <!-- Add Button -->
+                                            <Button
+                                                Grid.Column="3" Classes="icon"
+                                                HorizontalAlignment="Right"
+                                                VerticalAlignment="Center"
+                                                HorizontalContentAlignment="Center"
+                                                Command="{Binding $parent[ItemsRepeater].((viewModels:WordDetailsViewModel)DataContext).AddWordToDictionaryCommand}"
+                                                CommandParameter="{Binding Id}">
+                                                <Svg Height="30" Width="30" Path="/Assets/Icons/plus.svg" />
+                                            </Button>
+                                        </Grid>
+                                    </Border>
+                                </DataTemplate>
+                            </ItemsRepeater.ItemTemplate>
+                        </ItemsRepeater>
+                    </StackPanel>
+                </ScrollViewer>
+
+
             </Grid>
         </ScrollViewer>
     </Grid>

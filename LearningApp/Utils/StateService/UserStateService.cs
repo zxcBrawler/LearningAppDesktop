@@ -1,7 +1,10 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.ComponentModel;
+using LearningApp.DataSource;
 using LearningApp.Models.Dto.Request;
+using LearningApp.Models.Dto.Response;
 using LearningApp.Models.Dto.Simple;
 using LearningApp.Service.Interface;
 using LearningApp.Utils.TokenManagement;
@@ -12,6 +15,7 @@ public partial class UserStateService(
     IProfileService profileService,
     ITokenRefreshService tokenRefreshService,
     IDictionaryService dictionaryService,
+    IWordService wordService,
     ITokenStorage tokenStorage) : ObservableObject
 {
     [ObservableProperty] private UserSimpleDto? _currentUser;
@@ -41,6 +45,7 @@ public partial class UserStateService(
             await GetUserDictionaries();
         }
     }
+
     public async Task DeleteDictionary(int id)
     {
         var response = await dictionaryService.DeleteDictionary(id);
@@ -87,6 +92,24 @@ public partial class UserStateService(
         {
             await ForceRefreshTokens();
             await ReloadUserAsync();
+        }
+    }
+
+    public async Task AddWord(MerriamWebsterResponseDto word, int dictionaryId)
+    {
+        var response = await wordService.AddWord(word, dictionaryId);
+        if (response is { IsSuccess: true, Value: not null })
+        {
+            await GetUserDictionaries();
+        }
+    }
+
+    public async Task AddWordToDictionary(int wordId, int dictionaryId)
+    {
+        var response = await dictionaryService.AddWordToDictionary(wordId, dictionaryId);
+        if (response.IsSuccess)
+        {
+            await GetUserDictionaries();
         }
     }
 

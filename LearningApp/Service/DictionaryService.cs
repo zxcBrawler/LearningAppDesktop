@@ -50,6 +50,19 @@ public class DictionaryService(IApiInterface apiInterface) : IDictionaryService
         }
     }
 
+    public async Task<DataState<DictionarySimpleDto?>> AddWordToDictionary(int wordId, int dictionaryId)
+    {
+        try
+        {
+            var response = await apiInterface.AddWordToDictionary(wordId, dictionaryId);
+            return DataState<DictionarySimpleDto?>.Success(response, 200);
+        }
+        catch (ApiException e)
+        {
+            return DataState<DictionarySimpleDto?>.Failure(e.Content, 500);
+        }
+    }
+
     public async Task<DataState<bool>> DeleteDictionary(int dictionaryId)
     {
         try

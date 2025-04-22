@@ -11,5 +11,6 @@ public interface IDictionaryService
     Task<DataState<List<DictionarySimpleDto>>> GetUserDictionaries();
     Task<DataState<DictionarySimpleDto?>> GetUserDictionaryById(int dictionaryId);
     Task<DataState<DictionarySimpleDto?>> AddNewDictionary(AddDictionaryRequestDto dictionaryRequestDto);
+    Task<DataState<DictionarySimpleDto?>> AddWordToDictionary(int wordId, int dictionaryId);
     Task<DataState<bool>> DeleteDictionary(int dictionaryId);
 }

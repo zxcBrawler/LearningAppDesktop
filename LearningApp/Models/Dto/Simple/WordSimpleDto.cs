@@ -12,7 +12,10 @@ public class WordSimpleDto
     [JsonPropertyName("word_pronunciation")]
     public string? WordPronunciation { get; set; }
 
+    [JsonPropertyName("word_pronunciation_audio")]
+    public string? WordPronunciationAudio { get; set; }
+
     [JsonPropertyName("usage_examples")] public string? UsageExamples { get; set; }
-    [JsonPropertyName("part_of_speech")] public List<PartOfSpeechEnum> PartOfSpeech { get; set; } = [];
+    [JsonPropertyName("part_of_speech")] public string? PartOfSpeech { get; set; }
     [JsonPropertyName("language_level")] public required string LanguageLevel { get; set; }
 }
