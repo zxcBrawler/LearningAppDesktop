@@ -64,6 +64,7 @@ public static class DependencyInjection
         services.AddScoped<ICourseService, CourseService>();
         services.AddScoped<IExerciseService, ExerciseService>();
         services.AddScoped<IDictionaryService, DictionaryService>();
+        services.AddScoped<IWordService, WordService>();
     }
 
     private static void AddViewModels(IServiceCollection services)
@@ -115,7 +116,7 @@ public static class DependencyInjection
 
     private static void AddFactories(IServiceCollection services)
     {
-        services.AddSingleton<Func<Window>>(provider => () =>
+        services.AddSingleton<Func<Window>>(_ => () =>
         {
             if (Application.Current?.ApplicationLifetime is IClassicDesktopStyleApplicationLifetime
                 {

@@ -3,10 +3,58 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:viewModels="clr-namespace:LearningApp.ViewModels"
-             xmlns:avalonia="clr-namespace:LiveChartsCore.SkiaSharpView.Avalonia;assembly=LiveChartsCore.SkiaSharpView.Avalonia"
-             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             mc:Ignorable="d" d:DesignWidth="1920" d:DesignHeight="1080"
              x:Class="LearningApp.Views.WordSearchView"
              x:DataType="viewModels:WordSearchViewModel">
 
+    <Design.DataContext>
+        <viewModels:WordSearchViewModel />
+    </Design.DataContext>
 
+    <Grid RowDefinitions="Auto,*">
+        <Grid ColumnDefinitions="*,2*,*" Margin="15">
+            <TextBox Grid.ColumnSpan="2" HorizontalAlignment="Stretch" Margin="0,0,15,0"
+                     Watermark="Search new word...."
+                     Text="{Binding RequestWord}" />
+            <Button Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Center"
+                    Command="{Binding SearchWordCommand}"
+                    ToolTip.Tip="Search"
+                    Classes="primary" HorizontalContentAlignment="Center" Margin="15,0,0,0">
+                <Svg
+                    Height="40"
+                    Width="40"
+                    Path="/Assets/Icons/search.svg" />
+            </Button>
+        </Grid>
+
+        <ScrollViewer Grid.Row="1">
+            <StackPanel Orientation="Vertical">
+                <ItemsRepeater ItemsSource="{Binding CurrentWordList}" Margin="15">
+                    <ItemsRepeater.Layout>
+                        <StackLayout Spacing="10" />
+                    </ItemsRepeater.Layout>
+                    <ItemsRepeater.ItemTemplate>
+                        <DataTemplate>
+                            <Button HorizontalAlignment="Stretch" CornerRadius="20" Classes="textbutton"
+                                    Command="{Binding $parent[ItemsRepeater].((viewModels:WordSearchViewModel)DataContext).OpenWordDetailsCommand}"
+                                    CommandParameter="{Binding}">
+                                <Border CornerRadius="15"
+                                        Padding="15" Background="#35373B">
+                                    <StackPanel Orientation="Horizontal" Spacing="15">
+                                        <TextBlock Text="{Binding Headword  }"
+                                                   VerticalAlignment="Center"
+                                                   FontSize="25" Foreground="White" />
+                                        <TextBlock Text="{Binding PartOfSpeech , StringFormat='({0})'}"
+                                                   VerticalAlignment="Center"
+                                                   FontSize="25" />
+                                    </StackPanel>
+                                </Border>
+                            </Button>
+                        </DataTemplate>
+                    </ItemsRepeater.ItemTemplate>
+                </ItemsRepeater>
+            </StackPanel>
+        </ScrollViewer>
+
+    </Grid>
 </UserControl>

@@ -58,6 +58,9 @@ public interface IApiInterface
     [Get("/api/UserActions/GetOtherCourses")]
     public Task<List<CourseComplexDto>> GetOtherCourses();
 
+    [Get("/api/Words/GetWordFromDictionary")]
+    public Task<List<MerriamWebsterResponseDto>> GetWordFromDictionary(string requestWord);
+
     #endregion
 
     #region Authentication
