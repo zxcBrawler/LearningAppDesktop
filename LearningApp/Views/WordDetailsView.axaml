@@ -1,0 +1,121 @@
+﻿<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:viewModels="clr-namespace:LearningApp.ViewModels"
+        mc:Ignorable="d" d:DesignWidth="1920" d:DesignHeight="1080"
+        x:Class="LearningApp.Views.WordDetailsView"
+        WindowState="Maximized"
+        ExtendClientAreaToDecorationsHint="True"
+        ExtendClientAreaChromeHints="NoChrome"
+        Title="WordDetailsView"
+        x:DataType="viewModels:WordDetailsViewModel">
+    <Grid ColumnDefinitions="*,Auto" RowDefinitions="Auto,*">
+        <Border Background="#2A2B2D" Grid.ColumnSpan="2" Padding="15">
+            <StackPanel Orientation="Horizontal" Spacing="15" VerticalAlignment="Center">
+                <Button Classes="icon" Click="Go_Back">
+                    <Svg Height="30" Width="25" Path="/Assets/Icons/chevron-left.svg" />
+                </Button>
+                <TextBlock Text="{Binding WordStateService.SelectedWord.Headword}"
+                           FontSize="28" FontWeight="Bold"
+                           Foreground="#DFE0E2"
+                           VerticalAlignment="Center" />
+            </StackPanel>
+        </Border>
+        <ScrollViewer Grid.Row="1" Grid.Column="0"
+                      VerticalScrollBarVisibility="Auto"
+                      HorizontalScrollBarVisibility="Disabled"
+                      Padding="20">
+            <Grid ColumnDefinitions="*"
+                  RowDefinitions="Auto,Auto,Auto,Auto,Auto"
+                  MaxWidth="1300"
+                  HorizontalAlignment="Stretch"
+                  Margin="20,0">
+
+                <!-- Word Header -->
+                <StackPanel Grid.Row="0"
+                            Orientation="Horizontal"
+                            VerticalAlignment="Center"
+                            Spacing="15">
+                    <TextBlock FontSize="36"
+                               FontWeight="SemiBold"
+                               Foreground="#DFE0E2"
+                               Text="{Binding WordStateService.SelectedWord.Headword}" />
+
+                    <TextBlock FontSize="28"
+                               Foreground="#A0A4B0"
+                               VerticalAlignment="Bottom"
+                               Margin="0,0,0,4"
+                               Text="{Binding WordStateService.SelectedWord.PartOfSpeech, StringFormat='({0})'}" />
+                </StackPanel>
+
+                <!-- Pronunciation -->
+                <Border Grid.Row="1"
+                        Margin="0,15,0,0"
+                        Padding="15"
+                        CornerRadius="8"
+                        Background="#35373B"
+                        IsVisible="{Binding WordStateService.IsPronunciationAvailable}">
+                    <StackPanel Orientation="Horizontal"
+                                VerticalAlignment="Center"
+                                Spacing="20">
+                        <TextBlock FontSize="24"
+                                   Foreground="#DFE0E2"
+                                   VerticalAlignment="Center"
+                                   Text="Pronunciation:" />
+
+                        <TextBlock FontSize="24"
+                                   Foreground="#DFE0E2"
+                                   VerticalAlignment="Center"
+                                   Text="{Binding WordStateService.SelectedWord.Pronunciation.Pronunciation}" />
+
+                        <Button Height="60"
+                                Width="60"
+                                Classes="primary"
+                                CornerRadius="30"
+                                Command="{Binding PlayCommand}"
+                                Margin="15,0,0,0">
+                            <Svg Height="35" Width="35" Path="/Assets/Icons/play.svg" />
+                        </Button>
+                    </StackPanel>
+                </Border>
+
+                <!-- Definitions Header -->
+                <TextBlock Grid.Row="2"
+                           FontSize="28"
+                           Foreground="#DFE0E2"
+                           Text="Definitions"
+                           Margin="0,20,0,10" />
+
+                <!-- Definitions List -->
+                <ItemsRepeater Grid.Row="3"
+                               ItemsSource="{Binding WordStateService.SelectedWord.ShortDefinitions}">
+                    <ItemsRepeater.Layout>
+                        <StackLayout Spacing="10" />
+                    </ItemsRepeater.Layout>
+                    <ItemsRepeater.ItemTemplate>
+                        <DataTemplate>
+                            <Border Padding="15"
+                                    Background="#35373B"
+                                    CornerRadius="10">
+                                <TextBlock Foreground="White"
+                                           FontSize="20"
+                                           TextWrapping="Wrap"
+                                           Text="{Binding}" />
+                            </Border>
+                        </DataTemplate>
+                    </ItemsRepeater.ItemTemplate>
+                </ItemsRepeater>
+
+                <!-- Add Button -->
+                <Button Grid.Row="4"
+                        Classes="primary"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Bottom"
+                        Content="Add to dictionary"
+                        HorizontalContentAlignment="Center"
+                        Margin="0,20,0,0" />
+            </Grid>
+        </ScrollViewer>
+    </Grid>
+</Window>

@@ -10,4 +10,5 @@ public interface IWindowViewModelFactory
     ChangeProfileDataViewModel CreateChangeProfileDataViewModel();
 
     AddDictionaryViewModel CreateAddDictionaryViewModel();
+    WordDetailsViewModel CreateWordDetailsViewModel();
 }

@@ -3,33 +3,37 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:viewModels="clr-namespace:LearningApp.ViewModels"
+             xmlns:avalonia="clr-namespace:LoadingIndicators.Avalonia;assembly=LoadingIndicators.Avalonia"
              mc:Ignorable="d" d:DesignWidth="1920" d:DesignHeight="1080"
              x:Class="LearningApp.Views.WordSearchView"
              x:DataType="viewModels:WordSearchViewModel">
 
-    <Design.DataContext>
-        <viewModels:WordSearchViewModel />
-    </Design.DataContext>
-
     <Grid RowDefinitions="Auto,*">
-        <Grid ColumnDefinitions="*,2*,*" Margin="15">
-            <TextBox Grid.ColumnSpan="2" HorizontalAlignment="Stretch" Margin="0,0,15,0"
+        <Grid ColumnDefinitions="Auto,*"
+              VerticalAlignment="Center">
+
+            <Svg Height="30" Width="30" Path="/Assets/Icons/search.svg" />
+            <TextBox Grid.Column="1" HorizontalAlignment="Stretch" Margin="20,0,15,0"
                      Watermark="Search new word...."
-                     Text="{Binding RequestWord}" />
-            <Button Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Center"
-                    Command="{Binding SearchWordCommand}"
-                    ToolTip.Tip="Search"
-                    Classes="primary" HorizontalContentAlignment="Center" Margin="15,0,0,0">
-                <Svg
-                    Height="40"
-                    Width="40"
-                    Path="/Assets/Icons/search.svg" />
-            </Button>
+                     Height="60"
+                     Text="{Binding RequestWord}"
+                     VerticalContentAlignment="Center" />
+
         </Grid>
 
         <ScrollViewer Grid.Row="1">
-            <StackPanel Orientation="Vertical">
-                <ItemsRepeater ItemsSource="{Binding CurrentWordList}" Margin="15">
+            <StackPanel HorizontalAlignment="Center" Orientation="Vertical"  Margin="0,20,0,0">
+                <avalonia:LoadingIndicator
+                    Width="50"
+                    Height="50"
+                    IsVisible="{Binding IsSearching}"
+                    IsActive="{Binding IsSearching}"
+                    Mode="Arcs"
+                    SpeedRatio="1.5"
+                    Foreground="White"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center" />
+                <ItemsRepeater ItemsSource="{Binding  WordStateService.CurrentWordList}" Margin="0,0,15,0">
                     <ItemsRepeater.Layout>
                         <StackLayout Spacing="10" />
                     </ItemsRepeater.Layout>
@@ -55,6 +59,5 @@
                 </ItemsRepeater>
             </StackPanel>
         </ScrollViewer>
-
     </Grid>
 </UserControl>

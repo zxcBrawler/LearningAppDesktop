@@ -5,8 +5,9 @@
         mc:Ignorable="d" d:DesignWidth="1920" d:DesignHeight="1080"
         xmlns:viewModels="clr-namespace:LearningApp.ViewModels"
         xmlns:imageControl="clr-namespace:LearningApp.Utils.ImageControl"
-        WindowState="Maximized"
+
         x:Class="LearningApp.Views.CourseDetailsView"
+        WindowState="Maximized"
         ExtendClientAreaToDecorationsHint="True"
         ExtendClientAreaChromeHints="NoChrome"
         Title="CourseDetails"
@@ -30,7 +31,8 @@
         </Border>
 
         <!-- Main Content Area -->
-        <ScrollViewer Grid.Row="1" Grid.ColumnSpan="2" Grid.Column="0" VerticalScrollBarVisibility="Auto" Padding="20">
+        <ScrollViewer Grid.Row="1" Grid.ColumnSpan="2" Grid.Column="0" VerticalScrollBarVisibility="Auto" Padding="20"
+                      HorizontalContentAlignment="Stretch">
             <Grid ColumnDefinitions="Auto,*" RowDefinitions="Auto,Auto,Auto,Auto,Auto">
                 <Border Grid.Row="0" Grid.Column="0" CornerRadius="15" ClipToBounds="True" Margin="0,0,20,0">
                     <imageControl:CachedImage

@@ -30,4 +30,9 @@ public class WindowViewModelFactory(IServiceProvider serviceProvider) : IWindowV
     {
         return serviceProvider.GetRequiredService<AddDictionaryViewModel>();
     }
+
+    public WordDetailsViewModel CreateWordDetailsViewModel()
+    {
+        return serviceProvider.GetRequiredService<WordDetailsViewModel>();
+    }
 }

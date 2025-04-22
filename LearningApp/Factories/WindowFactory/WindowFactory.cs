@@ -10,51 +10,55 @@ public class WindowFactory(
 {
     public Window CreateCourseDetailsWindow()
     {
-        var view = new CourseDetailsView
+        return new CourseDetailsView
         {
             DataContext = windowViewModelFactory.CreateCourseDetailsViewModel(),
             WindowStartupLocation = WindowStartupLocation.CenterOwner
         };
-        return view;
     }
 
     public Window CreateExerciseDetailsWindow()
     {
-        var view = new ExerciseView
+        return new ExerciseView
         {
             DataContext = windowViewModelFactory.CreateExerciseViewModel(),
             WindowStartupLocation = WindowStartupLocation.CenterOwner
         };
-        return view;
     }
 
     public Window CreateChangeProfileView()
     {
-        var view = new ChangeProfileDataView
+        return new ChangeProfileDataView
         {
             DataContext = windowViewModelFactory.CreateChangeProfileDataViewModel(),
             WindowStartupLocation = WindowStartupLocation.CenterOwner
         };
-        return view;
     }
 
     public Window CreateChangePasswordView()
     {
-        var view = new ChangePasswordView
+        return new ChangePasswordView
         {
             DataContext = windowViewModelFactory.CreateChangePasswordViewModel(),
             WindowStartupLocation = WindowStartupLocation.CenterOwner
         };
-        return view;
     }
 
     public Window CreateAddDictionaryView()
     {
-        var view = new AddDictionaryView
+        return new AddDictionaryView
         {
             DataContext = windowViewModelFactory.CreateAddDictionaryViewModel(),
             WindowStartupLocation = WindowStartupLocation.CenterOwner
         };
-        return view;
+    }
+
+    public Window CreateWordDetailsWindow()
+    {
+        return new WordDetailsView
+        {
+            DataContext = windowViewModelFactory.CreateWordDetailsViewModel(),
+            WindowStartupLocation = WindowStartupLocation.CenterOwner
+        };
     }
 }

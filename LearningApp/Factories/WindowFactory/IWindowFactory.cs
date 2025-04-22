@@ -11,4 +11,5 @@ public interface IWindowFactory
     Window CreateChangePasswordView();
 
     Window CreateAddDictionaryView();
+    Window CreateWordDetailsWindow();
 }

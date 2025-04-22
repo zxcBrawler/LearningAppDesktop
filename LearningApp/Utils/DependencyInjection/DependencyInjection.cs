@@ -86,7 +86,8 @@ public static class DependencyInjection
             typeof(ChangePasswordViewModel),
             typeof(WordSearchViewModel),
             typeof(AddDictionaryViewModel),
-            typeof(StatisticsViewModel)
+            typeof(StatisticsViewModel),
+            typeof(WordDetailsViewModel),
         };
 
         foreach (var vmType in viewModels)
@@ -106,6 +107,7 @@ public static class DependencyInjection
     private static void AddStateServices(IServiceCollection services)
     {
         services.AddSingleton<StateService.UserStateService>();
+        services.AddSingleton<StateService.WordStateService>();
         services.AddSingleton<StateService.CourseStateService>();
     }
 
