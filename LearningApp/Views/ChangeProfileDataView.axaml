@@ -16,17 +16,11 @@
         CornerRadius="25">
 
     <StackPanel Margin="15" Spacing="20" VerticalAlignment="Top">
-        <Button
-            HorizontalAlignment="Right"
-            VerticalAlignment="Center"
-            Classes="icon"
-            ToolTip.Tip="{localizationManager:Localize Close}"
-            Click="Button_OnClick"
-            Background="Transparent"
-            BorderThickness="0">
-            <Svg
-                Classes="passwordIcon"
-                Path="/Assets/Icons/x.svg" />
+        <Button HorizontalAlignment="Right" VerticalAlignment="Center" Classes="icon"
+                ToolTip.Tip="{localizationManager:Localize Close}"
+                Click="Button_OnClick" Background="Transparent">
+            <Svg Classes="passwordIcon" Path="/Assets/Icons/x.svg" />
+
         </Button>
         <Label Content="{localizationManager:Localize EmailField}" FontSize="20" />
         <TextBox FontSize="20" Watermark="{localizationManager:Localize EmailField}"

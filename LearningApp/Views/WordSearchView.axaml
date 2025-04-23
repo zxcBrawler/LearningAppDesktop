@@ -9,20 +9,14 @@
              x:DataType="viewModels:WordSearchViewModel">
 
     <Grid RowDefinitions="Auto,*">
-        <Grid ColumnDefinitions="Auto,*"
-              VerticalAlignment="Center">
-
+        <Grid ColumnDefinitions="Auto,*" VerticalAlignment="Center">
             <Svg Height="30" Width="30" Path="/Assets/Icons/search.svg" />
-            <TextBox Grid.Column="1" HorizontalAlignment="Stretch" Margin="20,0,15,0"
-                     Watermark="Search new word...."
-                     Height="60"
-                     Text="{Binding RequestWord}"
-                     VerticalContentAlignment="Center" />
-
+            <TextBox Grid.Column="1" HorizontalAlignment="Stretch" Margin="20,0,15,0" Watermark="Search new word...."
+                     Height="60" Text="{Binding RequestWord}" VerticalContentAlignment="Center" />
         </Grid>
 
         <ScrollViewer Grid.Row="1">
-            <StackPanel HorizontalAlignment="Center" Orientation="Vertical"  Margin="0,20,0,0">
+            <StackPanel HorizontalAlignment="Center" Orientation="Vertical" Margin="0,20,0,0">
                 <avalonia:LoadingIndicator
                     Width="50"
                     Height="50"
@@ -45,9 +39,8 @@
                                 <Border CornerRadius="15"
                                         Padding="15" Background="#35373B">
                                     <StackPanel Orientation="Horizontal" Spacing="15">
-                                        <TextBlock Text="{Binding Headword  }"
-                                                   VerticalAlignment="Center"
-                                                   FontSize="25" Foreground="White" />
+                                        <TextBlock Text="{Binding Headword  }" VerticalAlignment="Center" FontSize="25"
+                                                   Foreground="White" />
                                         <TextBlock Text="{Binding PartOfSpeech , StringFormat='({0})'}"
                                                    VerticalAlignment="Center"
                                                    FontSize="25" />

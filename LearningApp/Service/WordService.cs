@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using LearningApp.DataSource;
 using LearningApp.Models.Dto.Response;
@@ -33,6 +34,19 @@ public class WordService(IApiInterface apiInterface) : IWordService
         catch (ApiException e)
         {
             return DataState<WordSimpleDto>.Failure(e.Content, 500);
+        }
+    }
+
+    public async Task<DataState<bool>> DeleteWordFromDictionary(int wordId, int dictionaryId)
+    {
+        try
+        {
+            var response = await apiInterface.DeleteWordFromDictionary(wordId, dictionaryId);
+            return DataState<bool>.Success(response, 200);
+        }
+        catch (ApiException e)
+        {
+            return DataState<bool>.Success(false, 500);
         }
     }
 }

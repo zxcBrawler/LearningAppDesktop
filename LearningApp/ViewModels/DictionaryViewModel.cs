@@ -30,11 +30,8 @@ public partial class DictionaryViewModel : PageViewModel
     [RelayCommand]
     private async Task OpenDictionary(int id)
     {
-        var result = await UserStateService.GetUserDictionaryById(id);
-        foreach (var word in result.Words)
-        {
-            Console.WriteLine(word.WordValue);
-        }
+        await UserStateService.GetUserDictionaryById(id);
+        _windowFactory.Show(AppWindowNames.DictionaryDetailsWindow);
     }
 
     [RelayCommand]

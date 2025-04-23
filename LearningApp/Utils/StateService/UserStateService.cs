@@ -19,6 +19,7 @@ public partial class UserStateService(
     ITokenStorage tokenStorage) : ObservableObject
 {
     [ObservableProperty] private UserSimpleDto? _currentUser;
+    [ObservableProperty] private DictionarySimpleDto? _currentUserDictionary;
     [ObservableProperty] private ObservableCollection<UserCourseSimpleDto>? _userCourses;
     [ObservableProperty] private UserCourseSimpleDto? _currentUserCourse;
     [ObservableProperty] private ObservableCollection<DictionarySimpleDto>? _userDictionaries;
@@ -31,10 +32,11 @@ public partial class UserStateService(
             UserDictionaries = new ObservableCollection<DictionarySimpleDto>(response.Value);
     }
 
-    public async Task<DictionarySimpleDto?> GetUserDictionaryById(int dictionaryId)
+    public async Task GetUserDictionaryById(int dictionaryId)
     {
         var response = await dictionaryService.GetUserDictionaryById(dictionaryId);
-        return response.Value;
+        if (response is { IsSuccess: true })
+            CurrentUserDictionary = response.Value;
     }
 
     public async Task AddNewDictionary(AddDictionaryRequestDto addDictionaryRequestDto)
@@ -104,12 +106,13 @@ public partial class UserStateService(
         }
     }
 
-    public async Task AddWordToDictionary(int wordId, int dictionaryId)
+    public async Task DeleteWordFromDictionary(int wordId)
     {
-        var response = await dictionaryService.AddWordToDictionary(wordId, dictionaryId);
-        if (response.IsSuccess)
+        var response = await wordService.DeleteWordFromDictionary(CurrentUserDictionary.Id, wordId);
+        if (response is { IsSuccess: true })
         {
             await GetUserDictionaries();
+            await GetUserDictionaryById(CurrentUserDictionary.Id);
         }
     }
 

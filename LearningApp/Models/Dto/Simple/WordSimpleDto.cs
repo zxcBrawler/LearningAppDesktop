@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Text.Json.Serialization;
 
 namespace LearningApp.Models.Dto.Simple;
@@ -18,4 +20,8 @@ public class WordSimpleDto
     [JsonPropertyName("usage_examples")] public string? UsageExamples { get; set; }
     [JsonPropertyName("part_of_speech")] public string? PartOfSpeech { get; set; }
     [JsonPropertyName("language_level")] public required string LanguageLevel { get; set; }
+
+    public IEnumerable<string> Definitions =>
+        WordDefinition?.Split(';', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)
+        ?? Enumerable.Empty<string>();
 }

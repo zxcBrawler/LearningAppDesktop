@@ -54,7 +54,7 @@ public class DictionaryService(IApiInterface apiInterface) : IDictionaryService
     {
         try
         {
-            var response = await apiInterface.AddWordToDictionary(wordId, dictionaryId);
+            var response = await apiInterface.AddWordToDictionary(dictionaryId, wordId);
             return DataState<DictionarySimpleDto?>.Success(response, 200);
         }
         catch (ApiException e)

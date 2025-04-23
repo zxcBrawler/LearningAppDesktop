@@ -43,12 +43,12 @@
                 </Border>
 
                 <StackPanel Grid.Row="0" Grid.Column="1" Spacing="20">
-                    <TextBlock Foreground="#DFE0E2" FontSize="28"
+                    <TextBlock Foreground="White" FontSize="28"
                                Text="{localizationManager:Localize CourseDescription}" />
                     <TextBlock TextWrapping="Wrap" TextAlignment="DetectFromContent" FontSize="20"
                                Text="{Binding CourseStateService.Course.CourseDescription}" />
 
-                    <TextBlock Foreground="#DFE0E2" FontSize="28" Text="{localizationManager:Localize LanguageLevel}" />
+                    <TextBlock Foreground="White" FontSize="28" Text="{localizationManager:Localize LanguageLevel}" />
                     <ItemsControl ItemsSource="{Binding LevelNames}">
                         <ItemsControl.ItemsPanel>
                             <ItemsPanelTemplate>

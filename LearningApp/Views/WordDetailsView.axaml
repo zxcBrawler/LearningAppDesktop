@@ -17,100 +17,55 @@
                 <Button Classes="icon" Click="Go_Back">
                     <Svg Height="30" Width="25" Path="/Assets/Icons/chevron-left.svg" />
                 </Button>
-                <TextBlock Text="{Binding WordStateService.SelectedWord.Headword}"
-                           FontSize="28" FontWeight="Bold"
-                           Foreground="#DFE0E2"
-                           VerticalAlignment="Center" />
+                <TextBlock Text="{Binding WordStateService.SelectedWord.Headword}" FontSize="28" FontWeight="Bold"
+                           Foreground="White" VerticalAlignment="Center" />
             </StackPanel>
         </Border>
         <ScrollViewer Grid.Row="1" Grid.Column="0"
                       VerticalScrollBarVisibility="Auto"
                       HorizontalScrollBarVisibility="Disabled"
                       Padding="20">
-            <Grid ColumnDefinitions="*"
-                  RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto"
-                  MaxWidth="1300"
-                  HorizontalAlignment="Stretch"
-                  Margin="20,0">
+            <Grid ColumnDefinitions="*" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto" MaxWidth="1300"
+                  HorizontalAlignment="Stretch" Margin="20,0">
 
-                <!-- Word Header -->
-                <StackPanel Grid.Row="0"
-                            Orientation="Horizontal"
-                            VerticalAlignment="Center"
-                            Spacing="15">
-                    <TextBlock FontSize="36"
-                               FontWeight="SemiBold"
-                               Foreground="#DFE0E2"
+                <StackPanel Grid.Row="0" Orientation="Horizontal" VerticalAlignment="Center" Spacing="15">
+                    <TextBlock FontSize="36" FontWeight="SemiBold" Foreground="#DFE0E2"
                                Text="{Binding WordStateService.SelectedWord.Headword}" />
-
-                    <TextBlock FontSize="28"
-                               Foreground="#A0A4B0"
-                               VerticalAlignment="Bottom"
-                               Margin="0,0,0,4"
+                    <TextBlock FontSize="28" Foreground="#A0A4B0" VerticalAlignment="Bottom" Margin="0,0,0,4"
                                Text="{Binding WordStateService.SelectedWord.PartOfSpeech, StringFormat='({0})'}" />
                 </StackPanel>
 
-                <!-- Pronunciation -->
-                <Border Grid.Row="1"
-                        Margin="0,15,0,0"
-                        Padding="15"
-                        CornerRadius="8"
-                        Background="#35373B"
+                <Border Grid.Row="1" Margin="0,15,0,0" Padding="15" CornerRadius="8" Background="#35373B"
                         IsVisible="{Binding WordStateService.IsPronunciationAvailable}">
-                    <StackPanel Orientation="Horizontal"
-                                VerticalAlignment="Center"
-                                Spacing="20">
-                        <TextBlock FontSize="24"
-                                   Foreground="#DFE0E2"
-                                   VerticalAlignment="Center"
-                                   Text="Pronunciation:" />
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Spacing="20">
+                        <TextBlock FontSize="24" Foreground="#DFE0E2" VerticalAlignment="Center" Text="Pronunciation:" />
 
-                        <TextBlock FontSize="24"
-                                   Foreground="#DFE0E2"
-                                   VerticalAlignment="Center"
+                        <TextBlock FontSize="24" Foreground="#DFE0E2" VerticalAlignment="Center"
                                    Text="{Binding WordStateService.SelectedWord.Pronunciation.Pronunciation}" />
 
-                        <Button Height="60"
-                                Width="60"
-                                Classes="primary"
-                                CornerRadius="30"
-                                Command="{Binding PlayCommand}"
-                                Margin="15,0,0,0">
+                        <Button Height="60" Width="60" Classes="primary" CornerRadius="30"
+                                Command="{Binding PlayCommand}" Margin="15,0,0,0">
                             <Svg Height="35" Width="35" Path="/Assets/Icons/play.svg" />
                         </Button>
                     </StackPanel>
                 </Border>
 
-                <TextBlock Grid.Row="2"
-                           FontSize="28"
-                           Foreground="White"
-                           Text="Definitions"
-                           Margin="0,20,0,10" />
+                <TextBlock Grid.Row="2" FontSize="28" Foreground="White" Text="Definitions" Margin="0,20,0,10" />
 
-                <ItemsRepeater Grid.Row="3"
-                               ItemsSource="{Binding WordStateService.SelectedWord.ShortDefinitions}">
+                <ItemsRepeater Grid.Row="3" ItemsSource="{Binding WordStateService.SelectedWord.ShortDefinitions}">
                     <ItemsRepeater.Layout>
                         <StackLayout Spacing="10" />
                     </ItemsRepeater.Layout>
                     <ItemsRepeater.ItemTemplate>
                         <DataTemplate>
-                            <Border Padding="15"
-                                    Background="#35373B"
-                                    CornerRadius="10">
-                                <TextBlock Foreground="White"
-                                           FontSize="20"
-                                           TextWrapping="Wrap"
-                                           Text="{Binding}" />
+                            <Border Padding="15" Background="#35373B" CornerRadius="10">
+                                <TextBlock Foreground="White" FontSize="20" TextWrapping="Wrap" Text="{Binding}" />
                             </Border>
                         </DataTemplate>
                     </ItemsRepeater.ItemTemplate>
                 </ItemsRepeater>
 
-                <TextBlock Grid.Row="4"
-                           FontSize="28"
-                           Foreground="White"
-                           Text="Add to dictionary"
-                           Margin="0,20,0,10" />
+                <TextBlock Grid.Row="4" FontSize="28" Foreground="White" Text="Add to dictionary" Margin="0,20,0,10" />
                 <ScrollViewer Grid.Row="5">
                     <StackPanel Orientation="Vertical">
                         <ItemsRepeater ItemsSource="{Binding UserStateService.UserDictionaries}">
@@ -119,8 +74,7 @@
                             </ItemsRepeater.Layout>
                             <ItemsRepeater.ItemTemplate>
                                 <DataTemplate>
-                                    <Border CornerRadius="15"
-                                            Padding="15" Background="#35373B">
+                                    <Border CornerRadius="15" Padding="15" Background="#35373B">
                                         <Grid ColumnDefinitions="Auto,*,*,*" ShowGridLines="False">
                                             <Border ClipToBounds="True" CornerRadius="15" Margin="0,0,25,0">
                                                 <imageControl:CachedImage
@@ -131,16 +85,12 @@
                                             </Border>
 
                                             <TextBlock Grid.Column="1" Text="{Binding  DictionaryName}"
-                                                       VerticalAlignment="Center"
-                                                       FontSize="25" />
-                                            <!-- Add Button -->
-                                            <Button
-                                                Grid.Column="3" Classes="icon"
-                                                HorizontalAlignment="Right"
-                                                VerticalAlignment="Center"
-                                                HorizontalContentAlignment="Center"
-                                                Command="{Binding $parent[ItemsRepeater].((viewModels:WordDetailsViewModel)DataContext).AddWordToDictionaryCommand}"
-                                                CommandParameter="{Binding Id}">
+                                                       VerticalAlignment="Center" FontSize="25" />
+
+                                            <Button Grid.Column="3" Classes="icon" HorizontalAlignment="Right"
+                                                    VerticalAlignment="Center" HorizontalContentAlignment="Center"
+                                                    Command="{Binding $parent[ItemsRepeater].((viewModels:WordDetailsViewModel)DataContext).AddWordToDictionaryCommand}"
+                                                    CommandParameter="{Binding Id}">
                                                 <Svg Height="30" Width="30" Path="/Assets/Icons/plus.svg" />
                                             </Button>
                                         </Grid>
@@ -150,8 +100,6 @@
                         </ItemsRepeater>
                     </StackPanel>
                 </ScrollViewer>
-
-
             </Grid>
         </ScrollViewer>
     </Grid>

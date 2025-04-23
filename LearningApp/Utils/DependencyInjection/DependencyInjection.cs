@@ -85,6 +85,7 @@ public static class DependencyInjection
             typeof(AddDictionaryViewModel),
             typeof(StatisticsViewModel),
             typeof(WordDetailsViewModel),
+            typeof(DictionaryDetailsViewModel),
         };
 
         foreach (var vmType in viewModels)

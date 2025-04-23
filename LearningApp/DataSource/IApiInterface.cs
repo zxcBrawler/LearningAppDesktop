@@ -64,6 +64,9 @@ public interface IApiInterface
     [Post("/api/Words/AddWord")]
     public Task<WordSimpleDto> AddWord([Body] MerriamWebsterResponseDto word, int dictionaryId);
 
+    [Delete("/api/Words/DeleteWordFromDictionary/{dictionaryId}/{wordId}")]
+    public Task<bool> DeleteWordFromDictionary(int dictionaryId, int wordId);
+
     [Post("/api/UserActions/AddWordToDictionary/{dictionaryId}/{wordId}")]
     public Task<DictionarySimpleDto> AddWordToDictionary(int wordId, int dictionaryId);
 
