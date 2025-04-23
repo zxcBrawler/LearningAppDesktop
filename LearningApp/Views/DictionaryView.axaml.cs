@@ -9,8 +9,4 @@ public partial class DictionaryView : UserControl
     {
         InitializeComponent();
     }
-
-    private void OnPointerPressed(object? sender, PointerPressedEventArgs e)
-    {
-    }
 }

@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Runtime.Versioning;
-using Avalonia;
 using Avalonia.Controls;
-using Avalonia.Controls.ApplicationLifetimes;
 using LearningApp.DataSource;
 using LearningApp.Factories;
 using LearningApp.Factories.WindowFactory;
@@ -150,7 +148,7 @@ public static class DependencyInjection
             AppWindowNames.DictionaryDetailsWindow => provider.GetRequiredService<DictionaryDetailsView>(),
             _ => throw new ArgumentOutOfRangeException(nameof(name))
         });
-        
+
         services.AddSingleton<Func<AppWindowNames, ViewModelBase>>(provider => name => name switch
         {
             AppWindowNames.CourseDetails => provider.GetRequiredService<CourseDetailsViewModel>(),

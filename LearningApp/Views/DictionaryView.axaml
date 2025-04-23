@@ -41,7 +41,7 @@
                     </ItemsRepeater.Layout>
                     <ItemsRepeater.ItemTemplate>
                         <DataTemplate>
-                            <Border CornerRadius="15" PointerPressed="OnPointerPressed"
+                            <Border CornerRadius="15"
                                     Padding="15" Background="#35373B">
                                 <Grid ColumnDefinitions="Auto,*,*,*" ShowGridLines="False">
                                     <Border ClipToBounds="True" CornerRadius="15" Margin="0,0,25,0">

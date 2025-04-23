@@ -9,10 +9,4 @@ public partial class SettingsView : UserControl
     {
         InitializeComponent();
     }
-
-    private void SelectingItemsControl_OnSelectionChanged(object? sender, SelectionChangedEventArgs e)
-    {
-        if (sender is not ComboBox { DataContext: SettingsViewModel viewModel } comboBox) return;
-        viewModel.ChangeLanguageCommand.Execute(comboBox.SelectedIndex);
-    }
 }
