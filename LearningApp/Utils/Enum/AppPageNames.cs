@@ -26,8 +26,7 @@ public enum AppPageNames
 
     [LocalizedDescription("Profile", typeof(Resources))]
     Profile,
-    CourseDetails,
-    ExerciseWindow,
+
 
     [LocalizedDescription("Words", typeof(Resources))]
     Words,

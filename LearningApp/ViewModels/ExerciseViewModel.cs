@@ -8,14 +8,13 @@ using LearningApp.Factories;
 using LearningApp.Models.Dto.Complex;
 using LearningApp.Models.Dto.Simple;
 using LearningApp.Service.Interface;
-using LearningApp.Utils.Enum;
 using LearningApp.Utils.StateService;
 using CourseStateService = LearningApp.Utils.StateService.CourseStateService;
 using TypeExercise = LearningApp.Utils.Enum.TypeExercise;
 
 namespace LearningApp.ViewModels;
 
-public partial class ExerciseViewModel : PageViewModel
+public partial class ExerciseViewModel : ViewModelBase
 {
     private readonly ExerciseViewFactory _exerciseViewFactory;
     private readonly IExerciseService _exerciseService;
@@ -50,7 +49,6 @@ public partial class ExerciseViewModel : PageViewModel
     public ExerciseViewModel(ExerciseViewFactory exerciseViewFactory, IExerciseService exerciseService,
         CourseStateService courseStateService, UserStateService userStateService)
     {
-        PageName = AppPageNames.ExerciseWindow;
         _exerciseService = exerciseService;
         _courseStateService = courseStateService;
         _userStateService = userStateService;

@@ -1,64 +1,33 @@
-﻿using Avalonia.Controls;
-using LearningApp.Factories.WindowViewModelFactoryImpl;
-using LearningApp.Views;
+﻿using System;
+using System.Threading.Tasks;
+using Avalonia;
+using Avalonia.Controls;
+using Avalonia.Controls.ApplicationLifetimes;
+using LearningApp.Utils.Enum;
+using LearningApp.ViewModels;
 
 namespace LearningApp.Factories.WindowFactory;
 
 public class WindowFactory(
-    IWindowViewModelFactory windowViewModelFactory)
+    Func<AppWindowNames, Window> windowFactory,
+    Func<AppWindowNames, ViewModelBase> viewModelFactory)
     : IWindowFactory
 {
-    public Window CreateCourseDetailsWindow()
+    public void Show(AppWindowNames windowName)
     {
-        return new CourseDetailsView
-        {
-            DataContext = windowViewModelFactory.CreateCourseDetailsViewModel(),
-            WindowStartupLocation = WindowStartupLocation.CenterOwner
-        };
+        var window = windowFactory(windowName);
+        window.DataContext = viewModelFactory(windowName);
+        window.Show();
     }
 
-    public Window CreateExerciseDetailsWindow()
+    public async Task<TResult> ShowDialog<TResult>(AppWindowNames windowName)
     {
-        return new ExerciseView
-        {
-            DataContext = windowViewModelFactory.CreateExerciseViewModel(),
-            WindowStartupLocation = WindowStartupLocation.CenterOwner
-        };
+        var window = windowFactory(windowName);
+        window.DataContext = viewModelFactory(windowName);
+        window.WindowStartupLocation = WindowStartupLocation.CenterScreen;
+        return await window.ShowDialog<TResult>(GetActiveWindow());
     }
 
-    public Window CreateChangeProfileView()
-    {
-        return new ChangeProfileDataView
-        {
-            DataContext = windowViewModelFactory.CreateChangeProfileDataViewModel(),
-            WindowStartupLocation = WindowStartupLocation.CenterOwner
-        };
-    }
-
-    public Window CreateChangePasswordView()
-    {
-        return new ChangePasswordView
-        {
-            DataContext = windowViewModelFactory.CreateChangePasswordViewModel(),
-            WindowStartupLocation = WindowStartupLocation.CenterOwner
-        };
-    }
-
-    public Window CreateAddDictionaryView()
-    {
-        return new AddDictionaryView
-        {
-            DataContext = windowViewModelFactory.CreateAddDictionaryViewModel(),
-            WindowStartupLocation = WindowStartupLocation.CenterOwner
-        };
-    }
-
-    public Window CreateWordDetailsWindow()
-    {
-        return new WordDetailsView
-        {
-            DataContext = windowViewModelFactory.CreateWordDetailsViewModel(),
-            WindowStartupLocation = WindowStartupLocation.CenterOwner
-        };
-    }
+    private static Window GetActiveWindow() =>
+        (Application.Current.ApplicationLifetime as IClassicDesktopStyleApplicationLifetime)?.MainWindow;
 }

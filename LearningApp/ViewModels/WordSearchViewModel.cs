@@ -1,7 +1,5 @@
-﻿using System;
-using System.Threading;
+﻿using System.Threading;
 using System.Threading.Tasks;
-using Avalonia.Controls;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using LearningApp.Factories.WindowFactory;
@@ -13,7 +11,6 @@ namespace LearningApp.ViewModels;
 
 public partial class WordSearchViewModel : PageViewModel
 {
-    private readonly Func<Window> _mainWindowGetter;
     private readonly IWindowFactory _windowFactory;
     private CancellationTokenSource _searchTokenSource;
 
@@ -24,11 +21,9 @@ public partial class WordSearchViewModel : PageViewModel
 
     [ObservableProperty] private WordStateService _wordStateService;
 
-    public WordSearchViewModel(WordStateService wordStateService, Func<Window> mainWindowGetter,
-        IWindowFactory windowFactory)
+    public WordSearchViewModel(WordStateService wordStateService, IWindowFactory windowFactory)
     {
         _wordStateService = wordStateService;
-        _mainWindowGetter = mainWindowGetter;
         _windowFactory = windowFactory;
         PageName = AppPageNames.Words;
         WordStateService.CurrentWordList = [];
@@ -92,7 +87,6 @@ public partial class WordSearchViewModel : PageViewModel
         WordStateService.SelectedWord = response;
         WordStateService.IsPronunciationAvailable = response.Pronunciation != null;
 
-        var window = _windowFactory.CreateWordDetailsWindow();
-        await window.ShowDialog(_mainWindowGetter());
+        _windowFactory.Show(AppWindowNames.WordDetailsWindow);
     }
 }

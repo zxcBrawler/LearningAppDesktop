@@ -1,15 +1,11 @@
-﻿using Avalonia.Controls;
+﻿using System.Threading.Tasks;
+using Avalonia.Controls;
+using LearningApp.Utils.Enum;
 
 namespace LearningApp.Factories.WindowFactory;
 
 public interface IWindowFactory
 {
-    Window CreateCourseDetailsWindow();
-    Window CreateExerciseDetailsWindow();
-
-    Window CreateChangeProfileView();
-    Window CreateChangePasswordView();
-
-    Window CreateAddDictionaryView();
-    Window CreateWordDetailsWindow();
+    void Show(AppWindowNames windowName);
+    Task<TResult> ShowDialog<TResult>(AppWindowNames windowName);
 }

@@ -1,0 +1,26 @@
+﻿<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm="clr-namespace:LearningApp.ViewModels"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="LearningApp.Views.DictionaryDetailsView"
+        WindowState="Maximized"
+        ExtendClientAreaToDecorationsHint="True"
+        ExtendClientAreaChromeHints="NoChrome"
+        Title="DictionaryDetailsView"
+        x:DataType="vm:DictionaryDetailsViewModel">
+    <Grid ColumnDefinitions="Auto,*" RowDefinitions="Auto,*">
+        <Border Background="#2A2B2D" Grid.ColumnSpan="2" Padding="15">
+            <StackPanel Orientation="Horizontal" Spacing="15" VerticalAlignment="Center">
+                <Button Classes="icon" Click="Go_Back">
+                    <Svg Height="30" Width="25" Path="/Assets/Icons/chevron-left.svg" />
+                </Button>
+                <TextBlock Text="{Binding }" FontSize="28" FontWeight="Bold"
+                           Foreground="#DFE0E2"
+                           VerticalAlignment="Center" />
+            </StackPanel>
+        </Border>
+
+    </Grid>
+</Window>

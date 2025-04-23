@@ -14,7 +14,7 @@ using CourseStateService = LearningApp.Utils.StateService.CourseStateService;
 
 namespace LearningApp.ViewModels;
 
-public partial class CourseDetailsViewModel : PageViewModel
+public partial class CourseDetailsViewModel : ViewModelBase
 {
     #region Level colors
 
@@ -42,13 +42,9 @@ public partial class CourseDetailsViewModel : PageViewModel
     [ObservableProperty] private UserStateService _userStateService;
     private readonly IWindowFactory _windowFactory;
 
-    private readonly Func<Window> _mainWindowGetter;
-
-    public CourseDetailsViewModel(Func<Window> mainWindowGetter, CourseStateService courseStateService,
+    public CourseDetailsViewModel(CourseStateService courseStateService,
         IWindowFactory windowFactory, IExerciseService exerciseService, UserStateService userStateService)
     {
-        PageName = AppPageNames.CourseDetails;
-        _mainWindowGetter = mainWindowGetter;
         _courseStateService = courseStateService;
         _windowFactory = windowFactory;
         _exerciseService = exerciseService;
@@ -79,9 +75,8 @@ public partial class CourseDetailsViewModel : PageViewModel
         await StartCourse();
         await UserStateService.LoadUserCourses();
         await CourseStateService.LoadCourses();
-        var exerciseDetailsWindow = _windowFactory.CreateExerciseDetailsWindow();
         window.Close();
-        await exerciseDetailsWindow.ShowDialog(_mainWindowGetter());
+        _windowFactory.Show(AppWindowNames.ExerciseWindow);
     }
 
     private async Task StartCourse()

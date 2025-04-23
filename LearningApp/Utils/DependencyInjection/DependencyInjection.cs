@@ -6,7 +6,6 @@ using Avalonia.Controls.ApplicationLifetimes;
 using LearningApp.DataSource;
 using LearningApp.Factories;
 using LearningApp.Factories.WindowFactory;
-using LearningApp.Factories.WindowViewModelFactoryImpl;
 using LearningApp.Service;
 using LearningApp.Service.Interface;
 using LearningApp.Utils.Enum;
@@ -101,6 +100,13 @@ public static class DependencyInjection
         services.AddTransient<TrueFalseExerciseView>();
         services.AddTransient<MultipleChoiceExerciseView>();
         services.AddTransient<TextAnswerExerciseView>();
+        services.AddTransient<WordDetailsView>();
+        services.AddTransient<ChangeProfileDataView>();
+        services.AddTransient<ChangePasswordView>();
+        services.AddTransient<CourseDetailsView>();
+        services.AddTransient<AddDictionaryView>();
+        services.AddTransient<DictionaryDetailsView>();
+        services.AddTransient<ExerciseView>();
     }
 
 
@@ -118,16 +124,6 @@ public static class DependencyInjection
 
     private static void AddFactories(IServiceCollection services)
     {
-        services.AddSingleton<Func<Window>>(_ => () =>
-        {
-            if (Application.Current?.ApplicationLifetime is IClassicDesktopStyleApplicationLifetime
-                {
-                    MainWindow: not null
-                } desktop)
-                return desktop.MainWindow;
-            return null;
-        });
-
         services.AddSingleton<Func<AppPageNames, PageViewModel>>(provider => name => name switch
         {
             AppPageNames.LogIn => provider.GetRequiredService<LogInViewModel>(),
@@ -138,12 +134,35 @@ public static class DependencyInjection
             AppPageNames.Home => provider.GetRequiredService<HomeViewModel>(),
             AppPageNames.Dictionaries => provider.GetRequiredService<DictionaryViewModel>(),
             AppPageNames.Profile => provider.GetRequiredService<ProfileViewModel>(),
-            AppPageNames.ExerciseWindow => provider.GetRequiredService<ExerciseViewModel>(),
-            AppPageNames.CourseDetails => provider.GetRequiredService<CourseDetailsViewModel>(),
             AppPageNames.Words => provider.GetRequiredService<WordSearchViewModel>(),
             AppPageNames.Statistics => provider.GetRequiredService<StatisticsViewModel>(),
             _ => throw new ArgumentOutOfRangeException(nameof(name), name, null)
         });
+
+        services.AddSingleton<Func<AppWindowNames, Window>>(provider => name => name switch
+        {
+            AppWindowNames.CourseDetails => provider.GetRequiredService<CourseDetailsView>(),
+            AppWindowNames.ExerciseWindow => provider.GetRequiredService<ExerciseView>(),
+            AppWindowNames.ChangeProfileWindow => provider.GetRequiredService<ChangeProfileDataView>(),
+            AppWindowNames.ChangePasswordWindow => provider.GetRequiredService<ChangePasswordView>(),
+            AppWindowNames.AddDictionaryWindow => provider.GetRequiredService<AddDictionaryView>(),
+            AppWindowNames.WordDetailsWindow => provider.GetRequiredService<WordDetailsView>(),
+            AppWindowNames.DictionaryDetailsWindow => provider.GetRequiredService<DictionaryDetailsView>(),
+            _ => throw new ArgumentOutOfRangeException(nameof(name))
+        });
+        
+        services.AddSingleton<Func<AppWindowNames, ViewModelBase>>(provider => name => name switch
+        {
+            AppWindowNames.CourseDetails => provider.GetRequiredService<CourseDetailsViewModel>(),
+            AppWindowNames.ExerciseWindow => provider.GetRequiredService<ExerciseViewModel>(),
+            AppWindowNames.ChangeProfileWindow => provider.GetRequiredService<ChangeProfileDataViewModel>(),
+            AppWindowNames.ChangePasswordWindow => provider.GetRequiredService<ChangePasswordViewModel>(),
+            AppWindowNames.AddDictionaryWindow => provider.GetRequiredService<AddDictionaryViewModel>(),
+            AppWindowNames.WordDetailsWindow => provider.GetRequiredService<WordDetailsViewModel>(),
+            AppWindowNames.DictionaryDetailsWindow => provider.GetRequiredService<DictionaryDetailsViewModel>(),
+            _ => throw new ArgumentOutOfRangeException(nameof(name))
+        });
+
 
         services.AddSingleton<Func<string, UserControl>>(provider => exerciseType => exerciseType switch
         {
@@ -156,6 +175,5 @@ public static class DependencyInjection
         services.AddSingleton<PageFactory>();
         services.AddSingleton<ExerciseViewFactory>();
         services.AddSingleton<IWindowFactory, WindowFactory>();
-        services.AddSingleton<IWindowViewModelFactory, WindowViewModelFactory>();
     }
 }

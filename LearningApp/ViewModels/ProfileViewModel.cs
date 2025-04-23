@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using Avalonia.Controls;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using LearningApp.Factories.WindowFactory;
@@ -18,20 +16,17 @@ namespace LearningApp.ViewModels;
 public partial class ProfileViewModel : PageViewModel
 {
     private readonly IWindowFactory _windowFactory;
-    private readonly Func<Window> _mainWindowGetter;
 
     [ObservableProperty] private UserStateService _userState;
     [ObservableProperty] private IEnumerable<ISeries> _series;
     [ObservableProperty] private int _currentLevelCap;
 
 
-    public ProfileViewModel(UserStateService userState, IWindowFactory windowFactory,
-        Func<Window> mainWindowGetter)
+    public ProfileViewModel(UserStateService userState, IWindowFactory windowFactory)
     {
         PageName = AppPageNames.Profile;
         _userState = userState;
         _windowFactory = windowFactory;
-        _mainWindowGetter = mainWindowGetter;
         CurrentLevelCap = UserState.CurrentUser.Level * 4000;
         Series = InitSeries;
     }
@@ -39,15 +34,13 @@ public partial class ProfileViewModel : PageViewModel
     [RelayCommand]
     private async Task UpdateProfileData()
     {
-        var dialog = _windowFactory.CreateChangeProfileView();
-        await dialog.ShowDialog(_mainWindowGetter());
+        await _windowFactory.ShowDialog<bool>(AppWindowNames.ChangeProfileWindow);
     }
 
     [RelayCommand]
     private async Task UpdatePassword()
     {
-        var dialog = _windowFactory.CreateChangePasswordView();
-        await dialog.ShowDialog(_mainWindowGetter());
+        await _windowFactory.ShowDialog<bool>(AppWindowNames.ChangePasswordWindow);
     }
 
 

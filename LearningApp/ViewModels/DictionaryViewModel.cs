@@ -1,12 +1,9 @@
 ﻿using System;
-using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using Avalonia.Controls;
-using AvaloniaDialogs.Views;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using LearningApp.Factories.WindowFactory;
-using LearningApp.Models.Dto.Simple;
 using LearningApp.Utils.Enum;
 using LearningApp.Utils.StateService;
 
@@ -16,14 +13,11 @@ public partial class DictionaryViewModel : PageViewModel
 {
     [ObservableProperty] private UserStateService _userStateService;
     private readonly IWindowFactory _windowFactory;
-    private readonly Func<Window> _mainWindowGetter;
 
-    public DictionaryViewModel(UserStateService userStateService, IWindowFactory windowFactory,
-        Func<Window> mainWindowGetter)
+    public DictionaryViewModel(UserStateService userStateService, IWindowFactory windowFactory)
     {
         _userStateService = userStateService;
         _windowFactory = windowFactory;
-        _mainWindowGetter = mainWindowGetter;
         PageName = AppPageNames.Dictionaries;
     }
 
@@ -46,8 +40,7 @@ public partial class DictionaryViewModel : PageViewModel
     [RelayCommand]
     private async Task OpenAddDictionaryDialog()
     {
-        var dialog = _windowFactory.CreateAddDictionaryView();
-        await dialog.ShowDialog(_mainWindowGetter());
+        await _windowFactory.ShowDialog<bool>(AppWindowNames.AddDictionaryWindow);
     }
 
     [RelayCommand]
