@@ -10,11 +10,4 @@ public partial class SignUpView : UserControl
     {
         InitializeComponent();
     }
-
-    private void TogglePasswordVisibility(object sender, RoutedEventArgs e)
-    {
-        if (DataContext is not SignUpViewModel viewModel) return;
-        viewModel.IsPasswordVisible = !viewModel.IsPasswordVisible;
-        PasswordField.PasswordChar = viewModel.IsPasswordVisible ? '\0' : '*';
-    }
 }

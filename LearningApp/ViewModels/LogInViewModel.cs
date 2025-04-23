@@ -11,8 +11,6 @@ namespace LearningApp.ViewModels;
 
 public partial class LogInViewModel : PageViewModel
 {
-    private bool _isPasswordVisible;
-
     private readonly IAuthorizationService _authorizationService;
 
     [ObservableProperty] [NotifyCanExecuteChangedFor(nameof(LoginCommand))]
@@ -27,14 +25,8 @@ public partial class LogInViewModel : PageViewModel
         _authorizationService = authorizationService;
     }
 
-    public bool IsPasswordVisible
-    {
-        get => _isPasswordVisible;
-        set
-        {
-            if (SetProperty(ref _isPasswordVisible, value)) OnPropertyChanged(nameof(ImagePath));
-        }
-    }
+    [ObservableProperty] [NotifyPropertyChangedFor(nameof(ImagePath))]
+    private bool _isPasswordVisible;
 
 
     [RelayCommand(CanExecute = nameof(CanLogin))]

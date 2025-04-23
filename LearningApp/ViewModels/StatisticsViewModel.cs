@@ -1,11 +1,9 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
-using LearningApp.Utils.Enum;
+﻿using LearningApp.Utils.Enum;
 using LiveChartsCore;
 using LiveChartsCore.SkiaSharpView;
 using LiveChartsCore.SkiaSharpView.Drawing.Geometries;
 using LiveChartsCore.SkiaSharpView.Painting;
 using LiveChartsCore.SkiaSharpView.VisualElements;
-using ShimSkiaSharp;
 using SKColor = SkiaSharp.SKColor;
 
 namespace LearningApp.ViewModels;
@@ -13,14 +11,14 @@ namespace LearningApp.ViewModels;
 public partial class StatisticsViewModel : PageViewModel
 
 {
-
     public StatisticsViewModel()
     {
         PageName = AppPageNames.Statistics;
     }
+
     public Axis[] XAxes { get; set; } =
     [
-        new Axis
+        new()
         {
             Labels = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
             LabelsRotation = 0,

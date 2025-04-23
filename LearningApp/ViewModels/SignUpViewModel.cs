@@ -25,8 +25,6 @@ public partial class SignUpViewModel : PageViewModel
     private string _username = string.Empty;
 
     private readonly IAuthorizationService _authorizationService;
-    private bool _isPasswordVisible;
-
 
     public SignUpViewModel(IAuthorizationService authorizationService)
     {
@@ -34,14 +32,8 @@ public partial class SignUpViewModel : PageViewModel
         _authorizationService = authorizationService;
     }
 
-    public bool IsPasswordVisible
-    {
-        get => _isPasswordVisible;
-        set
-        {
-            if (SetProperty(ref _isPasswordVisible, value)) OnPropertyChanged(nameof(ImagePath));
-        }
-    }
+    [ObservableProperty] [NotifyPropertyChangedFor(nameof(ImagePath))]
+    private bool _isPasswordVisible;
 
     public string ImagePath => IsPasswordVisible ? "/Assets/Icons/eye-off.svg" : "/Assets/Icons/eye.svg";
 

@@ -30,9 +30,11 @@
 
                         <Grid Margin="0,0,0,20">
                             <TextBox x:Name="PasswordField" PasswordChar="*" Text="{Binding Password}"
-                                     Watermark="{localizationManager:Localize PasswordField}" />
+                                     Watermark="{localizationManager:Localize PasswordField}"
+                                     RevealPassword="{Binding IsPasswordVisible}" />
                             <Button x:Name="ShowHideButton" HorizontalAlignment="Right" VerticalAlignment="Center"
-                                    Classes="icon" Click="TogglePasswordVisibility" Background="Transparent"
+                                    Classes="icon" Command="{Binding TogglePasswordVisibilityCommand}"
+                                    Background="Transparent"
                                     BorderThickness="0">
                                 <Svg x:Name="ShowHideIcon" Classes="passwordIcon" Path="{Binding ImagePath}" />
                             </Button>
