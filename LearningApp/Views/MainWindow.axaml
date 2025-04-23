@@ -3,15 +3,37 @@
         xmlns:vm="using:LearningApp.ViewModels"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:i="clr-namespace:Avalonia.Xaml.Interactivity;assembly=Avalonia.Xaml.Interactivity"
+        xmlns:ia="clr-namespace:Avalonia.Xaml.Interactions.Core;assembly=Avalonia.Xaml.Interactions"
+        xmlns:avalonia="clr-namespace:LoadingIndicators.Avalonia;assembly=LoadingIndicators.Avalonia"
         mc:Ignorable="d" d:DesignWidth="1920" d:DesignHeight="1080"
         x:Class="LearningApp.Views.MainWindow"
         x:DataType="vm:MainWindowViewModel"
         Icon="/Assets/avalonia-logo.ico"
         Title="LearningApp">
-    
-    <TransitioningContentControl Content="{Binding CurrentView}">
-        <TransitioningContentControl.PageTransition>
-            <CrossFade Duration="0:00:00.2" />
-        </TransitioningContentControl.PageTransition>
-    </TransitioningContentControl>
+
+    <i:Interaction.Behaviors>
+        <ia:EventTriggerBehavior EventName="Loaded">
+            <InvokeCommandAction Command="{Binding CheckTokensAndNavigateCommand}" />
+        </ia:EventTriggerBehavior>
+    </i:Interaction.Behaviors>
+
+    <Grid>
+        <TransitioningContentControl Content="{Binding CurrentView}">
+            <TransitioningContentControl.PageTransition>
+                <CrossFade Duration="0:0:0.5" />
+            </TransitioningContentControl.PageTransition>
+        </TransitioningContentControl>
+
+        <avalonia:LoadingIndicator
+            Width="100"
+            Height="100"
+            IsVisible="{Binding IsLoading}"
+            Mode="Wave"
+            SpeedRatio="1.5"
+            Foreground="White"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Center" />
+    </Grid>
+
 </Window>

@@ -1,4 +1,6 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Diagnostics;
+using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
@@ -8,12 +10,17 @@ using LearningApp.Utils.Enum;
 using LearningApp.Utils.LocalizationManager;
 using LearningApp.Utils.Settings;
 using LearningApp.Utils.TokenManagement;
+using Refit;
 
 namespace LearningApp.ViewModels;
 
 public partial class MainWindowViewModel : ViewModelBase, IRecipient<NavigateToPageMessage>
 {
     private readonly PageFactory _pageFactory;
+    private readonly ITokenStorage _tokenStorage;
+    private readonly IApiInterface _apiInterface;
+
+    [ObservableProperty] private bool _isLoading;
 
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(IsLogInPageActive))]
@@ -26,18 +33,44 @@ public partial class MainWindowViewModel : ViewModelBase, IRecipient<NavigateToP
     public MainWindowViewModel(PageFactory pageFactory, ITokenStorage tokenStorage, IApiInterface apiInterface)
     {
         _pageFactory = pageFactory;
+        _tokenStorage = tokenStorage;
+        _apiInterface = apiInterface;
         IsActive = true;
-
-        apiInterface.LaunchApp().ConfigureAwait(false);
-        var tokens = tokenStorage.ValidateTokens();
-
-        CurrentView = _pageFactory.GetPageViewModel(tokens ? AppPageNames.MainApp : AppPageNames.LogIn);
-        LocalizationManager.SetLanguage(SettingsManager.LoadSettings().SelectedLanguageCode);
     }
 
     public void Receive(NavigateToPageMessage message)
     {
         CurrentView = _pageFactory.GetPageViewModel(message.PageName);
+    }
+
+
+    [RelayCommand]
+    private async Task CheckTokensAndNavigate()
+    {
+        IsLoading = true;
+        try
+        {
+            var launchApp = _apiInterface.LaunchApp();
+            var minLoadingTime = Task.Delay(3000);
+            var tokensValid = _tokenStorage.ValidateTokens();
+
+            await Task.WhenAll(launchApp, minLoadingTime).ConfigureAwait(false);
+
+            var nextView = _pageFactory.GetPageViewModel(
+                tokensValid ? AppPageNames.MainApp : AppPageNames.LogIn);
+
+            CurrentView = nextView;
+            LocalizationManager.SetLanguage(SettingsManager.LoadSettings().SelectedLanguageCode);
+        }
+        catch (ApiException e)
+        {
+            Console.WriteLine(e);
+            CurrentView = _pageFactory.GetPageViewModel(AppPageNames.LogIn);
+        }
+        finally
+        {
+            IsLoading = false;
+        }
     }
 }
 
