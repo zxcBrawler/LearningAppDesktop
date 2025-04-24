@@ -8,5 +8,4 @@ public class Settings
     public int SelectedDailyGoalIndex { get; set; }
     public string? SelectedTime { get; set; }
     public bool IsDailyRemindersEnabled { get; set; }
-    public bool IsStreakRemindersEnabled { get; set; }
 }

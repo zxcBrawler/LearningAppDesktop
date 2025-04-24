@@ -1,6 +1,9 @@
 ﻿using System;
 using System.IO;
+using System.Threading.Tasks;
+using LearningApp.DataSource;
 using Newtonsoft.Json;
+using Refit;
 
 namespace LearningApp.Utils.Settings;
 
@@ -29,7 +32,6 @@ public class SettingsManager
         {
             SelectedThemeIndex = 0,
             IsDailyRemindersEnabled = false,
-            IsStreakRemindersEnabled = false,
             SelectedTime = "00:00",
             SelectedDailyGoalIndex = 0,
             SelectedLanguageIndex = 0,
@@ -43,7 +45,6 @@ public class SettingsManager
         {
             SelectedThemeIndex = 0,
             IsDailyRemindersEnabled = false,
-            IsStreakRemindersEnabled = false,
             SelectedTime = "00:00",
             SelectedDailyGoalIndex = 0,
             SelectedLanguageIndex = 0,
@@ -51,6 +52,7 @@ public class SettingsManager
         };
         SaveSettings(defaultSettings);
     }
+
 
     public static void SaveSettings(Settings? settings)
     {

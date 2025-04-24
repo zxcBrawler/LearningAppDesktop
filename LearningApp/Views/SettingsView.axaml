@@ -143,24 +143,7 @@
                         </Grid>
                     </Grid>
                 </Border>
-                <Border Background="#35373B" CornerRadius="20" Padding="10">
-                    <Grid ColumnDefinitions="*, *" RowDefinitions="Auto, Auto" ShowGridLines="False">
-                        <TextBlock Text="{localizationManager:Localize StreakReminders}" FontSize="24"
-                                   Foreground="White" Margin="15 15 0 5" />
-                        <TextBlock Grid.Row="1" Grid.Column="0"
-                                   Text="{localizationManager:Localize AllowStreakNotificationsText}"
-                                   Margin="15 5 0 15"
-                                   TextWrapping="Wrap"
-                                   FontSize="22" />
-                        <Viewbox Grid.Row="0" Grid.RowSpan="2" Grid.Column="1" Height="120" HorizontalAlignment="Right"
-                                 VerticalAlignment="Center">
-                            <ToggleSwitch
-                                IsChecked="{Binding IsStreakRemindersEnabled,FallbackValue='True'}"
-                                CornerRadius="20"
-                                Margin="20" />
-                        </Viewbox>
-                    </Grid>
-                </Border>
+
 
                 <Button Classes="primary" Content="{localizationManager:Localize SaveSettings}"
                         HorizontalAlignment="Stretch"

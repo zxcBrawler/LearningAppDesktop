@@ -50,12 +50,8 @@ public partial class MainWindowViewModel : ViewModelBase, IRecipient<NavigateToP
         IsLoading = true;
         try
         {
-            var launchApp = _apiInterface.LaunchApp();
-            var minLoadingTime = Task.Delay(3000);
+            await _apiInterface.LaunchApp();
             var tokensValid = _tokenStorage.ValidateTokens();
-
-            await Task.WhenAll(launchApp, minLoadingTime).ConfigureAwait(false);
-
             var nextView = _pageFactory.GetPageViewModel(
                 tokensValid ? AppPageNames.MainApp : AppPageNames.LogIn);
 

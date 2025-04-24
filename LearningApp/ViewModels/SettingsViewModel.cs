@@ -1,9 +1,13 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Diagnostics;
+using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using LearningApp.DataSource;
 using LearningApp.Utils.Enum;
 using LearningApp.Utils.LocalizationManager;
 using LearningApp.Utils.Settings;
+using Refit;
 
 namespace LearningApp.ViewModels;
 
@@ -11,10 +15,11 @@ public partial class SettingsViewModel : PageViewModel
 {
     [ObservableProperty] private Settings? _settings;
     [ObservableProperty] private bool _isDailyRemindersEnabled;
-    [ObservableProperty] private bool _isStreakRemindersEnabled;
+    private readonly IApiInterface _apiInterface;
 
-    public SettingsViewModel()
+    public SettingsViewModel(IApiInterface apiInterface)
     {
+        _apiInterface = apiInterface;
         PageName = AppPageNames.Settings;
         LoadSettings();
     }
@@ -26,15 +31,21 @@ public partial class SettingsViewModel : PageViewModel
         Settings = SettingsManager.LoadSettings();
         if (Settings == null) return;
         IsDailyRemindersEnabled = Settings.IsDailyRemindersEnabled;
-        IsStreakRemindersEnabled = Settings.IsStreakRemindersEnabled;
     }
 
     [RelayCommand]
-    private void SaveSettings()
+    private async Task SaveSettings()
     {
-        if (Settings == null) return;
         Settings.IsDailyRemindersEnabled = IsDailyRemindersEnabled;
-        Settings.IsStreakRemindersEnabled = IsStreakRemindersEnabled;
+        if (IsDailyRemindersEnabled)
+        {
+            await SaveNotificationsDateTime(Settings.SelectedTime);
+        }
+        else
+        {
+            await StopNotifications();
+        }
+
         SettingsManager.SaveSettings(Settings);
         Settings = SettingsManager.LoadSettings();
     }
@@ -76,4 +87,33 @@ public partial class SettingsViewModel : PageViewModel
     {
         Process.Start(new ProcessStartInfo { FileName = "https://docs.avaloniaui.net", UseShellExecute = true });
     }
+
+
+    #region Api Calls
+
+    private async Task SaveNotificationsDateTime(string dateTime)
+    {
+        try
+        {
+            await _apiInterface.SetNotificationsDateTime(dateTime);
+        }
+        catch (ApiException e)
+        {
+            Console.WriteLine(e.Content);
+        }
+    }
+
+    private async Task StopNotifications()
+    {
+        try
+        {
+            await _apiInterface.StopNotifications();
+        }
+        catch (ApiException e)
+        {
+            Console.WriteLine(e.Content);
+        }
+    }
+
+    #endregion
 }

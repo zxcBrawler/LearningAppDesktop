@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using LearningApp.Models.Dto.Complex;
 using LearningApp.Models.Dto.Request;
@@ -69,6 +70,12 @@ public interface IApiInterface
 
     [Post("/api/UserActions/AddWordToDictionary/{dictionaryId}/{wordId}")]
     public Task<DictionarySimpleDto> AddWordToDictionary(int wordId, int dictionaryId);
+
+    [Post("/api/Notifications/SetNotificationsDateTime")]
+    public Task SetNotificationsDateTime(string dateTime);
+
+    [Post("/api/Notifications/StopNotifications")]
+    public Task StopNotifications();
 
     #endregion
 
