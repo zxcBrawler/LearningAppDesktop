@@ -1,5 +1,4 @@
 # Learning App
-LearningAppDesktop - English Learning Desktop Application
 ![book](https://github.com/user-attachments/assets/538ade10-2db9-45b3-90b4-1ae3b94a5d1e)
 
 **LearningApp** is a comprehensive English language learning application designed for desktop platforms. This application provides an interactive environment for users to improve their English skills through various exercises, lessons, and progress tracking features.
